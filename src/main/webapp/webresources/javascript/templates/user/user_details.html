@@ -1,0 +1,91 @@
+<form method="post" autocomplete="off" action="/secure/saveUser" id="saveUserDetails" enctype="multipart/form-data">
+    <div class="accordian-header">
+        <div class="accordian-header-text">
+            User Details
+        </div>
+        <div class="accordian-toggle">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </div>
+    </div>
+
+    <div class="accordian-body">
+     <div class="user-registration-form">
+      <div class="form-row">
+        <div class="form-column">
+            <div class="field-label">First Name</div>
+            <div class="field">
+                <input id="firstName" type="text" value="" placeholder="Enter First Name" name="firstName">
+            </div>
+        </div>
+        <div class="form-column">
+          <div class="field-label">Last Name</div>
+            <div class="field">
+                <input id="lastName" type="text" value="" placeholder="Enter Last Name" name="lastName">
+            </div>
+       </div>
+      </div>
+
+      <div class="form-row">
+          <div class="form-column">
+            <div class="field-label">Email</div>
+            <div class="field">
+                <input id="email" type="text" value="" name="email" placeholder="Enter Email ID">
+            </div>
+          </div>
+          <div class="form-column">
+            <div class="field-label">Mobile</div>
+            <div class="field">
+                <input id="mobileNumber" type="text" value="" name="telephone" placeholder="Enter Mobiile Number">
+            </div>
+          </div>
+      </div>
+
+      <div class="form-row">
+          <div class="form-column">
+            <div class="field-label">User Name</div>
+            <div class="field">
+                <input id="userName" type="text" value="" name="userName" placeholder="Enter User Name">
+            </div>
+            </div>
+          <div class="form-column">
+             <div class="field-label">Password</div>
+            <div class="field">
+                <input id="password" type="password" value="" name="password" placeholder="Enter Password">
+            </div>
+          </div>
+      </div>
+
+        <div class="form-row">
+            <div class="form-column">
+              <div class="field-label">Role</div>
+              <div class="field">
+                <select id="role" name="role">
+                    <option value="ROLE_SUPER_ADMIN">Super Admin</option>
+                    <option value="ROLE_ADMIN">Admin</option>
+                    <option value="ROLE_GLOBEX_ADMIN">Globex Admin</option>
+                    <option value="ROLE_GLOBEX_USER">Globex User</option>
+                    <option value="ROLE_PM_ADMIN">PM Admin</option>
+                    <option value="ROLE_PM_USER">PM User</option>
+                    <option value="ROLE_LM_ADMIN">LM Admin</option>
+                    <option value="ROLE_LM_USER">LM User</option>
+                    <option value="ROLE_SUPPORT">Support User</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-column">
+                <div class="field-label">Upload profile picture</div>
+                <div class="field">
+                    <input id="thumbnail" type="file" name="thumbnailFile" size="50">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="button-align-right">
+                <input type="submit" class="save-button" value="Save">
+            </div>
+        </div>
+
+     </div>
+    </div>
+</form>

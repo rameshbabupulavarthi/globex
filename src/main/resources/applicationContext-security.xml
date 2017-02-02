@@ -1,0 +1,81 @@
+<beans:beans
+	   xmlns:security="http://www.springframework.org/schema/security"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:beans="http://www.springframework.org/schema/beans"
+	   xmlns:sec="http://www.springframework.org/schema/security"
+	   xmlns:oauth="http://www.springframework.org/schema/security/oauth"
+	   xsi:schemaLocation="
+	   http://www.springframework.org/schema/security
+	   http://www.springframework.org/schema/security/spring-security-3.2.xsd
+	   http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   http://www.springframework.org/schema/security/oauth
+	   http://www.springframework.org/schema/security/spring-security-oauth-1.0.xsd">
+	 
+	<security:http pattern="/index.jsp" security="none" />
+	
+	<security:global-method-security secured-annotations="enabled" />
+	
+	<security:http auto-config="true" pattern="/switch/**" use-expressions="true">
+		<security:custom-filter position="SWITCH_USER_FILTER" ref="switchUserProcessingFilter" />
+		<security:intercept-url pattern="/switch/**" access="hasAnyRole('ROLE_USER')"/>
+	</security:http>
+	
+   	<security:http auto-config="true" disable-url-rewriting="false" entry-point-ref="authenticationEntryPoint" use-expressions="true">
+  		<security:intercept-url pattern="/secure/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_SUPER_ADMIN','ROLE_PRODUCT_DESIGNER','ROLE_SUBJECT_MATTER_EXPERT','ROLE_SUPPORT','ROLE_GLOBEX_ADMIN','ROLE_GLOBEX_USER','ROLE_LM_ADMIN','ROLE_LM_USER','ROLE_PM_ADMIN','ROLE_PM_USER')" />
+  		<security:intercept-url pattern="/webresources/static/admsecure/**" access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN','ROLE_PRODUCT_DESIGNER','ROLE_SUBJECT_MATTER_EXPERT','ROLE_GLOBEX_ADMIN','ROLE_GLOBEX_USER','ROLE_LM_ADMIN','ROLE_LM_USER','ROLE_PM_ADMIN','ROLE_PM_USER')"/>
+  		<security:form-login login-page="/login"  authentication-details-source-ref="loginDataSource" authentication-failure-url="/loginError" default-target-url="/secure/welcome" always-use-default-target="true"/>
+  		<security:logout invalidate-session="true" logout-success-url="/login" logout-url="/logout" />
+		<security:remember-me services-alias="rememberMeServiceAlias" user-service-ref='authenticationUserDetailsService'/>
+	</security:http>
+	
+	<beans:bean id="switchUserProcessingFilter" class="org.springframework.security.web.authentication.switchuser.SwitchUserFilter">
+		<beans:property name="userDetailsService" ref="authenticationUserDetailsService" />
+		<beans:property name="switchUserUrl" value="/switch/switchToStudentView" />
+		<beans:property name="exitUserUrl" value="/switch/switchToInstructorView" />
+		<beans:property name="targetUrl" value="/secure/welcome" />
+	</beans:bean>
+ 	
+	<beans:bean id="customLogoutSuccessHandler" class="com.globex.controller.CustomLogoutSuccessHandler"/>
+ 	
+	<beans:bean id="loginDataSource" class="com.globex.security.UserWebAuthenticationDetailsSource"/>
+    			
+	<beans:bean id="authenticationUserDetailsService" class="com.globex.security.AuthenticationUserDetailsService"/>
+   	<security:authentication-manager alias="authenticationManager">
+   		<security:authentication-provider user-service-ref="authenticationUserDetailsService">
+   			<security:password-encoder ref="encoder" />
+   		</security:authentication-provider>
+   		<security:authentication-provider ref="preAuthenticatedAuthenticationProvider"/>
+   		<security:authentication-provider ref="anonymousAuthenticationProvider"/>
+   	</security:authentication-manager>
+ 
+   	<beans:bean id="preAuthenticatedUserDetailsService" class="com.globex.security.PreAuthenticatedUserDetailsService"/>
+   	
+   	<beans:bean id="preAuthenticatedAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+    	<beans:property name="preAuthenticatedUserDetailsService" ref="preAuthenticatedUserDetailsService"/>
+	</beans:bean>
+	<beans:bean id="anonymousAuthenticationProvider" class="org.springframework.security.authentication.AnonymousAuthenticationProvider">
+    	<beans:property name="key" value="VALIDATE_CONFIGURATION"/>
+	</beans:bean>
+   	
+	<beans:bean id="authenticationEntryPoint" class="com.globex.security.AjaxAwareAuthenticationEntryPoint">
+		<beans:constructor-arg value="/login"/>
+	</beans:bean>
+	
+	<beans:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+	   	 <beans:constructor-arg value="${secret.password.key.value}"/>
+	</beans:bean>
+	
+	<beans:bean name="oAuthConsumerDetailsService" class="com.globex.oauth.OAuthConsumerDetailsService"/>
+  
+	<beans:bean name="oAuthRequestHandler" class="com.globex.oauth.OAuthRequestHandler"/>
+	
+	<beans:bean name="oAuthProcessingFilterEntryPoint" class="com.globex.oauth.CustomOAuthProcessingFilterEntryPoint"/>
+	
+	<oauth:provider consumer-details-service-ref="oAuthConsumerDetailsService"
+                  token-services-ref="tokenServices"
+                  auth-handler-ref="oAuthRequestHandler"
+                  require10a="false"/>
+	<oauth:token-services id="tokenServices"/>
+
+</beans:beans>

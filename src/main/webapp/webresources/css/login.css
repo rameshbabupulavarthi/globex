@@ -1,0 +1,290 @@
+body {
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    font-size: 18px;
+    font-family: 'Open Sans';
+    background-color: #FCFCFC;
+}
+
+body .ui-widget-overlay {
+    background: repeat scroll 50% 50% #666666;
+    opacity: 0.5;
+    position: fixed;
+}
+
+#loading-indicator{
+	background-color: #FFF1A8;
+    border-radius: 4px 4px 4px 4px;
+    color: black;
+    font-size: 80%;
+    height: 15px;
+    left: 50%;
+    line-height: 1;
+    padding: 2px;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 80px;
+    z-index: 5000;
+}
+
+#header-section{
+	background: none repeat scroll 0 0 #FCFCFC;
+    height: 94px;
+    margin: 30px auto;
+    width: 960px;
+ }
+
+
+.snapwiz-logo-div{
+	float:left;
+	width:232px;
+	display:inline;
+	margin-top: 26px;
+}
+
+.header-title-bar{
+	width:100%;
+	height:50px;
+	background-image: url("../images/blue-strip.png");
+	z-index: 1;
+}
+
+#header-title-bar-innerwrapper{
+	margin: 0 auto;
+    width: 960px;	
+}
+
+#header-title-bar-alias{
+	height:50px;
+	display: none;
+}
+
+input, textarea {
+	border-radius: 5px 5px 5px 5px;
+    background: -moz-linear-gradient(center top , #fbfbfbfb, #EEEEEE 1px, #fbfbfbfb 25px) repeat scroll 0 0 transparent;
+    border: 1px solid #BEBEBE;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    font: 12px Open Sans;
+    padding: 8px;
+    width: 320px;
+	color: #616161;
+	 font-weight:bold;
+}
+
+/*For Login Page*/
+
+#login-outer-div{
+	height: 315px;
+	margin: 72px auto;
+	width: 660px;
+ 	border: 1px solid #BEBEBE;
+    color: #A2A2A2;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px 5px 5px 5px;
+}
+
+#login-heading-div{
+	width:660px;
+	border-bottom: 1px solid #BEBEBE;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	/* height: 51px; */
+}
+
+.login-left-section{
+	width:390px;
+	height:260px;
+	float:left;
+    font-size: 14px;
+}
+
+.login-right-section{
+	width:266px;
+	height:260px;
+	float:left;
+	border-left: solid #BEBEBE 1px;
+}
+
+#email ,#password{
+	height: 18px;
+	width:320px;
+	color: #67a3e0;
+	font-weight: 200;
+	font-size: 14px;
+	margin-top: 6px;
+	margin-left:20px;
+}
+
+.login-key-img{
+	float:left;
+	margin-left: 23px;
+	margin-top:14px;	
+}
+
+#login-heading{
+	float:left;
+	font-size: 26px;
+	line-height: 2;
+	margin-left: 7px;
+	color:#545454;
+}
+
+#login-email-text{
+	margin-top:14px;
+	margin-left:23px;
+}
+
+#login-pwd-text{
+	margin-top: 56px;
+	margin-left:23px;
+}
+
+#remember-me{
+	float:left;
+	margin-left:20px;
+	margin-top:10px;
+}
+
+#forgot-password{
+	float:right;
+	margin-top:10px;
+	margin-right: 32px;
+    text-decoration: underline;
+}
+
+#login-btn{
+	margin-left:20px;
+	margin-top:12px;
+	cursor: pointer;
+}
+
+#facebook-login-img{
+	margin-top:82px;
+	margin-left:12px;
+}
+
+
+#forgot-password a{
+	color: #A2A2A2;
+}
+
+#login-btn #loginSubmitBtn{
+	background: url("../images/login-btn.png") no-repeat scroll 0 0 transparent;
+    height: 37px;
+    width: 150px;
+    cursor: pointer;
+    text-indent: -9999px;
+    font-size: 0px;
+}
+
+.button-value-empty{
+    text-indent:-9000px;
+    font-size:0px;
+}
+
+.error {
+	color: red;
+}
+
+#error-message {
+	margin: 15px auto 0;
+    text-align: center;
+}
+
+.login-snapwiz-logo-div{
+	display: inline;
+    float: left;
+    margin-top: 100px;
+    text-align: center;
+    width: 955px;
+}
+
+.bottomBar
+{
+    width: 100% ;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    position: fixed;
+    z-index: 1001;
+    height: 55px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.notification-mesg-cont
+{
+    position: absolute;
+    height: 55px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 0px;
+    color: red;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px 0px;
+    line-height: 30px;
+}
+.notification-icon-section
+{
+	float: left;
+	text-align: left;
+	width:15%;
+}
+.notificationMessageContDiv
+{
+	float: left;
+	width:70%;
+}
+.notification-closebtn-section
+{
+	float: left;
+	text-align: right;
+	width:15%;
+}
+
+#iphone-notification > img {
+    height: 100%;
+    width: 100%;
+}
+
+/*
+ * iPhone 2G-4S in portrait & landscape
+ */
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+    body > div {
+        display: none;
+    }
+
+    #iphone-notification {
+        display: block !important;
+    }
+}
+
+/*
+ * iPhone 5 in portrait & landscape
+ */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+    body > div {
+        display: none;
+    }
+
+    #iphone-notification {
+        display: block !important;
+    }
+}
+
+#login-body-content{
+    background: url("../images/login-bg.jpg") no-repeat scroll 0 0 transparent;
+}

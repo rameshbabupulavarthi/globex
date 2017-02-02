@@ -1,0 +1,124 @@
+html{
+    font: 400 1em/1.5 "Open Sans", sans-serif;
+    background-color: #EFEFEF;
+    /*color: #7e7e7e;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+}
+
+body{
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Open Sans';
+    background-color: #FCFCFC;
+}
+
+
+.layout-header{
+    height: 85px;
+    box-shadow: 1px 0px 0px 2px rgba(0,0,0, .25);
+}
+
+.layout-body{
+    min-height: 800px;
+    background-color: #F1F4F5;
+}
+
+.layout-body-menu{
+    min-height: 800px;
+}
+
+.layout-body-menu{
+   background: -webkit-linear-gradient(left,#660378 0,rgba(174,0,70,.7) 100%);
+   display: table-cell;
+   padding: 30px;
+   height: 400px;
+   padding: 24px;
+}
+
+.layout-body-content{
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+    margin-top: 1px;
+    padding: 20px;
+}
+
+.menu-ul{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.menu-ul li {
+    list-style: none;
+    margin: 50px 10px;
+}
+
+.prd-logo{
+    display:inline-block;
+    width:6%;
+}
+
+.prd-logo img{
+    width:100px;
+    height:80px
+}
+
+.header-logo{
+    display:inline-block;
+    width:78%;
+}
+
+.header-options{
+    display:inline-block;
+}
+
+.header-options span{
+    padding: 5px 12px;
+}
+
+.header-logo .header-log-text{
+    color: #660378;
+    font-weight: 900;
+    margin-left: 25px;
+    font-size: 20px;
+}
+
+.page-header{
+  margin: 20px 0 20px;
+}
+
+.page-header-title{
+   display:inline-block;
+   margin-left:20px;
+}
+
+.page-header-options{
+   display:inline-block;
+   float: right;
+}
+
+.page-header-options-wrapper{
+
+}
+
+.page-action-cancel{
+    display:inline-block;
+    background-color: #FFFFFF;
+    padding: 5px 10px;
+}
+
+.page-action-save{
+    display:inline-block;
+    background-color: #FFFFFF;
+    padding: 5px 10px;
+}
+
+.page-content-section{
+    padding: 15px;
+}

@@ -1,0 +1,142 @@
+<div class="lm-layout">
+
+    <div class="lm-layout-wrapper">
+
+        <div class="lm-layout-header">
+            <div class="menu-header">
+                <div class="menu-header-border"></div>
+                <div class="menu-header-border"></div>
+                <div class="menu-header-border"></div>
+            </div>
+            <div class="header-logo">
+                <div class="header-log-text">Globex World</div>
+            </div>
+            <div class="header-options">
+                <div class="header-options-bullet"></div>
+                <div class="header-options-bullet"></div>
+                <div class="header-options-bullet"></div>
+            </div>
+        </div>
+
+        <div class="lm-registration-header">
+            <span class="lm-registration-header-text" >Network Partner Registration </span>
+            <span class="lm-registration-steps">
+                <span class="lm-registration-step lm-registration-step-selected">1</span>
+                <span class="lm-registration-step-seperator"> <span class="lm-registration-step-seperator-border">  </span> </span>
+                <span class="lm-registration-step">2</span>
+                <span class="lm-registration-step-seperator"> <span class="lm-registration-step-seperator-border">  </span> </span>
+                <span class="lm-registration-step">3</span>
+                <span class="lm-registration-step-seperator"> <span class="lm-registration-step-seperator-border">  </span> </span>
+                <span class="lm-registration-step">4</span>
+                <span class="lm-registration-step-seperator"> <span class="lm-registration-step-seperator-border">  </span> </span>
+                <span class="lm-registration-step">5</span>
+            </span>
+            <span class="ls-registration-step-save">
+                <img src="../webresources/images/actions/save.png"/>
+            </span>
+        </div>
+
+        <div class="lm-registration-body">
+            <div class="lm-registration-body-wrapper">
+              <form method="post" autocomplete="off" action="/secure/saveUserDetails" id="saveUserDetails">
+                <div class="lm-registration-body-section">
+                    <div class="lm-registration-body-section-text">
+                        1.ORGANIZATIONAL DETAILS
+                    </div>
+                    <div class="lm-registration-body-section-toggle">
+                        <div class="lm-registration-body-section-toggle-img"></div>
+                    </div>
+                </div>
+
+                <div class="lm-registration-form">
+                    <div class="lm-registration-form-section-left">
+
+                        <div class="field-row" >
+                            <div  class="sameline">Organization Name : </div>
+                            <div  class="sameline" id="orgnamediv"><input id="orgName" type="text" value="" placeholder="Enter Organization Name" name="orgName" ></div>
+                        </div>
+                        <div class="field-row" >
+                            <div  class="sameline">Telephone : </div>
+                            <div  class="sameline" id="telephonediv1"><input id="phone" type="text" value=""  name="phone" placeholder="Enter Telephone Number"></div>
+                        </div>
+                        <div class="field-row" >
+                            <div  class="sameline">Company Website : </div>
+                            <div  class="sameline" id="websitediv" ><input id="website" type="text" value="" placeholder="Enter Company Website" name="website"></div>
+                        </div>
+                        <div class="field-row" >
+                            <div  class="sameline">General Email Id : </div>
+                            <div  class="sameline" id="emailiddiv"><input id="orgEmail" type="text" value="" placeholder="Enter Email Id" name="orgEmail"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="lm-registration-form-section-right">
+                        <div class="field-row" >
+                            <div  class="sameline">Address : </div>
+                            <div  class="sameline" id="addressdiv"><textarea rows="6" cols="70" id="addrLine1" value="" placeholder="Enter Address" name="addrLine1"></textarea></div>
+                        </div>
+
+                        <div class="field-row" >
+                            <div class="sameline">City : </div>
+                            <div class="sameline" id="citydiv"><input id="city" type="text" value="" placeholder="Enter City Name" name="city"></div>
+                        </div>
+
+                        <div class="field-row field-column" >
+                            <div class="sameline">State : </div>
+                            <div  class="sameline" id="statediv"><input id="state" type="text" value="" placeholder="Enter State" name="state"></div>
+                        </div>
+                        <div class="field-row field-column" >
+                            <div  class="sameline">Zip Code: </div>
+                            <div  class="sameline" id="zipcodediv"><input id="zipcode" type="text" value="" placeholder="Enter Zip Code" name="zipCode"></div>
+                        </div>
+
+                        <div >
+                            <div  class="sameline">Country : </div>
+                            <div  class="sameline" id="countrydiv"><input id="country" type="text" value="" placeholder="Enter Country Name" name="country"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="lm-registration-body-section">
+                    <div class="lm-registration-body-section-text">
+                        1.PRIMARY CONTACT DETAILS
+                    </div>
+                    <div class="lm-registration-body-section-toggle">
+                        <div class="lm-registration-body-section-toggle-img"></div>
+                    </div>
+                </div>
+
+                <div class="lm-registration-form">
+                    <div class="lm-registration-form-section-left">
+                        <div class="field-row" >
+                            <div class="sameline">First Name</div>
+                            <div class="sameline" ><input id="firstName" type="text" value="" placeholder="Enter First Name" name="firstName" ></div>
+                        </div>
+                        <div class="field-row" >
+                            <div class="sameline">Email  </div>
+                            <div class="sameline"><input id="email" type="text" value=""  name="email" placeholder="Enter Email ID"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="lm-registration-form-section-right">
+                        <div class="field-row" >
+                            <div class="sameline">Last Name  </div>
+                            <div class="sameline"><input id="lastName" type="text" value="" placeholder="Enter Last Name" name="lastName" ></div>
+                        </div>
+                        <div class="field-row" >
+                            <div class="sameline">Mobile  </div>
+                            <div class="sameline" ><input id="mobileNumber" type="text" value=""  name="mobileNumber" placeholder="Enter Mobiile Number"></div>
+                        </div>
+                    </div>
+                </div>
+
+                  <input type="hidden" id="partnerId" name="id" >
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>

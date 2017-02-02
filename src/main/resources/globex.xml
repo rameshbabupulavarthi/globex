@@ -1,0 +1,131 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:si="http://www.springframework.org/schema/integration"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang
+        http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/data/repository
+        http://www.springframework.org/schema/data/repository/spring-repository-1.5.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/integration
+		http://www.springframework.org/schema/integration/spring-integration-2.2.xsd">
+
+    <import resource="applicationContext-security.xml"/>
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.globex" />
+
+    <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <bean id="jspViewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+    <jpa:repositories base-package="com.globex.repository.rdbms"/>
+
+    <bean id="dataSource" class="com.utils.DataSourceConnection" destroy-method="close" init-method="configureUrl">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="true" />
+        <property name="testOnReturn" value="false" />
+        <property name="validationQuery" value="SELECT 1" />
+        <property name="validationInterval" value="30000" />
+        <property name="timeBetweenEvictionRunsMillis" value="5000" />
+        <property name="minIdle" value="10" />
+        <property name="maxIdle" value="10" />
+        <property name="maxWait" value="10000" />
+        <property name="initialSize" value="10" />
+        <property name="removeAbandonedTimeout" value="60" />
+        <property name="removeAbandoned" value="true" />
+        <property name="logAbandoned" value="true" />
+        <property name="minEvictableIdleTimeMillis" value="30000" />
+        <property name="jmxEnabled" value="true" />
+        <property name="abandonWhenPercentageFull" value="75"/>
+        <property name="jdbcInterceptors"
+                  value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;
+	                     org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer;
+	                     org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReportJmx(threshold=5000)" />
+    </bean>
+    <tx:annotation-driven />
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+        </property>
+    </bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="false" />
+                <property name="generateDdl" value="false" />
+            </bean>
+        </property>
+    </bean>
+    <mvc:interceptors>
+        <bean
+                class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
+            <property name="entityManagerFactory" ref="entityManagerFactory" />
+        </bean>
+        <bean class="com.globex.interceptors.URLInterceptor"/>
+    </mvc:interceptors>
+    <mvc:resources mapping="/webresources/**" location="/webresources/" />
+
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="false" />
+    </bean>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:encryptionUtil.properties</value>
+                <value>classpath:scheduler.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="tDESEncryptionUtils" class ="com.utils.EncryptionUtils" scope="singleton">
+        <constructor-arg value="${secret.salt.value}"/>
+    </bean>
+
+    <bean id="globalexceptionhandler" class="com.globex.controller.GlobalExceptionHandler" />
+</beans>

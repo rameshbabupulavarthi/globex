@@ -1,0 +1,538 @@
+body{
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Open Sans';
+    background-color: #FCFCFC;
+}
+
+a{
+    text-decoration: none;
+}
+
+.layout-header{
+    height: 50px;
+    box-shadow: 1px 0px 0px 2px rgba(0,0,0, .25);
+}
+
+.prd-logo{
+    display:inline-block;
+    width:6%;
+}
+
+.prd-logo img{
+    width:100px;
+    height:60px
+}
+
+.header-wrapper{
+    width:92%;
+}
+
+.header-logo{
+    display:inline-block;
+    width:78%;
+    vertical-align: top;
+    margin-top: 20px;
+    margin-left: 78px;
+}
+
+.header-logo .header-log-text{
+    color: #660378;
+    font-weight: 900;
+    margin-left: 25px;
+    font-size: 20px;
+}
+
+.layout-header .header-options{
+    float: right;
+    display: inline-block;
+    position:relative;
+   /* margin: 20px 100px 10px 10px;*/
+}
+
+.layout-header .header-options .header-options-bullet{
+    border-radius: 4px;
+    padding: 2px;
+    border: 1px solid grey;
+    margin: 2px;
+    background-color: #000000;
+}
+
+.header-options img{
+    height: 28px;
+    width: 26px;
+}
+
+
+.layout-body-content{
+    display: table-cell;
+    vertical-align: top;
+    width: 91%;
+    float:right;
+    margin-top: 1px;
+    padding: 20px;
+    background-color:#e9eef1;
+}
+
+/*** menu ******/
+.layout-body-menu{
+   background: -webkit-linear-gradient(left,#660378 0,rgba(174,0,70,.7) 100%);
+   display: table-cell;
+   /*height: 400px;*/
+   padding: 0px;
+
+   position: absolute;
+   height: 662px;/**TODO*/
+}
+
+.menu-ul{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.menu-ul li {
+    list-style: none;
+    /*margin: 50px 10px;*/
+}
+
+.menu-group-item{
+
+}
+
+.menu-group-item ul,.menu-group-item li{
+   padding:10px;
+   cursor:pointer;
+}
+
+.menu-group-item-text{
+   padding:5px;
+}
+
+.menu-item-text{
+   vertical-align:top;
+}
+
+.menu-toggle-content{
+    display:none;
+}
+
+.prd-logo{
+    color: red;
+    font-weight: bold;
+    padding: 30px;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+.prd-logo-text{
+    padding:2px;
+    display:none;
+}
+
+.prd-logo-text .prd-logo-text-highlight{
+    color:red;
+    font-weight:bold;
+}
+
+
+.dashboard-tile{
+    width: 350px;
+    height: 247px;/**TODO*/
+    border-radius: 2px;
+    background-color: #FBFCFE;
+    border: 1px solid #FBFCFE;
+    padding:10px;
+    margin: 10px;
+}
+
+.dashboard-tile-list{
+    display:inline-block;
+    vertical-align: top;
+}
+
+.dashboard-tile-list .dashboard-tile{
+    margin-bottom:5px;
+}
+
+.dashboard-tile-options{
+    float: right;
+    cursor:pointer;
+}
+
+.dashboard-tile-options-text{
+    font-size: 10px;
+    top: 0px;
+    position: relative;
+    color: #a0a0a0;
+}
+
+.dashboard-tile-jumpout{
+    background-image: url(../images/sprite/sprite.png);
+    background-position: -96px -52px;
+    width: 20px;
+    height: 24px;
+    float: right;
+    margin-left: 10px;
+}
+
+.dashboard-tile.vertical-full{
+   height: 525px;/**TODO*/
+}
+
+.dashboard-tile-header{
+    margin: 0 0 10px 0;
+}
+
+.dashboard-tile-text{
+    vertical-align:top;
+}
+
+.dashboard-tile-text.tile-message {
+    color:#c5a0e7;
+    margin: 5px;
+}
+.dashboard-tile-text.tile-renewals {
+    color:#2bc49f;
+    margin: 5px;
+}
+
+.dashboard-tile-text.tile-reminder {
+    color:#eb7979;
+    margin: 5px;
+}
+
+.message-container{
+    padding: 5px 0 0 0;
+}
+
+.message-title-content{
+    display: block;
+    line-height: 0;
+}
+
+.message-content{
+    overflow: hidden;
+    line-height: 1.5;
+    font-size: 12px;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    vertical-align:top;
+    margin:10px 5px;
+}
+
+.message-sender-name{
+    margin-left: 50px;
+    font-family: "open sans light", sans-serif;
+    font-size: 10px;
+    color: #a0a0a0;
+}
+
+.message-time{
+    float: right;
+    font-family: "open sans light", sans-serif;
+    font-size: 10px;
+    color: #a0a0a0;
+}
+
+.message-sender-img img{
+    border-radius:50%;
+    height:40px;
+    width:40px;
+    margin:0px;
+}
+
+.pic-standard-small img{
+    border-radius:2px;
+    height:40px;
+    width:40px;
+    margin:0px;
+}
+
+
+/*******popup********/
+.popup-container{
+    position:absolute;
+    width:900px;
+    height:500px;
+    top:60px;
+    left:220px;
+    display:none;
+}
+
+.popup-content{
+    background-color: #ffffff;
+    border: 1px solid #CDCDCD;
+    border-radius: 2px;
+}
+
+.popup-header{
+   border: 1px solid #CDCDCD;
+   border-radius: 2px;
+   padding: 10px;
+   background-color: #e9eef1;
+}
+
+.popup-header-text{
+
+}
+
+.popup-close{
+    float:right;
+    cursor:pointer;
+}
+
+.popup-body{
+    height:500px;
+    padding:5px;
+}
+
+.blur-background{
+   opacity:0px;
+}
+
+.user-nav-options{
+   margin-top: 10px;
+   cursor:pointer;
+}
+
+.user-nav-options .user-img{
+
+}
+
+.user-nav-options .user-name{
+    color: #888;
+    font-weight: 600;
+    margin: 0 .3em 0 .5em;
+    overflow: hidden;
+    line-height: 1.5;
+    font-size: 14px;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 0 rgba(0,0,0,.5);
+    max-width: 150px;
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+.profile-drop-down{
+    position:absolute;
+    right:0;
+    display:none;
+}
+
+.profile-drop-down .user-nav-ul{
+    padding: .25em 0;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 3px rgba(0,0,0, .1), 0 1px 0 rgba(255,255,255, .2) inset;
+    min-width: 150px;
+    margin: 0px;
+}
+
+.profile-drop-down .user-nav-ul li{
+    list-style:none;
+    text-align: left;
+    padding: .25em 1em .25em 1em;
+}
+
+.profile-drop-down .user-nav-ul li a{
+    color: #888;
+    font-size: .875em;
+    text-shadow: 0 1px 2px rgba(0,0,0, .25);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.drop-down-img{
+    background-image: url(../images/sprite/sprite.png);
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    line-height: 1;
+    zoom: 1;
+    width: 20px;
+    height: 16px;
+    overflow: hidden;
+    background-position: -40px 0;
+    margin-bottom: 12px;
+}
+
+.dashboard-tile-customize{
+    background: url(../images/sprite/delete-customize-sprite.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display:inline-block;
+    height: 19px;
+    width: 20px;
+    background-position: 0 0;
+}
+
+
+/********************user page ******************/
+
+.table-container{
+    width: 100%;
+    text-align: center;
+    border: 1px solid #FBFCFE;
+}
+
+.header-row{
+    font: bold 11px/25px Verdana, Arial, Helvetica, sans-serif;
+    height: 25px;
+    padding: 0px 3px;
+    white-space: nowrap;
+    color: #b18a49;
+    background: #F3F4F0;
+}
+
+.header-column{
+   width: 120px;
+   padding:2px;
+   border: 1px solid #FBFCFE;
+}
+
+.edit-icon{
+    background-image: url(../images/sprite/css-sprites.gif);
+    background-position: -68px -10px;
+    width: 20px;
+    height: 20px;
+    margin-left: 50px;
+    cursor:pointer;
+}
+
+.delete-icon{
+    background: url(../images/sprite/delete-customize-sprite.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display:inline-block;
+    height: 19px;
+    width: 20px;
+    background-position: -45px 0;
+    cursor:pointer;
+}
+
+.table-column{
+   width: 120px;
+   font: 11px/18px Verdana, Arial, Helvetica, sans-serif;
+   padding: 3px 2px;
+   height: 18px;
+   border: 1px solid #FBFCFE;
+}
+
+
+.btn-wrapper{
+    width: 100%;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.add-button{
+    background-image: url(../images/sprite/css-sprites.gif);
+    background-position: 420px -160px;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.add-user-button{
+    background-color: #c3355d;
+    border-radius: 5px;
+    color: #fdfeff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px 0px 5px;
+    text-align: center;
+    float:right;
+    cursor:pointer;
+}
+
+.add-user-text{
+   margin-left:5px;
+   vertical-align: top;
+}
+
+/***user css**/
+.accordian-header{
+    padding: 10px 0px;
+    border-radius: 2px;
+    background-color: #FBFCFE;
+    background: rgb(220, 220, 220);
+    border: 1px solid #FBFCFE;
+}
+
+.accordian-header .accordian-header-text{
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.accordian-header .accordian-toggle{
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.accordian-body{
+    padding: 0px 0px 10px 0px;
+    border: 2px solid #CDCDCD;
+    border-radius: 2px;
+    border-top: 0px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+.form-row{
+  padding:20px;
+}
+
+.form-column{
+  display:inline-block;
+  padding:0 10px;
+}
+
+.label{
+    color:#333 !important;
+    font-size:100% !important;
+}
+
+.field{
+  display:inline-block;
+}
+
+.button-align-right{
+    text-align: right;
+    margin-right: 150px;
+}
+
+.save-button{
+    background-color: #4285f4;
+    border-radius: 3px;
+    color: #ffffff;
+    padding: 5px 15px;
+}
+
+.user-registration-form{
+    width: 80%;
+}
+
+.user-registration-form .field-label{
+    width: 150px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.user-registration-form .field{
+    width:200px;
+}
+
+.user-registration-form .form-column{
+    width:45%;
+}

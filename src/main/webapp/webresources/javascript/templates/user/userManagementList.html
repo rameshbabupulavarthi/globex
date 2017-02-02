@@ -1,0 +1,150 @@
+<style>
+
+.field-row{
+    padding: 10px 10px 10px 0px;
+}
+
+.sameline{
+   padding: 5px;
+   font-size:12px;
+}
+
+.field-column{
+    display:inline-block
+}
+
+.lm-organization-splitcolumn{
+	width:49%;
+ }
+ 
+ .lm-financeinfo-split3column{
+	width:32%;
+ }
+ 
+ .column_width{
+ width:24%;
+ }
+ 
+ .oddrow {
+  background-color: #CC9999;
+  color: black;
+}
+.evenrow {
+  background-color: #9999CC;
+  color: black;
+}
+
+.listheader {
+  background-color: #99CCCC;
+  color: black;
+}
+</style>
+
+
+<div class="">
+    <div class="add-user-button" id="createUser">
+       <span class="add-button"></span>
+        <span class="add-user-text" >Add User</span>
+    </div>
+</div>
+
+<div id="usermangement" class="section" style="display: inline-block;">
+    <fieldset class="section-wrapper">
+        <legend class="section-header">User List  </legend>
+	<br>
+	<div id="usermanagement_container" class="section-content">
+		<div id="search_user">
+			<div id="useriddiv" class="field-row field-column lm-organization-split3column">
+				<input id="userid" type="text"  placeholder="Enter User ID" name="user.userid" size="50">
+			</div>
+			<div id="usernamediv" class="field-row field-column lm-organization-split3column">
+				<input id="username" type="text"  placeholder="Enter User Name" name="user.username" size="50">
+			</div>
+			<div id="userrolediv" class="field-row field-column lm-organization-split3column">
+				<input id="userrole" type="text"  placeholder="Enter User Role" name="user.userrole" size="50">
+			</div>
+			<div id="userrolediv" class="field-row field-column lm-organization-split3column">
+				<input id="search_button" type="button"  value="Search" size="50">
+			</div>
+		</div>
+		
+		<div id="list_header" class="listheader">
+			<div  class="field-row field-column column_width">
+				User ID
+			</div>
+			<div  class="field-row field-column column_width">
+				User Name
+			</div>
+			<div  class="field-row field-column column_width">
+				Role
+			</div>
+			<div  class="field-row field-column column_width">
+				Actions
+			</div>
+		</div>
+		
+		
+		<div id="list_data" class="evenrow">
+			<div  class="field-row field-column column_width">
+				User1
+			</div>
+			<div  class="field-row field-column column_width">
+				User Name1
+			</div>
+			<div  class="field-row field-column column_width">
+				LM
+			</div>
+			<div  class="field-row field-column column_width">
+				<a href="#edit1">Edit</a> | <a href="#delete1">Delete</a>
+			</div>
+		</div>
+		<div id="list_data" class="oddrow">
+			<div  class="field-row field-column column_width">
+				User2
+			</div>
+			<div  class="field-row field-column column_width">
+				User Name2
+			</div>
+			<div  class="field-row field-column column_width">
+				LM
+			</div>
+			<div  class="field-row field-column column_width">
+				<a href="#edit2">Edit</a> | <a href="#delete2">Delete</a>
+			</div>
+		</div>
+		
+		<div id="list_data" class="evenrow">
+			<div  class="field-row field-column column_width">
+				User3
+			</div>
+			<div  class="field-row field-column column_width">
+				User Name3
+			</div>
+			<div  class="field-row field-column column_width">
+				LM
+			</div>
+			<div  class="field-row field-column column_width">
+				<a href="#edit3">Edit</a> | <a href="#delete3">Delete</a>
+			</div>
+		</div>
+		<div id="list_data" class="oddrow">
+			<div  class="field-row field-column column_width">
+				User4
+			</div>
+			<div  class="field-row field-column column_width">
+				User Name4
+			</div>
+			<div  class="field-row field-column column_width">
+				LM
+			</div>
+			<div  class="field-row field-column column_width">
+				<a href="#edit4">Edit</a> | <a href="#delete4">Delete</a>
+			</div>
+		</div>
+		<div>
+		</div>
+	
+	</div>
+    </fieldset>
+</div>
+

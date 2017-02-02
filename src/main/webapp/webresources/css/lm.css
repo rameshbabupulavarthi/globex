@@ -1,0 +1,286 @@
+.lm-layout{
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #CDCDCD;
+}
+
+.lm-layout-wrapper{
+
+}
+
+.lm-layout-header{
+    padding: 10px;
+}
+
+.lm-layout-header .menu-header{
+    padding: 5px;
+    display:inline-block;
+}
+
+.lm-layout-header .menu-header .menu-header-border{
+    border-radius: 2px;
+    border: 1px solid #750074;
+    width: 20px;
+    margin: 4px;
+}
+
+.lm-menu-item{
+    color: #ffffff;
+    cursor:pointer;
+    font-size:24px;
+}
+
+.lm-layout-header .header-logo{
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 5px;
+}
+
+.lm-layout-header .header-logo .header-log-text{
+    color: #750074;
+    font-weight: 900;
+}
+
+.lm-layout-header .header-options{
+    float:right;
+    display:inline-block;
+    margin-right:2px;
+}
+
+.lm-layout-header .header-options .header-options-bullet{
+    border-radius: 4px;
+    padding: 2px;
+    border: 1px solid grey;
+    margin: 2px;
+    background-color: #000000;
+}
+
+
+.lm-registration-header{
+   padding: 10px;
+   border-bottom: 1px solid grey;
+   border-radius: 2px;
+   background-color: #FBFCFE;
+   box-shadow:1px 0px 0px 2px rgba(0,0,0, .25);
+}
+
+.ls-registration-step-save{
+    float:right;
+    margin-right:5px;
+    cursor:pointer;
+    font-size: 26px;
+    color: #660378;
+}
+
+.lm-registration-body{
+    padding: 10px 0px;
+}
+
+.lm-registration-body-section{
+    padding: 10px 0px;
+    border-radius: 2px;
+    background-color: #FBFCFE;
+    background: rgb(220, 220, 220);
+    border: 1px solid #FBFCFE;
+}
+
+.lm-registration-form{
+    padding: 0px 0px 10px 0px;
+    border: 2px solid #CDCDCD;
+    border-radius: 2px;
+    border-top: 0px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+.lm-registration-header-text{
+    font-weight:bold;
+    font-size: 15px;
+    color:#660378;
+}
+
+.lm-registration-body-section-text{
+   display: inline-block;
+   margin-left: 10px;
+   font-weight: bold;
+   font-size: 13px;
+}
+
+.lm-registration-body-section-toggle{
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    cursor:pointer;
+}
+
+.lm-registration-body-section-toggle-img{
+    background: url(../images/select-icons.png) 0 -116px no-repeat;
+    display: block;
+    height: 22px;
+    width: 30px;
+}
+
+.lm-registration-steps{
+   margin-left: 50px;
+}
+
+.lm-registration-step-selected{
+    color: #ffffff;
+}
+
+.lm-registration-step.lm-registration-step-selected{
+    background-color: #660378;
+    color: #ffffff;
+}
+
+.lm-registration-step-seperator{
+
+}
+
+.lm-registration-step-seperator-border{
+
+}
+
+.lm-registration-step{
+    border-radius:10px;
+    padding:0px 5px;
+    border:1px solid grey;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.lm-registration-form-section-left{
+    display: inline-block;
+    width:45%;
+    vertical-align: top;
+    margin-left: 40px;
+}
+
+.lm-registration-form-section-right{
+    display: inline-block;
+    width: 45%;
+    padding-left: 5px;
+    margin-left: 40px;
+}
+
+.field-row{
+    padding: 10px 10px 10px 0px;
+}
+
+.sameline{
+   padding: 5px;
+   font-size:12px;
+}
+
+.field-column{
+    display:inline-block
+}
+
+.lm-registration-body input[type="text"],textarea{
+    font-size: 16px;
+    margin-right: 13px;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid #9F9F9F;
+    width:100%;
+    box-shadow: 1px 1px 0px 1px rgba(0,0,0, 0.1);
+}
+
+.lm-registration-step-section{
+    display:none;
+}
+
+.loading-icon-wrapper{
+    display: none;
+    left: 600px;
+    top: 275px;
+    position: absolute;
+    right: 0;
+    width: 15%;
+    margin-top: 20px;
+}
+
+.loading-icon{
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(45deg,#efefef 25%,transparent 25%,transparent 75%,#efefef 75%,#efefef),-webkit-linear-gradient(45deg,#efefef 25%,transparent 25%,transparent 75%,#efefef 75%,#efefef);
+    background-position: 0 0,10px 10px;
+    -webkit-background-size: 21px 21px;
+    background-size: 21px 21px;
+    border: 0;
+    -webkit-box-shadow: 0 5px 35px rgba(0,0,0,.65);
+    box-shadow: 0 5px 35px rgba(0,0,0,.65);
+}
+
+.lm-registration-fieldset{
+    border-radius: 3px;
+    border: 1px solid #CDCDCD;
+    margin: 15px 0;
+}
+
+.lm-registration-fieldset legend{
+    border: 1px solid #CDCDCD;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 0px 10px;
+    background-color: #CDCDCD;
+    font-size: 14px;
+    width: auto;
+}
+.lm-authlobexacttaxes-checkbox{
+    padding: 0px;
+    margin: 0px;
+    vertical-align:top;
+ }
+.lm-authlobexacttaxes-checkbox .sameline{
+    padding: 9px;
+ }
+
+.lm-authlobexacttaxes-checkbox input[type="checkbox"]{
+    margin-right: 5px;
+ }
+
+ .lm-authlobexacttaxes-textbox{
+    padding: 0px;
+    margin: 0px;
+ }
+
+ .lm-authlobexacttaxes-textbox input[type="text"] {
+    width:100px;
+ }
+
+.lm-finance-report{
+   width: 550px;
+   margin-top: 40px;
+}
+
+.lm-background-shadow{
+    box-shadow: 0 5px 35px rgba(0,0,0,.65);
+}
+
+.save-icon{
+ font-size:26px;
+}
+
+label.error {
+    color: red;
+}
+
+.save-icon-text{
+    font-size:15px;
+    font-weight: bold;
+    padding: 6px;
+    vertical-align: top;
+}
+.lm-organization-splitcolumn{
+	width:49%;
+ }
+ 
+ .lm-financeinfo-split3column{
+	width:32%;
+ }
+ 
+ .lm-finalcialinfo-toppadding{
+	padding-top:22px;
+ }
