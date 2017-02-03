@@ -536,3 +536,7 @@ a{
 .user-registration-form .form-column{
     width:45%;
 }
+
+.edit-user-form .field-label{
+    text-align: left;
+}

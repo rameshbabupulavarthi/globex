@@ -53,7 +53,7 @@ var UserPopupView =Backbone.View.extend({
         require(['text!'+'templates/user/user_edit_view.html'], function(user_details) {
             var popupView=new PopupView({el:"#popupWrapper"});
             popupView.render();
-            var variables ={id:_self.model.get("id"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),phone:_self.model.get("phone"),
+            var variables ={id:_self.model.get("userId"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),phone:_self.model.get("phone"),
                     userName:_self.model.get("userName"),role:_self.model.get("role"),status:_self.model.get("status")};
             var template = _.template( user_details, variables );
 
@@ -203,6 +203,7 @@ var UserView =Backbone.View.extend({
                 var userModel = new UserModel({
                     userId:user.id,
                     name:fullName,
+                    userName:user.userName,
                     firstName:user.firstName,
                     lastName:user.lastName,
                     role:user.role,
