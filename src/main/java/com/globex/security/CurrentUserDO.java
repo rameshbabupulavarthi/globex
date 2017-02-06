@@ -11,8 +11,6 @@ public class CurrentUserDO implements Serializable{
 
 	private static final long serialVersionUID = -8887782515039151079L;
 	
-	public static final String PROXY_USER_SUFFIX = "-PROXY";
-	
 	public CurrentUserDO(User user){
 		this.userId = user.getId();
 		this.email = user.getEmail();

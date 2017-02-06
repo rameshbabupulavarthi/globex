@@ -34,69 +34,32 @@ require.config({
         waitSeconds: 0
     });
 
-
-define([
-    'text!'+'templates/lm/lmRegistrationForm.html'
-
-], function(lmRegistrationForm){
-
     require(['jQuery'], function() {
         require(['jQueryUI'], function() {
           require(['underScore'], function() {
             require(['backBone'], function() {
-                require(['lm','dashboard','menu'], function() {
-                   require(['fcbkcomplete'], function() {
-                        initApp(lmRegistrationForm)
-                    });
-                });
+                initApp();
             });
           });
         });
     });
 
-});
 
+function initApp(){
 
-function initApp(lmRegistrationForm){
-
-    require(['user'], function() {
-        //var userView=new UserView({el:"#dashboardContainer"});
-    });
-
-    var dashboardView=new DashboardView({});
-
-
-/*    var lm= new LMUserRegistrationView({ });
-    lm.render();
-
-    var DashboardModel=Backbone.Model.extend({
-        defaults: {
-
-        },
-        initialize: function(opts){
-
-        }
-    });
-
-    var DashboardView=Backbone.View.extend({
-         model: DashboardModel,
-         initialize:function(){
-            this.render();
-         },
-         render:function(){
-            var $dashboard = $("<div/>",{class: "dashboard-wrapper"});
-         },
-         events: {
-            "click .section": "toggleSection"
-         },
-         toggleSection: function(ev){
-            $(ev.currentTarget).find(".section-wrapper").toggle();
-         }
-    });
-
-    var dashboardView=new DashboardView({ });
-    $(".section").click(function(ev){
-        $(ev.currentTarget).find(".section-content").toggle();
-    });*/
-
+    var currentUserRole=$("#currentUserRole").val();
+    if(currentUserRole=='ROLE_ADMIN'|| currentUserRole=='ROLE_GLOBEX'){
+         require(['dashboard','menu'], function() {
+             var dashboardView=new DashboardView({});
+         });
+    }else if(currentUserRole=='ROLE_PM_USER'){
+             require(['jQuery','globex/pm/pm.dashboard','globex/pm/pm.menu'], function() {
+                 var dashboardView=new DashboardView({});
+             });
+    }else{
+        require(['jQuery','lm'], function() {
+            var lm= new LMUserRegistrationView({ });
+            lm.render();
+        });
+    }
 }

@@ -5,7 +5,10 @@ import com.globex.security.CurrentUserDO;
 import com.globex.service.MessageService;
 import com.globex.service.UserService;
 import com.utils.AppConstants;
+import com.utils.AppUtils;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.integration.support.json.JsonObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,8 +38,17 @@ public class DashboardController {
 
     @RequestMapping("/secure/getDashboardData")
     public ModelAndView getDashboardData(){
-
         String view ="globex/dashboard/dashboard";
+        Map<String, Object> model = new HashMap<String, Object>();
+        CurrentUserDO userDO=userService.getCurrentUserDO();
+        model.put("user",userDO);
+        return new ModelAndView(view, "model", model);
+    }
+
+    @RequestMapping("/secure/pmDashboard")
+    public ModelAndView pmUserDashboard(){
+
+        String view ="globex/pm/pmDashboard";
         Map<String, Object> model = new HashMap<String, Object>();
         CurrentUserDO userDO=userService.getCurrentUserDO();
         model.put("user",userDO);
@@ -57,8 +69,4 @@ public class DashboardController {
         model.put("messages",messages);
         return model;
     }
-
-
-
-
 }

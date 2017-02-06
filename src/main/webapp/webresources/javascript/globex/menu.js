@@ -22,11 +22,11 @@ MenuNavigatorView=Backbone.View.extend({
           });
      },
      renderManageUser:function(){
-        //require(['globex/user/user'], function() {
+        require(['user'], function() {
            var userListView=new UserListView();
            userListView.render();
 
-       // });
+        });
      },
      renderDashboard:function(){
         var dashboardView=new DashboardView({});

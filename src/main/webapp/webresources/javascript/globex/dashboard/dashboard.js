@@ -2,7 +2,8 @@ DashboardView=Backbone.View.extend({
     el:".layout-body",
     events:{
         "click .user-nav-options":"renderUserOptions",
-        "click .layout-body-content":"closeUserOptions"
+        "click .layout-body-content":"closeUserOptions",
+        'click .navigate-user-profile':'viewProfile'
     },
     initialize:function(){
         this.render();
@@ -30,6 +31,17 @@ DashboardView=Backbone.View.extend({
         if(!$target.hasClass("profile-drop-down")){
            this.$el.find('.profile-drop-down').hide();
         }
+    },
+    viewProfile:function(){
+      var _self=this;
+      require(['user'], function() {
+         var currentUserId=$("#currentUserId").val();
+         var userModel = new UserModel({userId:currentUserId});
+         var userProfileView=new UserProfileView({model:userModel});
+         userProfileView.render();
+         _self.$el.find("#layout-body-content").trigger("click");
+
+      });
     }
 });
 

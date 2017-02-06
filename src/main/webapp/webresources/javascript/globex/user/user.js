@@ -1,10 +1,17 @@
 var UserDetailView =Backbone.View.extend({
+    model:UserModel,
     events: {
         //'click #saveUser' :'saveUserDetails'
     },
     render: function(){
         var _self=this;
         require(['text!'+'templates/user/user_details.html'], function(user_details) {
+            var variables ={id:"",firstName:"",lastName:"",email:"",phone:"",userName:"",role:"",status:""};
+            if(_self.model){
+                variables ={id:_self.model.get("userId"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),
+                                phone:_self.model.get("phone"),userName:_self.model.get("userName"),role:_self.model.get("role"),status:_self.model.get("status")};
+            }
+             user_details = _.template( user_details, variables );
             _self.$el.append(user_details);
             _self.validateDetails();
         });
@@ -34,7 +41,7 @@ var UserDetailView =Backbone.View.extend({
                             console.log("success"+userJSON);
                         }
                     });
-                },
+                }
             });
         });
     }
@@ -42,6 +49,44 @@ var UserDetailView =Backbone.View.extend({
 
 
 
+/**popup view to display user**/
+var UserProfileView =Backbone.View.extend({
+    el:"#layout-body-content",
+    model:UserModel,
+    events: {
+
+    },
+    render: function(){
+        var _self=this;
+        var userId=this.model.get("userId");
+        this.model.fetch({
+            data: {userId:userId},
+            type: 'POST',
+            success: function(collection, response){
+                var user=response;
+                var fullName=user.firstName+","+user.lastName;
+                var userModel = new UserModel({
+                    userId:user.id,
+                    userName:user.userName,
+                    firstName:user.firstName,
+                    lastName:user.lastName,
+                    name:fullName,
+                    role:user.role,
+                    //status:user.status,
+                    email:user.email,
+                    phone:user.telephone,
+                   });
+                var userDetailView =new UserDetailView({el:"#layout-body-content",model:userModel});
+                _self.$el.html("");
+                userDetailView.render();
+            }
+        });
+    }
+});
+/**popup view to display user**/
+
+
+/**popup view to display user**/
 var UserPopupView =Backbone.View.extend({
     model:UserModel,
     events: {
@@ -94,6 +139,7 @@ var UserPopupView =Backbone.View.extend({
             });
     }
 });
+/**popup view to display user**/
 
 
 var UserCollection=Backbone.Collection.extend({
@@ -166,7 +212,8 @@ UserListView =Backbone.View.extend({
 var UserModel=Backbone.Model.extend({
     defaults: {
         status:'Active'
-    }
+    },
+    url:"/secure/editUser"
 });
 
 var UserView =Backbone.View.extend({

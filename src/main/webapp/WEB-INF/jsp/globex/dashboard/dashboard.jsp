@@ -92,7 +92,7 @@
                 </div>
                 <div class="profile-drop-down">
                     <ul class="user-nav-ul">
-                        <li><a href="javascript:void(0);">Profile</a><//li>
+                        <li class="navigate-user-profile"><a href="javascript:void(0);">Profile</a><//li>
                         <li><a href="/logout">Logout</a></li>
                     </ul>
                 </div>
@@ -110,12 +110,23 @@
 
         </div>
     </div>
+
+    <div id="dashboardJson">
+        <script type="text/javascript">
+
+        </script>
+    </div>
+
+    <input type="hidden" id="currentUserId" value="${model.user.userId}">
+    <input type="hidden" id="currentUserRole" value="${model.user.currentUserRole}">
 </div>
 
 <div id="popupWrapper">
 
 
 </div>
+
+
 
 </body>
 </html>
