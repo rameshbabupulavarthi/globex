@@ -51,9 +51,9 @@
               <li class="menu-group-item-text menu-toggle-content">BUSINESS ACTIVITIES</li>
               <li class="menu-group-item">
                 <ul>
-                    <li>
+                    <li class="navigate-pm-apps">
                        <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
-                       <span class="menu-item-text menu-toggle-content">Accounts</span>
+                       <span class="menu-item-text menu-toggle-content">Current Applications</span>
                     </li>
                     <li class="navigate-pm-registration">
                        <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>

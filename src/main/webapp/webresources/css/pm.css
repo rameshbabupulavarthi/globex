@@ -1,0 +1,148 @@
+.tab-wrapper{
+    width:100%;
+}
+
+.tab-header-wrapper{
+    height:45px;
+    width:100%;
+    z-index: 999;
+}
+
+.tab-list{
+    width:100%
+}
+
+.tab{
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #cecece;
+    border-bottom: 0;
+    background: #fff;
+    cursor: pointer;
+    float: left;
+    line-height: 40px;
+    font-size: 12px;
+    color: #494949;
+    position: relative;
+    margin: 5px 4px 5px 0;
+    padding-right: 4px;
+    width: 14%;
+}
+
+.tab-container{
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #cecece;
+    background: #fff;
+    min-height: 524px;
+}
+
+.tab-header-text{
+    font-size: 14px;
+    margin-left: 5px;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 67%;
+}
+
+
+.pm-app-prof-icon{
+    border: 1px solid #EAEAEA;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 1px 0 #C2C2C2;
+    display: inline;
+    float: left;
+    height: 50px;
+    margin-top: 22px;
+    padding: 4px;
+    width: 42px;
+}
+
+.pm-app-item{
+    border-bottom: 1px solid #EBEBEB;
+    padding-bottom: 10px;
+    float: left;
+    margin-left: 15px;
+}
+
+.pm-app-item-section{
+    display: inline;
+    float: left;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 22px;
+    padding-bottom: 0;
+    padding-left: 15px;
+    width: 600px;
+}
+
+.pm-app-item-file{
+     background-image: url(../images/sprite/sprite.png);
+     background-position: -98px 32px;
+     width: 20px;
+     height: 24px;
+     float: left;
+}
+
+.pm-app-container{
+    width:100%;
+    float:left;
+}
+
+.pm-account-details{
+    margin-left:30px;
+    width: 200px;
+    display: inline-block;
+}
+
+.pm-app-post-detail{
+    margin-top:10px;
+}
+
+.pm-post-share{
+    background-image: url(../images/sprite/facebook-social.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -46px -117px;
+    margin-left: 20px;
+    vertical-align: top;
+}
+
+.pm-post-share .pm-post-share-text{
+    margin-left: 20px;
+    vertical-align: top;
+}
+
+.pm-post-highlight-text{
+    color: #993300;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.pm-app-post-msg{
+    color: #7E7E7E;
+}
+
+.pm-app-item-side{
+    display: inline-block;
+    font-size: 0.875em;
+    font-weight: 600;
+    height: auto;
+    margin-top: 40px;
+}
+
+.pm-app-status-text{
+    color: #8F8F8F;
+}
+
+.pm-app-status{
+    margin-left:10px;
+}
+
+.pm-app-side-item{
+    padding-bottom:8px;
+}
+
+.pm-details{
+    vertical-align: top;
+}

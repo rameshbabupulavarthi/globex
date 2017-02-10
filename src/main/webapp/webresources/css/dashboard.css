@@ -83,8 +83,8 @@ a{
    display: table-cell;
    /*height: 400px;*/
    padding: 0px;
-
    position: absolute;
+   z-index: 999;
    height: 662px;/**TODO*/
 }
 

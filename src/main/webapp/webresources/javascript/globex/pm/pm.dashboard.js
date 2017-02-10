@@ -95,9 +95,9 @@ DashboardTilesView=Backbone.View.extend({
     },
     jumpOut:function(){
 
-        require(['globex/dashboard/dashboardDetailView'], function() {
-            var messageDetailView=new MessageDetailView({el:"#layout-body-content"});
-            messageDetailView.render();
+        require(['globex/pm/pm.dashboardDetailView'], function() {
+            var appSubmissionListView=new AppSubmissionListView({el:"#layout-body-content"});
+            appSubmissionListView.render();
         });
     }
 });
