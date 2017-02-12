@@ -1,3 +1,6 @@
+
+CREATE DATABASE IF NOT EXISTS globex;
+
 CREATE TABLE `t_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
@@ -256,3 +259,7 @@ insert into `t_user_role` values(2, '2012-09-27 20:28:41', 0, '2012-09-27 20:28:
 
 insert into `t_user` values(3, 'admin@globex.com', 'admin', 'admin','9824ade57d45e6024e4faa629fc9fcee11b1bd5bfd9778ef6cc486d527294e037a6303ce8bfee35c', '', 'admin@globex.com', 'admin', '',NULL , '2012-09-27 20:28:41', '2012-09-27 20:28:41');
 insert into `t_user_role` values(3, '2012-09-27 20:28:41', 0, '2012-09-27 20:28:41', 0, 0, 'ROLE_SUPER_ADMIN', 1, 1, 3);
+
+
+CREATE USER 'dbuser'@'%' IDENTIFIED BY 'dbpassword';
+grant all privileges on *.* to 'dbuser'@'%';
