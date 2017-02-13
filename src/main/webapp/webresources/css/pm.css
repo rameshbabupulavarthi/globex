@@ -163,3 +163,30 @@
     float: left;
     width: 170px;
 }
+
+
+.pm-post-view-card{
+    border: 1px solid #CDCDCD;
+    border-radius: 30px;
+    display: inline-block;
+    /* height: 36px; */
+    line-height: 26px;
+    margin-left: 5px;
+    max-width: 550px;
+    min-width: 140px;
+    padding: 0 15px;
+    text-align: center;
+    vertical-align: middle;
+    /* margin-bottom: 7px; */
+    margin-left: -17px;
+    margin-top: 8px;
+}
+
+.pm-post-view-link{
+    color: #3896BE;
+    cursor: pointer;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    margin-left: 3px;
+}

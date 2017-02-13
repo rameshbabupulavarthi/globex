@@ -37,6 +37,17 @@
                             <span class=""><%= file.fileId %></span>
                         </div>
 
+                        <div class="pm-post-view-card">
+                            <span class="">Actions:
+                             <span>
+                                <span class="">
+                                    <span class="pm-post-view-link" title="View File">View File</span>
+                                    <span class="pm-post-view-link" title="View File"> | Comment</span>
+                                </span>
+                              </span>
+                            </span>
+                        </div>
+
                         <div class="pm-app-post-detail">
                             <span class="pm-details"><span class="pm-post-highlight-text">PM:</span><%= file.orgName %></span>
                             <span class="pm-account-details"><span class="pm-post-highlight-text">Insured:</span><%= file.insuredCompany %></span>
@@ -47,10 +58,10 @@
                     <div class="pm-app-item-side">
                         <div class="">
                             <div class="pm-app-side-item">
-                                <span class="pm-app-status-text">Status</span><span class="pm-app-status">New</span>
+                                <span class="pm-app-status-text">Status : </span><span class="pm-app-status">New</span>
                             </div>
                             <div class="pm-app-side-item">
-                                <span class="pm-app-status-text">Date</span><span class="pm-app-status"><%= file.dateCreated %></span>
+                                <span class="pm-app-status-text">Date : </span><span class="pm-app-status"><%= file.dateCreated %></span>
                             </div>
                         </div>
 
