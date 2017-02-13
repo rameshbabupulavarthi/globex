@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,7 +25,8 @@ public class FileServiceImpl implements FileService {
     FileRepository fileRepository;
 
     public List<FileInfoDO> list(Integer pageNumber,Integer pageSize){
-        Pageable limit = (Pageable) new PageRequest(pageNumber, pageSize);
+        Sort sort=new Sort(Sort.Direction.DESC,"id");
+        Pageable limit = (Pageable) new PageRequest(pageNumber, pageSize,sort);
         Page<FileInfo> fileInfoPage =fileRepository.findAll(limit);
         List<FileInfo> fileInfos=fileInfoPage.getContent();
 
