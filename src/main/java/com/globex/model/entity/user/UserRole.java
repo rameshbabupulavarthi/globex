@@ -2,6 +2,7 @@ package com.globex.model.entity.user;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.util.Date;
  * Created by Ramesh on 17-12-2016.
  */
 @Data
+@ToString(exclude={"user"})
 @EqualsAndHashCode(of={"id"})
 @Entity
 @Table(name="t_user_role")

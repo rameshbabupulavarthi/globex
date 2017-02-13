@@ -23,7 +23,7 @@
     font-size: 12px;
     color: #494949;
     position: relative;
-    margin: 5px 4px 5px 0;
+    margin: 5px 4px -2px 0;
     padding-right: 4px;
     width: 14%;
 }
@@ -33,6 +33,7 @@
     border: 1px solid #cecece;
     background: #fff;
     min-height: 524px;
+    float:left;
 }
 
 .tab-header-text{
@@ -91,7 +92,7 @@
 
 .pm-account-details{
     margin-left:30px;
-    width: 200px;
+    width: 300px;
     display: inline-block;
 }
 
@@ -119,8 +120,21 @@
     vertical-align: top;
 }
 
+.pm-app-post{
+
+}
+
+.pm-app-post .app-post-msg{
+    color: #7E7E7E;
+}
+
 .pm-app-post-msg{
     color: #7E7E7E;
+}
+
+.pm-app-file{
+    cursor:pointer;
+    padding: 5px 0 2px 0;
 }
 
 .pm-app-item-side{
@@ -129,6 +143,7 @@
     font-weight: 600;
     height: auto;
     margin-top: 40px;
+    margin-left: 70px;
 }
 
 .pm-app-status-text{
@@ -145,4 +160,6 @@
 
 .pm-details{
     vertical-align: top;
+    float: left;
+    width: 170px;
 }

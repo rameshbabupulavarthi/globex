@@ -48,11 +48,11 @@ require.config({
 function initApp(){
 
     var currentUserRole=$("#currentUserRole").val();
-    if(currentUserRole=='ROLE_ADMIN'|| currentUserRole=='ROLE_GLOBEX'){
+    if(currentUserRole=='ROLE_SUPER_ADMIN' ||currentUserRole=='ROLE_ADMIN'|| currentUserRole=='ROLE_GLOBEX'){
          require(['dashboard','menu'], function() {
              var dashboardView=new DashboardView({});
          });
-    }else if(currentUserRole=='ROLE_PM_USER'){
+    }else if(currentUserRole=='ROLE_PM_ADMIN'|| currentUserRole=='ROLE_PM_USER'){
              require(['jQuery','globex/pm/pm.dashboard','globex/pm/pm.menu'], function() {
                  var dashboardView=new DashboardView({});
              });

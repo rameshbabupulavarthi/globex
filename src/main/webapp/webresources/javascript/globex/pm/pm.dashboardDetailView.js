@@ -95,7 +95,7 @@ var MessageView=Backbone.View.extend({
 
 
 var AppSubmissionCollection=Backbone.Collection.extend({
-	url: "/secure/viewPMApplications"
+	url: "/secure/viewApplications"
 });
 
 var AppSubmissionModel=Backbone.Model.extend({
@@ -114,13 +114,59 @@ var AppSubmissionModel=Backbone.Model.extend({
 AppSubmissionListView=Backbone.View.extend({
     render: function() {
         var $self=this;
+        $self.renderPage();
+        $(window).off("scroll").on("scroll", function(e) {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height()){
+                $self.renderPage();
+                e.stopPropagation()
+            }
+        });
+    },
+    renderPage:function(){
+        var $self=this;
         var pageNo=$self.pageNo;
         var pageData={pageNo:pageNo};
         $self.$el.html("");
-        require(['text!'+'templates/pm/pmAppListView.html'], function(pmAppListView) {
-            $self.$el.html(pmAppListView);
-        });
 
+        var appSubmissionCollection=new AppSubmissionCollection();
+        appSubmissionCollection.fetch({
+            data: pageData,
+            type: 'POST',
+            success: function(collection, response){
+                $self.pageNo=response.pageNo;
+                $self.$el.html("");
+
+                var files=[];
+                for(var i=0; i< response.files.length; i++){
+
+                    var file=response.files[i];
+                    var application=file.application;
+                    var user=file.createdBy;
+                    var organization=file.organization;
+
+                    var dateCreated=$.datepicker.formatDate("M d, yy",new Date(file.dateCreated));
+                    var fileObject={
+                       fileId:file.id,
+                       senderName:user.firstName+""+user.lastName,
+                       orgName:organization.orgName,
+                       insuredCompany:application.insuredCompany,
+                       dateCreated:dateCreated,
+                       senderImage:"https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" ,
+                       messageContent:application.comment,
+                       insuredCompany:application.insuredCompany
+                    };
+
+                    files.push(fileObject);
+                }
+                var fileData={filesData:files};
+
+                require(['text!'+'templates/pm/pmAppListView.html'], function(pmAppListViewTemplate) {
+
+                     var pmAppListView= _.template(pmAppListViewTemplate,fileData);
+                     $self.$el.html(pmAppListView);
+                });
+            }
+        });
     }
 });
 

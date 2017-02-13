@@ -29,9 +29,9 @@ public class WelcomeController {
         String redirectUrl="/secure/dashboard";
         if(userDO.getCurrentUserRole().equals(Role.ROLE_GLOBEX.getRoleName())){
             redirectUrl="/secure/dashboard";
-        }else if(userDO.getCurrentUserRole().equals(Role.ROLE_PM_USER.getRoleName())){
+        }else if(userDO.getCurrentUserRole().equals(Role.ROLE_PM_ADMIN.getRoleName()) || userDO.getCurrentUserRole().equals(Role.ROLE_PM_USER.getRoleName())){
             redirectUrl="/secure/pmDashboard";
-        }else if(userDO.getCurrentUserRole().equals(Role.ROLE_LM_USER.getRoleName())){
+        }else if(userDO.getCurrentUserRole().equals(Role.ROLE_LM_ADMIN.getRoleName()) || userDO.getCurrentUserRole().equals(Role.ROLE_LM_USER.getRoleName())){
             redirectUrl="/secure/partnerRegistrationForm";
         }
         return "redirect:"+redirectUrl;
