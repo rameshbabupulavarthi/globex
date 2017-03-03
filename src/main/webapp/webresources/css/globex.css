@@ -20,7 +20,7 @@ body{
 
 
 .layout-header{
-    height: 85px;
+    height: 50px;
     box-shadow: 1px 0px 0px 2px rgba(0,0,0, .25);
 }
 
@@ -34,11 +34,10 @@ body{
 }
 
 .layout-body-menu{
-   background: -webkit-linear-gradient(left,#660378 0,rgba(174,0,70,.7) 100%);
+   background: linear-gradient(0deg, #C71585, purple);
    display: table-cell;
-   padding: 30px;
+   padding: 21px;
    height: 400px;
-   padding: 24px;
 }
 
 .layout-body-content{
@@ -49,6 +48,15 @@ body{
     padding: 20px;
 }
 
+.menu-group-item ul,.menu-group-item li{
+   padding:10px 8px;
+   cursor:pointer;
+}
+
+.menu-group-item-text{
+   padding:5px;
+}
+
 .menu-ul{
     margin-left: 0px;
     padding-left: 0px;
@@ -56,7 +64,6 @@ body{
 
 .menu-ul li {
     list-style: none;
-    margin: 50px 10px;
 }
 
 .prd-logo{
@@ -87,6 +94,14 @@ body{
     font-weight: 900;
     margin-left: 25px;
     font-size: 20px;
+}
+
+.navbar-brand-img {
+    float: left;
+    height: 50px;
+    padding: 5px 10px;
+    font-size: 18px;
+    line-height: 20px;
 }
 
 .page-header{
@@ -121,4 +136,45 @@ body{
 
 .page-content-section{
     padding: 15px;
+}
+
+
+
+/**pagination*/
+
+.paging-section{
+
+}
+
+.paging-wrapper{
+    margin:20px;
+    text-align:center;
+    font-family: verdana;
+    font-size: 10px;
+    font-weight: bold;
+    color: grey;
+}
+
+.currentPage{
+   border-radius:2px;
+   border: 1px solid #cecece;
+   background-color:#3896BE;
+   color:#fff;
+   padding: 1px 5px;
+   margin: 0 3px;
+}
+
+.page{
+   border-radius:2px;
+   border: 1px solid #cecece;
+   background-color:#fff;
+   cursor:pointer;
+   padding: 1px 5px;
+   margin: 0 3px;
+}
+
+.nav-page-options{
+   color:#3896BE;
+   cursor:pointer;
+   margin: 0 5px;
 }

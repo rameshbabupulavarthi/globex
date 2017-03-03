@@ -35,8 +35,8 @@ a{
     display:inline-block;
     width:78%;
     vertical-align: top;
-    margin-top: 20px;
-    margin-left: 78px;
+    margin-top: 13px;
+    /*margin-left: 78px;*/
 }
 
 .header-logo .header-log-text{
@@ -70,7 +70,7 @@ a{
 .layout-body-content{
     display: table-cell;
     vertical-align: top;
-    width: 91%;
+    width: 92%;
     float:right;
     margin-top: 1px;
     padding: 20px;
@@ -79,41 +79,15 @@ a{
 
 /*** menu ******/
 .layout-body-menu{
-   background: -webkit-linear-gradient(left,#660378 0,rgba(174,0,70,.7) 100%);
+   background: linear-gradient(0deg, #C71585, purple);
    display: table-cell;
-   /*height: 400px;*/
+   min-height: 600px;
    padding: 0px;
    position: absolute;
    z-index: 999;
-   height: 662px;/**TODO*/
 }
 
-.menu-ul{
-    margin-left: 0px;
-    padding-left: 0px;
-}
 
-.menu-ul li {
-    list-style: none;
-    /*margin: 50px 10px;*/
-}
-
-.menu-group-item{
-
-}
-
-.menu-group-item ul,.menu-group-item li{
-   padding:10px;
-   cursor:pointer;
-}
-
-.menu-group-item-text{
-   padding:5px;
-}
-
-.menu-item-text{
-   vertical-align:top;
-}
 
 .menu-toggle-content{
     display:none;

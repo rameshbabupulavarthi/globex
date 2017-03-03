@@ -25,9 +25,11 @@
 <div class="globex-layout">
 
     <div class="layout-header lm-background-shadow">
-        <span class="prd-logo">
-            <img src="../webresources/images/logo.jpg" alt="Globex World"/>
-        </span>
+
+        <a class="navbar-brand-img" href="#">
+            <img src="../webresources/images/logo.jpg" width="40px" height="40px">
+        </a>
+
         <span class="header-logo">
             <div class="header-log-text">Globex World</div>
         </span>

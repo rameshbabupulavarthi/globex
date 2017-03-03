@@ -2,6 +2,7 @@ package com.globex.service.pm;
 
 import com.globex.model.entity.pm.FileInfo;
 import com.globex.model.vo.pm.FileInfoDO;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ import java.util.List;
  */
 public interface FileService {
 
-    public List<FileInfoDO> list(Integer pageNumber,Integer pageSize);
+    public Page<FileInfo> list(Integer pageNumber,Integer pageSize);
 }

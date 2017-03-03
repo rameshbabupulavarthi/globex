@@ -4,7 +4,8 @@ MenuNavigatorView=Backbone.View.extend({
          'mouseover .menu-container':'showMenu',
          'mouseleave .menu-container':'hideMenu',
          'click .navigate-manage-user':'renderManageUser',
-         'click .navigate-dashboard':'renderDashboard'
+         'click .navigate-dashboard':'renderDashboard',
+         'click .navigate-manage-country':'renderManageCountry'
      },
      initialize:function(){
      },
@@ -30,5 +31,12 @@ MenuNavigatorView=Backbone.View.extend({
      },
      renderDashboard:function(){
         var dashboardView=new DashboardView({});
+     },
+     renderManageCountry:function(){
+         require(['globex/admin/country'], function() {
+            var countryListView=new CountryListView();
+            countryListView.render();
+
+         });
      }
 });

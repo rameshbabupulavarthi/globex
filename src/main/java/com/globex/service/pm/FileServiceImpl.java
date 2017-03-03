@@ -19,23 +19,13 @@ import java.util.List;
 @Service
 public class FileServiceImpl implements FileService {
 
-
-
     @Autowired
     FileRepository fileRepository;
 
-    public List<FileInfoDO> list(Integer pageNumber,Integer pageSize){
+    public Page<FileInfo> list(Integer pageNumber,Integer pageSize){
         Sort sort=new Sort(Sort.Direction.DESC,"id");
         Pageable limit = (Pageable) new PageRequest(pageNumber, pageSize,sort);
         Page<FileInfo> fileInfoPage =fileRepository.findAll(limit);
-        List<FileInfo> fileInfos=fileInfoPage.getContent();
-
-        List<FileInfoDO> fileInfoDOs=new ArrayList<FileInfoDO>();
-        for(FileInfo fileInfo:fileInfos){
-
-            FileInfoDO fileInfoDO=new FileInfoDO(fileInfo);
-            fileInfoDOs.add(fileInfoDO);
-        }
-        return fileInfoDOs;
+        return fileInfoPage;
     }
 }

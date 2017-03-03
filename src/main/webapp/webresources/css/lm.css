@@ -31,6 +31,24 @@
     font-size:24px;
 }
 
+/***menu ***/
+
+.menu-ul{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.menu-ul li {
+    list-style: none;
+    margin: 50px 0px;
+}
+
+
+
+.menu-item-text{
+   vertical-align:top;
+}
+
 .lm-layout-header .header-logo{
     display: inline-block;
     vertical-align: top;

@@ -165,7 +165,7 @@ UserListView =Backbone.View.extend({
             type: 'POST',
             success: function(collection, response){
                 $self.pageNo=response.pageNo;
-                $self.$el.html("");
+                $self.$el.empty();
 
                 var $user_list_container=$("<div/>" , {
                      "id":"user_list_container",
@@ -203,9 +203,9 @@ UserListView =Backbone.View.extend({
         });
     },
     addUser:function(){
-        var userView=new UserDetailView({el:"#layout-body-content"});
+        var userDetailView=new UserDetailView({el:"#layout-body-content"});
         this.$el.html("");
-        userView.render();
+        userDetailView.render();
     }
 });
 

@@ -1,6 +1,6 @@
 
 var MessageCollection=Backbone.Collection.extend({
-	url: "/secure/viewMessages"
+	url: "/secure/viewCommunications"
 });
 
 MessageDetailView=Backbone.View.extend({
@@ -115,16 +115,10 @@ AppSubmissionListView=Backbone.View.extend({
     render: function() {
         var $self=this;
         $self.renderPage();
-        $(window).off("scroll").on("scroll", function(e) {
-            if ($(window).scrollTop() + $(window).height() >= $(document).height()){
-                $self.renderPage();
-                e.stopPropagation()
-            }
-        });
     },
     renderPage:function(){
         var $self=this;
-        var pageNo=$self.pageNo;
+        var pageNo=$self.pageNo?$self.pageNo:0;
         var pageData={pageNo:pageNo};
         $self.$el.html("");
 
@@ -138,7 +132,6 @@ AppSubmissionListView=Backbone.View.extend({
 
                 var files=[];
                 for(var i=0; i< response.files.length; i++){
-
                     var file=response.files[i];
                     var application=file.application;
                     var user=file.createdBy;
@@ -155,15 +148,22 @@ AppSubmissionListView=Backbone.View.extend({
                        messageContent:application.comment,
                        insuredCompany:application.insuredCompany
                     };
-
                     files.push(fileObject);
                 }
+
                 var fileData={filesData:files};
 
                 require(['text!'+'templates/pm/pmAppListView.html'], function(pmAppListViewTemplate) {
 
                      var pmAppListView= _.template(pmAppListViewTemplate,fileData);
                      $self.$el.html(pmAppListView);
+
+                     var pagingModel=new PagingModel({currentPage:response.pageNo,totalRecords:response.totalRecords});
+                     var pagingView=new PagingView({model:pagingModel});
+                     pagingView.pageContext=$self;
+                     pagingView.$pageContextEl=$self.$el.find(".pm-app-list");
+                     pagingView.render();
+                     //$self.$el.find(".pm-app-list").prepend(pagingView.$el);
                 });
             }
         });

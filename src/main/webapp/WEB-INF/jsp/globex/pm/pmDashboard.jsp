@@ -12,7 +12,7 @@
 	<link rel="shortcut icon" type="image/ico" href="../webresources/images/logo.png">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
     <link href="/webresources/css/jquery-ui.css" type="text/css" rel="stylesheet"></link>
-
+    <link href="/webresources/css/globex.css" type="text/css" rel="stylesheet"></link>
     <link href="/webresources/css/dashboard.css" type="text/css" rel="stylesheet"></link>
     <link href="/webresources/css/pm.css" type="text/css" rel="stylesheet"></link>
     <link href="/webresources/css/jquery.tinyscrollbar.css" rel="stylesheet" type="text/css" />
@@ -23,71 +23,16 @@
 <div class="globex-layout">
 
     <div class="layout-body">
-        <!-- menu -->
-
-       <div class="layout-body-menu">
-        <div class="menu-container">
-        <div class="prd-logo">X</div>
-        <div class="prd-logo-text">Globe <span class="prd-logo-text-highlight">X</span> World</div>
-          <ul class="menu-ul">
-              <li class="menu-group-item-text menu-toggle-content">GENERAL</li>
-              <li class="menu-group-item">
-                <ul>
-                   <li class="navigate-dashboard">
-                      <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
-                      <span class="menu-item-text menu-toggle-content">Dashboard</span>
-                   </li>
-                    <li class="navigate-manage-user">
-                     <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-44-group.png" ></span>
-                     <span class="menu-item-text menu-toggle-content">Users</span>
-                    </li>
-                    <li>
-                     <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
-                     <span class="menu-item-text menu-toggle-content">Client</span>
-                    </li>
-                </ul>
-              </li>
-
-              <li class="menu-group-item-text menu-toggle-content">BUSINESS ACTIVITIES</li>
-              <li class="menu-group-item">
-                <ul>
-                    <li class="navigate-pm-apps">
-                       <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
-                       <span class="menu-item-text menu-toggle-content">Current Applications</span>
-                    </li>
-                    <li class="navigate-pm-registration">
-                       <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
-                       <span class="menu-item-text menu-toggle-content">New Application</span>
-                    </li>
-                    <li>
-                      <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
-                      <span class="menu-item-text menu-toggle-content">Reports</span>
-                    </li>
-                </ul>
-              </li>
-
-            <li class="menu-group-item-text menu-toggle-content">ACCOUNTINGS</li>
-            <li class="menu-group-item">
-                <ul>
-                    <li>
-                      <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
-                      <span class="menu-item-text menu-toggle-content">Receivables</span>
-                    </li>
-                    <li>
-                      <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
-                      <span class="menu-item-text menu-toggle-content">Payables</span>
-                    </li>
-                </ul>
-             </li>
-         </ul>
-         </div>
-        </div>
-
 
       <header class="layout-header">
         <div class="header-wrapper">
+
+            <a class="navbar-brand" href="#">
+                <img src="../webresources/images/logo.jpg" width="40px" height="40px">
+            </a>
+
             <div class="header-logo">
-                <div class="header-log-text">Dashboard</div>
+                <div class="header-log-text">Globex World</div>
             </div>
             <div class="header-options">
                 <div class="user-nav-options">
@@ -104,6 +49,64 @@
             </div>
         </div>
        </header>
+
+        <!-- menu -->
+       <div class="layout-body-menu">
+               <div class="menu-container">
+
+                 <ul class="menu-ul">
+                     <li class="menu-group-item-text menu-toggle-content">GENERAL</li>
+                     <li class="menu-group-item">
+                       <ul>
+                          <li class="navigate-dashboard">
+                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-text menu-toggle-content">Dashboard</span>
+                          </li>
+                           <li class="navigate-manage-user">
+                            <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-44-group.png" ></span>
+                            <span class="menu-item-text menu-toggle-content">Users</span>
+                           </li>
+                           <li>
+                            <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                            <span class="menu-item-text menu-toggle-content">Client</span>
+                           </li>
+                       </ul>
+                     </li>
+
+                     <li class="menu-group-item-text menu-toggle-content">BUSINESS ACTIVITIES</li>
+                     <li class="menu-group-item">
+                       <ul>
+                           <li class="navigate-pm-apps">
+                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                              <span class="menu-item-text menu-toggle-content">Current Applications</span>
+                           </li>
+                           <li class="navigate-pm-registration">
+                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                              <span class="menu-item-text menu-toggle-content">New Application</span>
+                           </li>
+                           <li>
+                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-text menu-toggle-content">Reports</span>
+                           </li>
+                       </ul>
+                     </li>
+
+                   <li class="menu-group-item-text menu-toggle-content">ACCOUNTINGS</li>
+                   <li class="menu-group-item">
+                       <ul>
+                           <li>
+                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-text menu-toggle-content">Receivables</span>
+                           </li>
+                           <li>
+                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-text menu-toggle-content">Payables</span>
+                           </li>
+                       </ul>
+                    </li>
+                </ul>
+                </div>
+               </div>
 
 
         <div id="layout-body-content" class="layout-body-content">

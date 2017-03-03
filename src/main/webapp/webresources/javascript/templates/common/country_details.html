@@ -1,0 +1,92 @@
+<form method="post" autocomplete="off" action="/secure/saveCountry" id="saveCountryDetails" enctype="multipart/form-data">
+    <div class="accordian-header">
+        <div class="accordian-header-text">
+            Country Details
+        </div>
+        <div class="accordian-toggle">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </div>
+    </div>
+
+    <div class="accordian-body">
+        <div class="user-registration-form">
+            <div class="form-row">
+                <div class="form-column">
+                    <div class="field-label">First Name</div>
+                    <div class="field">
+                        <input id="country" type="text" value="<%=country%>" placeholder="Enter Country Name" name="country">
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="field-label">NonAdmittedAllowed Name</div>
+                    <div class="field">
+                        <input id="lastName" type="text" value="<%=nonAdmittedAllowed%>" placeholder="Enter Last Name" name="nonAdmittedAllowed">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-column">
+                    <div class="field-label">Email</div>
+                    <div class="field">
+                        <input id="nonAdmittedComments" type="text" value="<%=nonAdmittedComments%>" name="nonAdmittedComments" placeholder="Enter Email ID">
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="field-label">Mobile</div>
+                    <div class="field">
+                        <input id="taxes" type="text" value="<%=taxes%>" name="taxes" placeholder="Enter Mobiile Number">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-column">
+                    <div class="field-label">Country Name</div>
+                    <div class="field">
+                        <input id="vat" type="text" value="<%=vat%>" name="vat" placeholder="Enter Country Name">
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="field-label">Password</div>
+                    <div class="field">
+                        <input id="password" type="password" value="" name="password" placeholder="Enter Password">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-column">
+                    <div class="field-label">Role</div>
+                    <div class="field">
+                        <select id="role" name="role">
+                            <option value="ROLE_SUPER_ADMIN">Super Admin</option>
+                            <option value="ROLE_ADMIN">Admin</option>
+                            <option value="ROLE_GLOBEX_ADMIN">Globex Admin</option>
+                            <option value="ROLE_GLOBEX_USER">Globex User</option>
+                            <option value="ROLE_PM_ADMIN">PM Admin</option>
+                            <option value="ROLE_PM_USER">PM User</option>
+                            <option value="ROLE_LM_ADMIN">LM Admin</option>
+                            <option value="ROLE_LM_USER">LM User</option>
+                            <option value="ROLE_SUPPORT">Support User</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="field-label">Upload profile picture</div>
+                    <div class="field">
+                        <input id="thumbnail" type="file" name="thumbnailFile" size="50">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="button-align-right">
+                    <input type="submit" class="save-button" value="Save">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <input id="userId" type="hidden" value="<%=id%>" name="id">
+</form>

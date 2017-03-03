@@ -15,7 +15,8 @@ require.config({
     			backBone: "backbone-min" ,// v1.0.0
     			fcbkcomplete:"lib/fcbkcomplete/fcbkcomplete",
     			user:"globex/user/user",
-    			menu:"globex/menu"
+    			menu:"globex/menu",
+    			commons:"globex/commons"
         },
         map: {
                 "*": {
@@ -37,7 +38,7 @@ require.config({
     require(['jQuery'], function() {
         require(['jQueryUI'], function() {
           require(['underScore'], function() {
-            require(['backBone'], function() {
+            require(['backBone','commons'], function() {
                 initApp();
             });
           });

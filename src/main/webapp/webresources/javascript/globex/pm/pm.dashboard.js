@@ -45,7 +45,6 @@ DashboardView=Backbone.View.extend({
     }
 });
 
-
 DashboardTilesView=Backbone.View.extend({
     el:"#dashboardTilesContainer",
     events:{
@@ -96,12 +95,15 @@ DashboardTilesView=Backbone.View.extend({
     jumpOut:function(){
 
         require(['globex/pm/pm.dashboardDetailView'], function() {
-            var appSubmissionListView=new AppSubmissionListView({el:"#layout-body-content"});
-            appSubmissionListView.render();
+            /*var appSubmissionListView=new AppSubmissionListView({el:"#layout-body-content"});
+            appSubmissionListView.render();*/
+
+            var messageDetailView=new MessageDetailView({el:"#layout-body-content"});
+            messageDetailView.render();
+
         });
     }
 });
-
 
 var MessageModel=Backbone.Model.extend({
     defaults: {
@@ -169,7 +171,6 @@ var RenewalTileView=Backbone.View.extend({
 });
 
 
-
 /**Reminders*/
 var ReminderModel=Backbone.Model.extend({
     defaults: {
@@ -200,7 +201,6 @@ var ReminderTileView=Backbone.View.extend({
         this.$el.append($(template));
     }
 });
-
 
 
 /**Application submissions view*/
@@ -235,7 +235,6 @@ var AppSubmissionTileView=Backbone.View.extend({
 });
 
 
-
 /**Application Look up*/
 var LookupModel=Backbone.Model.extend({
     defaults: {
@@ -266,7 +265,6 @@ var LookupTileView=Backbone.View.extend({
         this.$el.append($(template));
     }
 });
-
 
 
 PopupView=Backbone.View.extend({
