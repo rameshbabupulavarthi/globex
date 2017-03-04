@@ -261,7 +261,7 @@ a{
 }
 
 .popup-body{
-    height:500px;
+    min-height:500px;
     padding:5px;
 }
 
@@ -513,4 +513,13 @@ a{
 
 .edit-user-form .field-label{
     text-align: left;
+}
+
+
+.edit-country-form .form-row{
+    padding:10px;
+}
+
+.edit-country-form .form-column{
+    width:45%;
 }
