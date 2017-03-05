@@ -9,6 +9,7 @@ import com.utils.AppConstants;
 import com.utils.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -80,12 +81,15 @@ public class UserManagementController {
     public Map<String, Object> getUsers(@RequestParam(value = "pageNo",required=false) Integer pageNo,
                                @RequestParam(value = "pageSize", required=false) Integer pageSize){
 
-        pageNo=pageNo==null?0:pageNo+1;
+        pageNo=pageNo==null?0:pageNo;
         pageSize=pageSize==null? AppConstants.DEFAULT_PAGE_SIZE:pageSize;
+        Map<String,Object> dataMap=userService.list(pageNo, pageSize);
+
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("pageNo",pageNo);
-        List<UserDO> users=userService.list(pageNo, pageSize);
-        model.put("users",users);
+        model.put("pageSize",pageSize);
+        model.put("totalRecords",dataMap.get("totalRecords"));
+        model.put("users",dataMap.get("users"));
         return model;
     }
 

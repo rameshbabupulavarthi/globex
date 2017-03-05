@@ -273,7 +273,7 @@ PopupView=Backbone.View.extend({
     },
     template:'<div class="popup-container" id="popupContainer"><div class="popup-content">'+
                   '<div class="popup-header"><span class="popup-header-text" id="popup-title"></span><span class="popup-close">X</span></div>'+
-                 '<div class="popup-body"><div id="popup-content">  </div></div>'+
+                 '<div class="popup-body"><div id="popupContent">  </div></div>'+
                 '</div>'+
              '</div>',
     initialize: function() {

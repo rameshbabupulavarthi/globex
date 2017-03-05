@@ -11,4 +11,6 @@ public interface CountryService {
     public Page<Country> list(Integer pageNumber,Integer pageSize);
 
     public Country getCountryDetails(Long countryId);
+
+    public Long saveCountry(Country country);
 }

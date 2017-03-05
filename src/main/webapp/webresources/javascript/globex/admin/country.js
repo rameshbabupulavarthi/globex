@@ -1,15 +1,30 @@
 var CountryDetailView =Backbone.View.extend({
     model:CountryModel,
     events: {
-        //'click #saveUser' :'saveUserDetails'
     },
     render: function(){
         var _self=this;
         require(['text!'+'templates/common/country_details.html'], function(country_details) {
-            var variables ={id:"",country:"",nonAdmittedAllowed:"",nonAdmittedComments:"",taxes:"",vat:"",reInsuranceTax:""};
+            var variables ={
+                    id:"",country:"",nonAdmittedAllowed:"",nonAdmittedComments:"",
+                    retailBorkerRequired:"",retailBrokerComments:"",reInsuranceBrokerRequired:"",
+                    reInsuranceBrokerComments:"",mandatoryReInsuranceCession:"",mandatoryReInsuranceComments:"",stateSidePremiumAllowed:"",stateSidePremiumComments:"",
+                    otherAccRequirements:"",premiumReserve:"",taxes:"",vat:"",reInsuranceTax:"",
+                    otherRequirements:"",policyLanguage:"",tacitRenewal:"",tacticalRenewalComments:"",generalComments:"",createdBy:""
+               };
             if(_self.model){
-                variables = {country:_self.model.get("country"),nonAdmittedAllowed:_self.model.get("nonAdmittedAllowed"),nonAdmittedComments:_self.model.get("nonAdmittedComments"),
-                taxes:_self.model.get("taxes"),vat:_self.model.get("vat"),reInsuranceTax:_self.model.get("reInsuranceTax")};
+                variables = {
+                            id:_self.model.get("id"),country:_self.model.get("country"),nonAdmittedAllowed:_self.model.get("nonAdmittedAllowed"),nonAdmittedComments:_self.model.get("nonAdmittedComments"),
+                            retailBorkerRequired:_self.model.get("retailBorkerRequired"),retailBrokerComments:_self.model.get("retailBrokerComments"),reInsuranceBrokerRequired:_self.model.get("reInsuranceBrokerRequired"),
+                            reInsuranceBrokerComments:_self.model.get("reInsuranceBrokerComments"),mandatoryReInsuranceCession:_self.model.get("mandatoryReInsuranceCession"),
+                            mandatoryReInsuranceComments:_self.model.get("mandatoryReInsuranceComments"),
+                            stateSidePremiumAllowed:_self.model.get("stateSidePremiumAllowed"),stateSidePremiumComments:_self.model.get("stateSidePremiumComments"),
+                            otherAccRequirements:_self.model.get("otherAccRequirements"),premiumReserve:_self.model.get("premiumReserve"),
+                            taxes:_self.model.get("taxes"),vat:_self.model.get("vat"),reInsuranceTax:_self.model.get("reInsuranceTax"),
+                            otherRequirements:_self.model.get("otherRequirements"),policyLanguage:_self.model.get("policyLanguage"),tacitRenewal:_self.model.get("tacitRenewal"),
+                            tacticalRenewalComments:_self.model.get("tacticalRenewalComments"),generalComments:_self.model.get("generalComments"),
+                            createdBy:_self.model.get("createdBy")
+                       };
             }
              country_details = _.template( country_details, variables );
             _self.$el.append(country_details);
@@ -25,8 +40,9 @@ var CountryDetailView =Backbone.View.extend({
                     $(".loading-icon-wrapper").show();
                     $("body").css({opacity:0.5});
 
-                    var form=document.getElementById("saveCountryDetails");
-                    var formData=new FormData(form);
+                    /*var form=document.getElementById("saveCountryDetails");
+                    var formData=new FormData(form);*/
+                    var formData=$('#saveCountryDetails').serialize();
                     $.ajax({
                         type: 'POST',
                         url: form.action,
@@ -38,7 +54,10 @@ var CountryDetailView =Backbone.View.extend({
                            }, 3000);
                         },
                         success: function(userJSON) {
-                            console.log("success"+userJSON);
+                            $(".navigate-manage-country").trigger("click");
+                            _self.$el.empty();
+                            $(".loading-icon-wrapper").hide();
+                            $("body").css({opacity:1});
                         }
                     });
                 }
@@ -56,8 +75,8 @@ CountryListView =Backbone.View.extend({
     el:"#layout-body-content",
     tagName:'div',
     className:'table-container',
-    headerTemplate:'<thead><tr class="header-row"> <th class="header-column">Country</th>  <th class="header-column">Mandatory Reinsurance Comments</th> <th class="header-column">Non-Admitted Comments</th>'+
-                    '<th class="header-column">Taxes</th> <th class="header-column">VAT</th> <th class="header-column">Reinsurance Tax</th> <th class="header-column">View</th> <th class="header-column">Delete</th> </tr></thead>',
+    headerTemplate:'<thead><tr class="header-row"> <th class="header-column">Country<div class="header-column-sort"></div></th>  <th class="header-column">Reinsurance Comments<div class="header-column-sort"></div></th> <th class="header-column"><div class="header-column-text">Non-Admitted Comments</div><div class="header-column-sort"></div></th>'+
+                    '<th class="header-column">Taxes<div class="header-column-sort"></div></th> <th class="header-column">VAT<div class="header-column-sort"></div></th> <th class="header-column">Reinsurance Tax<div class="header-column-sort"></div></th> <th class="header-column">View</th> <th class="header-column">Delete</th> </tr></thead>',
     events: {
         "click #createCountry":"addCountry"
     },
@@ -78,7 +97,7 @@ CountryListView =Backbone.View.extend({
                      html:'<div class="btn-wrapper"> <div id="createCountry" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Country </span></div></div>'
                  });
 
-                var $country_table=$("<table/>" , {
+                var $country_table=$("<table />" , {
                     "class": "table-container",
                     "id": "table-container",
                     html:$self.headerTemplate
@@ -86,9 +105,12 @@ CountryListView =Backbone.View.extend({
                 $self.$el.append($country_list_container);
                 $country_list_container.append($country_table);
                 var countries=response.countries;
-
+                var index=0;
                 _.each(countries,function(country){
+                   index++;
+                   var rowClass=(index%2)==0?"table-column-even":"table-column-odd";
                     var countryModel = new CountryModel({
+                        rowClass:rowClass,
                         countryId:country.id,
                         country:country.country,
                         mandatoryReInsuranceComments:country.mandatoryReInsuranceComments,
@@ -132,14 +154,16 @@ var CountryView =Backbone.View.extend({
         "click .edit-country":"editCountry",
         "click .delete-country":"deleteCountry"
     },
-    countryTemplate:'<td class="table-column"><%=country%></td>  <td class="table-column"><%=mandatoryReInsuranceComments%></td> <td class="table-column"><%=nonAdmittedComments%></td>'+
-                 '<td class="table-column"><%=taxes%></td> <td class="table-column"><%=vat%></td> <td class="table-column"><%=reInsuranceTax%></td>'+
+    countryTemplate:'<td class="table-column"><p class="table-column-text"><%=country%></p></td>  <td class="table-column"><p class="table-column-text"><%=mandatoryReInsuranceComments%></p></td> <td class="table-column"><p class="table-column-text"><%=nonAdmittedComments%></p></td>'+
+                 '<td class="table-column"><p class="table-column-text"><%=taxes%></p></td> <td class="table-column"><p class="table-column-text"><%=vat%></p></td> <td class="table-column"><p class="table-column-text"><%=reInsuranceTax%></p></td>'+
                  '<td class="table-column"><div class="edit-icon edit-country"></div></td> <td class="table-column"><div class="delete-icon delete-country"></div></td>',
     initialize: function(){},
     render: function(){
         var variables = {country:this.model.get("country"),mandatoryReInsuranceComments:this.model.get("mandatoryReInsuranceComments"),nonAdmittedComments:this.model.get("nonAdmittedComments"),
                         taxes:this.model.get("taxes"),vat:this.model.get("vat"),reInsuranceTax:this.model.get("reInsuranceTax")};
         var template = _.template( this.countryTemplate, variables );
+        var rowClass=this.model.get("rowClass");
+        this.$el.addClass(rowClass);
         this.$el.append($(template));
     },
     editCountry:function(){
@@ -166,13 +190,20 @@ var CountryView =Backbone.View.extend({
                    createdBy:country.createdBy
                });
 
-                var countryPopupView = new CountryPopupView({model: countryModel});
+                var popupView=new PopupView({el:"#popupWrapper"});
+                popupView.render();
+                popupView.$el.find("#popup-title").html("Country Details");
+                var countryPopupView = new CountryPopupView({el:"#popup-content",model: countryModel});
                 countryPopupView.render();
             }
         });
     },
     deleteCountry:function(){
+          var _self=this;
           var countryId=this.model.get("countryId");
+
+          $(".loading-icon-wrapper").show();
+          $("body").css({opacity:0.5});
           $.ajax({
               type: 'POST',
               url: '/secure/deleteCountry',
@@ -182,7 +213,10 @@ var CountryView =Backbone.View.extend({
               context: this,
               error: function() {},
               success: function(htmlData) {
-                  this.remove();
+                  $(".navigate-manage-country").trigger("click");
+                  _self.$el.empty();
+                  $(".loading-icon-wrapper").hide();
+                  $("body").css({opacity:1});
               }
           });
     }
@@ -199,8 +233,7 @@ var CountryPopupView =Backbone.View.extend({
 
         var _self=this;
         require(['text!'+'templates/common/country_edit_view.html'], function(country_details) {
-            var popupView=new PopupView({el:"#popupWrapper"});
-            popupView.render();
+
             var variables =
             {
                 id:_self.model.get("id"),country:_self.model.get("country"),nonAdmittedAllowed:_self.model.get("nonAdmittedAllowed"),nonAdmittedComments:_self.model.get("nonAdmittedComments"),
@@ -216,8 +249,8 @@ var CountryPopupView =Backbone.View.extend({
            };
             var template = _.template( country_details, variables );
 
-            popupView.$el.find("#popup-content").append(template);
-            popupView.$el.find("#popup-title").html("Country Details");
+            _self.$el.append(template);
+            /*popupView.$el.find("#popup-content").append(template);*/
             _self.validateDetails();
         });
 
@@ -232,8 +265,7 @@ var CountryPopupView =Backbone.View.extend({
                         $(".loading-icon-wrapper").show();
                         $("body").css({opacity:0.5});
 
-                        var form=document.getElementById("saveCountryDetails");
-                        var formData=new FormData(form);
+                        var formData=$('#saveCountryDetails').serialize();
                         $.ajax({
                             type: 'POST',
                             url: form.action,
@@ -245,7 +277,11 @@ var CountryPopupView =Backbone.View.extend({
                                }, 3000);
                             },
                             success: function(userJSON) {
-                                console.log("success"+userJSON);
+                                $(".navigate-manage-country").trigger("click");
+                                $(".popup-close").trigger("click");
+                                _self.$el.empty();
+                                $(".loading-icon-wrapper").hide();
+                                $("body").css({opacity:1});
                             }
                         });
                     },

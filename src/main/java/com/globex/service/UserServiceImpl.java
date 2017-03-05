@@ -7,9 +7,7 @@ import com.globex.repository.rdbms.UserRepository;
 import com.globex.security.LoggedInUserDetails;
 import com.globex.security.CurrentUserDO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
@@ -81,15 +79,19 @@ public class UserServiceImpl implements UserService {
         return persistedUser.getId();
     }
 
-    public List<UserDO> list(Integer pageNumber,Integer pageSize){
-        Pageable limit = (Pageable) new PageRequest(pageNumber, pageSize);
+    public Map<String,Object> list(Integer pageNumber,Integer pageSize){
+        Sort sort=new Sort(Sort.Direction.DESC,"id");
+        Pageable limit = (Pageable) new PageRequest(pageNumber, pageSize,sort);
         Page<User> userList =userRepository.findAll(limit);
         List<UserDO> userDOs=new ArrayList<UserDO>();
         for(User user:userList){
             UserDO userDO=new UserDO(user);
             userDOs.add(userDO);
         }
-        return userDOs;
+        Map<String,Object> model=new HashMap<String,Object>();
+        model.put("totalRecords",userList.getTotalElements());
+        model.put("users",userDOs);
+        return model;
     }
 
     public UserDO getUser(Long userId){

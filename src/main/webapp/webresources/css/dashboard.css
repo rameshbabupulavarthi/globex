@@ -194,7 +194,7 @@ a{
     display: inline-block;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 150px;
+    max-width: 248px;
     vertical-align:top;
     margin:10px 5px;
 }
@@ -350,7 +350,7 @@ a{
 
 /********************user page ******************/
 
-.table-container{
+/*.table-container{
     width: 100%;
     text-align: center;
     border: 1px solid #FBFCFE;
@@ -369,6 +369,57 @@ a{
    width: 120px;
    padding:2px;
    border: 1px solid #FBFCFE;
+}*/
+
+
+.table-container{
+    width: 100%;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    background-color: #FFFFFF;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.header-row{
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 0;
+    font-family:"Open Sans", sans-serif;
+    font-size:12px;
+    font-weight:bold;
+}
+
+
+.table-column-odd{
+    background-color: #FFFFFF;
+}
+
+.table-column-even{
+  /*background-color:#FBFCFE;
+  background-color: #FAF4B3;*/
+  background-color: rgba(56, 99, 190, 0.13);
+}
+
+.header-column{
+   width: 120px;
+   padding:5px 0;
+   border-bottom: 1px solid #cecece;
+}
+
+.header-column-text{
+   width: 100px;
+   display: inline-block;
+}
+
+.header-column-sort{
+   background: url(../images/actions/topdown.png) no-repeat;
+   background-size: 10px 10px;
+   background-position: 0px 10px;
+   display: inline-block;
+   width: 20px;
+   height: 20px;
+   margin-left: 5px;
+   cursor:pointer;
 }
 
 .edit-icon{
@@ -392,9 +443,10 @@ a{
 .table-column{
    width: 120px;
    font: 11px/18px Verdana, Arial, Helvetica, sans-serif;
-   padding: 3px 2px;
+   padding: 10px 2px;
    height: 18px;
    border: 1px solid #FBFCFE;
+   color:#727272;
 }
 
 

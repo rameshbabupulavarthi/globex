@@ -3,7 +3,7 @@ package com.globex.model.entity.common;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Sunil Golla on 2/15/2017.
@@ -28,7 +28,7 @@ public class Country {
     private String nonAdmittedComments;
 
     @Column(name="RETAIL_BROKER_REQUIRED")
-    private Boolean retailBorkerRequired;
+    private Boolean retailBrokerRequired;
 
     @Column(name="RETAIL_BROKER_COMMENTS")
     private String retailBrokerComments;
@@ -85,12 +85,12 @@ public class Country {
     private Long createdBy;
 
     @Column(name="DATE_CREATED")
-    private Timestamp createdDate;
+    private Date createdDate;
 
     @Column(name="UPDATED_BY")
     private Long updatedBy;
 
     @Column(name="DATE_UPDATED")
-    private Timestamp updatedDate;
+    private Date updatedDate;
 
 }

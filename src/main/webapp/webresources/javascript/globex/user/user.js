@@ -150,8 +150,8 @@ UserListView =Backbone.View.extend({
     el:"#layout-body-content",
     tagName:'div',
     className:'table-container',
-    headerTemplate:'<thead><tr class="header-row"> <th class="header-column">Name</th>  <th class="header-column">User Role</th> <th class="header-column">User Status</th>'+
-                    '<th class="header-column">Email</th> <th class="header-column">Phone</th>  <th class="header-column">View</th> <th class="header-column">Delete</th> </tr></thead>',
+    headerTemplate:'<thead><tr class="header-row"> <th class="header-column">Name<div class="header-column-sort"></div></th>  <th class="header-column">User Role<div class="header-column-sort"></div></th> <th class="header-column">User Status<div class="header-column-sort"></div></th>'+
+                    '<th class="header-column">Email<div class="header-column-sort"></div></th> <th class="header-column">Phone<div class="header-column-sort"></div></th>  <th class="header-column">View</th> <th class="header-column">Delete</th> </tr></thead>',
     events: {
         "click #createUser":"addUser"
     },
@@ -181,9 +181,13 @@ UserListView =Backbone.View.extend({
                 $user_list_container.append($user_table);
                 var users=response.users;
 
+                var index=0;
                 _.each(users,function(user){
+                    index++;
+                    var rowClass=(index%2)==0?"table-column-even":"table-column-odd";
                     var fullName=user.firstName+","+user.lastName;
                     var userModel = new UserModel({
+                        rowClass:rowClass,
                         userId:user.id,
                         userName:user.userName,
                         firstName:user.firstName,
@@ -197,8 +201,13 @@ UserListView =Backbone.View.extend({
                     var userView = new UserView({model: userModel});
                     userView.render();
                     $user_table.append(userView.$el);
-
                 },this);
+
+                var pagingModel=new PagingModel({currentPage:response.pageNo,totalRecords:response.totalRecords});
+                var pagingView=new PagingView({model:pagingModel});
+                pagingView.pageContext=$self;
+                pagingView.$pageContextEl=$self.$el.find("#user_list_container");
+                pagingView.render();
             }
         });
     },
@@ -232,6 +241,8 @@ var UserView =Backbone.View.extend({
         var variables = {name:this.model.get("name"),role:this.model.get("role"),status:this.model.get("status"),email:this.model.get("email"),
                             phone:this.model.get("phone")};
         var template = _.template( this.userTemplate, variables );
+        var rowClass=this.model.get("rowClass");
+        this.$el.addClass(rowClass);
         this.$el.append($(template));
     },
     editUser:function(){

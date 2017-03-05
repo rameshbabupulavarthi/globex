@@ -13,6 +13,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
     <link href="/webresources/css/jquery-ui.css" type="text/css" rel="stylesheet"></link>
     <link href="/webresources/css/globex.css" type="text/css" rel="stylesheet"></link>
+    <link href="/webresources/css/pm.css" type="text/css" rel="stylesheet"></link>
     <link href="/webresources/css/dashboard.css" type="text/css" rel="stylesheet"></link>
     <link href="/webresources/css/jquery.tinyscrollbar.css" rel="stylesheet" type="text/css" />
     <script data-main="/webresources/javascript/globex" src="/webresources/javascript/require.js"></script>
@@ -57,29 +58,38 @@
                      <li class="menu-group-item-text menu-toggle-content">GENERAL</li>
                      <li class="menu-group-item">
                        <ul>
-                          <li class="navigate-dashboard">
+                          <li class="menu-item navigate-dashboard">
                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
                              <span class="menu-item-text menu-toggle-content">Dashboard</span>
                           </li>
-                           <li class="navigate-manage-user">
+                           <li class="menu-item navigate-manage-user">
                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-44-group.png" ></span>
                             <span class="menu-item-text menu-toggle-content">Users</span>
                            </li>
-                           <li class="navigate-manage-country">
-                            <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
-                            <span class="menu-item-text menu-toggle-content">Database</span>
-                           </li>
+                          <li class="menu-item menu-item-navigator">
+                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-text menu-toggle-content">
+                                Database >
+                             </span>
+                             <div class="sub-menu">
+                                 <ul class="sub-menu-ul">
+                                     <li class="sub-menu-item navigate-manage-country">Country</li>
+                                     <li class="sub-menu-item navigate-manage-pm">Partnet Market</li>
+                                     <li class="sub-menu-item navigate-manage-lm">Local Market</li>
+                                 </ul>
+                             </div>
+                          </li>
                        </ul>
                      </li>
 
                      <li class="menu-group-item-text menu-toggle-content">BUSINESS ACTIVITIES</li>
                      <li class="menu-group-item">
                        <ul>
-                           <li>
+                           <li class="menu-item">
                               <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
                               <span class="menu-item-text menu-toggle-content">Accounts</span>
                            </li>
-                           <li>
+                           <li class="menu-item">
                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
                              <span class="menu-item-text menu-toggle-content">Reports</span>
                            </li>
@@ -89,11 +99,11 @@
                    <li class="menu-group-item-text menu-toggle-content">ACCOUNTINGS</li>
                    <li class="menu-group-item">
                        <ul>
-                           <li>
+                           <li class="menu-item">
                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
                              <span class="menu-item-text menu-toggle-content">Receivables</span>
                            </li>
-                           <li>
+                           <li class="menu-item">
                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
                              <span class="menu-item-text menu-toggle-content">Payables</span>
                            </li>

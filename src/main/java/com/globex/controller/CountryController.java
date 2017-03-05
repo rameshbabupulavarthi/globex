@@ -1,11 +1,13 @@
 package com.globex.controller;
 
 import com.globex.model.entity.common.Country;
+import com.globex.repository.rdbms.CountryRepository;
 import com.globex.service.CountryService;
 import com.utils.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +25,9 @@ public class CountryController {
     @Autowired
     CountryService countryService;
 
+    @Autowired
+    CountryRepository countryRepository;
+
     @RequestMapping("/secure/viewCountries")
     @ResponseBody
     public Map<String, Object> viewCountries(@RequestParam(value = "pageNo",required=false) Integer pageNo,
@@ -31,7 +36,6 @@ public class CountryController {
 
         pageNo=pageNo==null?0:pageNo;
         pageSize=pageSize==null? AppConstants.DEFAULT_PAGE_SIZE:pageSize;
-
         Page<Country> countryPage= countryService.list(pageNo, pageSize);
         List<Country> countries=countryPage.getContent();
 
@@ -49,6 +53,21 @@ public class CountryController {
 
         Country country= countryService.getCountryDetails(countryId);
         return country;
+    }
+
+
+    @RequestMapping("/secure/saveCountry")
+    @ResponseBody
+    public String saveCountryDetails(@ModelAttribute("country")Country country){
+
+        Long countryId= countryService.saveCountry(country);
+        return "success";
+    }
+
+    @RequestMapping("/secure/deleteCountry")
+    @ResponseBody
+    public void deleteCountry(@RequestParam(value = "countryId",required=false) Long countryId){
+        countryRepository.delete(countryId);
     }
 
 }

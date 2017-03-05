@@ -48,7 +48,12 @@ body{
     padding: 20px;
 }
 
-.menu-group-item ul,.menu-group-item li{
+.menu-group-item ul{
+  padding:10px 8px;
+  cursor:pointer;
+}
+
+.menu-group-item li{
    padding:10px 8px;
    cursor:pointer;
 }
@@ -64,6 +69,31 @@ body{
 
 .menu-ul li {
     list-style: none;
+}
+
+
+.sub-menu{
+    height: 40px;
+    display: none;
+}
+
+.sub-menu .sub-menu-ul {
+    position: relative;
+    margin-top: -34px;
+    border-radius: 2px;
+    background: linear-gradient(0deg, #C71585, purple);
+    left: 139px;
+}
+
+.sub-menu-item:hover{
+    background:rgba(234, 241, 233, 0.84);
+    border-radius: 2px;
+}
+
+.menu-item:hover{
+    /*background:#F1F4F5;*/
+    background:rgba(234, 241, 233, 0.84);
+    border-radius: 2px;
 }
 
 .prd-logo{

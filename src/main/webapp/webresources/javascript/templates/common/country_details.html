@@ -1,4 +1,5 @@
 <form method="post" autocomplete="off" action="/secure/saveCountry" id="saveCountryDetails" enctype="multipart/form-data">
+
     <div class="accordian-header">
         <div class="accordian-header-text">
             Country Details
@@ -9,7 +10,8 @@
     </div>
 
     <div class="accordian-body">
-        <div class="user-registration-form">
+        <div class="edit-country-form">
+            <div class="">
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">Country</div>
@@ -23,14 +25,14 @@
                 <div class="form-column">
                     <div class="field-label">Non-Admitted Allowed</div>
                     <div class="field">
-                        <input type="radio" name="nonAdmittedAllowed" id="globexDatabase-CountryData_nonAdmittedAllowedtrue" value="true" ><label for="globexDatabase-CountryData_nonAdmittedAllowedtrue">Yes</label>
-                        <input type="radio" name="nonAdmittedAllowed" id="globexDatabase-CountryData_nonAdmittedAllowedfalse" checked="checked" value="false" ><label for="globexDatabase-CountryData_nonAdmittedAllowedfalse">No</label>
+                        <input type="radio" name="nonAdmittedAllowed"  value="true" ><label for="">Yes</label>
+                        <input type="radio" name="nonAdmittedAllowed"  checked="checked" value="false" ><label for="">No</label>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Non-Admitted Comments</div>
                     <div class="field">
-                        <textarea name="nonAdmittedComments" cols="" rows=""  id="nonAdmittedComments"> </textarea>
+                        <textarea name="nonAdmittedComments" cols="" rows=""  id="nonAdmittedComments"><%=nonAdmittedComments%> </textarea>
                     </div>
                 </div>
             </div>
@@ -46,7 +48,23 @@
                 <div class="form-column">
                     <div class="field-label">Retail Broker Comments</div>
                     <div class="field">
-                        <textarea name="retailBrokerComments" cols="" rows="" id="retailBrokerComments"></textarea>
+                        <textarea name="retailBrokerComments" cols="" rows="" id="retailBrokerComments"><%=retailBrokerComments%></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-column">
+                    <div class="field-label">Retail Broker Required</div>
+                    <div class="field">
+                        <input type="radio" name="reInsuranceBrokerRequired"  value="true" ><label for="">Yes</label>
+                        <input type="radio" name="reInsuranceBrokerRequired"  checked="checked" value="false" ><label for="">No</label>
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="field-label">Retail Broker Comments</div>
+                    <div class="field">
+                        <textarea name="reInsuranceBrokerComments" cols="" rows="" id="reInsuranceBrokerComments"><%=reInsuranceBrokerComments%></textarea>
                     </div>
                 </div>
             </div>
@@ -55,37 +73,30 @@
                 <div class="form-column">
                     <div class="field-label">Mandatory Reinsurance Cession</div>
                     <div class="field">
-                        <input type="radio" name="mandatoryReinsuranceCession" value="true" ><label for="">Yes</label>
-                        <input type="radio" name="mandatoryReinsuranceCession" checked="checked" value="false"><label for="">No</label>
+                        <input type="radio" name="mandatoryReInsuranceCession" value="true" ><label for="">Yes</label>
+                        <input type="radio" name="mandatoryReInsuranceCession" checked="checked" value="false"><label for="">No</label>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Mandatory Reinsurance Comments</div>
                     <div class="field">
-                        <textarea name="mandatoryReinsuranceComments" cols="" rows="" id="mandatoryReinsuranceComments"></textarea>
+                        <textarea name="mandatoryReInsuranceComments" cols="" rows="" id="mandatoryReInsuranceComments"><%= mandatoryReInsuranceComments %></textarea>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
 
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">Stateside Premium Allowed</div>
                     <div class="field">
-                        <input type="radio" name="statesidePremiumAllowed"  value="true" ><label for="">Yes</label>
-                        <input type="radio" name="statesidePremiumAllowed"  checked="checked" value="false" ><label for="">No</label>
+                        <input type="radio" name="stateSidePremiumAllowed"  value="true" ><label for="">Yes</label>
+                        <input type="radio" name="stateSidePremiumAllowed"  checked="checked" value="false" ><label for="">No</label>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Stateside Premium Comments</div>
                     <div class="field">
-                        <textarea name="statesidePremiumComments" cols="" rows="" ></textarea>
+                        <textarea name="stateSidePremiumComments" cols="" rows=""><%=stateSidePremiumComments%></textarea>
                     </div>
                 </div>
             </div>
@@ -96,13 +107,13 @@
                 <div class="form-column">
                     <div class="field-label">Other Accounting Requirements</div>
                     <div class="field">
-                        <textarea name="otherAccountingRequirements" cols="" rows=""  id="otherAccountingRequirements"></textarea>
+                        <textarea name="otherAccRequirements" cols="" rows=""  id="otherAccRequirements"><%=otherAccRequirements%></textarea>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Premium Reserve</div>
                     <div class="field">
-                        <textarea name="premiumReserve" cols="" rows=""  id="premiumReserve"></textarea>
+                        <textarea name="premiumReserve" cols="" rows=""  id="premiumReserve"><%=premiumReserve%></textarea>
                     </div>
                 </div>
             </div>
@@ -112,13 +123,13 @@
                 <div class="form-column">
                     <div class="field-label">Taxes</div>
                     <div class="field">
-                        <textarea name="taxes" cols="" rows=""  id="taxes"></textarea>
+                        <textarea name="taxes" cols="" rows=""  id="taxes"><%=taxes%></textarea>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">VAT</div>
                     <div class="field">
-                        <textarea name="vat" cols="" rows=""  id="vat"></textarea>
+                        <textarea name="vat" cols="" rows=""  id="vat"><%=vat%></textarea>
                     </div>
                 </div>
             </div>
@@ -127,13 +138,13 @@
                 <div class="form-column">
                     <div class="field-label">Reinsurance Tax</div>
                     <div class="field">
-                        <textarea name="resinsuranceTax" cols="" rows="" id="resinsuranceTax"></textarea>
+                        <textarea name="reInsuranceTax" cols="" rows="" id="reInsuranceTax"><%=reInsuranceTax%></textarea>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Other requirements</div>
                     <div class="field">
-                        <textarea name="otherRequirements" cols="" rows="" id="otherRequirements"></textarea>
+                        <textarea name="otherRequirements" cols="" rows="" id="otherRequirements"><%=otherRequirements%></textarea>
                     </div>
                 </div>
             </div>
@@ -149,36 +160,36 @@
                 <div class="form-column">
                     <div class="field-label">Tacit Renewal Comments</div>
                     <div class="field">
-                        <textarea name="tacitRenewalComments" cols="" rows="" id="tacitRenewalComments"></textarea>
+                        <textarea name="tacticalRenewalComments" cols="" rows="" id="tacticalRenewalComments"><%=tacticalRenewalComments%></textarea>
                     </div>
                 </div>
             </div>
 
 
             <div class="form-row">
-            <div class="form-column">
-                <div class="field-label">Policy Language</div>
-                <div class="field">
-                    <textarea name="policyLanguage" cols="" rows="" id="policyLanguage"></textarea>
+                <div class="form-column">
+                    <div class="field-label">Policy Language</div>
+                    <div class="field">
+                        <textarea name="policyLanguage" cols="" rows="" id="policyLanguage"><%=policyLanguage%></textarea>
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="field-label">General Comments</div>
+                    <div class="field">
+                        <textarea name="generalComments" cols="" rows="" id="generalComments"><%=generalComments%></textarea>
+                    </div>
                 </div>
             </div>
-            <div class="form-column">
-                <div class="field-label">General Comments</div>
-                <div class="field">
-                    <textarea name="generalComments" cols="" rows="" id="generalComments"></textarea>
-                </div>
-            </div>
-        </div>
-
-
 
             <div class="form-row">
                 <div class="button-align-right">
                     <input type="submit" class="save-button" value="Save">
+                    <input type="submit" class="save-button" value="Cancel">
                 </div>
             </div>
 
         </div>
+        </div>
     </div>
-    <input id="userId" type="hidden" value="<%=id%>" name="id">
+    <input id="countryId" type="hidden" value="<%=id%>" name="id">
 </form>
