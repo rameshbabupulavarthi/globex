@@ -208,3 +208,20 @@ body{
    cursor:pointer;
    margin: 0 5px;
 }
+
+.fieldset-wrapper{
+    margin:15px;
+}
+
+.fieldset{
+    border-radius: 5px;
+    border: 1px solid #adadad;
+}
+
+.legend{
+    background-color: #F1F4F5;
+    border-radius: 5px;
+    border: 1px solid #adadad;
+    padding: 5px 10px;
+    margin: 5px 4px;
+}
