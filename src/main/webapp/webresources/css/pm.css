@@ -34,6 +34,7 @@
     background: #fff;
     min-height: 524px;
     float:left;
+    width:100%;
 }
 
 .tab-header-text{

@@ -40,7 +40,7 @@ MenuNavigatorView=Backbone.View.extend({
         });
      },
      renderPMApplications:function(){
-        require(['globex/pm/pm.dashboardDetailView'], function() {
+        require(['globex/pm/pm.application'], function() {
              var appSubmissionListView=new AppSubmissionListView({el:"#layout-body-content"});
              appSubmissionListView.render();
          });
