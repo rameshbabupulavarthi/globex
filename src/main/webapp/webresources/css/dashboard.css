@@ -275,7 +275,9 @@ a{
 }
 
 .user-nav-options .user-img{
-
+    position: relative;
+    bottom: 5px;
+    left: 20px;
 }
 
 .user-nav-options .user-name{
@@ -480,6 +482,11 @@ a{
 .add-user-text{
    margin-left:5px;
    vertical-align: top;
+}
+
+.add-country-text{
+   bottom: 5px;
+   position: relative;
 }
 
 /***user css**/
