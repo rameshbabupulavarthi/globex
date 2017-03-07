@@ -81,16 +81,26 @@ a{
 .layout-body-menu{
    background: linear-gradient(0deg, #C71585, purple);
    display: table-cell;
-   min-height: 600px;
+   min-height: 900px;
    padding: 0px;
    position: absolute;
    z-index: 999;
 }
 
-
-
 .menu-toggle-content{
     display:none;
+}
+
+.menu-nav-text{
+    bottom: 6px;
+    position: relative;
+}
+
+.sub-menu-nav-icon{
+    width: 20px;
+    height: 20px;
+    top: 5px;
+    position: relative;
 }
 
 .prd-logo{

@@ -125,6 +125,10 @@
 
 }
 
+.app-post-user{
+    margin-right:5px;
+}
+
 .pm-app-post .app-post-msg{
     color: #7E7E7E;
 }

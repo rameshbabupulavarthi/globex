@@ -69,7 +69,7 @@
                           <li class="menu-item menu-item-navigator">
                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
                              <span class="menu-item-text menu-toggle-content">
-                                Database >
+                               <span class="menu-nav-text"> Database <img class="sub-menu-nav-icon" src="../webresources/images/menu/arrow-icon-right.png" ></span>
                              </span>
                              <div class="sub-menu">
                                  <ul class="sub-menu-ul">
