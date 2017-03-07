@@ -6,10 +6,11 @@ var UserDetailView =Backbone.View.extend({
     render: function(){
         var _self=this;
         require(['text!'+'templates/user/user_details.html'], function(user_details) {
-            var variables ={id:"",firstName:"",lastName:"",email:"",phone:"",userName:"",role:"",status:""};
+            var variables ={id:"",firstName:"",lastName:"",email:"",phone:"",userName:"",role:"",status:"",loggedInUserRole:$("#currentUserRole").val()};
             if(_self.model){
                 variables ={id:_self.model.get("userId"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),
-                                phone:_self.model.get("phone"),userName:_self.model.get("userName"),role:_self.model.get("role"),status:_self.model.get("status")};
+                                phone:_self.model.get("phone"),userName:_self.model.get("userName"),role:_self.model.get("role"),status:_self.model.get("status"),
+                                loggedInUserRole:$("#currentUserRole").val()};
             }
              user_details = _.template( user_details, variables );
             _self.$el.append(user_details);
@@ -75,6 +76,7 @@ var UserProfileView =Backbone.View.extend({
                     //status:user.status,
                     email:user.email,
                     phone:user.telephone,
+                    loggedInUserRole:$("#currentUserRole").val()
                    });
                 var userDetailView =new UserDetailView({el:"#layout-body-content",model:userModel});
                 _self.$el.html("");
@@ -99,7 +101,7 @@ var UserPopupView =Backbone.View.extend({
             var popupView=new PopupView({el:"#popupWrapper"});
             popupView.render();
             var variables ={id:_self.model.get("userId"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),phone:_self.model.get("phone"),
-                    userName:_self.model.get("userName"),role:_self.model.get("role"),status:_self.model.get("status")};
+                    userName:_self.model.get("userName"),role:_self.model.get("role"),status:_self.model.get("status"),loggedInUserRole:$("#currentUserRole").val()};
             var template = _.template( user_details, variables );
 
             popupView.$el.find("#popup-content").append(template);
@@ -197,6 +199,7 @@ UserListView =Backbone.View.extend({
                         //status:user.status,
                         email:user.email,
                         phone:user.telephone,
+                        loggedInUserRole:$("#currentUserRole").val()
                        });
                     var userView = new UserView({model: userModel});
                     userView.render();
@@ -239,7 +242,7 @@ var UserView =Backbone.View.extend({
     initialize: function(){},
     render: function(){
         var variables = {name:this.model.get("name"),role:this.model.get("role"),status:this.model.get("status"),email:this.model.get("email"),
-                            phone:this.model.get("phone")};
+                            phone:this.model.get("phone"),loggedInUserRole:$("#currentUserRole").val()};
         var template = _.template( this.userTemplate, variables );
         var rowClass=this.model.get("rowClass");
         this.$el.addClass(rowClass);

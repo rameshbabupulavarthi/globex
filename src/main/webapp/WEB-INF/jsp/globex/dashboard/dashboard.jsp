@@ -59,22 +59,22 @@
                      <li class="menu-group-item">
                        <ul>
                           <li class="menu-item navigate-dashboard">
-                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-wrapper"><span class="menu-item-img menu-item-dashboard"></span>
                              <span class="menu-item-text menu-toggle-content">Dashboard</span>
                           </li>
                            <li class="menu-item navigate-manage-user">
-                            <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-44-group.png" ></span>
+                            <span class="menu-item-wrapper"><span class="menu-item-img menu-item-user"></span></span>
                             <span class="menu-item-text menu-toggle-content">Users</span>
                            </li>
                           <li class="menu-item menu-item-navigator">
-                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-img"><span class="menu-item-img menu-item-users"></span></span>
                              <span class="menu-item-text menu-toggle-content">
                                <span class="menu-nav-text"> Database <img class="sub-menu-nav-icon" src="../webresources/images/menu/arrow-icon-right.png" ></span>
                              </span>
                              <div class="sub-menu">
                                  <ul class="sub-menu-ul">
                                      <li class="sub-menu-item navigate-manage-country">Country</li>
-                                     <li class="sub-menu-item navigate-manage-pm">Partnet Market</li>
+                                     <li class="sub-menu-item navigate-manage-pm">Partner Market</li>
                                      <li class="sub-menu-item navigate-manage-lm">Local Market</li>
                                  </ul>
                              </div>
@@ -86,11 +86,11 @@
                      <li class="menu-group-item">
                        <ul>
                            <li class="menu-item">
-                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                              <span class="menu-item-img"><span class="menu-item-img menu-item-dashboard"></span></span>
                               <span class="menu-item-text menu-toggle-content">Accounts</span>
                            </li>
                            <li class="menu-item">
-                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-img"><span class="menu-item-img menu-item-dashboard"></span></span>
                              <span class="menu-item-text menu-toggle-content">Reports</span>
                            </li>
                        </ul>
@@ -100,11 +100,11 @@
                    <li class="menu-group-item">
                        <ul>
                            <li class="menu-item">
-                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-img"><span class="menu-item-img menu-item-dashboard"></span></span>
                              <span class="menu-item-text menu-toggle-content">Receivables</span>
                            </li>
                            <li class="menu-item">
-                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-img"><span class="menu-item-img menu-item-dashboard"></span></span>
                              <span class="menu-item-text menu-toggle-content">Payables</span>
                            </li>
                        </ul>

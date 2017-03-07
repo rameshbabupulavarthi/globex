@@ -92,8 +92,6 @@ a{
 }
 
 .menu-nav-text{
-    bottom: 6px;
-    position: relative;
 }
 
 .sub-menu-nav-icon{
@@ -596,3 +594,68 @@ a{
 .pm-file-form{
 
 }
+
+.menu-item-wrapper{
+    color:#fff;
+}
+
+.menu-item-wrapper:hover{
+  color:rgb(0, 0, 0);
+  font-weight:bold:
+}
+
+.menu-item-img{
+    width: 30px;
+    height: 30px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.menu-item-img:hover{
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
+.menu-item-text{
+    bottom: 8px;
+    position: relative;
+    color: #fff;
+}
+
+.menu-group-item-text,.sub-menu-item{
+   color: #fff;
+}
+
+.menu-item-dashboard{
+     background-image:url(../images/menu/artWhite.png);
+ }
+
+ .menu-item-dashboard:hover{
+     background-image:url(../images/menu/artColor.png);
+ }
+
+
+ .menu-item-users{
+     background-image:url(../images/menu/likeWhite.png);
+ }
+
+ .menu-item-users:hover{
+     background-image:url(../images/menu/likeColor.png);
+ }
+
+  .menu-item-user{
+      background-image:url(../images/menu/personWhite.png);
+  }
+
+  .menu-item-user:hover{
+      background-image:url(../images/menu/personColor.png);
+  }
+
+
+
+
+
+.
