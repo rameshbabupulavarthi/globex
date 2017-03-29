@@ -13,6 +13,6 @@ public interface UserRepository extends  PagingAndSortingRepository<User, Long>{
 	public User findUserById(Long id);
 
 	@Deprecated
-	public User findUserByUsername(String username);
+	public User findUserByUserName(String username);
 
 }

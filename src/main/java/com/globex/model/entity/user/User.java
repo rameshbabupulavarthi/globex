@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.globex.model.entity.pm.Organization;
 import lombok.Data;
 import lombok.ToString;
 
@@ -32,68 +33,93 @@ import lombok.ToString;
 @Data
 @ToString(exclude={"userRole"})
 @Entity
-@Table(name="t_user")
+@Table(name="user")
 public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id", nullable = false)
+    @Column(name="USER_ID", nullable = false)
     private Long id;
 
-    @Column(name="USERNAME")
-    private String username;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ORGANIZATION_ID", nullable = false)
+    private Organization organization;
 
-    @Column(name="PASSWORD")
-    private String password;
+    @Column(name="FIRST_NAME")
+    private String firstName;
 
-    @Column(name="FIRSTNAME")
-    private String firstname;
+    @Column(name="LAST_NAME")
+    private String lastName;
 
-    @Column(name="LASTNAME")
-    private String lastname;
+    @Column(name="USER_NAME")
+    private String userName;
 
     @Column(name="EMAIL")
     private String email;
 
-    @Column(name="TELEPHONE")
-    private String telephone;
+    @Column(name = "PHONE_COUNTRY_CODE")
+    private Integer phoneCountryCode;
+
+    @Column(name = "PHONE_AREA_CODE")
+    private Integer phoneAreaCode;
+
+    @Column(name = "PHONE")
+    private Long phone;
+
+    @Column(name = "PHONE_EXTENSION")
+    private Integer phoneExtension;
+
+    @Column(name = "FAX_COUNTRY_CODE")
+    private Integer faxCountryCode;
+
+    @Column(name = "FAX_AREA_CODE")
+    private Integer faxAreaCode;
+
+    @Column(name = "FAX")
+    private Long fax;
+
+    @Column(name = "MOBILE_COUNTRY_CODE")
+    private Integer mobileCountryCode;
+
+    @Column(name = "MOBILE")
+    private Long mobile;
+
+    @Column(name = "PASSWORD")
+    private String password;
+
+    @Column(name = "COMMENTS")
+    private String comments;
+
+    @Column(name = "USER_STATUS")
+    private Integer status;
+
+    @Column(name = "ADDRESS")
+    private String address;
+
+    @Column(name = "CITY")
+    private String city;
+
+    @Column(name = "STATE")
+    private String state;
+
+    @Column(name = "COUNTRY")
+    private String country;
+
+    @Column(name = "ZIP")
+    private String zip;
+
+    @Column(name = "BRANCH_OFFICE")
+    private String branchOffice;
 
     @Column(name = "thumbnail")
     private String thumbnail;
 
-    @Column(name="external_id")
-    private String externalId;
-
-    @Column(name="status")
-    private Integer status;
-
-    @Column(name = "created_date")
+    /*@Column(name = "created_date")
     private Date createdDate;
 
     @Column(name = "modified_date")
-    private Date modifiedDate;
+    private Date modifiedDate;*/
 
     @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private Set<UserRole> userRole;
-
-
-    public void addUserRole(UserRole userRole){
-        if(getUserRole() == null){
-            setUserRole(new HashSet<UserRole>());
-        }
-        getUserRole().add(userRole);
-    }
-
-    public List<String> getCurrentUserRoleList(){
-        List<String> userRoles = new ArrayList<String>();
-        if(getUserRole()!= null && !getUserRole().isEmpty()){
-            for(UserRole userRole:getUserRole()){
-                userRoles.add(userRole.getType());
-            }
-            return userRoles;
-        }
-        return null;
-    }
-
-
 }

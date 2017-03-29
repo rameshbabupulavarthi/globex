@@ -28,7 +28,7 @@ public class PreAuthenticatedUserDetailsService implements AuthenticationUserDet
 	public UserDetails loadUserDetails(PreAuthenticatedAuthenticationToken token) throws UsernameNotFoundException {
 		Map<String, Object> aPrincipal = (Map<String, Object>) token.getPrincipal();
 		User user = null;//userRepository.findUserByExternalIdAndCustomerId((String)aPrincipal.get(ProvisioningUtils.USER_EXTERNAL_ID), (Long)aPrincipal.get(ProvisioningUtils.CUSTOMER_ID));
-		LoggedInUserDetails userDetails = new LoggedInUserDetails(user.getUsername(), "", getAuthorities(user.getUserRole()));
+		LoggedInUserDetails userDetails = new LoggedInUserDetails(user.getUserName(), "", getAuthorities(user.getUserRole()));
 		CurrentUserDO userDO = new CurrentUserDO(user);
 
 

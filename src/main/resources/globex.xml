@@ -82,6 +82,11 @@
 	                     org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReportJmx(threshold=5000)" />
     </bean>
     <tx:annotation-driven />
+
+    <bean id="sessionFactory" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
         <property name="jpaDialect">
@@ -92,7 +97,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="showSql" value="false" />
+                <property name="showSql" value="true" />
                 <property name="generateDdl" value="false" />
             </bean>
         </property>

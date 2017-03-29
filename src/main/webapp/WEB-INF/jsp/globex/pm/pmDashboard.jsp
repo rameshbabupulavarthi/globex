@@ -58,16 +58,16 @@
                      <li class="menu-group-item-text menu-toggle-content">GENERAL</li>
                      <li class="menu-group-item">
                        <ul>
-                          <li class="navigate-dashboard">
-                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                          <li class="menu-item navigate-dashboard">
+                             <span class="menu-item-wrapper"><span class="menu-item-img menu-item-dashboard"></span>
                              <span class="menu-item-text menu-toggle-content">Dashboard</span>
                           </li>
                            <li class="navigate-manage-user">
-                            <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-44-group.png" ></span>
+                            <span class="menu-item-wrapper"><span class="menu-item-img menu-item-user"></span></span>
                             <span class="menu-item-text menu-toggle-content">Users</span>
                            </li>
                            <li>
-                            <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                            <span class="menu-item-img"><span class="menu-item-img menu-item-users"></span></span>
                             <span class="menu-item-text menu-toggle-content">Client</span>
                            </li>
                        </ul>
@@ -77,15 +77,15 @@
                      <li class="menu-group-item">
                        <ul>
                            <li class="navigate-pm-apps">
-                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                              <span class="menu-item-wrapper"><span class="menu-item-img menu-item-dashboard"></span>
                               <span class="menu-item-text menu-toggle-content">Current Applications</span>
                            </li>
                            <li class="navigate-pm-registration">
-                              <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                              <span class="menu-item-wrapper"><span class="menu-item-img menu-item-dashboard"></span>
                               <span class="menu-item-text menu-toggle-content">New Application</span>
                            </li>
                            <li>
-                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-wrapper"><span class="menu-item-img menu-item-dashboard"></span>
                              <span class="menu-item-text menu-toggle-content">Reports</span>
                            </li>
                        </ul>
@@ -95,11 +95,11 @@
                    <li class="menu-group-item">
                        <ul>
                            <li>
-                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-wrapper"><span class="menu-item-img menu-item-dashboard"></span>
                              <span class="menu-item-text menu-toggle-content">Receivables</span>
                            </li>
                            <li>
-                             <span class="menu-item-img"><img src="../webresources/images/glyphicons/glyphicons-156-show-big-thumbnails.png" ></span>
+                             <span class="menu-item-wrapper"><span class="menu-item-img menu-item-dashboard"></span>
                              <span class="menu-item-text menu-toggle-content">Payables</span>
                            </li>
                        </ul>

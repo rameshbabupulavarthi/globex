@@ -53,14 +53,65 @@ DashboardTilesView=Backbone.View.extend({
         'click .dashboard-tile-jumpout':'jumpOut'
     },
     render:function(){
-      for(var i=0;i<10;i++){
-            var messageModel=new MessageModel();
-            var messageTileView=new MessageTileView({
-                model:messageModel
-            });
-            messageTileView.render();
-            this.$el.find("#messageContainer").append(messageTileView.$el);
-      }
+
+        var dashboardJsonStr=$("#dashboardJson script").text();
+        var dashboardJson=eval("("+dashboardJsonStr+")");
+        var communications=dashboardJson.communications;
+        var files=dashboardJson.files;
+        var reminders=dashboardJson.reminders;
+
+        if(communications){
+             for(var i=0;i<communications.length;i++){
+                    var communication=communications[i];
+                    var messageModel=new MessageModel({
+                        /*senderName:communication.content,
+                        messageTime:communication.content,
+                        senderImage:communication.content,*/
+                        messageContent:communication.content
+                    });
+                    var messageTileView=new MessageTileView({
+                        model:messageModel
+                    });
+                    messageTileView.render();
+                    this.$el.find("#messageContainer").append(messageTileView.$el);
+             }
+        }
+
+        if(files){
+            for(var i=0;i<files.length;i++){
+                var file=files[i];
+                var application=file.applications[0];
+                var user=file.updatedBy;
+                var userName=user.firstName+","+user.lastName;
+                var appSubmissionModel=new AppSubmissionModel({
+                    senderName:userName,
+                    senderImage:application.thumbnailFile,
+                    /*messageTime:communication.content,
+                    */
+                    messageContent:application.coverages
+                });
+                var appSubmissionTileView=new AppSubmissionTileView({
+                   model:appSubmissionModel
+                });
+                this.$el.find("#appSubmissionContainer").append(appSubmissionTileView.$el);
+             }
+        }
+
+        if(reminders){
+            for(var i=0;i<reminders.length;i++){
+                var reminder=reminders[i];
+                var user=reminder.user;
+                var userName=user.firstName+","+user.lastName;
+                var reminderModel=new ReminderModel({
+                    senderName:userName,
+                    messageContent:reminder.details
+                });
+                var reminderTileView=new ReminderTileView({
+                    model:reminderModel
+                });
+              this.$el.find("#remindersContainer").append(reminderTileView.$el);
+            }
+        }
 
       for(var i=0;i<5;i++){
           var renewalModel=new RenewalModel();
@@ -68,19 +119,6 @@ DashboardTilesView=Backbone.View.extend({
               model:renewalModel
           });
           this.$el.find("#renewalsContainer").append(renewalTileView.$el);
-
-          var reminderModel=new ReminderModel();
-          var reminderTileView=new ReminderTileView({
-                model:reminderModel
-          });
-          this.$el.find("#remindersContainer").append(reminderTileView.$el);
-
-          var appSubmissionModel=new AppSubmissionModel();
-          var appSubmissionTileView=new AppSubmissionTileView({
-                  model:appSubmissionModel
-          });
-          this.$el.find("#appSubmissionContainer").append(appSubmissionTileView.$el);
-
 
           var lookupModel=new LookupModel();
           var lookupTileView=new LookupTileView({
@@ -94,10 +132,18 @@ DashboardTilesView=Backbone.View.extend({
        popupView.render();
     },
     jumpOut:function(){
-        require(['globex/pm/pm.application'], function() {
+        /*require(['globex/pm/pm.application'], function() {
             var appSubmissionListView=new AppSubmissionListView({el:"#layout-body-content"});
             appSubmissionListView.render();
+        });*/
+
+        require(['globex/dashboard/dashboardDetailView'], function() {
+            var messageDetailView=new MessageDetailView({el:"#layout-body-content"});
+            messageDetailView.render();
         });
+
+
+
     }
 });
 

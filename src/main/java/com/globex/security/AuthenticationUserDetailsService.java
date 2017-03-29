@@ -45,7 +45,7 @@ public class AuthenticationUserDetailsService implements UserDetailsService {
 			User user = null;
 			if(user==null) {
 				try {
-					user = userRepository.findUserByUsername(userName);
+					user = userRepository.findUserByUserName(userName);
 				} catch (Exception e) {
 					logger.debug("Exception during login, possibly getting multiple users with same userName: {}",e);
 				}				
@@ -62,7 +62,7 @@ public class AuthenticationUserDetailsService implements UserDetailsService {
             if(StringUtils.isNotEmpty(proxyPassword)){
                 password = encoder.encode(proxyPassword);
             }
-        	LoggedInUserDetails userDetails = new LoggedInUserDetails(user.getUsername(), password, getAuthorities(user.getUserRole()));
+        	LoggedInUserDetails userDetails = new LoggedInUserDetails(user.getUserName(), password, getAuthorities(user.getUserRole()));
         	CurrentUserDO userDO = new CurrentUserDO(user);
 
             String role=null;

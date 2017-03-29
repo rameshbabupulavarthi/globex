@@ -14,11 +14,10 @@ public class CurrentUserDO implements Serializable{
 	public CurrentUserDO(User user){
 		this.userId = user.getId();
 		this.email = user.getEmail();
-		this.firstName = user.getFirstname();
-		this.lastName = user.getLastname();
-		this.userName = user.getUsername();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.userName = user.getUserName();
 		this.thumbnail = user.getThumbnail();
-		this.externalUserId = user.getExternalId();
         this.fullName=firstName+","+lastName;
 	}
 	

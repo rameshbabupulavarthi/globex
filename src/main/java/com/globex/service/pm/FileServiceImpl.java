@@ -1,6 +1,6 @@
 package com.globex.service.pm;
 
-import com.globex.model.entity.pm.FileInfo;
+import com.globex.model.entity.common.File;
 import com.globex.model.vo.pm.FileInfoDO;
 import com.globex.repository.rdbms.pm.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,10 @@ public class FileServiceImpl implements FileService {
     @Autowired
     FileRepository fileRepository;
 
-    public Page<FileInfo> list(Integer pageNumber,Integer pageSize){
-        Sort sort=new Sort(Sort.Direction.DESC,"id");
+    public Page<File> list(Integer pageNumber,Integer pageSize){
+        Sort sort=new Sort(Sort.Direction.DESC,"fileId");
         Pageable limit = (Pageable) new PageRequest(pageNumber, pageSize,sort);
-        Page<FileInfo> fileInfoPage =fileRepository.findAll(limit);
+        Page<File> fileInfoPage =fileRepository.findAll(limit);
         return fileInfoPage;
     }
 }

@@ -53,16 +53,16 @@ public class UserServiceImpl implements UserService {
     public Long saveUser(UserDO userDO){
         User user=new User();
         user.setId(userDO.getId());
-        user.setFirstname(userDO.getFirstName());
-        user.setLastname(userDO.getLastName());
-        user.setUsername(userDO.getUserName());
+        user.setFirstName(userDO.getFirstName());
+        user.setLastName(userDO.getLastName());
+        user.setUserName(userDO.getUserName());
         user.setEmail(userDO.getEmail());
-        user.setTelephone(userDO.getTelephone());
+        user.setPhone(userDO.getTelephone());
         user.setPassword(encoder.encode(userDO.getPassword()));
         user.setStatus(UserDO.Status.ACTIVE.getValue());
         user.setThumbnail(userDO.getThumbnail());
-        user.setCreatedDate(new Date());
-        user.setModifiedDate(new Date());
+        /*user.setCreatedDate(new Date());
+        user.setModifiedDate(new Date());*/
 
         UserRole userRole=new UserRole();
         userRole.setUser(user);
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
         userRole.setPermission("1");
         userRole.setType(userDO.getRole());
         userRole.setCreatedBy(getCurrentUserDO().getUserId());
-        userRole.setCreatedDate(new Date());
+        //userRole.setCreatedDate(new Date());
         Set<UserRole> userRoles=new HashSet<UserRole>();
         userRoles.add(userRole);
         user.setUserRole(userRoles);

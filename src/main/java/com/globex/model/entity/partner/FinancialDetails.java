@@ -44,8 +44,8 @@ public class FinancialDetails implements Serializable {
     @Column(name="amBestLook")
     private Integer amBestLook;
 
-    @Column(name="amBestRatingDate")
-    private Date amBestRatingDate;
+    /*@Column(name="amBestRatingDate")
+    private Date amBestRatingDate;*/
 
     @Column(name="amRatingAttachment")
     private String amRatingAttachment;//file
@@ -59,8 +59,8 @@ public class FinancialDetails implements Serializable {
     @Column(name="sAndPOutlook")
     private String sAndPOutlook;
 
-    @Column(name="sAndPrRatingOutlookDate")
-    private Date sAndPrRatingOutlookDate;
+    /*@Column(name="sAndPrRatingOutlookDate")
+    private Date sAndPrRatingOutlookDate;*/
 
     @Column(name="sAndPAttachment")
     private String sAndPAttachment;//file

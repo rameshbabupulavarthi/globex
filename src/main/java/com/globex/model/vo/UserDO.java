@@ -1,5 +1,6 @@
 package com.globex.model.vo;
 
+import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
 import com.globex.model.entity.user.UserRole;
 import lombok.Data;
@@ -19,26 +20,28 @@ public class UserDO implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
-    private String telephone;
+    private Long telephone;
     private String thumbnail;
     private CommonsMultipartFile thumbnailFile;
     private String externalId;
     private Integer status;
     private String role;
+    private OrganizationDO organization;
 
     public UserDO(User user){
         this.id=user.getId();
-        this.userName=user.getUsername();
-        this.firstName=user.getFirstname();
-        this.lastName=user.getLastname();
+        this.userName=user.getUserName();
+        this.firstName=user.getFirstName();
+        this.lastName=user.getLastName();
         this.email=user.getEmail();
-        this.telephone=user.getTelephone();
+        this.telephone=user.getPhone();
         this.thumbnail=user.getThumbnail();
         this.status=user.getStatus();
         for(UserRole userRole:user.getUserRole()){
             this.role=userRole.getType();
             break;
         }
+        this.organization=new OrganizationDO(user.getOrganization());
     }
 
     public UserDO(){

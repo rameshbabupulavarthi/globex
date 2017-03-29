@@ -30,7 +30,7 @@ public class FinancialDetailsDO implements Serializable {
 
     private Integer amBestLook;
 
-    private Date amBestRatingDate;
+    /*private Date amBestRatingDate;*/
 
     private String amRatingAttachment;//file
 
@@ -40,7 +40,7 @@ public class FinancialDetailsDO implements Serializable {
 
     private String sAndPOutlook;
 
-    private Date sAndPrRatingOutlookDate;
+    /*private Date sAndPrRatingOutlookDate;*/
 
     private String sAndPAttachment;//file
 
@@ -105,12 +105,12 @@ public class FinancialDetailsDO implements Serializable {
         companyEstablishmentYear=financialDetails.getCompanyEstablishmentYear();
         amBestRating=financialDetails.getAmBestRating();
         amBestLook=financialDetails.getAmBestLook();
-        amBestRatingDate=financialDetails.getAmBestRatingDate();
+        //amBestRatingDate=financialDetails.getAmBestRatingDate();
         amRatingAttachment=financialDetails.getAmRatingAttachment();//file
         otherBrokers=financialDetails.getOtherBrokers();
         sAndPRating=financialDetails.getSAndPRating();
         sAndPOutlook=financialDetails.getSAndPOutlook();
-        sAndPrRatingOutlookDate=financialDetails.getSAndPrRatingOutlookDate();
+        //sAndPrRatingOutlookDate=financialDetails.getSAndPrRatingOutlookDate();
         sAndPAttachment=financialDetails.getSAndPAttachment();//file
         miscCompName=financialDetails.getMiscCompName();
         miscCompWebsite=financialDetails.getMiscCompWebsite();
@@ -138,12 +138,12 @@ public class FinancialDetailsDO implements Serializable {
         financialDetails.setCompanyEstablishmentYear(companyEstablishmentYear);
         financialDetails.setAmBestRating(amBestRating);
         financialDetails.setAmBestLook(amBestLook);
-        financialDetails.setAmBestRatingDate(amBestRatingDate);
+        //financialDetails.setAmBestRatingDate(amBestRatingDate);
         financialDetails.setAmRatingAttachment(amRatingAttachment);//file
         financialDetails.setOtherBrokers(otherBrokers);
         financialDetails.setSAndPRating(sAndPRating);
         financialDetails.setSAndPOutlook(sAndPOutlook);
-        financialDetails.setSAndPrRatingOutlookDate(sAndPrRatingOutlookDate);
+        //financialDetails.setSAndPrRatingOutlookDate(sAndPrRatingOutlookDate);
         financialDetails.setSAndPAttachment(sAndPAttachment);//file
         financialDetails.setMiscCompName(miscCompName);
         financialDetails.setMiscCompWebsite(miscCompWebsite);

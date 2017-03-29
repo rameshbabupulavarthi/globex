@@ -1,10 +1,7 @@
-package com.globex.model.vo.pm;
+package com.globex.model.vo;
 
 import com.globex.model.entity.pm.Organization;
 import lombok.Data;
-
-import javax.persistence.*;
-import java.sql.Timestamp;
 
 /**
  * Created by Sunil Golla on 2/10/2017.
@@ -16,7 +13,7 @@ public class OrganizationDO {
 
     private String orgName;
 
-    private Timestamp regDate;
+    //private Date regDate;
 
     private String address1;
 
@@ -52,7 +49,7 @@ public class OrganizationDO {
     public OrganizationDO(Organization organization){
         this.id=organization.getId();
         this.orgName=organization.getOrgName();
-        this.regDate=organization.getRegDate();
+        //this.regDate=organization.getRegDate();
         this.address1=organization.getAddress1();
         this.address2=organization.getAddress2();
         this.city=organization.getCity();

@@ -83,7 +83,7 @@ public class PartnerMarketDO implements Serializable{
     //private int comestablishmentyear;
     private String ambestrating;
     private int ambestlook;
-    private Date ambestratingdate;
+    /*private Date ambestratingdate;*/
     private String amratingattachment;//file
     private Map<Integer,Object> grossPremium;
     private Map<Integer,String> combinedRatio;
@@ -124,8 +124,8 @@ public class PartnerMarketDO implements Serializable{
     //
     private int vettingstatus;
     private String vettingstatuscomments;
-    private Date vettingdate;
-    private Date vettingreminder;
+    /*private Date vettingdate;
+    private Date vettingreminder;*/
     private String vettingremindercomments;
 
 

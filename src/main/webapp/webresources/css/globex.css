@@ -18,6 +18,10 @@ body{
     background-color: #FCFCFC;
 }
 
+li{
+    list-style: none;
+}
+
 
 .layout-header{
     height: 50px;
@@ -224,4 +228,165 @@ body{
     border: 1px solid #adadad;
     padding: 5px 10px;
     margin: 5px 4px;
+}
+
+.message-list-header{
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 3px;
+}
+
+.message-list .message-item{
+    border-bottom: 1px dashed red;
+}
+
+.file-actions-wrapper{
+    border-top: 1px dashed #e5e5e5;
+    margin-top: 10px;
+    padding-top: 5px;
+    display: block;
+    float: left;
+    clear: both;
+    color: #3896be;
+    cursor:pointer;
+}
+
+.file-actions-item{
+
+}
+
+.file-comments-option::before,.file-notes::before {
+    background-image: url(../images/sprite/facebook-social.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -36px -105px;
+    content: '';
+    display: inline-block;
+    height: 14px;
+    margin: 0 6px -3px 0;
+    width: 14px;
+}
+
+.file-comments-section,.file-notes-section{
+    clear: both;
+    width: 65%;
+    margin-left: 40px;
+    padding-left: 10px;
+    background-color: #F6F6F6;
+}
+
+.comments-item-img,.notes-item-img{
+    float: left;
+}
+
+.comment-add,.notes-add{
+    margin-left: 10px;
+}
+
+.comments-item-section,.note-item-section{
+    display: inline-block;
+    width: 90%;
+    margin-left: 10px;
+}
+
+.comments-ul,.notes-ul{
+    padding-left: 0px;
+    margin-top: 0px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+.comments-add-section,.notes-add-section{
+   padding-left: 0px;
+   padding-top:10px;
+}
+
+.comments-li,.note-li{
+    padding: 5px;
+    border-bottom: .1px solid #dfdfdf;
+}
+
+.comments-add,.notes-add{
+    border-radius:2px;
+}
+
+.comment-add textarea,.notes-add textarea{
+     width:75%;
+     border-radius: 2px;
+}
+
+.comments-post,.notes-post{
+    display: inline-block;
+    background: #3498db;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 5px 10px;
+    text-decoration: none;
+    line-height: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    top: -15px;
+    position: relative;
+}
+
+.comment-by-name,.note-by-name{
+    color: #2B85C0;
+    margin:5px 0;
+}
+
+.comment-by-role,.note-by-role{
+    border: 1px solid #E77F10;
+    border-radius: 5px 5px 5px 5px;
+    color: #5C5C5C;
+    font-size: 0.85em;
+    height: 1em;
+    line-height: 1.8em;
+    margin: auto 3px;
+    padding: 0.5px 6px;
+    text-align: center;
+}
+
+.comment-detail-time,.note-detail-time{
+    color: #7e7e7e;
+    margin:5px 0;
+}
+
+
+
+/*********** formoid *********/
+
+.formoid-solid-purple input[type=text],
+.formoid-solid-purple input[type=password],
+.formoid-solid-purple input[type=email],
+.formoid-solid-purple input[type=url],
+.formoid-solid-purple input[type=date],
+.formoid-solid-purple input[type=number],
+.formoid-solid-purple input[type=tel],
+.formoid-solid-purple textarea,
+.formoid-solid-purple .element-file .file_text,
+.formoid-solid-purple select{
+  border-style: solid;
+  border-width: 2px;
+  border-color: #bdc3c7;
+  -webkit-transition: border-color 0.5s ease-in-out;
+  transition: border-color 0.5s ease-in-out;
+  border-radius:3px;
+
+  padding: 10px 10px 9px 2.3em;
+
+  outline:none;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: normal;
+
+  font-size: 1em;
+}
+
+
+.formoid-solid-purple .element-input .item-cont .icon-place:before, .formoid-solid-purple .element-textarea .item-cont .icon-place:before {
+    content: '\e800';
 }

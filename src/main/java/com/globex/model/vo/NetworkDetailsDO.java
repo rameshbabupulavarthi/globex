@@ -30,9 +30,9 @@ public class NetworkDetailsDO implements Serializable {
 
     private String vettingStatusComments;
 
-    private Date vettingDate;
+    /*private Date vettingDate;
 
-    private Date vettingReminder;
+    private Date vettingReminder;*/
 
     private String vettingReminderComments;
 
@@ -50,8 +50,8 @@ public class NetworkDetailsDO implements Serializable {
         primaryContactComments=networkDetails.getPrimaryContactComments();
         vettingStatus=networkDetails.getVettingStatus();
         vettingStatusComments=networkDetails.getVettingStatusComments();
-        vettingDate= networkDetails.getVettingDate();
-        vettingReminder=networkDetails.getVettingReminder();
+        //vettingDate= networkDetails.getVettingDate();
+        //vettingReminder=networkDetails.getVettingReminder();
         vettingReminderComments=networkDetails.getVettingReminderComments();
     }
 
@@ -67,8 +67,8 @@ public class NetworkDetailsDO implements Serializable {
         networkDetails.setPrimaryContactComments(primaryContactComments);
         networkDetails.setVettingStatus(vettingStatus);
         networkDetails.setVettingStatusComments(vettingStatusComments);
-        networkDetails.setVettingDate(vettingDate);
-        networkDetails.setVettingReminder(vettingReminder);
+        //networkDetails.setVettingDate(vettingDate);
+        //networkDetails.setVettingReminder(vettingReminder);
         networkDetails.setVettingReminderComments(vettingReminderComments);
         return networkDetails;
     }

@@ -14,7 +14,7 @@ public class DataSourceConnection extends org.apache.tomcat.jdbc.pool.DataSource
     public static final String MYSQL_ADDRESS_PROP_NAME ="JDBC_CONNECTION_STRING";
     public static final String JDBC_MAX_ACTIVE_CONNECTIONS ="JDBC_MAX_ACTIVE_CONNECTIONS";
 
-    private static final String URL = "jdbc:mysql://localhost:3306/globex?user=dbuser&password=dbpassword&useUnicode=true&characterEncoding=utf-8";
+    private static final String URL = "jdbc:mysql://localhost:3306/globex_new?user=dbuser&password=dbpassword&useUnicode=true&characterEncoding=utf-8";
 
     public void configureUrl() {
         super.setUrl(URL);

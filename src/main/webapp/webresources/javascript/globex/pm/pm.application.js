@@ -3,7 +3,9 @@
 AppSubmissionView=Backbone.View.extend({
     events:{
         "click .pm-app-file":"renderFileDetailsPopup",
-        "click .file-detail-view":"renderFileDetails"
+        "click .pm-post-view-link":"renderFileDetails",
+        "click .file-comments-option":"renderComments",
+        "click .file-notes":"renderNotes"
     },
     template:'<div class="pm-app-item">'+
               	'<div class="pm-app-prof-icon message-sender-img pic-standard-small">'+
@@ -17,21 +19,33 @@ AppSubmissionView=Backbone.View.extend({
               		'	<span class="pm-app-item-file"></span><span class=""><%= fileId %></span>'+
               		'</div>'+
 
-              		'<div class="pm-post-view-card">'+
-              		'	<span class="">Actions:'+
-              		'	 <span>'+
-              		'		<span class="file-detail-view">'+
-              			'		<span class="pm-post-view-link" title="View File">View File</span><span class="pm-post-view-link" title="View File"> | Comment</span>'+
-              		'		</span>'+
-              		'	  </span>'+
-              		'	</span>'+
-              		'</div>'+
+
 
               		'<div class="pm-app-post-detail">'+
               		'	<span class="pm-details"><span class="pm-post-highlight-text">PM:</span><%= orgName %></span>'+
               		'	<span class="pm-account-details"><span class="pm-post-highlight-text">Insured:</span><%= insuredCompany %></span>'+
-              		'	<span class="pm-post-share"><span class="pm-post-share-text">Share</span></span>'+
               		'</div>'+
+
+              		'<div class="pm-post-view-card">'+
+                    '	<span class="">Actions:'+
+                    '	 <span>'+
+                    '		<span class="file-detail-view">'+
+                        '		<span class="pm-post-view-link" title="View File">View File</span>'+
+                        '       <span class="app-post-msg" title="View File"> </span>'+
+                    '		</span>'+
+                    '	  </span>'+
+                    '	</span>'+
+                    '</div>'+
+
+                    '<div class="file-actions-wrapper">'+
+                    '	<span class="file-actions-item">'+
+                        '	<a class="file-comments-option"><em class="file-comments-option-text">Messages</em></a>'+
+                        '	<a class="file-notes"><em class="file-notes-text">Notes</em></a>'+
+                        '	<span class="pm-post-share"><span class="pm-post-share-text">Share</span></span>'+
+                    '	</span>'+
+                    '</div>'+
+
+
               	'</div>'+
 
               	'<div class="pm-app-item-side">'+
@@ -76,6 +90,32 @@ AppSubmissionView=Backbone.View.extend({
                 var fileApplicationPopupView = new FileApplicationPopupView({el:"#popup-content",model:_self.model});
                 fileApplicationPopupView.render();
             });
+        },
+        renderComments:function(){
+            if(this.$el.find(".file-comments-section").length>0){
+                this.$el.find(".file-comments-section").remove();
+            }else{
+                var container=this.$el;
+                var fileId=this.model.get("fileId");
+                var commentsListView=new CommentsListView({
+                    el:container,
+                    fileId:fileId
+                });
+                commentsListView.render();
+            }
+        },
+        renderNotes:function(){
+            if(this.$el.find(".file-notes-section").length>0){
+                this.$el.find(".file-notes-section").remove();
+            }else{
+                var container=this.$el;
+                var fileId=this.model.get("fileId");
+                var notesListView=new NotesListView({
+                    el:container,
+                    fileId:fileId
+                });
+                notesListView.render();
+            }
         }
 })
 
@@ -129,13 +169,13 @@ AppSubmissionListView=Backbone.View.extend({
                 var files=[];
                 for(var i=0; i< response.files.length; i++){
                     var file=response.files[i];
-                    var application=file.application;
+                    var application=file.applications[0];
                     var user=file.createdBy;
                     var organization=file.organization;
 
                     var dateCreated=$.datepicker.formatDate("M d, yy",new Date(file.dateCreated));
                     var appSubmissionModel=new AppSubmissionModel({
-                           fileId:file.id,
+                           fileId:file.fileId,
                            fileStatus:file.fileStatus,
                            senderName:user.firstName+""+user.lastName,
                            orgName:organization.orgName,
@@ -449,3 +489,194 @@ FileApplicationPopupView=Backbone.View.extend({
               });
       }
 });
+
+/*** comments ****/
+var CommentsCollection=Backbone.Collection.extend({
+	url: "/secure/getFileComments"
+});
+
+var CommentsListView=Backbone.View.extend({
+    events:{
+        'click .comments-post':'postMessage'
+    },
+    commentsLayoutTemplate:'<div class="file-comments-section"> '+
+                               '<div class="comments-add-section">'+
+                                 '<span class="comments-item-img pic-standard-small"> <img src="<%= senderImage %>" > </span>'+
+                                 '<span class="comment-add"> <textarea id="comment" name="comment" ></textarea> </span>'+
+                                 '<span class="comments-post" >Post</span>'+
+                               '</div>'+
+                               '<ul class="comments-ul" id="comments-ul"></ul>'+
+                            '</div>',
+    render:function(){
+        var $self=this;
+        this.$el.find(".file-comments-section").remove();
+        var commentsCollection=new CommentsCollection();
+        var data={fileId:this.options.fileId};
+        commentsCollection.fetch({
+            data: data,
+            type: 'POST',
+            success: function(collection, response){
+                 var dashboardJsonStr=$("#dashboardJson script").text();
+                 var dashboardJson=eval("("+dashboardJsonStr+")");
+                 var user=dashboardJson.currentUser;
+                 var variables = {senderImage:user.thumbnail};
+                 var template = _.template( $self.commentsLayoutTemplate, variables );
+                 $self.$el.append(template);
+
+                var $messageBody=$self.$el.find("#comments-ul");
+                for(var i=0; i< response.communications.length; i++){
+                    var communication=response.communications[i];
+                    var user=communication.user;
+                    var userName=user.firstName+","+user.lastName;
+                    var messageModel = new MessageModel({
+                        messageContent:communication.content,
+                        senderName:userName,
+                        messageTime: " 02:25 AM",
+                        senderImage:"https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" ,
+                    });
+                    var commentsView = new CommentsView({el:$messageBody,model: messageModel});
+                    commentsView.render();
+                    $messageBody.append(commentsView.$el);
+                }
+            }
+        });
+    },
+    postMessage:function(){
+        var $self=this;
+        var fileId=this.options.fileId;
+        var comment=this.$el.find("#comment").val();
+        var data={fileId:fileId,comment:comment};
+        $.ajax({
+            type: 'POST',
+            url: '/secure/postComments',
+            data: data,
+            error: function() {
+                $self.render();
+            },
+            success: function(accountJSON) {
+                $self.render();
+            }
+        });
+    }
+});
+
+var CommentsView=Backbone.View.extend({
+    model:MessageModel,
+    commentsTemplate:'<li class="comments-li"> '+
+                        '<div class="comments-item">'+
+                           '<span class="comments-item-img pic-standard-small"> <img src="<%= senderImage %>" > </span>'+
+                           '<div class="comments-item-section">'+
+                                '<div class="">'+
+                                    '<span class="comment-by-name"><%=senderName%></span> <span class="comment-by-role">PM</span>'+
+                                    '<span class="comment-detail-time"><%=messageTime%></span>'+
+                                '</div>'+
+                                '<div class="comment-details"> '+
+                                    '<span class="comment-detail-text"><%=messageContent%></span>'+
+                                '</div>'+
+                           '</div>'+
+                        '</div>'+
+                     '</li>',
+    render:function(){
+        var variables = {senderName:this.model.get("senderName"),messageTime:this.model.get("messageTime"),
+                senderImage:this.model.get("senderImage"),messageContent:this.model.get("messageContent")};
+        var template = _.template( this.commentsTemplate, variables );
+        this.$el.append($(template));
+    }
+});
+/*** comments ****/
+
+
+/*** notes ****/
+var NotesCollection=Backbone.Collection.extend({
+	url: "/secure/getFileNotes"
+});
+
+var NotesListView=Backbone.View.extend({
+    events:{
+        'click .notes-post':'postNote'
+    },
+    notesLayoutTemplate:'<div class="file-notes-section"> '+
+                               '<div class="notes-add-section">'+
+                                 '<span class="notes-item-img pic-standard-small"> <img src="<%= senderImage %>" > </span>'+
+                                 '<span class="notes-add"> <textarea id="notes" name="notes" ></textarea> </span>'+
+                                 '<span class="notes-post" >Post</span>'+
+                               '</div>'+
+                               '<ul class="notes-ul" id="notes-ul"></ul>'+
+                            '</div>',
+    render:function(){
+        var $self=this;
+        this.$el.find(".file-notes-section").remove();
+        var notesCollection=new NotesCollection();
+        var data={fileId:this.options.fileId};
+        notesCollection.fetch({
+            data: data,
+            type: 'POST',
+            success: function(collection, response){
+                 var dashboardJsonStr=$("#dashboardJson script").text();
+                 var dashboardJson=eval("("+dashboardJsonStr+")");
+                 var user=dashboardJson.currentUser;
+                 var variables = {senderImage:user.thumbnail};
+                 var template = _.template( $self.notesLayoutTemplate, variables );
+                 $self.$el.append(template);
+
+                var $messageBody=$self.$el.find("#notes-ul");
+                for(var i=0; i< response.notes.length; i++){
+                    var note=response.notes[i];
+                    var user=note.user;
+                    var userName=user.firstName+","+user.lastName;
+                    var messageModel = new MessageModel({
+                        messageContent:note.notes,
+                        senderName:userName,
+                        messageTime: " 02:25 AM",
+                        senderImage:"https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" ,
+                    });
+                    var notesView = new NotesView({el:$messageBody,model: messageModel});
+                    notesView.render();
+                    $messageBody.append(notesView.$el);
+                }
+            }
+        });
+    },
+    postNote:function(){
+        var $self=this;
+        var fileId=this.options.fileId;
+        var notes=this.$el.find("#notes").val();
+        var data={fileId:fileId,notes:notes};
+        $.ajax({
+            type: 'POST',
+            url: '/secure/postNote',
+            data: data,
+            error: function() {
+                $self.render();
+            },
+            success: function(noteJSON) {
+                $self.render();
+            }
+        });
+    }
+});
+
+var NotesView=Backbone.View.extend({
+    model:MessageModel,
+    notesTemplate:'<li class="note-li"> '+
+                        '<div class="note-item">'+
+                           '<span class="note-item-img pic-standard-small"> <img src="<%= senderImage %>" > </span>'+
+                           '<div class="note-item-section">'+
+                                '<div class="">'+
+                                    '<span class="note-by-name"><%=senderName%></span> <span class="note-by-role">PM</span>'+
+                                    '<span class="note-detail-time"><%=messageTime%></span>'+
+                                '</div>'+
+                                '<div class="note-details"> '+
+                                    '<span class="note-detail-text"><%=messageContent%></span>'+
+                                '</div>'+
+                           '</div>'+
+                        '</div>'+
+                     '</li>',
+    render:function(){
+        var variables = {senderName:this.model.get("senderName"),messageTime:this.model.get("messageTime"),
+                senderImage:this.model.get("senderImage"),messageContent:this.model.get("messageContent")};
+        var template = _.template( this.notesTemplate, variables );
+        this.$el.append($(template));
+    }
+});
+/***end of notes ***/

@@ -1,6 +1,7 @@
 package com.globex.model.vo.pm;
 
-import com.globex.model.entity.pm.AssignedLocalMarket;
+import com.globex.model.entity.common.AssignedLocalMarket;
+import com.globex.model.vo.OrganizationDO;
 import lombok.Data;
 
 /**
@@ -15,14 +16,14 @@ public class AssignedLocalMarketDO {
 
     private OrganizationDO organization;
 
-    private Integer country;
+    private String country;
 
     public AssignedLocalMarketDO(){
 
     }
 
     public AssignedLocalMarketDO(AssignedLocalMarket assignedLocalMarket){
-        this.id=application.getId();
+        this.id=application.getApplicationId();
         this.country=assignedLocalMarket.getCountry();
     }
 

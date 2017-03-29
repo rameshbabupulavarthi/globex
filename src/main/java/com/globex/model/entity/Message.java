@@ -33,7 +33,7 @@ public class Message {
     @Column(name="thread_id")
     private Long threadId;
 
-    @Column(name="created_date")
-    private Date createdDate;
+    /*@Column(name="created_date")
+    private Date createdDate;*/
 
 }

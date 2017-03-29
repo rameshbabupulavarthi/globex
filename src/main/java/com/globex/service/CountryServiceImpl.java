@@ -40,8 +40,8 @@ public class CountryServiceImpl implements CountryService {
         CurrentUserDO userDO=userService.getCurrentUserDO();
         country.setCreatedBy(userDO.getUserId());
         country.setUpdatedBy(userDO.getUserId());
-        country.setCreatedDate(new Date());
-        country.setUpdatedDate(new Date());
+        /*country.setCreatedDate(new Date());
+        country.setUpdatedDate(new Date());*/
         Country countrySaved=countryRepository.save(country);
         return countrySaved.getId();
     }

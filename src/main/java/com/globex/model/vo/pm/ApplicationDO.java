@@ -1,9 +1,9 @@
 package com.globex.model.vo.pm;
 
-import com.globex.model.entity.pm.Application;
+import com.globex.model.entity.common.Application;
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Sunil Golla on 2/10/2017.
@@ -11,15 +11,15 @@ import java.sql.Timestamp;
 @Data
 public class ApplicationDO {
 
-    private Integer id;
+    private Integer applicationId;
 
     private FileInfoDO fileInfo;
 
     private String appNo;
 
-    private Timestamp policyStartDate;
+    /*private Date policyStartDate;
 
-    private Timestamp policyEndDate;
+    private Date policyEndDate;*/
 
     private String insuredCompany;
 
@@ -54,7 +54,7 @@ public class ApplicationDO {
 
     private String claimsHandling ;
 
-    private String reinsurance;
+    private Double reinsurance;
 
     private String extAccOrCompt ;
 
@@ -80,9 +80,9 @@ public class ApplicationDO {
 
     private Integer appStatus;
 
-    private Timestamp dateEmailedLocalMarkets;
+    /*private Date dateEmailedLocalMarkets;*/
 
-    private Integer glOccurence ;
+    private Boolean glOccurence ;
 
     private String glOccuranceLimit ;
 
@@ -90,7 +90,7 @@ public class ApplicationDO {
 
     private String glDeductible ;
 
-    private Integer plOccurance ;
+    private Boolean plOccurance ;
 
     private String plOccuranceLimit ;
 
@@ -98,7 +98,7 @@ public class ApplicationDO {
 
     private String plDeductible ;
 
-    private Integer elOccurence;
+    private Boolean elOccurence;
 
     private String elPayroll ;
 
@@ -146,11 +146,11 @@ public class ApplicationDO {
 
     private String lineOfCoverage ;
 
-    private Integer glClaimsMade;
+    private Boolean glClaimsMade;
 
-    private Integer plClaimsMade;
+    private Boolean plClaimsMade;
 
-    private Integer elClaimsMade;
+    private Boolean elClaimsMade;
 
    private String daysSpent ;
 
@@ -177,15 +177,13 @@ public class ApplicationDO {
 
     public ApplicationDO(Application application){
 
-        this.id=application.getId();
+        this.applicationId=application.getApplicationId();
 
-        //this.fileInfo=new FileInfoDO(application.getFileInfo());
+        this.appNo=application.getApplicationNo();
 
-        this.appNo=application.getAppNo() ;
+        /*this.policyStartDate=application.getPolicyStartDate() ;
 
-        this.policyStartDate=application.getPolicyStartDate() ;
-
-        this.policyEndDate=application.getPolicyEndDate() ;
+        this.policyEndDate=application.getPolicyEndDate() ;*/
 
         this.insuredCompany=application.getInsuredCompany() ;
 
@@ -203,24 +201,23 @@ public class ApplicationDO {
 
         this.totalWorldWideValue=application.getTotalWorldWideValue() ;
 
-        this.totalUSAValue =application.getTotalUSAValue() ;
+        this.totalUSAValue =application.getTotalUsaValue();
 
-        this.termsAndConditions =application.getTermsAndConditions() ;
+        this.termsAndConditions =application.getTermsAndConditions();
 
-        this.noticeOfCancellation =application.getNoticeOfCancellation() ;
+        this.noticeOfCancellation =application.getNoticeOfCancellation();
 
-        this.limitsOfLiabilty =application.getLimitsOfLiabilty() ;
+        this.limitsOfLiabilty =application.getLimitsOfLiability();
 
-        this.deductibles =application.getDeductibles() ;
+        this.deductibles =application.getDeductibles();
 
-        this.valuation =application.getValuation() ;
+        this.valuation =application.getValuation();
 
+        this.lossHistory =application.getLossHistory();
 
-        this.lossHistory =application.getLossHistory() ;
+        this.claimsHandling =application.getClaimsHandling();
 
-        this.claimsHandling =application.getClaimsHandling() ;
-
-        this.reinsurance=application.getReinsurance() ;
+        this.reinsurance=application.getReinsurance();
 
         this.extAccOrCompt =application.getExtAccOrCompt() ;
 
@@ -244,11 +241,11 @@ public class ApplicationDO {
 
         this.branchOffice=application.getBranchOffice() ;
 
-        this.appStatus=application.getAppStatus() ;
+        this.appStatus=application.getApplicationStatus() ;
 
-        this.dateEmailedLocalMarkets=application.getDateEmailedLocalMarkets() ;
+        //this.dateEmailedLocalMarkets=application.getDateEmailedLocalMarkets() ;
 
-        this.glOccurence =application.getGlOccurence() ;
+        this.glOccurence =application.isGlOccurence() ;
 
         this.glOccuranceLimit =application.getGlOccuranceLimit() ;
 
@@ -256,7 +253,7 @@ public class ApplicationDO {
 
         this.glDeductible =application.getGlDeductible() ;
 
-        this.plOccurance =application.getPlOccurance() ;
+        this.plOccurance =application.isPlOccurence() ;
 
         this.plOccuranceLimit =application.getPlOccuranceLimit() ;
 
@@ -264,7 +261,7 @@ public class ApplicationDO {
 
         this.plDeductible =application.getPlDeductible();
 
-        this.elOccurence=application.getElOccurence() ;
+        this.elOccurence=application.isElOccurence() ;
 
         this.elPayroll =application.getElPayroll() ;
 
@@ -282,45 +279,45 @@ public class ApplicationDO {
 
         this.estimatedExtraExpense =application.getEstimatedExtraExpense() ;
 
-        this.totValShpInTwlMnths =application.getTotValShpInTwlMnths() ;
+        this.totValShpInTwlMnths =application.getTotValShpngInTwelveMths();
 
-        this.avgShpVal =application.getAvgShpVal() ;
+        this.avgShpVal =application.getAvgShpngValue() ;
 
-        this.noOfAnnualShps =application.getNoOfAnnualShps() ;
+        this.noOfAnnualShps =application.getNoOfAnnualShpngs() ;
 
-        this.maxValPerShp =application.getMaxValPerShp() ;
+        this.maxValPerShp =application.getMaxValuePerShpmnt() ;
 
-        this.maxValPerExb =application.getMaxValPerExb() ;
+        this.maxValPerExb =application.getMaxValuePerExbtn() ;
 
-        this.propOnExb =application.getPropOnExb() ;
+        this.propOnExb =application.getPropertyOnExbtn() ;
 
-        this.noOfExbs =application.getNoOfExbs() ;
+        this.noOfExbs =application.getNoOfExbtns() ;
 
-        this.perilsInsAgnst =application.getPerilsInsAgnst() ;
+        this.perilsInsAgnst =application.getPerilsInsuredAgnst() ;
 
         this.limits =application.getLimits() ;
 
-        this.comTargetRate =application.getComTargetRate() ;
+        this.comTargetRate =application.getCommTargetRate() ;
 
         this.commDeductibles =application.getCommDeductibles() ;
 
         this.commValuation =application.getCommValuation() ;
 
-        this.commLossHistory =application.getCommLossHistory() ;
+        this.commLossHistory =application.getCommLossHistry();
 
         this.commTermsConditions =application.getCommTermsConditions() ;
 
         this.lineOfCoverage =application.getLineOfCoverage() ;
 
-        this.glClaimsMade=application.getGlClaimsMade() ;
+        this.glClaimsMade=application.isGlClaimsMade() ;
 
-        this.plClaimsMade=application.getPlClaimsMade() ;
+        this.plClaimsMade=application.isPlClaimsMade() ;
 
-        this.elClaimsMade=application.getElClaimsMade() ;
+        this.elClaimsMade=application.isElClaimsMade() ;
 
         this.daysSpent =application.getDaysSpent() ;
 
-        this.accDeathDisMem =application.getAccDeathDisMem() ;
+        this.accDeathDisMem =application.getAccDeathDismem() ;
 
         this.locAggLimit =application.getLocAggLimit() ;
 
@@ -335,7 +332,6 @@ public class ApplicationDO {
         this.allReinsurance =application.getAllReinsurance() ;
 
         this.otherAllReinsurance =application.getOtherAllReinsurance() ;
-
     }
 
 }

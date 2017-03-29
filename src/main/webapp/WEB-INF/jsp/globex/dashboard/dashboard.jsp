@@ -17,6 +17,10 @@
     <link href="/webresources/css/dashboard.css" type="text/css" rel="stylesheet"></link>
     <link href="/webresources/css/jquery.tinyscrollbar.css" rel="stylesheet" type="text/css" />
     <script data-main="/webresources/javascript/globex" src="/webresources/javascript/require.js"></script>
+
+
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Serif:400,400italic,700italic">
+
 </head>
 
 <body>
@@ -124,10 +128,16 @@
         </div>
     </div>
 
-    <div id="dashboardJson">
-        <script type="text/javascript">
-
+    <div id="dashboardJson" style="display:none;">
+        <script type="application/json">
+            ${model.dashboardJson}
         </script>
+    </div>
+
+    <div id="userJson" style="display:none;">
+            <script type="application/json">
+                ${model.user}
+            </script>
     </div>
 
     <input type="hidden" id="currentUserId" value="${model.user.userId}">

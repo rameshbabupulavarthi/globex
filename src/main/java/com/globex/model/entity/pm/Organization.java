@@ -3,7 +3,7 @@ package com.globex.model.entity.pm;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 /**
  * Created by Sunil Golla on 2/10/2017.
@@ -22,7 +22,7 @@ public class Organization {
     private String orgName;
 
     @Column(name="REGISTRATION_DATE")
-    private Timestamp regDate;
+    private Date regDate;
 
     @Column(name="ADDRESS_LINE_1")
     private String address1;

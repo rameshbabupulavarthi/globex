@@ -84,13 +84,13 @@ public class Country {
     @Column(name="CREATED_BY")
     private Long createdBy;
 
-    @Column(name="DATE_CREATED")
-    private Date createdDate;
-
     @Column(name="UPDATED_BY")
     private Long updatedBy;
 
+    /*@Column(name="DATE_CREATED")
+    private Date createdDate;
+
     @Column(name="DATE_UPDATED")
-    private Date updatedDate;
+    private Date updatedDate;*/
 
 }

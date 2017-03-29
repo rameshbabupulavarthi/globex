@@ -45,11 +45,11 @@ public class NetworkDetails implements Serializable {
     @Column(name="vetting_status_comments")
     private String vettingStatusComments;
 
-    @Column(name="vetting_date")
+    /*@Column(name="vetting_date")
     private Date vettingDate;
 
     @Column(name="vetting_reminder")
-    private Date vettingReminder;
+    private Date vettingReminder;*/
 
     @Column(name="vetting_reminder_comments")
     private String vettingReminderComments;
