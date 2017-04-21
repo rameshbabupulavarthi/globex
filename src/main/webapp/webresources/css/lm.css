@@ -1,3 +1,4 @@
+
 .lm-layout{
     max-width: 1320px;
     margin-left: auto;
@@ -187,8 +188,9 @@
 }
 
 .sameline{
-   padding: 5px;
-   font-size:12px;
+   padding: 0px;
+   font-size: 14px;
+   font-weight: bold;
 }
 
 .field-column{
@@ -197,13 +199,14 @@
 
 .lm-registration-body input[type="text"],textarea{
     font-size: 16px;
+    font-size: 14px;
     margin-right: 13px;
-    padding: 3px;
+    /*padding: -5px -5px -5px 30px;*/
     cursor: pointer;
     border-radius: 2px;
-    border: 1px solid #9F9F9F;
-    width:100%;
-    box-shadow: 1px 1px 0px 1px rgba(0,0,0, 0.1);
+    border: 2px solid #d3d7cf;
+    width: 100%;
+    height: 40px;
 }
 
 .lm-registration-step-section{

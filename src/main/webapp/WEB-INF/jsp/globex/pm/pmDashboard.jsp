@@ -119,9 +119,15 @@
         </div>
     </div>
 
-    <div id="dashboardJson">
-        <script type="text/javascript">
+    <div id="dashboardJson" style="display:none;">
+        <script type="application/json">
+            ${model.dashboardJson}
+        </script>
+    </div>
 
+    <div id="userJson" style="display:none;">
+        <script type="application/json">
+            ${model.user}
         </script>
     </div>
 

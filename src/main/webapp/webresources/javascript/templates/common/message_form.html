@@ -1,0 +1,33 @@
+<div class="message-form">
+    <form method="POST" action="/secure/sendMessage" enctype="multipart/form-data" id="sendMessage" accept-charset="utf-8">
+        <div class="">
+            <!--<div class="mail-field"><span >Recipients</span>
+                <span class="mail-field-to">
+                    <select name="to" class="js-example-matcher-start js-states form-control select2-hidden-accessible mail-recipients-select" multiple="multiple" >
+                    </select>
+                </span>
+            </div>-->
+            <div class="mail-field"><span >Subject</span>
+                <span class="mail-field-subject"><textarea rows="1" id="subject"  name="subject" spellcheck="false" autocomplete="false" autocapitalize="off"
+                                autocorrect="off" tabindex="1" dir="ltr" aria-label="To" role="combobox" aria-autocomplete="list" >
+                     </textarea>
+                </span>
+            </div>
+            <div class="mail-field">
+                <span >Attachments</span>
+                <span><input type="file" name="attachment"> </span>
+            </div>
+            <div class="mail-field">
+                <textarea rows="1" id="content" class="mail-form-body" name="content" spellcheck="false" autocomplete="false" autocapitalize="off"
+                          autocorrect="off" tabindex="1" dir="ltr" aria-label="To" role="combobox" aria-autocomplete="list" ></textarea>
+            </div>
+            <input type="hidden" name="fileId" value="<%= fileId %>">
+            <div class="mail-field">
+                <div class="button-align-left">
+                    <input type="submit" class="save-button" value="Send">
+                    <input type="submit" class="cancel-button save-button" value="Cancel">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

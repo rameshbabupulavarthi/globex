@@ -27,6 +27,7 @@ public class LoginController {
 
 
     @RequestMapping("/index")
+
     public ModelAndView getIndexPage(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 
         String domainName = AppUtils.getDomainName(request.getRequestURL().toString());

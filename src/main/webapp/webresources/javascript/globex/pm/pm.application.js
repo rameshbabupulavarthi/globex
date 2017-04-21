@@ -58,6 +58,7 @@ AppSubmissionView=Backbone.View.extend({
               	'		</div>'+
               	'	</div>'+
               	'</div>'+
+              	'<div class="file-activity-section"></div>'+
              ' </div>',
         render: function(){
             var variables = {
@@ -75,15 +76,24 @@ AppSubmissionView=Backbone.View.extend({
         },
         renderFileDetails:function(){
             var _self=this;
-            require(['globex/pm/pm.application',], function() {
+            /*require(['globex/pm/pm.application'], function() {
                 $("#layout-body-content").empty();
                 var fileApplicationDetailView = new FileApplicationDetailView({el:"#layout-body-content",model:_self.model});
                 fileApplicationDetailView.render();
-            });
+            });*/
+
+             require(['globex/pm/pmRegistration'], function() {
+                $("#layout-body-content").empty();
+                var registrationView = new RegistrationView({model:_self.model});
+                registrationView.render();
+             });
+
+
+
         },
         renderFileDetailsPopup:function(){
             var _self=this;
-            require(['globex/pm/pm.application',], function() {
+            require(['globex/pm/pm.application'], function() {
                 var popupView=new PopupView({el:"#popupWrapper"});
                 popupView.render();
                 popupView.$el.find("#popup-title").html("File Details");
@@ -95,7 +105,8 @@ AppSubmissionView=Backbone.View.extend({
             if(this.$el.find(".file-comments-section").length>0){
                 this.$el.find(".file-comments-section").remove();
             }else{
-                var container=this.$el;
+                this.$el.find(".file-activity-section").empty();
+                var container=this.$el.find(".file-activity-section");
                 var fileId=this.model.get("fileId");
                 var commentsListView=new CommentsListView({
                     el:container,
@@ -108,7 +119,8 @@ AppSubmissionView=Backbone.View.extend({
             if(this.$el.find(".file-notes-section").length>0){
                 this.$el.find(".file-notes-section").remove();
             }else{
-                var container=this.$el;
+                this.$el.find(".file-activity-section").empty();
+                var container=this.$el.find(".file-activity-section");
                 var fileId=this.model.get("fileId");
                 var notesListView=new NotesListView({
                     el:container,
@@ -402,9 +414,6 @@ FileApplicationPopupView=Backbone.View.extend({
   initialize: function(opts) {
   },
   render: function() {
-
-
-
         var variables={
             fileId:"",
             fileStatus:"",
@@ -497,7 +506,8 @@ var CommentsCollection=Backbone.Collection.extend({
 
 var CommentsListView=Backbone.View.extend({
     events:{
-        'click .comments-post':'postMessage'
+        'click .comments-post':'postMessage',
+        'click .comment-add':'renderMessagePopup'
     },
     commentsLayoutTemplate:'<div class="file-comments-section"> '+
                                '<div class="comments-add-section">'+
@@ -507,6 +517,10 @@ var CommentsListView=Backbone.View.extend({
                                '</div>'+
                                '<ul class="comments-ul" id="comments-ul"></ul>'+
                             '</div>',
+    commentsTemplate:'<div class="">'+
+
+
+                    '</div>',
     render:function(){
         var $self=this;
         this.$el.find(".file-comments-section").remove();
@@ -529,6 +543,8 @@ var CommentsListView=Backbone.View.extend({
                     var user=communication.user;
                     var userName=user.firstName+","+user.lastName;
                     var messageModel = new MessageModel({
+                        subject:communication.subject,
+                        attachments:communication.fileAttachment,
                         messageContent:communication.content,
                         senderName:userName,
                         messageTime: " 02:25 AM",
@@ -539,6 +555,18 @@ var CommentsListView=Backbone.View.extend({
                     $messageBody.append(commentsView.$el);
                 }
             }
+        });
+    },
+    renderMessagePopup:function(){
+        var fileId=this.options.fileId;
+        var _self=this;
+        require(['globex/common/message'], function() {
+            var popupView=new PopupView({el:"#popupWrapper"});
+            popupView.render();
+            popupView.$el.find("#popup-title").html("New Message");
+            popupView.$el.find("#popup-content").empty();
+            var messageView = new MessageView({el:"#popup-content",fileId:fileId,context:_self});
+            messageView.render();
         });
     },
     postMessage:function(){
@@ -571,6 +599,10 @@ var CommentsView=Backbone.View.extend({
                                     '<span class="comment-detail-time"><%=messageTime%></span>'+
                                 '</div>'+
                                 '<div class="comment-details"> '+
+                                    '<span class="comment-detail-text"><%=subject%></span>'+
+                                    '<a class="mail-attachment" href="/secure/downloadFile?filePath=<%=attachments%>" title="Attachment"></a>'+
+                                '</div>'+
+                                '<div class="comment-details"> '+
                                     '<span class="comment-detail-text"><%=messageContent%></span>'+
                                 '</div>'+
                            '</div>'+
@@ -578,12 +610,13 @@ var CommentsView=Backbone.View.extend({
                      '</li>',
     render:function(){
         var variables = {senderName:this.model.get("senderName"),messageTime:this.model.get("messageTime"),
-                senderImage:this.model.get("senderImage"),messageContent:this.model.get("messageContent")};
+                senderImage:this.model.get("senderImage"),messageContent:this.model.get("messageContent"),
+                subject:this.model.get("subject"),attachments:this.model.get("attachments")};
         var template = _.template( this.commentsTemplate, variables );
         this.$el.append($(template));
     }
 });
-/*** comments ****/
+/*** end of comments ****/
 
 
 /*** notes ****/
@@ -641,7 +674,7 @@ var NotesListView=Backbone.View.extend({
         var $self=this;
         var fileId=this.options.fileId;
         var notes=this.$el.find("#notes").val();
-        var data={fileId:fileId,notes:notes};
+        var data={fileId:fileId,information:notes,note:notes};
         $.ajax({
             type: 'POST',
             url: '/secure/postNote',

@@ -16,7 +16,8 @@ require.config({
     			fcbkcomplete:"lib/fcbkcomplete/fcbkcomplete",
     			user:"globex/user/user",
     			menu:"globex/menu",
-    			commons:"globex/commons"
+    			commons:"globex/commons",
+    			select2:"lib/select2/js/select2.min"
         },
         map: {
                 "*": {
@@ -38,7 +39,7 @@ require.config({
     require(['jQuery'], function() {
         require(['jQueryUI'], function() {
           require(['underScore'], function() {
-            require(['backBone','commons'], function() {
+            require(['backBone','commons','select2'], function() {
                 initApp();
             });
           });

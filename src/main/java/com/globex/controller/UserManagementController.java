@@ -1,6 +1,7 @@
 package com.globex.controller;
 
 import com.globex.model.entity.user.User;
+import com.globex.model.vo.PageModel;
 import com.globex.model.vo.UserDO;
 import com.globex.repository.rdbms.UserRepository;
 import com.globex.security.CurrentUserDO;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,26 +54,11 @@ public class UserManagementController {
         Long currentUserId=currentUserDO.getUserId();
 
         CommonsMultipartFile fileToUpload=userDO.getThumbnailFile();
-
-        String absoluteSaveFilePath =null;
-
         if (fileToUpload != null && fileToUpload.getBytes().length > 0) {
-            String filename=fileToUpload.getOriginalFilename();
-            filename = org.springframework.util.StringUtils.replace(filename, ",", "");
-            Integer dot = filename.lastIndexOf(".");
-            String extension = filename.substring(dot + 1);
-            filename = filename.substring(0, dot);
-            filename = filename + FileUtils.fileNameSeparator + currentUserId + "." + extension;
-            absoluteSaveFilePath= FileUtils.absoluteFilePath + filename;
-
-            File existingFile = new File(absoluteSaveFilePath);
-            existingFile.delete();
-            byte[] file = fileToUpload.getBytes();
-            FileUtils fu = new FileUtils();
-            boolean result = fu.saveBytesIntoFile(file, absoluteSaveFilePath, true);
-            System.out.print("result : "+result);
+            String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
+            String relativePath =FileUtils.uploadFile(fileToUpload,currentUserId,rootPath);
+            userDO.setThumbnail(relativePath);
         }
-        userDO.setThumbnail(absoluteSaveFilePath);
         userService.saveUser(userDO);
         return "success";
     }
@@ -90,6 +77,30 @@ public class UserManagementController {
         model.put("pageSize",pageSize);
         model.put("totalRecords",dataMap.get("totalRecords"));
         model.put("users",dataMap.get("users"));
+        return model;
+    }
+
+    @RequestMapping("/secure/findUsers")
+    @ResponseBody
+    public Map<String, Object> findUsers(@RequestParam(value = "pageNo",required=false) Integer pageNo,
+                                        @RequestParam(value = "pageSize", required=false) Integer pageSize,
+                                        @RequestParam(value = "email", required=false) String email ){
+        pageNo=pageNo==null?0:pageNo;
+        pageSize=pageSize==null? AppConstants.DEFAULT_PAGE_SIZE:pageSize;
+        Map<String,Object> filters=new HashMap<String, Object>();
+        filters.put("email",email);
+        PageModel<UserDO> pageModel=new PageModel<UserDO>();
+        pageModel.setPageNo(pageNo);
+        pageModel.setPageSize(pageSize);
+        pageModel.setFilters(filters);
+
+        PageModel<UserDO> fileInfoPage=userService.list(pageModel);
+        List<UserDO> users=fileInfoPage.getContent();
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("pageNo",pageNo);
+        model.put("pageSize",pageSize);
+        model.put("totalRecords",fileInfoPage.getTotalRecords());
+        model.put("users",users);
         return model;
     }
 

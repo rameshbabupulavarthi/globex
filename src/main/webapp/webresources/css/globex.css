@@ -256,7 +256,7 @@ li{
 
 }
 
-.file-comments-option::before,.file-notes::before {
+.file-comments-option::before {
     background-image: url(../images/sprite/facebook-social.png);
     background-repeat: no-repeat;
     background-size: auto;
@@ -266,6 +266,22 @@ li{
     height: 14px;
     margin: 0 6px -3px 0;
     width: 14px;
+}
+
+.file-notes::before {
+    background-image: url(../images/notes.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /* background-position: -36px -105px; */
+    content: '';
+    display: inline-block;
+    height: 14px;
+    margin: 0 2px -3px 0;
+    width: 14px;
+}
+
+.file-notes{
+    margin-left: 5px;
 }
 
 .file-comments-section,.file-notes-section{
@@ -352,41 +368,88 @@ li{
     margin:5px 0;
 }
 
+.mail-field-to .select2-container{
+    width:90% !important;
+}
 
+.mail-field-to .select2-container--default .select2-selection--multiple{
+    border: 0px;
+}
 
-/*********** formoid *********/
+.mail-field{
+    margin:5px 0;
+    border-bottom: 1px solid #cfcfcf;
+    color: #777;
+    font-size: 13px;
+}
 
-.formoid-solid-purple input[type=text],
-.formoid-solid-purple input[type=password],
-.formoid-solid-purple input[type=email],
-.formoid-solid-purple input[type=url],
-.formoid-solid-purple input[type=date],
-.formoid-solid-purple input[type=number],
-.formoid-solid-purple input[type=tel],
-.formoid-solid-purple textarea,
-.formoid-solid-purple .element-file .file_text,
-.formoid-solid-purple select{
-  border-style: solid;
-  border-width: 2px;
-  border-color: #bdc3c7;
-  -webkit-transition: border-color 0.5s ease-in-out;
-  transition: border-color 0.5s ease-in-out;
-  border-radius:3px;
+.mail-form-body{
+    min-height: 380px;
+    width: 99%;
+    border: 0!important;
+    margin: 0!important;
+}
 
-  padding: 10px 10px 9px 2.3em;
+.mail-attachment::before{
+    background-image: url(../images/sprite/mail-sprite.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 2px -619px;
+    content: '';
+    display: inline-block;
+    height: 20px;
+    margin: 0 7px -3px 0;
+    width: 26px;
+}
 
-  outline:none;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
+.mail-field-to textarea,.mail-field-subject textarea{
+    text-align: left;
+    height: 16px!important;
+    overflow: hidden;
+    padding: 6px 3px;
+    resize: none;
+    width: 90%;
+    color: black;
+    background-color: white;
+    font-size: 13px;
+    border: 0!important;
+    margin: 0!important;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
 
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: normal;
+.search-item{
 
-  font-size: 1em;
+}
+
+.search-user-card{
+    display: inline-block;
+}
+
+.file-details-form .form-row{
+    padding: 10px;
 }
 
 
-.formoid-solid-purple .element-input .item-cont .icon-place:before, .formoid-solid-purple .element-textarea .item-cont .icon-place:before {
-    content: '\e800';
+
+
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
 }
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 12px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }

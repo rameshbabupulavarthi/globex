@@ -5,6 +5,7 @@ import com.globex.model.entity.common.File;
 import com.globex.model.entity.common.Note;
 import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
+import com.globex.model.vo.CommunicationDO;
 import com.globex.model.vo.NoteDO;
 import com.globex.model.vo.PageModel;
 import com.globex.repository.rdbms.CommunicationRepository;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -52,8 +54,8 @@ public class CommunicationServiceImpl implements CommunicationService {
     @Autowired
     OrganizationDetailsRepository organization;
 
-
-    public PageModel<Communication> list(PageModel pageModel){
+    @Override
+    public PageModel<CommunicationDO> list(PageModel pageModel){
 
         Session session=sessionFactory.openSession();
         Criteria criteria=session.createCriteria(Communication.class);
@@ -82,7 +84,12 @@ public class CommunicationServiceImpl implements CommunicationService {
         criteriaForCount.setProjection(Projections.rowCount());
         Long totalCount = (Long) criteriaForCount.uniqueResult();
         List<Communication> list= criteria.list();
-        pageModel.setContent(list);
+        List<CommunicationDO> communicationDOs=new ArrayList<CommunicationDO>();
+        for(Communication communication:list){
+            CommunicationDO communicationDO=new CommunicationDO(communication);
+            communicationDOs.add(communicationDO);
+        }
+        pageModel.setContent(communicationDOs);
         pageModel.setTotalRecords(totalCount);
         return pageModel;
     }
@@ -106,6 +113,28 @@ public class CommunicationServiceImpl implements CommunicationService {
         communication.setUser(user);
         communication.setOrganizationByFromOrganizationId(user.getOrganization());
         communication.setOrganizationByToOrganizationId(file.getOrganization());
+        communication.setShowToGlobex(Boolean.TRUE);
+        communication.setShowToLm(Boolean.TRUE);
+        communication.setShowToPm(Boolean.TRUE);
+        communication.setReplySent(Boolean.TRUE);
+        communication.setDateCreated(new Date());
+
+        Session session=sessionFactory.openSession();
+        communicationRepository.save(communication);
+        return "success";
+    }
+
+    public String saveComment(CommunicationDO communicationDO){
+        File file=fileRepository.findOne(communicationDO.getFileId());
+        User user=userService.getCurrentUser();
+        Communication communication=new Communication();
+        communication.setFileAttachment(communicationDO.getFileAttachment());
+        communication.setContent(communicationDO.getContent());
+        communication.setFile(file);
+        communication.setUser(user);
+        communication.setOrganizationByFromOrganizationId(user.getOrganization());
+        communication.setOrganizationByToOrganizationId(file.getOrganization());
+        communication.setSubject(communicationDO.getSubject());
         communication.setShowToGlobex(Boolean.TRUE);
         communication.setShowToLm(Boolean.TRUE);
         communication.setShowToPm(Boolean.TRUE);

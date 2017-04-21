@@ -18,20 +18,7 @@ if(SecurityContextHolder.getContext()!=null
 	}
 }
 
-/*
-String serverName = request.getServerName();
-if (serverName.contains("dummies")){
-	response.sendRedirect("/proed/index");
-}else if (serverName.contains("assessment") || serverName.contains("edulastic")){
-	rd = request.getRequestDispatcher("/edulastic/index");
-	rd.forward(request, response);
-}else{
-	rd = request.getRequestDispatcher("/login");
-	rd.forward(request, response);
-}*/
-
 rd = request.getRequestDispatcher("/index");
 rd.forward(request, response);
 
 %>
-hellp

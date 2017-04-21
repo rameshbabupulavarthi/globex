@@ -16,6 +16,8 @@ import com.globex.service.UserService;
 import com.globex.service.pm.FileService;
 import com.utils.AppConstants;
 import com.utils.AppUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -35,6 +37,8 @@ import java.util.Map;
 @Controller
 public class DashboardController {
 
+    private static Logger logger = LoggerFactory.getLogger(DashboardController.class);
+
     @Autowired
     UserService userService;
 
@@ -52,37 +56,30 @@ public class DashboardController {
 
     @RequestMapping("/secure/dashboard")
     public ModelAndView userDashboard(){
-        return getDashboardData();
+        String view ="globex/dashboard/dashboard";
+        Map<String, Object> model=getDashboardData();
+        return new ModelAndView(view, "model", model);
+
     }
 
-    @RequestMapping("/secure/getDashboardData")
-    public ModelAndView getDashboardData(){
-        String view ="globex/dashboard/dashboard";
+    /*@RequestMapping("/secure/getDashboardData")*/
+    public Map<String, Object> getDashboardData(){
         CurrentUserDO userDO=userService.getCurrentUserDO();
-
         Integer pageNo=0;
         Integer pageSize=AppConstants.DEFAULT_PAGE_SIZE;
         Integer pageSizeLimit=5;
 
-        PageModel<Communication> pageModel=new PageModel<Communication>();
+        PageModel<CommunicationDO> pageModel=new PageModel<CommunicationDO>();
         pageModel.setPageNo(pageNo);
         pageModel.setPageSize(pageSize);
         communicationService.list(pageModel);
-        List<Communication> communications=pageModel.getContent();
+        List<CommunicationDO> communications=pageModel.getContent();
 
-        Page<File> fileInfoPage=fileService.list(pageNo,pageSizeLimit);
-        List<File> fileInfoList=fileInfoPage.getContent();
-        List<FileInfoDO> fileInfoDOs=new ArrayList<FileInfoDO>();
-        List<CommunicationDO> communicationDOs=new ArrayList<>();
-        for(Communication communication:communications){
-            CommunicationDO communicationDO=new CommunicationDO(communication);
-            communicationDOs.add(communicationDO);
-        }
-
-        for(File fileInfo:fileInfoList){
-            FileInfoDO fileInfoDO=new FileInfoDO(fileInfo);
-            fileInfoDOs.add(fileInfoDO);
-        }
+        PageModel<FileInfoDO> fileModel=new PageModel<FileInfoDO>();
+        fileModel.setPageNo(pageNo);
+        fileModel.setPageSize(pageSize);
+        PageModel<FileInfoDO> fileInfoPage=fileService.list(fileModel);
+        List<FileInfoDO> fileList=fileInfoPage.getContent();
 
         Page<Reminder> reminderPage=reminderService.list(pageNo,pageSizeLimit);
         List<ReminderDO> reminderDOs=new ArrayList<ReminderDO>();
@@ -94,36 +91,20 @@ public class DashboardController {
 
         Map<String, Object> dashboardMap = new HashMap<String, Object>();
         dashboardMap.put("pageNo",pageNo);
-        dashboardMap.put("files",fileInfoDOs);
-        dashboardMap.put("communications",communicationDOs);
+        dashboardMap.put("files",fileList);
+        dashboardMap.put("communications",communications);
         dashboardMap.put("reminders",reminderDOs);
         dashboardMap.put("currentUser",userDO);
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("user",userDO);
         model.put("dashboardJson",AppUtils.convertObjectTOJSONString(dashboardMap));
-        return new ModelAndView(view, "model", model);
+        return model;
     }
 
     @RequestMapping("/secure/pmDashboard")
     public ModelAndView pmUserDashboard(){
-
         String view ="globex/pm/pmDashboard";
-        CurrentUserDO userDO=userService.getCurrentUserDO();
-
-        Integer pageNo=0;
-        Integer pageSize=AppConstants.DEFAULT_PAGE_SIZE;
-        Page<File> fileInfoPage=fileService.list(pageNo, pageSize);
-        List<File> fileInfos=fileInfoPage.getContent();
-        List<FileInfoDO> fileInfoDOs=new ArrayList<FileInfoDO>();
-        for(File fileInfo:fileInfos){
-
-            FileInfoDO fileInfoDO=new FileInfoDO(fileInfo);
-            fileInfoDOs.add(fileInfoDO);
-        }
-        Map<String, Object> model = new HashMap<String, Object>();
-        model.put("pageNo",pageNo);
-        model.put("files",fileInfoDOs);
-        model.put("user",userDO);
+        Map<String, Object> model=getDashboardData();
         return new ModelAndView(view, "model", model);
     }
 
@@ -135,44 +116,17 @@ public class DashboardController {
 
         pageNo=pageNo==null?0:pageNo+1;
         pageSize=pageSize==null?AppConstants.DEFAULT_PAGE_SIZE:pageSize;
-        PageModel<Communication> pageModel=new PageModel<Communication>();
+        PageModel<CommunicationDO> pageModel=new PageModel<CommunicationDO>();
         pageModel.setPageNo(pageNo);
         pageModel.setPageSize(pageSize);
         communicationService.list(pageModel);
-        List<Communication> communications=pageModel.getContent();
-
-        List<CommunicationDO> communicationDOs=new ArrayList<>();
-        for(Communication communication:communications){
-            CommunicationDO communicationDO=new CommunicationDO(communication);
-            communicationDOs.add(communicationDO);
-        }
+        List<CommunicationDO> communications=pageModel.getContent();
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("pageNo",pageNo);
         model.put("pageSize",pageSize);
-        model.put("communications",communicationDOs);
+        model.put("communications",communications);
         return model;
     }
 
-    @RequestMapping("/secure/viewApplications")
-    @ResponseBody
-    public Map<String, Object> viewApplications(@RequestParam(value = "pageNo",required=false) Integer pageNo,
-                                           @RequestParam(value = "pageSize", required=false) Integer pageSize){
 
-        pageNo=pageNo==null?0:pageNo;
-        pageSize=pageSize==null?AppConstants.DEFAULT_PAGE_SIZE:pageSize;
-
-        Page<File> fileInfoPage=fileService.list(pageNo, pageSize);
-        List<File> fileInfos=fileInfoPage.getContent();
-        List<FileInfoDO> fileInfoDOs=new ArrayList<FileInfoDO>();
-        for(File fileInfo:fileInfos){
-            FileInfoDO fileInfoDO=new FileInfoDO(fileInfo);
-            fileInfoDOs.add(fileInfoDO);
-        }
-        Map<String, Object> model = new HashMap<String, Object>();
-        model.put("pageNo",pageNo);
-        model.put("pageSize",pageSize);
-        model.put("totalRecords",fileInfoPage.getTotalElements());
-        model.put("files",fileInfoDOs);
-        return model;
-    }
 }

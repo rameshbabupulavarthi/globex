@@ -37,10 +37,10 @@ public class UserDO implements Serializable {
         this.telephone=user.getPhone();
         this.thumbnail=user.getThumbnail();
         this.status=user.getStatus();
-        for(UserRole userRole:user.getUserRole()){
+        /*for(UserRole userRole:user.getUserRole()){
             this.role=userRole.getType();
             break;
-        }
+        }*/
         this.organization=new OrganizationDO(user.getOrganization());
     }
 

@@ -2,6 +2,7 @@ package com.globex.service;
 
 import com.globex.model.entity.common.Communication;
 import com.globex.model.entity.common.Note;
+import com.globex.model.vo.CommunicationDO;
 import com.globex.model.vo.NoteDO;
 import com.globex.model.vo.PageModel;
 import org.springframework.data.domain.Page;
@@ -13,11 +14,13 @@ import java.util.List;
  */
 public interface CommunicationService {
 
-    public PageModel<Communication> list(PageModel pageModel);
+    public PageModel<CommunicationDO> list(PageModel<CommunicationDO> pageModel);
 
     public List<Communication> listById(Long fileId);
 
     public String saveComments(Long fileId,String comments);
+
+    public String saveComment(CommunicationDO communicationDO);
 
     public List<Note> listNotesByFile(Long fileId);
 

@@ -1,0 +1,76 @@
+<form method="post" autocomplete="off" action="/secure/submitExposureData" id="exposureForm">
+    <div class="file-details-form">
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Country</div>
+                <div class="field">
+                    <select name="country" id="country">
+                        <option value="">Select ...</option>
+                        <option value="NS">NOT SPECIFIED</option>
+                        <option value="AF">AFGHANISTAN</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">State</div>
+                <div class="field">
+                    <select name="states" id="states">
+                        <option value="-1">Select ...</option>
+                        <option value="Un Specified">Un Specified</option>
+                        <option value="Alaska">Alaska</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Exposure</div>
+                <div class="field">
+                    <input type="text" name="exposure" maxlength="12" value="" id="exposure" style="width: 100px">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Rate</div>
+                <div class="field">
+                    <input type="text" name="rate" maxlength="18" value="" id="rate" style="width: 100px">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="button-align-right">
+                <input type="submit" class="save-button" value="Save">
+                <input type="submit" class="save-button" value="Cancel">
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+<div class="">
+    <table class="table-container" id="table-container">
+        <thead>
+            <tr class="header-row"> <th class="header-column">Country<div class="header-column-sort"></div></th>
+                <th class="header-column">State<div class="header-column-sort"></div></th>
+                <th class="header-column">Exposure<div class="header-column-sort"></div></th>
+                <th class="header-column">Rate<div class="header-column-sort"></div></th>
+            </tr>
+        </thead>
+        <tbody id="exposureList">
+
+        </tbody>
+    </table>
+</div>

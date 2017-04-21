@@ -1,0 +1,91 @@
+<form method="post" autocomplete="off" action="/secure/submitLocalInsuranceData" id="saveOrgInfo">
+    <div class="file-details-form">
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Country</div>
+                <div class="field">
+                    <select name="country" id="country">
+                        <option value="">Select ...</option>
+                        <option value="NS">NOT SPECIFIED</option>
+                        <option value="AF">AFGHANISTAN</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Select Contact</div>
+                <div class="field">
+                    <input type="radio" name="contactType" id="AddEditLocalBrokerInsuredContact_contactType1" value="1">
+                    <label for="AddEditLocalBrokerInsuredContact_contactType1">Local Broker</label>
+                    <input type="radio" name="contactType" id="AddEditLocalBrokerInsuredContact_contactType2" value="2">
+                    <label for="AddEditLocalBrokerInsuredContact_contactType2">Local Insured</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Local Broker Contact details</div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Contact Name</div>
+                <div class="field">
+                    <input type="text" name="contactName" size="50" maxlength="100" value="" id="AddEditLocalBrokerInsuredContact_contactName">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Address</div>
+                <div class="field">
+                    <textarea name="address" cols="40" rows="5" id="AddEditLocalBrokerInsuredContact_address"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Phone</div>
+                <div class="field">
+                    <input type="text" name="phoneCountryCode" size="3" maxlength="3" value="" id="AddEditLocalBrokerInsuredContact_phoneCountryCode">
+                    <input type="text" name="phoneAreaCode" size="5" maxlength="5" value="" id="AddEditLocalBrokerInsuredContact_phoneAreaCode">
+                    <input type="text" name="phone" size="10" maxlength="10" value="" id="AddEditLocalBrokerInsuredContact_phone">
+                    Ext.<input type="text" name="phoneExtension" size="4" maxlength="4" value="" id="AddEditLocalBrokerInsuredContact_extension">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Fax</div>
+                <div class="field">
+                    <input type="text" name="faxCountryCode" size="3" maxlength="3" value="" id="AddEditLocalBrokerInsuredContact_faxCountryCode">
+                    <input type="text" name="faxAreaCode" size="5" maxlength="5" value="" id="AddEditLocalBrokerInsuredContact_faxAreaCode">
+                    <input type="text" name="fax" size="10" maxlength="10" value="" id="AddEditLocalBrokerInsuredContact_fax">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Email</div>
+                <div class="field">
+                    <input type="text" name="email" size="52" maxlength="50" value="" id="AddEditLocalBrokerInsuredContact_email">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="button-align-right">
+                <input type="submit" class="save-button" value="Save">
+                <input type="submit" class="save-button" value="Cancel">
+            </div>
+        </div>
+    </div>
+</form>

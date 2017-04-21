@@ -6,6 +6,8 @@ import com.globex.model.entity.user.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.Date;
 import java.util.Set;
@@ -52,6 +54,7 @@ public class File implements java.io.Serializable {
     private Date dateUpdated;*/
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "file")
+    @Fetch(FetchMode.SELECT)
     private Set<Application> applications;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "file")
@@ -60,7 +63,7 @@ public class File implements java.io.Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "file")
 	private Set<MusAccountFactSheet> musAccountFactSheets;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "file")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "file")
     private Set<Attachment> attachments;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "file")

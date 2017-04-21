@@ -6,9 +6,12 @@ import com.globex.model.vo.CommunicationDO;
 import com.globex.model.vo.NoteDO;
 import com.globex.model.vo.PageModel;
 import com.globex.model.vo.pm.FileInfoDO;
+import com.globex.security.CurrentUserDO;
 import com.globex.service.CommunicationService;
+import com.globex.service.UserService;
 import com.globex.service.pm.FileService;
 import com.utils.AppConstants;
+import com.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,8 +19,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +37,9 @@ public class CommunicationController {
     @Autowired
     CommunicationService communicationService;
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping("/secure/viewCommunications")
     @ResponseBody
     public Map<String, Object> viewCommunications(@RequestParam(value = "pageNo",required=false) Integer pageNo,
@@ -40,21 +48,15 @@ public class CommunicationController {
 
         pageNo=pageNo==null?0:pageNo+1;
         pageSize=pageSize==null?AppConstants.DEFAULT_PAGE_SIZE:pageSize;
-        PageModel<Communication> pageModel=new PageModel<Communication>();
+        PageModel<CommunicationDO> pageModel=new PageModel<CommunicationDO>();
         pageModel.setPageNo(pageNo);
         pageModel.setPageSize(pageSize);
         communicationService.list(pageModel);
-        List<Communication> communications=pageModel.getContent();
-
-        List<CommunicationDO> communicationDOs=new ArrayList<>();
-        for(Communication communication:communications){
-            CommunicationDO communicationDO=new CommunicationDO(communication);
-            communicationDOs.add(communicationDO);
-        }
+        List<CommunicationDO> communications=pageModel.getContent();
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("pageNo",pageNo);
         model.put("pageSize",pageSize);
-        model.put("communications",communicationDOs);
+        model.put("communications",communications);
         return model;
     }
 
@@ -81,6 +83,22 @@ public class CommunicationController {
         return communicationService.saveComments(fileId,comment);
     }
 
+    @RequestMapping("/secure/sendMessage")
+    @ResponseBody
+    public String sendMessage(HttpServletRequest request, @ModelAttribute("messageData")CommunicationDO communication){
+
+        CurrentUserDO currentUserDO=userService.getCurrentUserDO();
+        Long currentUserId=currentUserDO.getUserId();
+        CommonsMultipartFile fileToUpload=communication.getAttachment();
+        if (fileToUpload != null && fileToUpload.getBytes().length > 0) {
+            String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
+            String relativePath =FileUtils.uploadFile(fileToUpload,currentUserId,rootPath);
+            communication.setFileAttachment(relativePath);
+        }
+        communicationService.saveComment(communication);
+        return "success";
+    }
+
     @RequestMapping("/secure/getFileNotes")
     @ResponseBody
     public Map<String, Object> getFileNotes(@RequestParam(value = "fileId",required=true) Long fileId){
@@ -98,7 +116,14 @@ public class CommunicationController {
 
     @RequestMapping("/secure/postNote")
     @ResponseBody
-    public String postNote(HttpServletRequest request,@ModelAttribute("note")NoteDO noteDO){
+    public String postNote(@RequestParam(value = "fileId",required=true) Long fileId,
+                           @RequestParam(value = "information",required=false) String information,
+                           @RequestParam(value = "note",required=true) String note){
+
+        NoteDO noteDO=new NoteDO();
+        noteDO.setFileId(fileId);
+        noteDO.setInformation(information);
+        noteDO.setNotes(note);
         return communicationService.saveNote(noteDO);
     }
 

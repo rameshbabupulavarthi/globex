@@ -14,7 +14,7 @@ public class FileUtils {
 
     public static final String fileNameSeparator = "-";
 
-    public static String absoluteFilePath = "/tmp/images/";
+    public static final String FILE_PATH = "/webresources/tmp/images/";
 
     public boolean saveBytesIntoFile(byte[] b, String fileName, boolean append) {
         try {
@@ -53,15 +53,15 @@ public class FileUtils {
         return dir.listFiles(filenameFilter);
     }
 
-    public static String uploadFile(CommonsMultipartFile fileToUpload,Long currentUserId){
-        String absoluteSaveFilePath =null;
+    public static String uploadFile(CommonsMultipartFile fileToUpload,Long currentUserId,String absolutePath){
         String filename=fileToUpload.getOriginalFilename();
         filename = org.springframework.util.StringUtils.replace(filename, ",", "");
         Integer dot = filename.lastIndexOf(".");
         String extension = filename.substring(dot + 1);
         filename = filename.substring(0, dot);
         filename = filename + FileUtils.fileNameSeparator + currentUserId + "." + extension;
-        absoluteSaveFilePath= FileUtils.absoluteFilePath + filename;
+        String relativePath=FileUtils.FILE_PATH + filename;
+        String absoluteSaveFilePath= absolutePath+relativePath;
 
         File existingFile = new File(absoluteSaveFilePath);
         existingFile.delete();
@@ -69,6 +69,6 @@ public class FileUtils {
         FileUtils fu = new FileUtils();
         boolean result = fu.saveBytesIntoFile(file, absoluteSaveFilePath, true);
         System.out.print("result : "+result);
-        return absoluteSaveFilePath;
+        return relativePath;
     }
 }

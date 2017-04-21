@@ -27,6 +27,10 @@ public class NoteDO implements Serializable {
 
     private Long fileId;
 
+    public NoteDO(){
+
+    }
+
     public NoteDO(Note note){
         this.noteId=note.getNoteId();
         this.information= note.getInformation();

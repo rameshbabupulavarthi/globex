@@ -548,9 +548,14 @@ a{
 }
 
 .button-align-right{
-    text-align: right;
-    margin-right: 150px;
-}
+     text-align: right;
+     margin-right: 150px;
+ }
+
+ .button-align-left{
+     text-align: left;
+     margin-right: 20px;
+ }
 
 .save-button{
     background-color: #4285f4;
@@ -564,10 +569,15 @@ a{
 }
 
 .user-registration-form .field-label{
-    width: 150px;
+    /*width: 150px;
     display: inline-block;
     text-align: right;
+    margin-right: 10px;*/
+
     margin-right: 10px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .user-registration-form .field{

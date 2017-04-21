@@ -22,7 +22,8 @@ import javax.persistence.Table;
 import com.globex.model.entity.pm.Organization;
 import lombok.Data;
 import lombok.ToString;
-
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 /**
@@ -121,5 +122,6 @@ public class User implements Serializable{
     private Date modifiedDate;*/
 
     @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
     private Set<UserRole> userRole;
 }

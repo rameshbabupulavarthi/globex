@@ -27,108 +27,169 @@
 
                 <!--step 1-->
                 <div class="lm-registration-step-section lm-registration-step1">
-                      <form method="post" autocomplete="off" action="/secure/saveOrgInfo" id="saveOrgInfo">
-                    <div class="lm-registration-body-section">
-                        <div class="lm-registration-body-section-text">
-                            Organizational Details
-                        </div>
-                        <div class="lm-registration-body-section-toggle">
-                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-                        </div>
-                    </div>
+                    <form method="post" autocomplete="off" action="/secure/saveOrgInfo" id="saveOrgInfo">
 
-                    <div class="lm-registration-form">
-                        <div class="lm-registration-form-section-left">
-
-                            <div class="field-row">
-                                <div class="sameline">Organization Name : </div>
-                                <div class="sameline" id="orgnamediv"><input id="orgName" type="text" value="" placeholder="Enter Organization Name" name="name"></div>
-                            </div>
-                            <div class="field-row">
-                                <div class="sameline">Telephone : </div>
-                                <div class="sameline" id="telephonediv1"><input id="phone" type="text" value="" name="phone" placeholder="Enter Telephone Number"></div>
-                            </div>
-                            <div class="field-row">
-                                <div class="sameline">Company Website : </div>
-                                <div class="sameline" id="websitediv"><input id="website" type="text" value="" placeholder="Enter Company Website" name="website"></div>
-                            </div>
-                            <div class="field-row">
-                                <div class="sameline">General Email Id : </div>
-                                <div class="sameline" id="emailiddiv"><input id="orgEmail" type="text" value="" placeholder="Enter Email Id" name="email"></div>
-                            </div>
-
-                        </div>
-
-                        <div class="lm-registration-form-section-right">
-                            <div class="field-row">
-                                <div class="sameline">Address : </div>
-                                <div class="sameline" id="addressdiv"><textarea rows="6" cols="70" id="addrLine1" value="" placeholder="Enter Address" name="address"></textarea></div>
+                            <div class="lm-registration-body-section">
+                                <div class="lm-registration-body-section-text">
+                                    Organizational Details</div>
+                                <div class="lm-registration-body-section-toggle">
+                                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                                </div>
                             </div>
 
 
+                            <!-- MY CODE -->
 
-                            <div class="field-row field-column lm-organization-splitcolumn" >
-                                <div class="sameline">Country : </div>
-                                <div class="sameline" id="countrydiv" ><input id="country" type="text" value="" placeholder="Enter Country Name" name="country"></div>
+                            <!-- My CODE END -->
+
+
+                            <div class="lm-registration-form">
+                                <div class="lm-registration-form-section-left">
+
+                                    <div class="field-row">
+                                        <div class="sameline">Organization Name :</div>
+                                        <div class="sameline" id="orgnamediv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-hand-right"></i> <input class="form-control" id="orgName" type="text" value="" placeholder="Enter Organization Name" name="name">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field-row">
+                                        <div class="sameline">Telephone :</div>
+                                        <div class="sameline" id="telephonediv1">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-phone-alt"></i>
+                                                <input id="phone" type="text" value="" name="phone" placeholder="Enter Telephone Number">
+                                            </div></div>
+                                    </div>
+                                    <div class="field-row">
+                                        <div class="sameline">Company Website :</div>
+                                        <div class="sameline" id="websitediv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-globe"></i>
+                                                <input id="website" type="text" value="" placeholder="Enter Company Website" name="website">
+                                            </div></div>
+                                    </div>
+                                    <div class="field-row">
+                                        <div class="sameline">General Email Id :</div>
+                                        <div class="sameline" id="emailiddiv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-envelope"></i>
+                                                <input id="orgEmail" type="text" value="" placeholder="Enter Email Id" name="email">
+                                            </div>
+                                        </div></div>
+
+                                </div>
+
+                                <div class="lm-registration-form-section-right">
+                                    <div class="field-row">
+                                        <div class="sameline">Address :</div>
+                                        <div class="sameline" id="addressdiv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-envelope"></i>
+                                                <input type="text" id="addrLine1" value="" placeholder="Enter Address" name="address">
+                                            </div>
+                                        </div></div>
+
+
+
+                                    <div class="field-row field-column lm-organization-splitcolumn">
+                                        <div class="sameline">Country :</div>
+                                        <div class="sameline" id="countrydiv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-globe"></i>
+                                                <input id="country" type="text" value="" placeholder="Enter Country Name" name="country" class="ui-autocomplete-input" autocomplete="off">
+                                            </div></div>
+                                    </div>
+
+                                    <div class="field-row field-column lm-organization-splitcolumn">
+                                        <div class="sameline">City :</div>
+                                        <div class="sameline" id="citydiv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-random"></i>
+                                                <input id="city" type="text" value="" placeholder="Enter City Name" name="city">
+                                            </div></div>
+                                    </div>
+
+                                    <div class="field-row field-column lm-organization-splitcolumn">
+                                        <div class="sameline">State :</div>
+                                        <div class="sameline" id="statediv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-align-justify"></i>
+                                                <input id="state" type="text" value="" placeholder="Enter State" name="state">
+                                            </div></div>
+                                    </div>
+                                    <div class="field-row field-column lm-organization-splitcolumn">
+                                        <div class="sameline">Zip Code:</div>
+                                        <div class="sameline" id="zipcodediv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-hand-right"></i>
+                                                <input id="zipcode" type="text" value="" placeholder="Enter Zip Code" name="zipcode">
+                                            </div></div>
+                                    </div>
+
+
+
+                                </div>
                             </div>
 
-                            <div class="field-row field-column lm-organization-splitcolumn" >
-                                <div class="sameline">City : </div>
-                                <div class="sameline" id="citydiv"><input id="city" type="text" value="" placeholder="Enter City Name" name="city"></div>
+
+                            <div class="lm-registration-body-section">
+                                <div class="lm-registration-body-section-text">
+                                    Primary Contact Details</div>
+                                <div class="lm-registration-body-section-toggle">
+                                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                                </div>
                             </div>
 
-                            <div class="field-row field-column lm-organization-splitcolumn">
-                                <div class="sameline">State : </div>
-                                <div class="sameline" id="statediv"><input id="state" type="text" value="" placeholder="Enter State" name="state"></div>
+                            <div class="lm-registration-form">
+                                <div class="lm-registration-form-section-left">
+                                    <div class="field-row">
+                                        <div class="sameline">First Name</div>
+                                        <div class="sameline">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-user"></i>
+                                                <input id="firstName" type="text" value="" placeholder="Enter First Name" name="contact.firstName">
+                                            </div>
+                                        </div></div>
+                                    <div class="field-row">
+                                        <div class="sameline">Email</div>
+                                        <div class="sameline">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-envelope"></i>
+                                                <input id="email" type="text" value="" name="contact.email" placeholder="Enter Email ID">
+                                            </div></div>
+                                    </div>
+
+                                </div>
+
+                                <div class="lm-registration-form-section-right">
+                                    <div class="field-row">
+                                        <div class="sameline">Last Name</div>
+                                        <div class="sameline">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-envelope"></i>
+                                                <input id="lastName" type="text" value="" placeholder="Enter Last Name" name="contact.lastName">
+                                            </div>
+                                        </div></div>
+                                    <div class="field-row">
+                                        <div class="sameline">Mobile</div>
+                                        <div class="sameline">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-phone"></i>
+                                                <input id="mobileNumber" type="text" value="" name="contact.phone" placeholder="Enter Mobiile Number">
+                                            </div>
+                                        </div></div>
+                                </div>
                             </div>
-                            <div class="field-row field-column lm-organization-splitcolumn">
-                                <div class="sameline">Zip Code: </div>
-                                <div class="sameline" id="zipcodediv"><input id="zipcode" type="text" value="" placeholder="Enter Zip Code" name="zipcode"></div>
-                            </div>
+                            <input type="hidden" id="orgContactId" name="contact.id">
+                            <input type="hidden" id="orgId" name="id">
 
 
 
-                        </div>
-                    </div>
-
-
-                    <div class="lm-registration-body-section">
-                        <div class="lm-registration-body-section-text">
-                            Primary Contact Details
-                        </div>
-                        <div class="lm-registration-body-section-toggle">
-                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="lm-registration-form">
-                        <div class="lm-registration-form-section-left">
-                            <div class="field-row">
-                                <div class="sameline">First Name</div>
-                                <div class="sameline"><input id="firstName" type="text" value="" placeholder="Enter First Name" name="contact.firstName"></div>
-                            </div>
-                            <div class="field-row">
-                                <div class="sameline">Email  </div>
-                                <div class="sameline"><input id="email" type="text" value="" name="contact.email" placeholder="Enter Email ID"></div>
-                            </div>
-
-                        </div>
-
-                        <div class="lm-registration-form-section-right">
-                            <div class="field-row">
-                                <div class="sameline">Last Name  </div>
-                                <div class="sameline"><input id="lastName" type="text" value="" placeholder="Enter Last Name" name="contact.lastName"></div>
-                            </div>
-                            <div class="field-row">
-                                <div class="sameline">Mobile  </div>
-                                <div class="sameline"><input id="mobileNumber" type="text" value="" name="contact.phone" placeholder="Enter Mobiile Number"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="hidden" id="orgContactId" name="contact.id" >
-                    <input type="hidden" id="orgId" name="id" >
                    </form>
-                  </div>
+                </div>
 
                 <!--step 2-->
                 <div class="lm-registration-step-section lm-registration-step2">

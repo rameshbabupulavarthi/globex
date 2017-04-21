@@ -1,9 +1,14 @@
 package com.globex.model.vo.pm;
 
 import com.globex.model.entity.common.Application;
+import com.globex.model.entity.common.ExposureData;
+import com.globex.model.vo.ExposureDataDO;
+import com.globex.model.vo.LocalBrokerInsuredContactDO;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Sunil Golla on 2/10/2017.
@@ -17,9 +22,9 @@ public class ApplicationDO {
 
     private String appNo;
 
-    /*private Date policyStartDate;
+    private Date policyStartDate;
 
-    private Date policyEndDate;*/
+    private Date policyEndDate;
 
     private String insuredCompany;
 
@@ -170,6 +175,10 @@ public class ApplicationDO {
 
    private String otherAllReinsurance ;
 
+    /***childs**/
+    private Set<ExposureDataDO> exposureDatas;
+
+    private Set<LocalBrokerInsuredContactDO> localBrokerInsuredContacts;
 
     public ApplicationDO(){
 
@@ -332,6 +341,105 @@ public class ApplicationDO {
         this.allReinsurance =application.getAllReinsurance() ;
 
         this.otherAllReinsurance =application.getOtherAllReinsurance() ;
+
+        this.exposureDatas=exposureData(application.getExposureDatas());
+    }
+
+    public Application getValue(){
+
+        Application application=new Application();
+        application.setApplicationId(applicationId);
+         application.setApplicationNo(appNo);
+         /*policyStartDate=application.getPolicyStartDate() ;
+         application.setApplicationId(policyEndDate=application.getPolicyEndDate() ;*/
+         application.setInsuredCompany(insuredCompany);
+         application.setReinsuringCompany(reinsuringCompany) ;
+         application.setCoverages(coverages) ;
+         application.setCurrency(currency);
+         application.setOtherCurrency(otherCurrency) ;
+         application.setInterest(interest) ;
+         application.setPerils(perils) ;
+         application.setTotalWorldWideValue(totalWorldWideValue) ;
+         application.setTotalUsaValue(totalUSAValue);
+         application.setTermsAndConditions(termsAndConditions);
+         application.setNoticeOfCancellation(noticeOfCancellation);
+         application.setLimitsOfLiability(limitsOfLiabilty);
+         application.setDeductibles(deductibles);
+         application.setValuation(valuation);
+         application.setLossHistory(lossHistory);
+         application.setClaimsHandling(claimsHandling);
+         application.setReinsurance(reinsurance);
+         application.setExtAccOrCompt(extAccOrCompt);
+         application.setComment(comment);
+         application.setOtherServices(otherServices) ;
+         application.setCollectionType(collectionType);
+         application.setMasterPolicyNo(masterPolicyNo) ;
+         application.setUnderWriterName(underWriterName);
+         application.setPhoneCountryCode(phoneCountryCode);
+         application.setPhoneAreaCode(phoneAreaCode) ;
+         application.setPhone(phone) ;
+         application.setEmail(email);
+         application.setBranchOffice(branchOffice) ;
+         application.setApplicationStatus(appStatus) ;
+         //dateEmailedLocalMarkets=application.getDateEmailedLocalMarkets() ;
+         application.setGlOccurence(glOccurence);
+         application.setGlOccuranceLimit(glOccuranceLimit) ;
+         application.setGlAggregateLimit(glAggregateLimit) ;
+         application.setGlAggregateLimit(glDeductible) ;
+         application.setPlOccurence(plOccurance) ;
+         application.setPlOccuranceLimit(plOccuranceLimit);
+         application.setPlAggregateLimit(plAggregateLimit);
+         application.setPlDeductible(plDeductible);
+         application.setElOccurence(elOccurence);
+         application.setElPayroll(elPayroll);
+         application.setElNoOfEmployees(elNoOfEmployees);
+         application.setElLimits(elLimits);
+         application.setElDeductibles(elDeductibles);
+         application.setElTargetRate(elTargetRate);
+         application.setElLossHistory(elLossHistory);
+         application.setAnnualGrossIncome(annualGrossIncome) ;
+         application.setEstimatedExtraExpense(estimatedExtraExpense);
+         application.setTotValShpngInTwelveMths(totValShpInTwlMnths);
+         application.setAvgShpngValue(avgShpVal);
+         application.setNoOfAnnualShpngs(noOfAnnualShps);
+         application.setMaxValuePerShpmnt(maxValPerShp);
+         application.setMaxValuePerExbtn(maxValPerExb);
+         application.setPropertyOnExbtn(propOnExb);
+         application.setNoOfExbtns(noOfExbs);
+         application.setPerilsInsuredAgnst(perilsInsAgnst);
+         application.setLimits(limits =application.getLimits());
+         application.setCommTargetRate(comTargetRate);
+         application.setCommDeductibles(commDeductibles);
+         application.setCommValuation(commValuation);
+         application.setCommLossHistry(commLossHistory);
+         application.setCommTermsConditions(commTermsConditions) ;
+         application.setLineOfCoverage(lineOfCoverage) ;
+         application.setGlClaimsMade(glClaimsMade) ;
+         application.setPlClaimsMade(plClaimsMade) ;
+         application.setElClaimsMade(elClaimsMade) ;
+         application.setDaysSpent(daysSpent) ;
+         application.setAccDeathDismem(accDeathDisMem) ;
+         application.setLocAggLimit(locAggLimit) ;
+         application.setAddBenefit(addBenefit) ;
+         application.setAddExpoInfo(addExpoInfo) ;
+         application.setAssProvider(assProvider) ;
+         application.setForeignLossHist(foreignLossHist) ;
+         application.setAllReinsurance(allReinsurance) ;
+         application.setOtherAllReinsurance(otherAllReinsurance);
+
+        return application;
+    }
+
+    private Set<ExposureDataDO> exposureData(Set<ExposureData> exposureList){
+        if(exposureList!=null && !exposureList.isEmpty()){
+            Set<ExposureDataDO> exposureDOs=new HashSet<ExposureDataDO>();
+            for(ExposureData exposureData:exposureList){
+                exposureDOs.add(new ExposureDataDO(exposureData));
+            }
+            return exposureDOs;
+        }
+        return null;
+
     }
 
 }

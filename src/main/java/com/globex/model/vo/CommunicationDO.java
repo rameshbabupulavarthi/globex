@@ -3,6 +3,7 @@ package com.globex.model.vo;
 import com.globex.model.entity.common.Communication;
 import com.globex.model.vo.pm.*;
 import lombok.Data;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.Serializable;
 
@@ -38,6 +39,10 @@ public class CommunicationDO implements Serializable{
 
     private String country;
 
+    private CommonsMultipartFile attachment;
+
+    private Long fileId;
+
     public CommunicationDO(){
 
     }
@@ -46,7 +51,7 @@ public class CommunicationDO implements Serializable{
         this.id=communication.getId();
         //this.file=communication.getFile()!=null?new FileInfoDO(communication.getFile()):null;
         this.organizationByFromOrganizationId=communication.getOrganizationByFromOrganizationId()!=null?new OrganizationDO(communication.getOrganizationByFromOrganizationId()):null;
-        this.organizationByToOrganizationId=communication.getOrganizationByFromOrganizationId()!=null?new OrganizationDO(communication.getOrganizationByFromOrganizationId()):null;
+        this.organizationByToOrganizationId=communication.getOrganizationByToOrganizationId()!=null?new OrganizationDO(communication.getOrganizationByToOrganizationId()):null;
         this.user=communication.getUser()!=null?new UserDO(communication.getUser()):null;
         this.subject=communication.getSubject();
         this.content=communication.getContent();
