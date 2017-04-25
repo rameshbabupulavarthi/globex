@@ -1,4 +1,4 @@
-RegistrationView=Backbone.View.extend({
+  RegistrationView=Backbone.View.extend({
     el:".layout-body",
     layoutTemplate:'<div class="page-content-section">'+
                       '<div class="lm-layout-wrapper">'+
@@ -72,7 +72,56 @@ RegistrationView=Backbone.View.extend({
              }
              var template=_.template(registrationForm,variables);
             _self.$el.find("#layout-body-content .application-form").html(template);
+            _self.validateDetails();
+            $(".date-picker").datepicker({ dateFormat: 'dd-mm-yy'});
         });
+    },
+    validateDetails:function(){
+        var _self=this;
+        require(["jquery.validate"],function(){
+            _self.$el.find("#applicationForm").validate({
+                invalidHandler: function(e, validator) {},
+                submitHandler: function(form) {
+                    $(".loading-icon-wrapper").show();
+                    $("body").css({opacity:0.5});
+
+                    var form=document.getElementById("saveCountryDetails");
+                    var formData=new FormData(form);
+                    /*var formData=$('#applicationForm').serialize();*/
+                    $.ajax({
+                        type: 'POST',
+                        url: form.action,
+                        data: formData,
+                        async: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        error: function() {
+                            setTimeout(function(){
+                             $(".loading-icon-wrapper").hide();
+                             $("body").css({opacity:1})
+                           }, 3000);
+                        },
+                        success: function(userJSON) {
+                            $(".navigate-manage-country").trigger("click");
+                            _self.$el.empty();
+                            $(".loading-icon-wrapper").hide();
+                            $("body").css({opacity:1});
+                        }
+                    });
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+
+
     },
     renderCoveragePage:function(e){
         var _self=this;
@@ -147,16 +196,45 @@ RegistrationView=Backbone.View.extend({
             popupView.$el.find("#popup-content").empty();
             var $el=popupView.$el.find("#popup-content");
 
-           var exposureListView=new ExposureListView({el:$el,collection:exposureCollection});
+           var exposureListView=new ExposureListView({el:$el,collection:exposureCollection,application:application});
            exposureListView.render();
        }
     },
     renderLocalInsuranceDetails:function(e){
+        var localInsuranceCollection=new LocalInsuranceCollection();
+        var application=this.model.get("application");
+        var localBrokerInsuredContacts=application.localBrokerInsuredContacts;
+        if(localBrokerInsuredContacts){
+            for (var i = 0; i < localBrokerInsuredContacts.length; ++i) {
+                var localBrokerInsuredContact=localBrokerInsuredContacts[i];
+                var localInsuranceModel=new LocalInsuranceModel({
+                   country:localBrokerInsuredContact.country,
+                   contactName:localBrokerInsuredContact.contactName,
+                   address:localBrokerInsuredContact.address,
+                   phone:localBrokerInsuredContact.phone,
+                   fax:localBrokerInsuredContact.fax,
+                   email:localBrokerInsuredContact.email,
+                   contactType:localBrokerInsuredContact.contactType
+                });
+                localInsuranceCollection.add(localInsuranceModel);
+            }
+            var popupView=new PopupView({el:"#popupWrapper"});
+            popupView.render();
+            popupView.$el.find("#popup-title").html("Local Insurance Contact Details");
+            popupView.$el.find("#popup-content").empty();
+            var $el=popupView.$el.find("#popup-content");
 
+           var localInsuranceListView=new LocalInsuranceListView({el:$el,collection:localInsuranceCollection,application:application});
+           localInsuranceListView.render();
+       }
     }
   });
 
    var ExposureListView=Backbone.View.extend({
+         events:{
+            'click #addExposureDetails':'addRecord',
+            'click .cancel-button':'cancel'
+         },
          collection:ExposureCollection,
          render:function(){
             var _self=this;
@@ -171,6 +249,7 @@ RegistrationView=Backbone.View.extend({
                    exposureView.render();
                 });
                 _self.validateDetails();
+
             });
          },
          validateDetails:function(){
@@ -181,10 +260,10 @@ RegistrationView=Backbone.View.extend({
                     invalidHandler: function(e, validator) {},
                     submitHandler: function(form) {
                         var exposure={};
-                        exposure.country=_self.$el.find("#country").val();
-                        exposure.states=_self.$el.find("#states").val();
-                        exposure.exposure=_self.$el.find("#exposure").val();
-                        exposure.rate=_self.$el.find("#rate").val();
+                        exposure.country=_self.$el.find("[name='country']").val();
+                        exposure.states=_self.$el.find("[name='states']").val();
+                        exposure.exposure=_self.$el.find("[name='exposure']").val();
+                        exposure.rate=_self.$el.find("[name='rate']").val();
 
                         var exposureModel=new ExposureModel({
                            country:exposure.country,
@@ -193,9 +272,19 @@ RegistrationView=Backbone.View.extend({
                            rate:exposure.rate
                         });
                         collection.add(exposureModel);
+                        _self.options.application.exposureDatas=collection.toJSON();
+                        _self.render();
                     }
                });
             });
+            var $el=_self.$el.find('.country-dropdown');
+            countrySelect($el);
+         },
+         addRecord:function(){
+            this.$el.find(".form-wrapper").removeClass("hidden-form");
+         },
+         cancel:function(){
+            this.$el.find(".form-wrapper").addClass("hidden-form");
          }
     });
 
@@ -228,29 +317,178 @@ RegistrationView=Backbone.View.extend({
                   '<td class="table-column"><%=exposure%></td>'+
                   '<td class="table-column"><%=rate%></td>'+
               '</tr>',
-    render:function(){
-        var country=this.model.get("country");
-        var states=this.model.get("states");
-        var exposure=this.model.get("exposure");
-        var rate=this.model.get("rate");
+        render:function(){
+            var country=this.model.get("country");
+            var states=this.model.get("states");
+            var exposure=this.model.get("exposure");
+            var rate=this.model.get("rate");
 
-        var variables = {country:country,states:states,exposure:exposure,rate:rate};
-        var template = _.template(this.template, variables );
-        this.$el.append(template);
-    }
+            var variables = {country:country,states:states,exposure:exposure,rate:rate};
+            var template = _.template(this.template, variables );
+            this.$el.append(template);
+        }
+    });
+
+   var LocalInsuranceListView=Backbone.View.extend({
+         events:{
+           'click #addInsuranceContact':'addRecord',
+           'click .cancel-button':'cancel'
+         },
+         collection:LocalInsuranceCollection,
+         render:function(){
+            var _self=this;
+            require(['text!'+'templates/pm/local_insured_contact_details.html'], function(local_insured_contact_details) {
+                _self.$el.html(local_insured_contact_details);
+                var element =_self.$el.find("#localInsuranceContactList");
+                _self.collection.forEach(function(item) {
+                   var localInsuranceView = new LocalInsuranceView({
+                     el:element,
+                     model: item
+                   });
+                   localInsuranceView.render();
+                });
+                _self.validateDetails();
+            });
+         },
+         validateDetails:function(){
+            var collection= this.collection;
+            var _self=this;
+            require(["jquery.validate"],function(){
+               _self.$el.find("#localInsuranceContactForm").validate({
+                    invalidHandler: function(e, validator) {},
+                    submitHandler: function(form) {
+                        var localInsuranceContact={};
+                        localInsuranceContact.country=_self.$el.find("[name='country']").val();
+                        localInsuranceContact.contactType=_self.$el.find("[name='contactType']").val();
+                        localInsuranceContact.contactName=_self.$el.find("[name='contactName']").val();
+                        localInsuranceContact.address=_self.$el.find("[name='address']").val();
+                        localInsuranceContact.phoneCountryCode=_self.$el.find("[name='phoneCountryCode']").val();
+                        localInsuranceContact.phoneAreaCode=_self.$el.find("[name='phoneAreaCode']").val();
+                        localInsuranceContact.phone=_self.$el.find("[name='phone']").val();
+                        localInsuranceContact.faxCountryCode=_self.$el.find("[name='faxCountryCode']").val();
+                        localInsuranceContact.faxAreaCode=_self.$el.find("[name='faxAreaCode']").val();
+                        localInsuranceContact.fax=_self.$el.find("[name='fax']").val();
+                        localInsuranceContact.email=_self.$el.find("[name='email']").val();
+
+                        var localInsuranceModel=new LocalInsuranceModel({
+                           country:localInsuranceContact.country,
+                           contactType:localInsuranceContact.contactType,
+                           contactName:localInsuranceContact.contactName,
+                           address:localInsuranceContact.address,
+                           phoneCountryCode:localInsuranceContact.phoneCountryCode,
+                           phoneAreaCode:localInsuranceContact.phoneAreaCode,
+                           phone:localInsuranceContact.phone,
+                           faxCountryCode:localInsuranceContact.faxCountryCode,
+                           faxAreaCode:localInsuranceContact.faxAreaCode,
+                           fax:localInsuranceContact.fax,
+                           email:localInsuranceContact.email
+                        });
+                        collection.add(localInsuranceModel);
+                        _self.options.application.localBrokerInsuredContacts=collection.toJSON();
+                        _self.render();
+                    }
+               });
+            });
+            var $el=_self.$el.find('.country-dropdown');
+            countrySelect($el);
+         },
+         addRecord:function(){
+            this.$el.find(".form-wrapper").removeClass("hidden-form");
+         },
+        cancel:function(){
+          this.$el.find(".form-wrapper").addClass("hidden-form");
+        }
 });
 
-var LocalInsuranceListView=Backbone.View.extend({
+   var LocalInsuranceCollection = Backbone.Collection.extend({
+          model: LocalInsuranceModel,
+          initialize: function () {
 
-     render:function(){
-        var localInsuredContacts=this.options.localInsuredContacts;
-        require(['text!'+'templates/pm/local_insured_contact_details.html'], function(local_insured_contact_details) {
-            var template=_.template(local_insured_contact_details,localInsuredContacts);
-            var popupView=new PopupView({el:"#popupWrapper"});
-            popupView.render();
-            popupView.$el.find("#popup-title").html("Local Insured Contact Details");
-            popupView.$el.find("#popup-content").empty();
-            popupView.$el.find("#popup-content").html(template);
-        });
-     }
-});
+          },
+    });
+
+   var LocalInsuranceModel=Backbone.Model.extend({
+   });
+
+   var LocalInsuranceView=Backbone.View.extend({
+       model:ExposureModel,
+       template:'<tr class="table-row table-column-odd">'+
+                     '<td class="table-column"><%=country%></td>'+
+                     '<td class="table-column"><%=contactName%></td>'+
+                     '<td class="table-column"><%=address%></td>'+
+                     '<td class="table-column"><%=phone%></td>'+
+                     '<td class="table-column"><%=fax%></td>'+
+                     '<td class="table-column"><%=email%></td>'+
+                     '<td class="table-column"><%=contactType%></td>'+
+                 '</tr>',
+       render:function(){
+           var country=this.model.get("country");
+           var contactName=this.model.get("contactName");
+           var address=this.model.get("address");
+           var phone=this.model.get("phone");
+           var fax=this.model.get("fax");
+           var email=this.model.get("email");
+           var contactType=this.model.get("contactType");
+
+           var variables = {country:country,contactName:contactName,address:address,phone:phone,fax:fax,email:email,contactType:contactType};
+           var template = _.template(this.template, variables );
+           this.$el.append(template);
+       }
+   });
+
+
+   function countrySelect($el){
+        $el.select2({
+             ajax: {
+               url: "/secure/viewCountries",
+               dataType: 'json',
+               delay: 250,
+               data: function (params) {
+                 return {
+                       country: params.term, // search term
+                       pageNo: params.page,
+                       pageSize:10
+                  };
+               },
+               processResults: function (data, params) {
+                 // parse the results into the format expected by Select2
+                 // since we are using custom formatting functions we do not need to
+                 // alter the remote JSON data, except to indicate that infinite
+                 // scrolling can be used
+                 params.pageNo = params.pageNo || 1;
+
+                 return {
+                   results: data.countries,
+                   pagination: {
+                     more: (params.pageNo * 10) < data.totalRecords
+                   }
+                 };
+               },
+               cache: true
+             },
+             escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+             minimumInputLength: 1,
+             templateResult: formatCountryDisplay, // omitted for brevity, see the source of this page
+             templateSelection: formatSelection // omitted for brevity, see the source of this page
+           });
+
+        function formatCountryDisplay(country){
+            if(country.loading){
+                return country.text;
+            }
+            var countrySearchTemplate= '<div class="search-user-card">'+
+                                           '<div class="search-user-card">'+
+                                                '<div class="">'+
+                                                    '<span class="comment-detail-time"><%=country%></span>'+
+                                               '</div>'+
+                                           '</div>'+
+                                        '</div>';
+            var country=country.country;
+            var variables = {country:country};
+            var template = _.template(countrySearchTemplate, variables );
+            return template;
+        }
+        function formatSelection(country){
+           return country.country;
+        }
+   }

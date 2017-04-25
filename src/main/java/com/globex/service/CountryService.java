@@ -1,6 +1,8 @@
 package com.globex.service;
 
 import com.globex.model.entity.common.Country;
+import com.globex.model.vo.CountryDO;
+import com.globex.model.vo.PageModel;
 import org.springframework.data.domain.Page;
 
 /**
@@ -8,7 +10,7 @@ import org.springframework.data.domain.Page;
  */
 public interface CountryService {
 
-    public Page<Country> list(Integer pageNumber,Integer pageSize);
+    public PageModel<CountryDO> list(PageModel<CountryDO> pageModel);
 
     public Country getCountryDetails(Long countryId);
 

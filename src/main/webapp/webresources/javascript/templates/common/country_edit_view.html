@@ -1,28 +1,32 @@
 <div class="edit-country-form">
     <form method="post" autocomplete="off" action="/secure/saveCountry" id="saveCountryDetails" enctype="multipart/form-data">
 
-        <div class="">
+        <div class="container">
             <div class="form-row">
-                <div class="form-column">
-                    <div class="field-label">Country</div>
-                    <div class="field">
-                        <input id="country" type="text" value="<%=country%>" placeholder="Enter Country Name" name="country">
+
+                <div class="field-label">Country</div>
+                <div class="field">
+                    <div class="inner-addon left-addon">
+                        <i class="glyphicon glyphicon-globe"></i><input id="country" type="text" value="" placeholder="Country Name" style="font-family: Roboto, FontAwesome; width: 125%; font-size: 12px;" name="country">
                     </div>
                 </div>
+
             </div>
 
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">Non-Admitted Allowed</div>
                     <div class="field">
-                        <input type="radio" name="nonAdmittedAllowed"  value="true" ><label for="">Yes</label>
-                        <input type="radio" name="nonAdmittedAllowed"  checked="checked" value="false" ><label for="">No</label>
+                        <input type="radio" name="nonAdmittedAllowed" value="true"><label for="">Yes</label> <input type="radio" name="nonAdmittedAllowed" checked="checked" value="false"><label for="">No</label>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Non-Admitted Comments</div>
                     <div class="field">
-                        <textarea name="nonAdmittedComments" cols="" rows=""  id="nonAdmittedComments"><%=nonAdmittedComments%> </textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <textarea name="nonAdmittedComments" cols="" rows="" id="nonAdmittedComments"> </textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -31,30 +35,33 @@
                 <div class="form-column">
                     <div class="field-label">Retail Broker Required</div>
                     <div class="field">
-                        <input type="radio" name="retailBrokerRequired"  value="true" ><label for="">Yes</label>
-                        <input type="radio" name="retailBrokerRequired"  checked="checked" value="false" ><label for="">No</label>
+                        <input type="radio" name="retailBrokerRequired" value="true"><label for="">Yes</label> <input type="radio" name="retailBrokerRequired" checked="checked" value="false"><label for="">No</label>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Retail Broker Comments</div>
                     <div class="field">
-                        <textarea name="retailBrokerComments" cols="" rows="" id="retailBrokerComments"><%=retailBrokerComments%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <textarea name="retailBrokerComments" cols="" rows="" id="retailBrokerComments"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">Retail Broker Required</div>
                     <div class="field">
-                        <input type="radio" name="reInsuranceBrokerRequired"  value="true" ><label for="">Yes</label>
-                        <input type="radio" name="reInsuranceBrokerRequired"  checked="checked" value="false" ><label for="">No</label>
+                        <input type="radio" name="reInsuranceBrokerRequired" value="true"><label for="">Yes</label> <input type="radio" name="reInsuranceBrokerRequired" checked="checked" value="false"><label for="">No</label>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Retail Broker Comments</div>
                     <div class="field">
-                        <textarea name="reInsuranceBrokerComments" cols="" rows="" id="reInsuranceBrokerComments"><%=reInsuranceBrokerComments%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <textarea name="reInsuranceBrokerComments" cols="" rows="" id="reInsuranceBrokerComments"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,14 +70,17 @@
                 <div class="form-column">
                     <div class="field-label">Mandatory Reinsurance Cession</div>
                     <div class="field">
-                        <input type="radio" name="mandatoryReInsuranceCession" value="true" ><label for="">Yes</label>
-                        <input type="radio" name="mandatoryReInsuranceCession" checked="checked" value="false"><label for="">No</label>
+
+                        <input type="radio" name="mandatoryReInsuranceCession" value="true"><label for="">Yes</label> <input type="radio" name="mandatoryReInsuranceCession" checked="checked" value="false"><label for="">No</label>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Mandatory Reinsurance Comments</div>
                     <div class="field">
-                        <textarea name="mandatoryReInsuranceComments" cols="" rows="" id="mandatoryReInsuranceComments"><%= mandatoryReInsuranceComments %></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <textarea name="mandatoryReInsuranceComments" cols="" rows="" id="mandatoryReInsuranceComments"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,14 +89,16 @@
                 <div class="form-column">
                     <div class="field-label">Stateside Premium Allowed</div>
                     <div class="field">
-                        <input type="radio" name="stateSidePremiumAllowed"  value="true" ><label for="">Yes</label>
-                        <input type="radio" name="stateSidePremiumAllowed"  checked="checked" value="false" ><label for="">No</label>
+                        <input type="radio" name="stateSidePremiumAllowed" value="true"><label for="">Yes</label> <input type="radio" name="stateSidePremiumAllowed" checked="checked" value="false"><label for="">No</label>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Stateside Premium Comments</div>
                     <div class="field">
-                        <textarea name="stateSidePremiumComments" cols="" rows=""><%=stateSidePremiumComments%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <textarea name="stateSidePremiumComments" cols="" rows=""></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,13 +109,19 @@
                 <div class="form-column">
                     <div class="field-label">Other Accounting Requirements</div>
                     <div class="field">
-                        <textarea name="otherAccRequirements" cols="" rows=""  id="otherAccRequirements"><%=otherAccRequirements%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <textarea name="otherAccRequirements" cols="" rows="" id="otherAccRequirements"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Premium Reserve</div>
                     <div class="field">
-                        <textarea name="premiumReserve" cols="" rows=""  id="premiumReserve"><%=premiumReserve%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <textarea name="premiumReserve" cols="" rows="" id="premiumReserve"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,13 +131,19 @@
                 <div class="form-column">
                     <div class="field-label">Taxes</div>
                     <div class="field">
-                        <textarea name="taxes" cols="" rows=""  id="taxes"><%=taxes%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-usd"></i>
+                            <textarea name="taxes" cols="" rows="" id="taxes"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">VAT</div>
                     <div class="field">
-                        <textarea name="vat" cols="" rows=""  id="vat"><%=vat%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-usd"></i>
+                            <textarea name="vat" cols="" rows="" id="vat"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,13 +152,19 @@
                 <div class="form-column">
                     <div class="field-label">Reinsurance Tax</div>
                     <div class="field">
-                        <textarea name="reInsuranceTax" cols="" rows="" id="reInsuranceTax"><%=reInsuranceTax%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-usd"></i>
+                            <textarea name="reInsuranceTax" cols="" rows="" id="reInsuranceTax"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Other requirements</div>
                     <div class="field">
-                        <textarea name="otherRequirements" cols="" rows="" id="otherRequirements"><%=otherRequirements%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <textarea name="otherRequirements" cols="" rows="" id="otherRequirements"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,39 +173,49 @@
                 <div class="form-column">
                     <div class="field-label">Tacit Renewal</div>
                     <div class="field">
-                        <input type="radio" name="tacitRenewal" value="true" ><label for="">Yes</label>
-                        <input type="radio" name="tacitRenewal" checked="checked" value="false" ><label for="">No</label>
+                        <input type="radio" name="tacitRenewal" value="true"><label for="">Yes</label> <input type="radio" name="tacitRenewal" checked="checked" value="false"><label for="">No</label>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Tacit Renewal Comments</div>
                     <div class="field">
-                        <textarea name="tacticalRenewalComments" cols="" rows="" id="tacticalRenewalComments"><%=tacticalRenewalComments%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <textarea name="tacticalRenewalComments" cols="" rows="" id="tacticalRenewalComments"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">Policy Language</div>
                     <div class="field">
-                        <textarea name="policyLanguage" cols="" rows="" id="policyLanguage"><%=policyLanguage%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-list-alt"></i>
+                            <textarea name="policyLanguage" cols="" rows="" id="policyLanguage"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">General Comments</div>
                     <div class="field">
-                        <textarea name="generalComments" cols="" rows="" id="generalComments"><%=generalComments%></textarea>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-list-alt"></i>
+                            <textarea name="generalComments" cols="" rows="" id="generalComments"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="button-align-right">
-                    <input type="submit" class="save-button" value="Save">
-                    <input type="submit" class="save-button" value="Cancel">
+            <div class="form-column" align="right" style="padding: 15px">
+                <div>
+                    <input type="submit" class="save-button form-button" value="Save">
+                    <input type="submit" class="cancel-button form-button" value="Cancel">
                 </div>
             </div>
+
 
         </div>
         <input id="countryId" type="hidden" value="<%=id%>" name="id">

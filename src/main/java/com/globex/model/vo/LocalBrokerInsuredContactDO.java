@@ -1,5 +1,6 @@
 package com.globex.model.vo;
 
+import com.globex.model.entity.common.LocalBrokerInsuredContact;
 import com.globex.model.vo.pm.ApplicationDO;
 import lombok.Data;
 
@@ -38,4 +39,19 @@ public class LocalBrokerInsuredContactDO implements Serializable{
     private String email;
 
     private int contactType;
+
+    public LocalBrokerInsuredContactDO(LocalBrokerInsuredContact localBrokerInsuredContact){
+        this.country=localBrokerInsuredContact.getCountry();
+        this.contactName=localBrokerInsuredContact.getContactName();
+        this.address=localBrokerInsuredContact.getAddress();
+        this.phoneCountryCode=localBrokerInsuredContact.getPhoneCountryCode();
+        this.phoneAreaCode=localBrokerInsuredContact.getPhoneAreaCode();
+        this.phone=localBrokerInsuredContact.getPhone();
+        this.phoneExtension=localBrokerInsuredContact.getPhoneExtension();
+        this.faxCountryCode=localBrokerInsuredContact.getFaxCountryCode();
+        this.faxAreaCode=localBrokerInsuredContact.getFaxAreaCode();
+        this.fax=localBrokerInsuredContact.getFax();
+        this.email=localBrokerInsuredContact.getEmail();
+        this.contactType=localBrokerInsuredContact.getContactType();
+    }
 }

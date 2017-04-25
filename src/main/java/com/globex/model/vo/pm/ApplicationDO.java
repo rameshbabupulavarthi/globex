@@ -2,6 +2,7 @@ package com.globex.model.vo.pm;
 
 import com.globex.model.entity.common.Application;
 import com.globex.model.entity.common.ExposureData;
+import com.globex.model.entity.common.LocalBrokerInsuredContact;
 import com.globex.model.vo.ExposureDataDO;
 import com.globex.model.vo.LocalBrokerInsuredContactDO;
 import lombok.Data;
@@ -22,9 +23,9 @@ public class ApplicationDO {
 
     private String appNo;
 
-    private Date policyStartDate;
+/*    private Date policyStartDate;
 
-    private Date policyEndDate;
+    private Date policyEndDate;*/
 
     private String insuredCompany;
 
@@ -254,7 +255,7 @@ public class ApplicationDO {
 
         //this.dateEmailedLocalMarkets=application.getDateEmailedLocalMarkets() ;
 
-        this.glOccurence =application.isGlOccurence() ;
+        this.glOccurence =application.getGlOccurence() ;
 
         this.glOccuranceLimit =application.getGlOccuranceLimit() ;
 
@@ -262,7 +263,7 @@ public class ApplicationDO {
 
         this.glDeductible =application.getGlDeductible() ;
 
-        this.plOccurance =application.isPlOccurence() ;
+        this.plOccurance =application.getPlOccurence() ;
 
         this.plOccuranceLimit =application.getPlOccuranceLimit() ;
 
@@ -270,7 +271,7 @@ public class ApplicationDO {
 
         this.plDeductible =application.getPlDeductible();
 
-        this.elOccurence=application.isElOccurence() ;
+        this.elOccurence=application.getElOccurence() ;
 
         this.elPayroll =application.getElPayroll() ;
 
@@ -318,11 +319,11 @@ public class ApplicationDO {
 
         this.lineOfCoverage =application.getLineOfCoverage() ;
 
-        this.glClaimsMade=application.isGlClaimsMade() ;
+        this.glClaimsMade=application.getGlClaimsMade() ;
 
-        this.plClaimsMade=application.isPlClaimsMade() ;
+        this.plClaimsMade=application.getPlClaimsMade() ;
 
-        this.elClaimsMade=application.isElClaimsMade() ;
+        this.elClaimsMade=application.getElClaimsMade() ;
 
         this.daysSpent =application.getDaysSpent() ;
 
@@ -343,6 +344,8 @@ public class ApplicationDO {
         this.otherAllReinsurance =application.getOtherAllReinsurance() ;
 
         this.exposureDatas=exposureData(application.getExposureDatas());
+
+        this.localBrokerInsuredContacts=getlocalBrokerContacts(application.getLocalBrokerInsuredContacts());
     }
 
     public Application getValue(){
@@ -439,7 +442,17 @@ public class ApplicationDO {
             return exposureDOs;
         }
         return null;
+    }
 
+    private Set<LocalBrokerInsuredContactDO> getlocalBrokerContacts(Set<LocalBrokerInsuredContact> localBrokerInsuredContacts){
+        if(localBrokerInsuredContacts!=null && !localBrokerInsuredContacts.isEmpty()){
+            Set<LocalBrokerInsuredContactDO> localBrokerInsuredContactList=new HashSet<LocalBrokerInsuredContactDO>();
+            for(LocalBrokerInsuredContact localBrokerInsuredContact:localBrokerInsuredContacts){
+                localBrokerInsuredContactList.add(new LocalBrokerInsuredContactDO(localBrokerInsuredContact));
+            }
+            return localBrokerInsuredContactList;
+        }
+        return null;
     }
 
 }

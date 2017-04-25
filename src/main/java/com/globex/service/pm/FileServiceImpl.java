@@ -23,6 +23,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -88,18 +89,45 @@ public class FileServiceImpl implements FileService {
     public void save(ApplicationDO applicationDO){
         User user=userService.getCurrentUser();
         Organization organization=user.getOrganization();
+
         File file=new File();
+        FileInfoDO fileInfo=applicationDO.getFileInfo();
+        if(fileInfo!=null){
+            file.setFileId(fileInfo.getFileId());
+        }
         file.setOrganization(organization);
-        file.setCreatedBy(user);
-        file.setUpdatedBy(user);
         file.setForwardTo(user);
+        file.setUpdatedBy(user);
+        file.setCreatedBy(user);
         file.setFileStatus(0);
-        file.setProspect(0);
+        //file.setProspect(0);
+        file.setDateCreated(new Timestamp(System.currentTimeMillis()));
+        file.setDateUpdated(new Timestamp(System.currentTimeMillis()));
 
         Set<Application> applications=new HashSet<Application>();
         Application application=applicationDO.getValue();
+        application.setFile(file);
+
+        //TODO:TEMPORARY CODE
+        application.setPolicyStartDate(new Timestamp(System.currentTimeMillis()));
+        application.setPolicyEndDate(new Timestamp(System.currentTimeMillis()));
+        application.setCollectionType(1);
+        application.setApplicationStatus(1);
+        application.setDateEmailedLocalMarkets(new Timestamp(System.currentTimeMillis()));
+        application.setGlOccurence(Boolean.TRUE);
+        application.setPlOccurence(Boolean.TRUE);
+        application.setElOccurence(Boolean.TRUE);
+        application.setGlClaimsMade(Boolean.TRUE);
+        application.setPlClaimsMade(Boolean.TRUE);
+        application.setElClaimsMade(Boolean.TRUE);
+
         applications.add(application);
         file.setApplications(applications);
-        fileRepository.save(file);
+        File f=fileRepository.save(file);
+        Session session=sessionFactory.openSession();
+        for(Application a:applications){
+            a.setFile(f);
+            session.save(a);
+        }
     }
 }

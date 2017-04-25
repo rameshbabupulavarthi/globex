@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.sql.Timestamp;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,11 +35,11 @@ public class Application implements java.io.Serializable {
     @Column(name = "APPLICATION_NO")
     private String applicationNo;
 
-    /*@Column(name = "POLICY_START_DATE")
-    private Date policyStartDate;
+    @Column(name = "POLICY_START_DATE")
+    private Timestamp policyStartDate;
 
     @Column(name = "POLICY_END_DATE")
-    private Date policyEndDate;*/
+    private Timestamp policyEndDate;
 
     @Column(name = "INSURED_COMPANY")
     private String insuredCompany;
@@ -101,7 +102,7 @@ public class Application implements java.io.Serializable {
     private String otherServices;
 
     @Column(name = "COLLECTION_TYPE", nullable = false)
-    private int collectionType;
+    private Integer collectionType;
 
     @Column(name = "MASTER_POLICY_NO", length = 20)
     private String masterPolicyNo;
@@ -125,13 +126,13 @@ public class Application implements java.io.Serializable {
     private String branchOffice;
 
     @Column(name = "APPLICATION_STATUS", nullable = false)
-    private int applicationStatus;
+    private Integer applicationStatus;
 
-    /*@Column(name = "DATE_EMAILED_LOCAL_MARKETS")
-    private Date dateEmailedLocalMarkets;*/
+    @Column(name = "DATE_EMAILED_LOCAL_MARKETS")
+    private Timestamp dateEmailedLocalMarkets;
 
     @Column(name = "GL_OCCURENCE", nullable = false)
-    private boolean glOccurence;
+    private Boolean glOccurence;
 
     @Column(name = "GL_OCCURANCE_LIMIT")
     private String glOccuranceLimit;
@@ -143,7 +144,7 @@ public class Application implements java.io.Serializable {
     private String glDeductible;
 
     @Column(name = "PL_OCCURENCE", nullable = false)
-    private boolean plOccurence;
+    private Boolean plOccurence;
 
     @Column(name = "PL_OCCURANCE_LIMIT")
     private String plOccuranceLimit;
@@ -155,7 +156,7 @@ public class Application implements java.io.Serializable {
     private String plDeductible;
 
     @Column(name = "EL_OCCURENCE", nullable = false)
-    private boolean elOccurence;
+    private Boolean elOccurence;
 
     @Column(name = "EL_PAYROLL")
     private String elPayroll;
@@ -227,13 +228,13 @@ public class Application implements java.io.Serializable {
     private String lineOfCoverage;
 
     @Column(name = "GL_CLAIMS_MADE", nullable = false)
-    private boolean glClaimsMade;
+    private Boolean glClaimsMade;
 
     @Column(name = "PL_CLAIMS_MADE", nullable = false)
-    private boolean plClaimsMade;
+    private Boolean plClaimsMade;
 
     @Column(name = "EL_CLAIMS_MADE", nullable = false)
-    private boolean elClaimsMade;
+    private Boolean elClaimsMade;
 
     @Column(name = "DAYS_SPENT")
     private String daysSpent;

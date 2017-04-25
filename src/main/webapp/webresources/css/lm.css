@@ -187,27 +187,133 @@
     padding: 10px 10px 10px 0px;
 }
 
-.sameline{
-   padding: 0px;
-   font-size: 14px;
-   font-weight: bold;
+   .sameline{
+   padding: 0px 0px 2px 2px;
+   font-size:13px;
 }
 
 .field-column{
-    display:inline-block
+    display:inline-block;
+    padding: 8px;
+
 }
 
 .lm-registration-body input[type="text"],textarea{
-    font-size: 16px;
     font-size: 14px;
     margin-right: 13px;
-    /*padding: -5px -5px -5px 30px;*/
+    padding:0px 0px 0px 30px;
     cursor: pointer;
     border-radius: 2px;
     border: 2px solid #d3d7cf;
-    width: 100%;
+    width:100%;
     height: 40px;
 }
+
+
+
+
+/* ---------------------------New Code-------------------------- */
+
+.lm-registration-body input[type=text]:hover,
+.lm-registration-body input[type=tel]:hover,
+.lm-registration-body input[type=password]:hover,
+.lm-registration-body input[type=email]:hover,
+.lm-registration-body input[type=url]:hover,
+.lm-registration-body input[type=date]:hover,
+.lm-registration-body input[type=number]:hover,
+.lm-registration-body input[type=file]:hover,
+.lm-registration-body textarea:hover,
+.lm-registration-body select:hover {
+  border-color: #db98e6;
+}
+.lm-registration-body input[type=text]:focus,
+.lm-registration-body input[type=tel]:focus,
+.lm-registration-body input[type=password]:focus,
+.lm-registration-body input[type=email]:focus,
+.lm-registration-body input[type=url]:focus,
+.lm-registration-body input[type=date]:focus,
+.lm-registration-body input[type=number]:focus,
+.lm-registration-body input[type=file]:focus,
+.lm-registration-body textarea:focus,
+.lm-registration-body select:focus{
+  border-color: #d209f5;
+}
+
+/* ---------------------End Of The New Code----------------------*/
+/* ---------------------------Additional Code-------------------- */
+
+
+.lm-registration-body .button {
+  background-color: #9B59B6;
+  }
++++
+.lm-registration-body .icon-place:before {
+  position: absolute;
+  font: 1em 'icons';
+  vertical-align: top;
+  top: 15px;
+  left: 0.9em;
+  pointer-events: none;
+  color: #A2A6A8;
+  z-index: 2;
+}
+
+.lm-registration-body .element-input .item-cont .icon-place:before,
+.lm-registration-body .element-textarea .item-cont .icon-place:before {
+  content: '\e800';
+}
+.lm-registration-body .element-select .item-cont .icon-place:before,
+.lm-registration-body .element-multiple .item-cont .icon-place:before,
+.lm-registration-body .element-address .country .icon-place:before {
+  top: 12px;
+  content: '\e801';
+}
+.lm-registration-body .element-date .item-cont .icon-place:before {
+  content: '\e802';
+}
+.lm-registration-body .element-number .item-cont .icon-place:before,
+.lm-registration-body .element-address .zip .icon-place:before {
+  content: '\e803';
+}
+.lm-registration-body .element-file .item-cont .icon-place:before {
+  content: '\e804';
+}
+.lm-registration-body .element-email .item-cont .icon-place:before {
+  content: '\e805';
+}
+.lm-registration-body .element-url .item-cont .icon-place:before {
+  content: '\e806';
+}
+.lm-registration-body .element-password .item-cont .icon-place:before {
+  content: '\e807';
+}
+.lm-registration-body .element-phone .item-cont .icon-place:before {
+  content: '\e808';
+}
+.lm-registration-body .element-name .nameFirst .icon-place:before,
+.lm-registration-body .element-name .nameLast .icon-place:before {
+  content: '\e80B';
+}
+.lm-registration-body .element-address .addr1 .icon-place:before,
+.lm-registration-body .element-address .addr2 .icon-place:before {
+  top: 0;
+  content: '\e809';
+}
+.lm-registration-body .element-address .city .icon-place:before,
+.lm-registration-body .element-address .state .icon-place:before {
+  content: '\e80A';
+}
+.lm-registration-body input:focus ~ .icon-place:before,
+.lm-registration-body textarea:focus ~ .icon-place:before,
+.lm-registration-body select:focus ~ .icon-place:before,
+.lm-registration-body .select.open ~ .icon-place:before,
+.lm-registration-body input[type=file]:focus ~ .icon-place:before,
+.lm-registration-body .button:focus ~ .icon-place:before,
+.lm-registration-body .file_text:focus ~ .icon-place:before {
+  color: #9B59B6;
+}
+
+/* ----------------Additional Code End -------------------- */
 
 .lm-registration-step-section{
     display:none;
@@ -243,11 +349,13 @@
 .lm-registration-fieldset legend{
     border: 1px solid #CDCDCD;
     border-radius: 5px;
-    padding: 2px;
-    margin: 0px 10px;
-    background-color: #CDCDCD;
+    padding: 4px;
+    margin: 0px 7px;
+    background-color: purple;
     font-size: 14px;
-    width: auto;
+    width: 72%;
+    color: white;
+    font-weight: bold;
 }
 .lm-authlobexacttaxes-checkbox{
     padding: 0px;
@@ -305,3 +413,198 @@ label.error {
  .lm-finalcialinfo-toppadding{
 	padding-top:22px;
  }
+
+
+
+ /**lm**/
+
+ .form-container{
+     padding: 10px 0 0 0;
+     clear: both;
+ }
+
+ .hidden-form{
+    display:none;
+ }
+
+ .align-top{
+     vertical-align:top;
+ }
+
+
+ /* enable absolute positioning */
+ .inner-addon {
+   position: relative;
+ }
+
+ /* style glyph */
+ .inner-addon .glyphicon {
+   position: absolute;
+   padding: 12px 0px 0px 10px;
+ }
+
+ /* align glyph */
+ .left-addon .glyphicon  { left:  0px;}
+ .right-addon .glyphicon { right: 0px;}
+
+ /* add padding  */
+ .left-addon input  { padding-left:  30px; }
+ .right-addon input { padding-right: 30px; }
+
+ div.groove2 {
+ 	border-style: groove;
+ 	width: 500px
+ }
+
+ .selectbox {
+ 	color: black;
+ 	background: white;
+ 	width: 500px;
+ 	padding: 11px 0px 8px 25px;
+ }
+
+ .chooseStyle {
+ 	width: 125%;
+ }
+
+ .yearSelector {
+ 	background: white;
+ 	color: purple;
+ 	font-weight: bolder;
+ }
+
+ html{
+ 	font-family: 'Roboto', sans-serif;
+ 	font-size: 10pt;
+ 	padding: 20px;
+ }
+ .wrapper{
+ 	-webkit-box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.75);
+ 	-moz-box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.75);
+ 	box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.75);
+ 	width: 400px;
+ }
+ table.tbl1{
+ 	width: 100%;
+ }
+ table.tbl1 th, table.tbl1 td{
+ 	padding: 10px 0px;
+ 	width1: 50%;
+ }
+
+ table.tbl1 td:nth-child(1){
+ 	padding-left: 45px;
+ 	padding-right: 10px;
+ }
+
+ table.tbl1 td:nth-child(2){
+ 	padding-right: 30px;
+ 	padding-left: 30px;
+ }
+ .label{
+ 	padding: 5px 0px;
+ 	font-weight: 500;
+ }
+ h2{
+ 	font-weight: 500;
+ }
+ h3{
+ 	font-weight: 400;
+ }
+ .center{
+ 	margin-left: auto;
+ 	margin-right: auto;
+ }
+ .text-center{
+ 	text-align: center;
+ }
+ input[type=text],input[type=password],input[type=email],input[type=file] {
+ 	padding: 10px;
+ 	border-radius: 3px;
+ 	border: 1px solid #c5c4c4;
+ 	width: 80%;
+ 	background-color1: #F1F8E9;
+ }
+ input[type=date],select,textarea {
+ 	padding: 10px;
+ 	border-radius: 3px;
+ 	border: 1px solid #9C27B0;
+ 	border: 1px solid #ccc;
+ }
+ input[type=submit] {
+ 	padding: 10px 25px;
+ 	border-radius: 3px;
+ 	background-color: #9C27B0;
+ 	border: 1px solid #c1bbbb;
+ 	text-transform: uppercase;
+ }
+ .multiple-form-wrapper{
+ 	position: relative;
+ }
+ .multiple-form-wrapper .form{
+ 	position: absolute;
+ 	margin: 0 auto;
+ 	left: 0;
+ 	right: 0;
+ 	top: 26px;
+ }
+ .tab{
+ 	display: inline;
+ 	padding: 10px 15px;
+ 	background-color: #E0F2F1;
+ 	border: 1px solid #E3F2FD;
+ }
+ table.process{
+ 	width: 100%;
+ }
+ table.process td{
+ 	width: 33%;
+ 	vertical-align: middle;
+ }
+ .process-wrapper{
+ 	padding: 5px 0px;
+ 	background-color: rgba(240, 240, 240, 0.7);
+ }
+ .process-button{
+ 	display: inline-block;
+ 	border: 1px solid #c1bfbf;
+ 	border-radius: 50%;
+ 	height: 25px;
+ 	width: 25px;
+     padding: 6px 3px 0 3px;
+ }
+ .process .active{
+ 	color: #ffffff;
+ 	background-color: #c1bfbf;
+ }
+ .process .inactive{
+ 	background-color: #ffffff;
+ }
+ .process-text{
+ 	font-weight: 300px;
+ 	font-size: 12pt;
+ }
+ .form-header{
+ 	background-color: #830181;
+ 	color: #ffffff;
+ 	padding: 5px 0px;
+ }
+
+ .input-container{
+ 	position: relative;
+ }
+ .input-container .place-holder{
+ 	position: absolute;
+ 	top: 10px;
+ 	left: 10px;
+ 	color: #777777;
+ }
+ .input-container input{
+ 	padding-left: 50px;
+ }
+
+ body {
+   margin: 10px;
+ }
+
+ /**end of lm**/

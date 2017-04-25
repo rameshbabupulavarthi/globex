@@ -1,6 +1,8 @@
 package com.globex.controller;
 
 import com.globex.model.entity.common.Country;
+import com.globex.model.vo.CountryDO;
+import com.globex.model.vo.PageModel;
 import com.globex.repository.rdbms.CountryRepository;
 import com.globex.service.CountryService;
 import com.utils.AppConstants;
@@ -32,17 +34,24 @@ public class CountryController {
     @ResponseBody
     public Map<String, Object> viewCountries(@RequestParam(value = "pageNo",required=false) Integer pageNo,
                                                   @RequestParam(value = "pageSize", required=false) Integer pageSize,
-                                                  @RequestParam(value = "country", required=false) Country country){
+                                                  @RequestParam(value = "country", required=false) String country){
 
         pageNo=pageNo==null?0:pageNo;
         pageSize=pageSize==null? AppConstants.DEFAULT_PAGE_SIZE:pageSize;
-        Page<Country> countryPage= countryService.list(pageNo, pageSize);
-        List<Country> countries=countryPage.getContent();
-
+        PageModel<CountryDO> pageModel=new PageModel<CountryDO>();
+        pageModel.setPageNo(pageNo);
+        pageModel.setPageSize(pageSize);
+        if(country!=null){
+            Map<String,Object> filters=new HashMap<String, Object>();
+            filters.put("country",country);
+            pageModel.setFilters(filters);
+        }
+        PageModel<CountryDO> fileInfoPage=countryService.list(pageModel);
+        List<CountryDO> countries=fileInfoPage.getContent();
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("pageNo",pageNo);
         model.put("pageSize",pageSize);
-        model.put("totalRecords",countryPage.getTotalElements());
+        model.put("totalRecords",fileInfoPage.getTotalRecords());
         model.put("countries",countries);
         return model;
     }

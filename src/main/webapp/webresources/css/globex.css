@@ -372,6 +372,10 @@ li{
     width:90% !important;
 }
 
+.dropdown-select2{
+   width:200px !important;
+}
+
 .mail-field-to .select2-container--default .select2-selection--multiple{
     border: 0px;
 }
@@ -431,25 +435,3 @@ li{
     padding: 10px;
 }
 
-
-
-
-/* enable absolute positioning */
-.inner-addon {
-  position: relative;
-}
-
-/* style glyph */
-.inner-addon .glyphicon {
-  position: absolute;
-  padding: 12px;
-  pointer-events: none;
-}
-
-/* align glyph */
-.left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
-
-/* add padding  */
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }

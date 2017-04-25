@@ -9,6 +9,7 @@ import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.*;
@@ -47,11 +48,11 @@ public class File implements java.io.Serializable {
     @Column(name = "PROSPECT")
     private Integer prospect;
 
-    /*@Column(name = "DATE_CREATED")
-	private Date dateCreated;
+    @Column(name = "DATE_CREATED")
+	private Timestamp dateCreated;
 
     @Column(name = "DATE_UPDATED")
-    private Date dateUpdated;*/
+    private Timestamp dateUpdated;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "file")
     @Fetch(FetchMode.SELECT)
