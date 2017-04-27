@@ -9,7 +9,7 @@ AppSubmissionView=Backbone.View.extend({
     },
     template:'<div class="pm-app-item">'+
               	'<div class="pm-app-prof-icon message-sender-img pic-standard-small">'+
-              		'<img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" title="Charles" alt="">'+
+              		'<img src="<%= senderImage %>" title="Charles" alt="">'+
               	'</div>'+
               	'<div class="pm-app-item-section">'+
               		'<div class="pm-app-post"><span class="app-post-user"><%= senderName %></span><span class="app-post-msg">submitted an Application</span>'+
@@ -193,7 +193,7 @@ AppSubmissionListView=Backbone.View.extend({
                            orgName:organization.orgName,
                            insuredCompany:application.insuredCompany,
                            dateCreated:dateCreated,
-                           senderImage:"https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" ,
+                           senderImage:user.thumbnail ,
                            messageContent:application.comment,
                            insuredCompany:application.insuredCompany,
                            prospect:file.prospect,
@@ -548,7 +548,7 @@ var CommentsListView=Backbone.View.extend({
                         messageContent:communication.content,
                         senderName:userName,
                         messageTime: " 02:25 AM",
-                        senderImage:"https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" ,
+                        senderImage:user.thumbnail ,
                     });
                     var commentsView = new CommentsView({el:$messageBody,model: messageModel});
                     commentsView.render();
@@ -661,7 +661,7 @@ var NotesListView=Backbone.View.extend({
                         messageContent:note.notes,
                         senderName:userName,
                         messageTime: " 02:25 AM",
-                        senderImage:"https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" ,
+                        senderImage:user.thumbnail ,
                     });
                     var notesView = new NotesView({el:$messageBody,model: messageModel});
                     notesView.render();

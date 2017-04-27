@@ -13,7 +13,7 @@ var UserDetailView =Backbone.View.extend({
                                 loggedInUserRole:$("#currentUserRole").val()};
             }
              user_details = _.template( user_details, variables );
-            _self.$el.append(user_details);
+            _self.$el.html(user_details);
             _self.validateDetails();
         });
     },
@@ -32,6 +32,10 @@ var UserDetailView =Backbone.View.extend({
                         type: 'POST',
                         url: form.action,
                         data: formData,
+                        async: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
                         error: function() {
                             setTimeout(function(){
                              $(".loading-icon-wrapper").hide();
@@ -39,7 +43,10 @@ var UserDetailView =Backbone.View.extend({
                            }, 3000);
                         },
                         success: function(userJSON) {
-                            console.log("success"+userJSON);
+                         $(".loading-icon-wrapper").hide();
+                         $("body").css({opacity:1})
+                         $(".navigate-manage-user").trigger("click");
+                         console.log("success"+userJSON);
                         }
                     });
                 }
@@ -126,6 +133,10 @@ var UserPopupView =Backbone.View.extend({
                             type: 'POST',
                             url: form.action,
                             data: formData,
+                            async: false,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
                             error: function() {
                                 setTimeout(function(){
                                  $(".loading-icon-wrapper").hide();
@@ -133,6 +144,7 @@ var UserPopupView =Backbone.View.extend({
                                }, 3000);
                             },
                             success: function(userJSON) {
+                                $(".navigate-manage-user").trigger("click");
                                 console.log("success"+userJSON);
                             }
                         });

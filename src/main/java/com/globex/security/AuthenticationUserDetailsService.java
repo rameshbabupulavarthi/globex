@@ -1,5 +1,6 @@
 package com.globex.security;
 
+import com.globex.constants.Role;
 import com.globex.model.entity.user.User;
 import com.globex.model.entity.user.UserRole;
 import com.globex.model.vo.UserDO;
@@ -62,11 +63,11 @@ public class AuthenticationUserDetailsService implements UserDetailsService {
             if(StringUtils.isNotEmpty(proxyPassword)){
                 password = encoder.encode(proxyPassword);
             }
-        	LoggedInUserDetails userDetails = new LoggedInUserDetails(user.getUserName(), password, getAuthorities(user.getUserRole()));
+        	LoggedInUserDetails userDetails = new LoggedInUserDetails(user.getUserName(), password, getAuthorities(user));
         	CurrentUserDO userDO = new CurrentUserDO(user);
 
-            String role=null;
-            for (UserRole userRole : user.getUserRole()) {
+            String role=Role.getValue(user.getUserType()).getRoleName();
+            /*for (UserRole userRole : user.getUserRole()) {
                 if (Boolean.TRUE == userRole.getDefaultRole()) {
                     role = userRole.getType();
                     break;
@@ -77,7 +78,7 @@ public class AuthenticationUserDetailsService implements UserDetailsService {
                     role = userRole.getType();
                     break;
                 }
-            }
+            }*/
             userDO.setCurrentUserRole(role);
 			userDetails.setUserDO(userDO);
 			return userDetails;
@@ -89,9 +90,12 @@ public class AuthenticationUserDetailsService implements UserDetailsService {
 		}
 	}
 
-    public List<GrantedAuthority> getAuthorities(Set<UserRole> userRoles) {
+    public List<GrantedAuthority> getAuthorities(User user) {
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
-        if(userRoles!=null && !userRoles.isEmpty()){
+        String role= Role.getValue(user.getUserType()).getRoleName();
+        authList.add(new SimpleGrantedAuthority(role));
+        authList.add(new SimpleGrantedAuthority(""+1));
+        /*if(userRoles!=null && !userRoles.isEmpty()){
             for(UserRole userRole: userRoles){
                 authList.add(new SimpleGrantedAuthority(userRole.getType()));
                 // If Permission is not null create a granted authorities for it
@@ -99,7 +103,7 @@ public class AuthenticationUserDetailsService implements UserDetailsService {
                     authList.add(new SimpleGrantedAuthority(userRole.getPermission()));
                 }
             }
-        }
+        }*/
         return authList;
     }
 }

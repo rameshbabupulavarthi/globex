@@ -87,7 +87,9 @@
 
                     var form=document.getElementById("saveCountryDetails");
                     var formData=new FormData(form);
-                    /*var formData=$('#applicationForm').serialize();*/
+                    /*
+                    formData.append(name, value);
+                    var formData=$('#applicationForm').serialize();*/
                     $.ajax({
                         type: 'POST',
                         url: form.action,
@@ -103,10 +105,10 @@
                            }, 3000);
                         },
                         success: function(userJSON) {
-                            $(".navigate-manage-country").trigger("click");
                             _self.$el.empty();
                             $(".loading-icon-wrapper").hide();
                             $("body").css({opacity:1});
+                            $(".navigate-pm-apps").trigger("click");
                         }
                     });
                 }

@@ -1,5 +1,6 @@
 package com.globex.security;
 
+import com.globex.constants.Role;
 import com.globex.model.entity.user.User;
 import com.globex.model.entity.user.UserRole;
 import com.globex.repository.rdbms.UserRepository;
@@ -28,7 +29,7 @@ public class PreAuthenticatedUserDetailsService implements AuthenticationUserDet
 	public UserDetails loadUserDetails(PreAuthenticatedAuthenticationToken token) throws UsernameNotFoundException {
 		Map<String, Object> aPrincipal = (Map<String, Object>) token.getPrincipal();
 		User user = null;//userRepository.findUserByExternalIdAndCustomerId((String)aPrincipal.get(ProvisioningUtils.USER_EXTERNAL_ID), (Long)aPrincipal.get(ProvisioningUtils.CUSTOMER_ID));
-		LoggedInUserDetails userDetails = new LoggedInUserDetails(user.getUserName(), "", getAuthorities(user.getUserRole()));
+		LoggedInUserDetails userDetails = new LoggedInUserDetails(user.getUserName(), "", getAuthorities(user));
 		CurrentUserDO userDO = new CurrentUserDO(user);
 
 
@@ -39,13 +40,15 @@ public class PreAuthenticatedUserDetailsService implements AuthenticationUserDet
 		return userDetails;
 	}
 
-	private List<GrantedAuthority> getAuthorities(Set<UserRole> userRoles) {
+	private List<GrantedAuthority> getAuthorities(User user) {
 		List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
-		if(userRoles!=null && !userRoles.isEmpty()){
+        String role=Role.getValue(user.getUserType()).getRoleName();
+        authList.add(new SimpleGrantedAuthority(role));
+		/*if(userRoles!=null && !userRoles.isEmpty()){
 			for(UserRole userRole: userRoles){
 				authList.add(new SimpleGrantedAuthority(userRole.getType()));
 			}
-		}
+		}*/
 		return authList;
 	}
 

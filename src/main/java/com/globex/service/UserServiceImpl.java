@@ -1,5 +1,6 @@
 package com.globex.service;
 
+import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
 import com.globex.model.entity.user.UserRole;
 import com.globex.model.vo.PageModel;
@@ -71,6 +72,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(encoder.encode(userDO.getPassword()));
         user.setStatus(UserDO.Status.ACTIVE.getValue());
         user.setThumbnail(userDO.getThumbnail());
+        user.setUserType(1);
         /*user.setCreatedDate(new Date());
         user.setModifiedDate(new Date());*/
 
@@ -81,10 +83,13 @@ public class UserServiceImpl implements UserService {
         userRole.setType(userDO.getRole());
         userRole.setCreatedBy(getCurrentUserDO().getUserId());
         //userRole.setCreatedDate(new Date());
-        Set<UserRole> userRoles=new HashSet<UserRole>();
+        /*Set<UserRole> userRoles=new HashSet<UserRole>();
         userRoles.add(userRole);
-        user.setUserRole(userRoles);
+        user.setUserRole(userRoles);*/
 
+        User currentUser=getCurrentUser();
+        Organization organization=currentUser.getOrganization();
+        user.setOrganization(organization);
         User persistedUser=userRepository.save(user);
         return persistedUser.getId();
     }

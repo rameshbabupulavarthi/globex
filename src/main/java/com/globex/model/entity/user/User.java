@@ -88,6 +88,9 @@ public class User implements Serializable{
     @Column(name = "PASSWORD")
     private String password;
 
+    @Column(name = "USER_TYPE")
+    private Integer userType;
+
     @Column(name = "COMMENTS")
     private String comments;
 
@@ -119,9 +122,9 @@ public class User implements Serializable{
     private Date createdDate;
 
     @Column(name = "modified_date")
-    private Date modifiedDate;*/
+    private Date modifiedDate;
 
     @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<UserRole> userRole;
+    private Set<UserRole> userRole;*/
 }

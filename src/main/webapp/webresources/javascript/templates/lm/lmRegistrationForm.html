@@ -991,14 +991,17 @@
                 </div>
 
                 <!--step 4 -->
-                <div class="lm-registration-step-section lm-registration-step4">
-                      <form method="post" autocomplete="off" action="/secure/saveAccountInfo" id="saveAccountInfo">
+                <div class="lm-registration-step-section lm-registration-step4"
+                     style="display: block;">
+                    <form method="post" autocomplete="off"
+                          action="/secure/saveAccountInfo"
+                          id="saveAccountInfo">
                         <div class="lm-registration-body-section">
                             <div class="lm-registration-body-section-text">
-                                ACCOUNT HANDLING DETAILS
-                            </div>
+                                ACCOUNT HANDLING DETAILS</div>
                             <div class="lm-registration-body-section-toggle">
-                                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+													<span class="glyphicon glyphicon-chevron-down"
+                                                          aria-hidden="true"></span>
                             </div>
                         </div>
 
@@ -1006,278 +1009,535 @@
                             <div class="lm-registration-form-section-left">
 
                                 <div class="field-row">
-                                    <div class="sameline">Territories - Please list the countries you are authorized to write : </div>
-                                    <div class="sameline" id="territoriesdivleft"><textarea rows="6" cols="70" id="countryList"  placeholder="Country Name" name="countryList"></textarea></div>
-                                </div>
-                                <div class="field-row">
-                                    <div class="sameline">General Comments for territory (FF) : </div>
-                                    <div class="sameline" id="territorycommentdiv"><input id="territoryComment" type="text"  name="territoryComment" placeholder="Enter Comment"></div>
-                                </div>
-
-                                <div class="field-row">
-                                    <div class="sameline">Please list the Lines of Business you are authorized to write : </div>
-                                    <div class="sameline" id="selectedcountrydiv">
-                                        <input type="checkbox" name="selectedCountry" value="Marine" checked> Marine
-                                        <input type="checkbox" name="selectedCountry" value="Property"> Property
-                                        <input type="checkbox" name="selectedCountry" value="General Liability"> General Liability
-                                        <input type="checkbox" name="selectedCountry" value="Professional Liability"> Professional Liability
-                                        <input type="checkbox" name="selectedCountry" value="Package and Policy"> Package and Policy
-                                        <input type="checkbox" name="selectedCountry" value="Accident & Health "> Accident & Health
-                                        <input type="checkbox" name="selectedCountry" value="Other Coverages"> Other Coverages
+                                    <div class="sameline">Territories - Please list the
+                                        countries you are authorized to write :</div>
+                                    <div class="sameline" id="territoriesdivleft">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-globe"></i>
+																<textarea rows="6" cols="70" id="countryList"
+                                                                          placeholder="Country Name" name="countryList"
+                                                                          ></textarea>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Authorized LoB capacity/limit : </div>
-                                    <div class="sameline" id="authloblimitdiv"><input id="authLobLimit" type="text"  placeholder="Enter LoB Limit" name="authLobLimit" size="50"></div>
+                                    <div class="sameline">General Comments for territory
+                                        (FF) :</div>
+                                    <div class="sameline" id="territorycommentdiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-pencil"></i> <input
+                                                id="territoryComment" type="text"
+                                                name="territoryComment" placeholder="Enter Comment">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field-row">
+                                    <div class="sameline">Please list the Lines of
+                                        Business you are authorized to write :</div>
+                                    <div class="sameline" id="selectedcountrydiv">
+                                        <input type="checkbox" name="selectedCountry"
+                                               value="Marine" checked=""> Marine
+                                        nbsp;&nbsp;&nbsp;&nbsp;&nbsp<input type="checkbox"
+                                                                           name="selectedCountry" value="Property">
+                                        Property &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                            type="checkbox" name="selectedCountry"
+                                            value="General Liability"> General Liability
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                            type="checkbox" name="selectedCountry"
+                                            value="Professional Liability"> Professional
+                                        Liability
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                            type="checkbox" name="selectedCountry"
+                                            value="Package and Policy"> Package and Policy
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                            type="checkbox" name="selectedCountry"
+                                            value="Accident &amp; Health "> Accident &amp;
+                                        Health &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                            type="checkbox" name="selectedCountry"
+                                            value="Other Coverages"> Other Coverages
+                                    </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Please advise if you have any minimum premium requirements : </div>
-                                    <div class="sameline" id="minimumpremiumdiv"><input id="minimumPremium" type="text"  placeholder="Enter Minimum Premium" name="minimumPremium" size="50"></div>
+                                    <div class="sameline">Authorized LoB capacity/limit
+                                        :</div>
+                                    <div class="sameline" id="authloblimitdiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                id="authLobLimit" type="text"
+                                                placeholder="Enter LoB Limit" name="authLobLimit"
+                                                size="50" class="error"><label
+                                                for="authLobLimit" generated="true">This
+                                            field is required.</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Authorized LoB currecy : </div>
-                                    <div class="sameline" id="authlobcurrencydiv"><input id="authLobCurrency" type="text"  placeholder="Enter Authorized LoB Currency" name="authLobCurrency" size="50"></div>
+                                    <div class="sameline">Please advise if you have any
+                                        minimum premium requirements :</div>
+                                    <div class="sameline" id="minimumpremiumdiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-share"></i> <input
+                                                id="minimumPremium" type="text"
+                                                placeholder="Enter Minimum Premium"
+                                                name="minimumPremium" size="50" >
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Authorized LoB Premium Reserve(% or amount) : </div>
-                                    <div class="sameline" id="authlobpremiumreversediv"><input id="authLobpPremiumReverse" type="text"  placeholder="Enter Authorized Premium Reversed" name="authLobpPremiumReverse" size="50"></div>
+                                    <div class="sameline">Authorized LoB currecy :</div>
+                                    <div class="sameline" id="authlobcurrencydiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-usd"></i> <input
+                                                id="authLobCurrency" type="text"
+                                                placeholder="Enter Authorized LoB Currency"
+                                                name="authLobCurrency" size="50" >
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Authorized LoB Exact name of Taxes : </div>
-                                    <div class="sameline" id="comestablishmentyeardiv1"><input id="comEstablishmentYear" type="text"  placeholder="Enter Establishment Year" name="comEstablishmentYear" size="50"></div>
+                                    <div class="sameline">Authorized LoB Premium
+                                        Reserve(% or amount) :</div>
+                                    <div class="sameline" id="authlobpremiumreversediv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-usd"></i> <input
+                                                id="authLobpPremiumReverse" type="text"
+                                                placeholder="Enter Authorized Premium Reversed"
+                                                name="authLobpPremiumReverse" size="50" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field-row">
+                                    <div class="sameline">Authorized LoB Exact name of
+                                        Taxes :</div>
+                                    <div class="sameline" id="comestablishmentyeardiv1">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-bookmark"></i> <input
+                                                id="comEstablishmentYear" type="text"
+                                                placeholder="Enter Establishment Year"
+                                                name="comEstablishmentYear" size="50" >
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <fieldset class="lm-registration-fieldset">
                                     <legend>Authorized LoB Exact name of Taxes</legend>
 
-                                    <div class="field-row field-column lm-authlobexacttaxes-checkbox">
+                                    <div
+                                            class="field-row field-column lm-authlobexacttaxes-checkbox">
                                         <div class="sameline" id="authlobexacttaxes1div">
-                                            <input type="checkbox" name="authLobeExactTaxes" value="Value Added Tax">Value Added Tax<br>
+                                            <input type="checkbox" name="authLobeExactTaxes"
+                                                   value="Value Added Tax">Value Added Tax<br>
                                         </div>
                                         <div class="sameline" id="authlobexacttaxes2div">
-                                            <input type="checkbox" name="authLobeExactTaxes" value="Reinsurance Tax">Reinsurance Tax<br>
+                                            <input type="checkbox" name="authLobeExactTaxes"
+                                                   value="Reinsurance Tax">Reinsurance Tax<br>
                                         </div>
                                         <div class="sameline" id="authlobexacttaxes3div">
-                                            <input type="checkbox" name="authLobeExactTaxes" value="Policy Issuance Fee">Policy Issuance Fee<br>
+                                            <input type="checkbox" name="authLobeExactTaxes"
+                                                   value="Policy Issuance Fee">Policy Issuance Fee<br>
                                         </div>
                                         <div class="sameline" id="authlobexacttaxes4div">
-                                            <input type="checkbox" name="authLobeExactTaxes" value="Stamp Duty">Stamp Duty<br>
+                                            <input type="checkbox" name="authLobeExactTaxes"
+                                                   value="Stamp Duty">Stamp Duty<br>
                                         </div>
                                         <div class="sameline" id="authlobexacttaxes5div">
-                                            <input type="checkbox" name="authLobeExactTaxes" value="Solvency Tax">Solvency Tax<br>
+                                            <input type="checkbox" name="authLobeExactTaxes"
+                                                   value="Solvency Tax">Solvency Tax<br>
                                         </div>
                                         <div class="sameline" id="authlobexacttaxes6div">
-                                            <input type="checkbox" name="authLobeExactTaxes" value="Other">Other<br>
+                                            <input type="checkbox" name="authLobeExactTaxes"
+                                                   value="Other">Other<br>
                                         </div>
 
                                     </div>
-                                    <div class="field-row field-column lm-authlobexacttaxes-textbox">
-                                        <div class="sameline" id="authlobexacttaxes1text1div"><input id="authLobExactTaxes1Text1" type="text"  name="authlobexacttaxes1text1"></div>
-                                        <div class="sameline" id="authlobexacttaxes2text1div"><input id="authLobExactTaxes1Text1" type="text"  name="authlobexacttaxes2text1"></div>
-                                        <div class="sameline" id="authlobexacttaxes3text1div"><input id="authLobExactTaxes1Text1" type="text"  name="authlobexacttaxes3text1"></div>
-                                        <div class="sameline" id="authlobexacttaxes4text1div"><input id="authLobExactTaxes1Text1" type="text"  name="authlobexacttaxes4text1"></div>
-                                        <div class="sameline" id="authlobexacttaxes5text1div"><input id="authLobExactTaxes1Text1" type="text"  name="authlobexacttaxes5text1"></div>
-                                        <div class="sameline" id="authlobexacttaxes6text1div"><input id="authLobExactTaxes1Text1" type="text"  name="authlobexacttaxes6text1"></div>
+                                    <div
+                                            class="field-row field-column lm-authlobexacttaxes-textbox">
+                                        <div class="sameline" id="authlobexacttaxes1text1div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-usd"></i> <input
+                                                    id="authLobExactTaxes1Text1" type="text"
+                                                    name="authlobexacttaxes1text1">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes2text1div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-usd"></i>
+                                                <input id="authLobExactTaxes1Text1" type="text"
+                                                       name="authlobexacttaxes2text1">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes3text1div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-usd"></i>
+                                                <input id="authLobExactTaxes1Text1" type="text"
+                                                       name="authlobexacttaxes3text1">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes4text1div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i>
+                                                <input id="authLobExactTaxes1Text1" type="text"
+                                                       name="authlobexacttaxes4text1">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes5text1div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-usd"></i>
+                                                <input id="authLobExactTaxes1Text1" type="text"
+                                                       name="authlobexacttaxes5text1">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes6text1div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i>
+                                                <input id="authLobExactTaxes1Text1" type="text"
+                                                       name="authlobexacttaxes6text1">
+                                            </div></div>
                                     </div>
-                                    <div class="field-row field-column lm-authlobexacttaxes-textbox">
-                                        <div class="sameline" id="authlobexacttaxes1text2div"><input id="authLobExactTaxes1Text2" type="text"  name="authLobExactTaxes1Text2"></div>
-                                        <div class="sameline" id="authlobexacttaxes2text2div"><input id="authlobexacttaxes2text2" type="text"  name="authlobexacttaxes2text2"></div>
-                                        <div class="sameline" id="authlobexacttaxes3text2div"><input id="authlobexacttaxes3text2" type="text"  name="authlobexacttaxes3text2"></div>
-                                        <div class="sameline" id="authlobexacttaxes4text2div"><input id="authlobexacttaxes4text2" type="text"  name="authlobexacttaxes4text2"></div>
-                                        <div class="sameline" id="authlobexacttaxes5text2div"><input id="authlobexacttaxes5text2" type="text"  name="authlobexacttaxes5text2"></div>
-                                        <div class="sameline" id="authlobexacttaxes6text2div"><input id="authlobexacttaxes6text2" type="text"  name="authlobexacttaxes6text2"></div>
-                                    </div>
-
+                                    <div
+                                            class="field-row field-column lm-authlobexacttaxes-textbox">
+                                        <div class="sameline" id="authlobexacttaxes1text2div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-usd"></i>
+                                                <input id="authLobExactTaxes1Text2" type="text"
+                                                       name="authLobExactTaxes1Text2">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes2text2div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-usd"></i>
+                                                <input id="authlobexacttaxes2text2" type="text"
+                                                       name="authlobexacttaxes2text2">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes3text2div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-usd"></i>
+                                                <input id="authlobexacttaxes3text2" type="text"
+                                                       name="authlobexacttaxes3text2">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes4text2div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i>
+                                                <input id="authlobexacttaxes4text2" type="text"
+                                                       name="authlobexacttaxes4text2">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes5text2div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-usd"></i>
+                                                <input id="authlobexacttaxes5text2" type="text"
+                                                       name="authlobexacttaxes5text2">
+                                            </div></div>
+                                        <div class="sameline" id="authlobexacttaxes6text2div">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i>
+                                                <input id="authlobexacttaxes6text2" type="text"
+                                                       name="authlobexacttaxes6text2">
+                                            </div>
+                                        </div></div>
                                 </fieldset>
 
                                 <div class="field-row">
-                                    <div class="sameline">Who is responsible of the tax : </div>
+                                    <div class="sameline">Who is responsible of the tax
+                                        :</div>
                                     <div class="sameline" id="taxresponsiblediv">
-                                        <input type="radio" name="taxResponsible" value="1" checked> Reinsurer payable
-                                        <input type="radio" name="taxResponsible" value="2"> Insured payable
+
+                                        <input type="radio" name="taxResponsible" value="1"
+                                               checked=""> Reinsurer payable &nbsp;&nbsp;<input
+                                            type="radio" name="taxResponsible" value="2">
+                                        Insured payable
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Is it % or flat : </div>
+                                    <div class="sameline">Is it % or flat :</div>
                                     <div class="sameline" id="flatpercentagediv">
-                                        <input type="radio" name="flatPercentage" value="1" checked> % of premium
-                                        <input type="radio" name="flatPercentage" value="2"> Flat
+                                        &nbsp;&nbsp;<input type="radio" name="flatPercentage"
+                                                           value="1" checked=""> % of premium &nbsp;&nbsp;<input
+                                            type="radio" name="flatPercentage" value="2">
+                                        Flat
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">What is the tax applied on if it is % : </div>
+                                    <div class="sameline">What is the tax applied on if
+                                        it is % :</div>
                                     <div class="sameline" id="taxapplieddiv">
-                                        <input type="radio" name="taxApplied" value="1" checked> Premium
-                                        <input type="radio" name="taxApplied" value="2"> Premium + another tax
-                                        <input type="radio" name="taxApplied" value="3" checked> Premium net of Retention
-                                        <input type="radio" name="taxApplied" value="4"> Brokerage
+                                        <input type="radio" name="taxApplied" value="1"
+                                               checked=""> Premium &nbsp;&nbsp;<input
+                                            type="radio" name="taxApplied" value="2">
+                                        Premium + another tax nbsp;&nbsp;&nbsp;<input
+                                            type="radio" name="taxApplied" value="3" checked="">
+                                        Premium net of Retention &nbsp;&nbsp;<input type="radio"
+                                                                                    name="taxApplied" value="4"> Brokerage
                                     </div>
                                 </div>
 
                                 <div class="field-row lm-finalcialinfo-toppadding">
-                                    <div class="sameline">Authorized LoB tariff comment : </div>
-                                    <div class="sameline" id="lobtariffcommentdiv"><input id="lobTariffComment" type="text"  name="lobTariffComment" size="20"></div>
+                                    <div class="sameline">Authorized LoB tariff comment
+                                        :</div>
+                                    <div class="sameline" id="lobtariffcommentdiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-pencil"></i> <input
+                                                id="lobTariffComment" type="text"
+                                                name="lobTariffComment" size="20" >
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="field-row ">
-                                    <div class="sameline">Attachments for question above : </div>
-                                    <div class="sameline" id="lobtariffcommentattachdiv"><input id="lobTariffCommentAttach" type="file" name="lobTariffCommentAttach" size="50"></div>
+                                    <div class="sameline">Attachments for question above
+                                        :</div>
+                                    <div class="sameline" id="lobtariffcommentattachdiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-question-sign"></i> <input
+                                                id="lobTariffCommentAttach" type="file"
+                                                name="lobTariffCommentAttach" size="50">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Please advise your Reinsurance Commission requirements : </div>
-                                    <div class="sameline" id="reinsurancecommissiondiv"><input id="reInsurancecCommission" type="text"  name="reInsurancecCommission" size="20"></div>
+                                    <div class="sameline">Please advise your Reinsurance
+                                        Commission requirements :</div>
+                                    <div class="sameline" id="reinsurancecommissiondiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-share"></i> <input
+                                                id="reInsurancecCommission" type="text"
+                                                name="reInsurancecCommission" size="20" >
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Authorized LoB Mandatory clauses or exclusions : </div>
-                                    <div class="sameline" id="lobmandatoryclausesdiv"><input id="lobMandatoryClauses" type="text"  name="lobMandatoryClauses" size="20"></div>
+                                    <div class="sameline">Authorized LoB Mandatory
+                                        clauses or exclusions :</div>
+                                    <div class="sameline" id="lobmandatoryclausesdiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                id="lobMandatoryClauses" type="text"
+                                                name="lobMandatoryClauses" size="20" >
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Attachments for question above : </div>
-                                    <div class="sameline" id="lobmandatoryclausesattachdiv"><input id="lobMandatoryClausesAttach" type="file" name="lobMandatoryClausesAttach" size="50"></div>
+                                    <div class="sameline">Attachments for question above
+                                        :</div>
+                                    <div class="sameline" id="lobmandatoryclausesattachdiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-question-sign"></i> <input
+                                                id="lobMandatoryClausesAttach" type="file"
+                                                name="lobMandatoryClausesAttach" size="50">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Authorized LoB Local currency reflected on local policy : </div>
+                                    <div class="sameline">Authorized LoB Local currency
+                                        reflected on local policy :</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="loc_curr_ref_loc_policydiv">
-                                            <input type="radio" name="locCurrRefLocPolicy" value="1" checked> Yes
-                                            <input type="radio" name="locCurrRefLocPolicy" value="0"> No
+                                            <input type="radio" name="locCurrRefLocPolicy" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="locCurrRefLocPolicy" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
-                                        <div class="sameline" id="loc_curr_ref_loc_policy_textdiv">
-                                            <input id="locCurrRefLocPolicyText" type="text"  name="locCurrRefLocPolicyText" size="20">
+                                        <div class="sameline"
+                                             id="loc_curr_ref_loc_policy_textdiv">
+                                            <input id="locCurrRefLocPolicyText" type="text"
+                                                   name="locCurrRefLocPolicyText" size="20">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Authorized LoB Foreign jurisdiction available on local policy : </div>
+                                    <div class="sameline">Authorized LoB Foreign
+                                        jurisdiction available on local policy :</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="for_juri_aval_loc_policydiv">
-                                            <input type="radio" name="forJuriAvalLocPolicy" value="1" checked> Yes
-                                            <input type="radio" name="forJuriAvalLocPolicy" value="0"> No
+                                            <input type="radio" name="forJuriAvalLocPolicy"
+                                                   value="1" checked=""> Yes <input type="radio"
+                                                                                    name="forJuriAvalLocPolicy" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
-                                        <div class="sameline" id="for_juri_aval_loc_policy_textdiv">
-                                            <input id="forJuriAvalLocPolicyText" type="text"  name="forJuriAvalLocPolicyText" size="20">
+                                        <div class="sameline"
+                                             id="for_juri_aval_loc_policy_textdiv">
+                                            <input id="forJuriAvalLocPolicyText" type="text"
+                                                   name="forJuriAvalLocPolicyText" size="20">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Authorized LoB Manuscript wording acceptable : </div>
+                                    <div class="sameline">Authorized LoB Manuscript
+                                        wording acceptable :</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="manuscript_avaldiv">
-                                            <input type="radio" name="manuscriptAval" value="1" checked> Yes
-                                            <input type="radio" name="manuscriptAval" value="0"> No
+                                            <input type="radio" name="manuscriptAval" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="manuscriptAval" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="manuscript_aval_textdiv">
-                                            <input id="manuscriptAvalText" type="text"  name="manuscriptAvalText" size="20">
+                                            <input id="manuscriptAvalText" type="text"
+                                                   name="manuscriptAvalText" size="20">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Can you issue policies and cede the risk to foreign insurers/reinsurers with their facultative reinsurance support?</div>
+                                    <div class="sameline">Can you issue policies and
+                                        cede the risk to foreign insurers/reinsurers with their
+                                        facultative reinsurance support?</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="for_reinsur_supportdiv">
-                                            <input type="radio" name="forReinsurSupport" value="1" checked> Yes
-                                            <input type="radio" name="forReinsurSupport" value="0"> No
+                                            <input type="radio" name="forReinsurSupport" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="forReinsurSupport" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="for_reinsur_support_textdiv">
-                                            <input id="forReinsurSupportText" type="text"  name="forReinsurSupportText" size="20">
+                                            <input id="forReinsurSupportText" type="text"
+                                                   name="forReinsurSupportText" size="20">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">What specific information/documents do you require from the insured for policy issuance? For example, local insured registration documents, Know Your Client forms, Proposal Forms, etc. </div>
-                                    <div class="sameline" id="insu_required_doc_div"><input id="insuRequiredDoc" type="text"  name="insuRequiredDoc" size="20"></div>
+                                    <div class="sameline">What specific
+                                        information/documents do you require from the insured for
+                                        policy issuance? For example, local insured registration
+                                        documents, Know Your Client forms, Proposal Forms, etc.</div>
+                                    <div class="sameline" id="insu_required_doc_div">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                id="insuRequiredDoc" type="text" name="insuRequiredDoc"
+                                                size="20">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Attachments for question above : </div>
-                                    <div class="sameline" id="insu_required_doc_attachdiv"><input id="insuRequiredDocAttach" type="file" name="insuRequiredDocAttach" size="50"></div>
+                                    <div class="sameline">Attachments for question above
+                                        :</div>
+                                    <div class="sameline" id="insu_required_doc_attachdiv">
+                                        <div class="chooseStyle">
+                                            <input id="insuRequiredDocAttach" type="file"
+                                                   name="insuRequiredDocAttach" size="50">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Tax ID of insured necessary for policy issuance?</div>
+                                    <div class="sameline">Tax ID of insured necessary
+                                        for policy issuance?</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="taxiddiv">
-                                            <input type="radio" name="taxId" value="1" checked> Yes
-                                            <input type="radio" name="taxId" value="0"> No
+                                            <input type="radio" name="taxId" value="1" checked="">
+                                            Yes <input type="radio" name="taxId" value="0">
+                                            No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="taxid_textdiv">
-                                            <input id="taxIdText" type="text"  name="taxIdText" size="20">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="taxIdText" type="text" name="taxIdText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Can you service the local insured directly, or do you require a retail broker? </div>
+                                    <div class="sameline">Can you service the local
+                                        insured directly, or do you require a retail broker?</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="serviceoptiondiv">
-                                            <input type="radio" name="serviceOption" value="1" checked> Yes
-                                            <input type="radio" name="serviceOption" value="0"> No
+
+                                            <input type="radio" name="serviceOption" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="serviceOption" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="serviceoption_textdiv">
-                                            <input id="serviceOptionText" type="text"  name="serviceOptionText" size="20">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="serviceOptionText" type="text"
+                                                    name="serviceOptionText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- --------SAGAR CODE----------- -->
+
                                 <div class="field-row">
-                                    <div class="sameline">Do you require a reinsurance broker for any reinsurance placement?</div>
+                                    <div class="sameline">Do you require a reinsurance
+                                        broker for any reinsurance placement?</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="reinsur_brokerdiv">
-                                            <input type="radio" name="reinsurBroker" value="1" checked> Yes
-                                            <input type="radio" name="reinsurBroker" value="0"> No
+                                            <input type="radio" name="reinsurBroker" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="reinsurBroker" value="0"> No
                                         </div>
                                     </div>
+
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="reinsur_broker_textdiv">
-                                            <input id="reinsurBrokerText" type="text"  name="reinsurBrokerText" size="20">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-bookmark"></i> <input
+                                                    id="reinsurBrokerText" type="text"
+                                                    name="reinsurBrokerText" size="20">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field-row">
+                                        <div class="sameline">Does the foreign Reinsurer
+                                            have to be registered with the Regulator in your
+                                            country?</div>
+                                        <div class="field-row field-column">
+                                            <div class="sameline" id="reg_regulatordiv">
+                                                <input type="radio" name="regRegulator" value="1"
+                                                       checked=""> Yes <input type="radio"
+                                                                              name="regRegulator" value="0"> No
+
+                                            </div>
+                                        </div>
+                                        <div class="field-row field-column">or</div>
+                                        <div class="field-row field-column">
+                                            <div class="sameline" id="reg_regulator_textdiv">
+                                                <div class="inner-addon left-addon">
+                                                    <i class="glyphicon glyphicon-text-width"></i> <input
+                                                        id="regRegulatorText" type="text"
+                                                        name="regRegulatorText" size="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field-row">
+                                        <div class="sameline">If so, please advise what
+                                            needs to be done to get registered</div>
+                                        <div class="sameline" id="registration_procedurediv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-hand-right"></i> <input
+                                                    id="registrationProcedure" type="text"
+                                                    name="registrationProcedure" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="field-row">
-                                    <div class="sameline">Does the foreign Reinsurer have to be registered with the Regulator in your country? </div>
-                                    <div class="field-row field-column">
-                                        <div class="sameline" id="reg_regulatordiv">
-                                            <input type="radio" name="regRegulator" value="1" checked> Yes
-                                            <input type="radio" name="regRegulator" value="0"> No
+                                    <div class="sameline">Attachments for question above
+                                        :</div>
+                                    <div class="sameline"
+                                         id="registration_procedure_attachdiv">
+                                        <!-- --------SAGAR CODE----------- -->
+                                        <div style="width: 125%; padding: 0px">
+                                            <input id="registrationProcedureAttach" type="file"
+                                                   name="registrationProcedureAttach" size="50">
                                         </div>
                                     </div>
-                                    <div class="field-row field-column">or</div>
-                                    <div class="field-row field-column">
-                                        <div class="sameline" id="reg_regulator_textdiv">
-                                            <input id="regRegulatorText" type="text"  name="regRegulatorText" size="20">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="field-row">
-                                    <div class="sameline">If so, please advise what needs to be done to get registered </div>
-                                    <div class="sameline" id="registration_procedurediv">
-                                        <input id="registrationProcedure" type="text"  name="registrationProcedure" size="20">
-                                    </div>
-                                </div>
-                                <div class="field-row">
-                                    <div class="sameline">Attachments for question above : </div>
-                                    <div class="sameline" id="registration_procedure_attachdiv"><input id="registrationProcedureAttach" type="file" name="registrationProcedureAttach" size="50"></div>
                                 </div>
 
                             </div>
@@ -1286,98 +1546,166 @@
 
                                 <div class="field-row">
                                     <div class="sameline">Selected Country :</div>
-                                    <div class="sameline" id="territoriesdivright"><textarea rows="6" cols="70" id="selectedcountry"  placeholder="Selected Country" name="selectedcountry"></textarea></div>
-                                </div>
+                                    <div class="sameline" id="territoriesdivright">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-list"></i>
+															<textarea rows="6" cols="70" id="selectedcountry"
+                                                                      placeholder="Selected Country" name="selectedcountry"></textarea>
+                                        </div>
+                                    </div></div>
                                 <div class="field-row">
-                                    <div class="sameline">What information/documents do you require from the Reinsurer for any reinsurance placements?</div>
+                                    <div class="sameline">What information/documents do
+                                        you require from the Reinsurer for any reinsurance
+                                        placements?</div>
                                     <div class="sameline" id="required_doc_reinsur_place_div">
-                                        <input id="requiredDocReinsurPlace" type="text"  name="requiredDocReinsurPlace" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-question-sign"></i> <input
+                                                id="requiredDocReinsurPlace" type="text"
+                                                name="requiredDocReinsurPlace" size="20" >
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Attachments for question above : </div>
-                                    <div class="sameline" id="required_doc_reinsur_place_attachdiv"><input id="requiredDocReinsurPlaceAttach" type="file" name="requiredDocReinsurPlaceAttach" size="50"></div>
+                                    <div class="sameline">Attachments for question above
+                                        :</div>
+                                    <div class="sameline"
+                                         id="required_doc_reinsur_place_attachdiv">
+                                        <input id="requiredDocReinsurPlaceAttach" type="file"
+                                               name="requiredDocReinsurPlaceAttach" size="50">
+                                    </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Do you require any specific documentation or clauses for any reinsurance placement?</div>
-                                    <div class="sameline" id="spec_req_doc_reinsur_place_div"><input id="specReqDocReinsurPlace" type="text"  name="specReqDocReinsurPlace" size="20"></div>
+                                    <div class="sameline">Do you require any specific
+                                        documentation or clauses for any reinsurance placement?</div>
+                                    <div class="sameline" id="spec_req_doc_reinsur_place_div">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-question-sign"></i> <input
+                                                id="specReqDocReinsurPlace" type="text"
+                                                name="specReqDocReinsurPlace" size="20">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Attachments for question above : </div>
-                                    <div class="sameline" id="spec_req_doc_reinsur_place_attachdiv"><input id="specReqDocReinsurPlaceAttach" type="file" name="specReqDocReinsurPlaceAttach" size="50"></div>
+                                    <div class="sameline">Attachments for question above
+                                        :</div>
+                                    <div class="sameline"
+                                         id="spec_req_doc_reinsur_place_attachdiv">
+                                        <input id="specReqDocReinsurPlaceAttach" type="file"
+                                               name="specReqDocReinsurPlaceAttach" size="50">
+                                    </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">In the event of any claims on reinsurance placement, does your company have to be involved in the Claims Handling? If so, please specify the involvement.</div>
+                                    <div class="sameline">In the event of any claims on
+                                        reinsurance placement, does your company have to be
+                                        involved in the Claims Handling? If so, please specify
+                                        the involvement.</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="comp_invol_claimsdiv">
-                                            <input type="radio" name="compInvolClaims" value="1" checked> Yes
-                                            <input type="radio" name="compInvolClaims" value="0"> No
+                                            <input type="radio" name="compInvolClaims" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="compInvolClaims" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
-                                        <div class="sameline" id="comp_invol_claims_textdiv">
-                                            <input id="compInvolClaimsText" type="text"  name="compInvolClaimsText" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-info-sign"></i>
+                                            <div class="sameline" id="comp_invol_claims_textdiv">
+                                                <div class="inner-addon left-addon">
+                                                    <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                        id="compInvolClaimsText" type="text"
+                                                        name="compInvolClaimsText" size="20">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Claims payment from master policy to local insured acceptable : </div>
+                                    <div class="sameline">Claims payment from master
+                                        policy to local insured acceptable :</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="claim_pay_master_localdiv">
-                                            <input type="radio" name="claimPayMasterLocal" value="1" checked> Yes
-                                            <input type="radio" name="claimPayMasterLocal" value="0"> No
+                                            <input type="radio" name="claimPayMasterLocal" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="claimPayMasterLocal" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="claim_pay_master_local_textdiv">
-                                            <input id="claimPayMasterLocalText" type="text"  name="claimPayMasterLocalText" size="20">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-text-width"></i> <input
+                                                    id="claimPayMasterLocalText" type="text"
+                                                    name="claimPayMasterLocalText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">If any specific Claims Handling wording has to be used, please provide sample wording : </div>
-                                    <div class="sameline" id="claim_handling_wording_attachdiv">
-                                        <input id="claimHandlingWordingAttach" type="file" name="claimHandlingWordingAttach" size="50">
+                                    <div class="sameline">If any specific Claims
+                                        Handling wording has to be used, please provide sample
+                                        wording :</div>
+                                    <div class="sameline"
+                                         id="claim_handling_wording_attachdiv">
+                                        <input id="claimHandlingWordingAttach" type="file"
+                                               name="claimHandlingWordingAttach" size="50">
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Can the premium be collected overseas and remitted to your company, or do you have to collect the premium in your country?</div>
+                                    <div class="sameline">Can the premium be collected
+                                        overseas and remitted to your company, or do you have to
+                                        collect the premium in your country?</div>
                                     <div class="sameline" id="premium_pay_optiondiv">
-                                        <input type="radio" name="premiumPayOption" value="1" checked> Only Local Collection Allowed
-                                        <input type="radio" name="premiumPayOption" value="2"> Receiving Premium from Overseas is possible
+                                        <input type="radio" name="premiumPayOption" value="1"
+                                               checked=""> Only Local Collection Allowed <input
+                                            type="radio" name="premiumPayOption" value="2">
+                                        Receiving Premium from Overseas is possible
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">If the premium can be remitted from overseas, do you need the full premium, inclusive of all taxes and fees to hit your books, or can you accept only taxes and fees? IF second option is chosen on the question above</div>
+                                    <div class="sameline">If the premium can be remitted
+                                        from overseas, do you need the full premium, inclusive of
+                                        all taxes and fees to hit your books, or can you accept
+                                        only taxes and fees? IF second option is chosen on the
+                                        question above</div>
                                     <div class="sameline" id="premium_with_taxdiv">
-                                        <input type="radio" name="premiumWithTax" value="1" checked> All premium has to be received
-                                        <input type="radio" name="premiumWithTax" value="2"> Only taxes and fees have to be received
+                                        <input type="radio" name="premiumWithTax" value="1"
+                                               checked=""> All premium has to be received <input
+                                            type="radio" name="premiumWithTax" value="2">
+                                        Only taxes and fees have to be received
                                     </div>
                                 </div>
                                 <div class="field-row">
                                     <div class="sameline">Non-Admitted Policy Allowed</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="non_admitted_policydiv">
-                                            <input type="radio" name="nonAdmittedPolicy" value="1" checked> Yes
-                                            <input type="radio" name="nonAdmittedPolicy" value="0"> No
+                                            <input type="radio" name="nonAdmittedPolicy" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="nonAdmittedPolicy" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="non_admitted_policy_textdiv">
-                                            <input id="nonAdmittedPolicyText" type="text"  name="nonAdmittedPolicyText" size="20">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="nonAdmittedPolicyText" type="text"
+                                                    name="nonAdmittedPolicyText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Non-Admitted Comments : </div>
+                                    <div class="sameline">Non-Admitted Comments :</div>
                                     <div class="sameline" id="non_admitted_commentsdiv">
-                                        <input id="nonAdmittedComments" type="text"  name="nonAdmittedComments" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-pencil"></i> <input
+                                                id="nonAdmittedComments" type="text"
+                                                name="nonAdmittedComments" size="20">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1385,126 +1713,188 @@
                                     <div class="sameline">Mandatory Reinsurace Cession</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="mandatory_reinsur_cessiondiv">
-                                            <input type="radio" name="mandatoryReinsurCession" value="1" checked> Yes
-                                            <input type="radio" name="mandatoryReinsurCession" value="0"> No
+                                            <input type="radio" name="mandatoryReinsurCession"
+                                                   value="1" checked=""> Yes <input type="radio"
+                                                                                    name="mandatoryReinsurCession" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
-                                        <div class="sameline" id="mandatory_reinsur_cession_textdiv">
-                                            <input id="mandatoryReinsurCessionText" type="text"  name="mandatoryReinsurCessionText" size="20">
+                                        <div class="sameline"
+                                             id="mandatory_reinsur_cession_textdiv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="mandatoryReinsurCessionText" type="text"
+                                                    name="mandatoryReinsurCessionText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Mandatory Reinsurace Comments : </div>
+                                    <div class="sameline">Mandatory Reinsurace Comments
+                                        :</div>
                                     <div class="sameline" id="mandatory_reinsur_commentsdiv">
-                                        <input id="mandatoryReinsurComments" type="text"  name="mandatoryReinsurComments" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-pencil"></i> <input
+                                                id="mandatoryReinsurComments" type="text"
+                                                name="mandatoryReinsurComments" size="20">
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Policy Language : </div>
+                                    <div class="sameline">Policy Language :</div>
                                     <div class="sameline" id="policy_langdiv">
-                                        <input id="policyLang" type="text"  name="policyLang" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                id="policyLang" type="text" name="policyLang" size="20">
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Tacit Renewal : </div>
+                                    <div class="sameline">Tacit Renewal :</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="tacit_renewaldiv">
-                                            <input type="radio" name="tacitRenewal" value="1" checked> Yes
-                                            <input type="radio" name="tacitRenewal" value="0"> No
+                                            <input type="radio" name="tacitRenewal" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="tacitRenewal" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="tacit_renewal_textdiv">
-                                            <input id="tacitRenewalText" type="text"  name="tacitRenewalText" size="20">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="tacitRenewalText" type="text"
+                                                    name="tacitRenewalText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Tacit Renewal Comments : </div>
+                                    <div class="sameline">Tacit Renewal Comments :</div>
                                     <div class="sameline" id="tacit_renewal_commentsdiv">
-                                        <input id="tacitRenewalComments" type="text"  name="tacitRenewalComments" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-pencil"></i> <input
+                                                id="tacitRenewalComments" type="text"
+                                                name="tacitRenewalComments" size="20">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Belongs to Network (multiple field groups possible) : </div>
+                                    <div class="sameline">Belongs to Network (multiple
+                                        field groups possible) :</div>
                                     <div class="sameline" id="networkdiv">
-                                        <input type="checkbox" name="network" value="INI" checked> INI
-                                        <input type="checkbox" name="network" value="FM_Global"> FM Global
-                                        <input type="checkbox" name="network" value="Other"> Other
+                                        <input type="checkbox" name="network" value="INI"
+                                               checked=""> INI nbsp;&nbsp;&nbsp;&nbsp;&nbsp<input
+                                            type="checkbox" name="network" value="FM_Global">
+                                        FM Global nbsp;&nbsp;&nbsp;&nbsp;&nbsp<input
+                                            type="checkbox" name="network" value="Other">
+                                        Other
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Cash Before Cover requirement : </div>
+                                    <div class="sameline">Cash Before Cover requirement
+                                        :</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="cash_before_cover_reqdiv">
-                                            <input type="radio" name="cashBeforeCoverReq" value="1" checked> Yes
-                                            <input type="radio" name="cashBeforeCoverReq" value="0"> No
+                                            <input type="radio" name="cashBeforeCoverReq" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="cashBeforeCoverReq" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="cash_before_cover_req_textdiv">
-                                            <input id="cashBeforeCoverReqText" type="text"  name="cashBeforeCoverReqText" size="20">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="cashBeforeCoverReqText" type="text"
+                                                    name="cashBeforeCoverReqText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">Does a Premium Payment Warranty apply?</div>
+                                    <div class="sameline">Does a Premium Payment
+                                        Warranty apply?</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="premium_payment_warrantydiv">
-                                            <input type="radio" name="premiumPaymentWarranty" value="1" checked> Yes
-                                            <input type="radio" name="premiumPaymentWarranty" value="0"> No
+                                            <input type="radio" name="premiumPaymentWarranty"
+                                                   value="1" checked=""> Yes <input type="radio"
+                                                                                    name="premiumPaymentWarranty" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
-                                        <div class="sameline" id="premium_payment_warranty_textdiv">
-                                            <input id="premiumPaymentWarrantyText" type="text"  name="premiumPaymentWarrantyText" size="20">
+                                        <div class="sameline"
+                                             id="premium_payment_warranty_textdiv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="premiumPaymentWarrantyText" type="text"
+                                                    name="premiumPaymentWarrantyText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Premium Payment Warranty days (If Yes in above question) : </div>
-                                    <div class="sameline" id="premium_payment_warranty_daysdiv">
-                                        <input id="premiumPaymentWarrantyDays" type="text"  name="premiumPaymentWarrantyDays" size="20">
+                                    <div class="sameline">Premium Payment Warranty days
+                                        (If Yes in above question) :</div>
+                                    <div class="sameline"
+                                         id="premium_payment_warranty_daysdiv">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-question-sign"></i> <input
+                                                id="premiumPaymentWarrantyDays" type="text"
+                                                name="premiumPaymentWarrantyDays" size="20">
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Foreign currency payments acceptable : </div>
+                                    <div class="sameline">Foreign currency payments
+                                        acceptable :</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="foreign_currency_acceptdiv">
-                                            <input type="radio" name="foreignCurrencyAccept" value="1" checked> Yes
-                                            <input type="radio" name="foreignCurrencyAccept" value="0"> No
+                                            <input type="radio" name="foreignCurrencyAccept"
+                                                   value="1" checked=""> Yes <input type="radio"
+                                                                                    name="foreignCurrencyAccept" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
-                                        <div class="sameline" id="foreign_currency_accept_textdiv">
-                                            <input id="foreignCurrencyAcceptText" type="text"  name="foreignCurrencyAcceptText" size="20">
+                                        <div class="sameline"
+                                             id="foreign_currency_accept_textdiv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="foreignCurrencyAcceptText" type="text"
+                                                    name="foreignCurrencyAcceptText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Acceptable currencies : </div>
+                                    <div class="sameline">Acceptable currencies :</div>
                                     <div class="sameline" id="acceptable_currencydiv">
-                                        <input id="acceptableCurrency" type="text"  name="acceptableCurrency" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-usd"></i> <input
+                                                id="acceptableCurrency" type="text"
+                                                name="acceptableCurrency" size="20">
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Time frames for Net Premium remittance to Reinsurer?</div>
+                                    <div class="sameline">Time frames for Net Premium
+                                        remittance to Reinsurer?</div>
                                     <div class="sameline" id="premium_remittance_timediv">
-                                        <input id="premiumRemittanceTime" type="text"  name="premiumRemittanceTime" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-question-sign"></i> <input
+                                                id="premiumRemittanceTime" type="text"
+                                                name="premiumRemittanceTime" size="20">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1512,77 +1902,114 @@
                                     <div class="sameline">Backdating Possible?</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="backdating_possiblediv">
-                                            <input type="radio" name="backDatingPossible" value="1" checked> Yes
-                                            <input type="radio" name="backDatingPossible" value="0"> No
+
+                                            <input type="radio" name="backDatingPossible" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="backDatingPossible" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="backdating_possible_textdiv">
-                                            <input id="backDatingPossibleText" type="text"  name="backDatingPossibleText" size="20">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="backDatingPossibleText" type="text"
+                                                    name="backDatingPossibleText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Local currency requirement : </div>
+                                    <div class="sameline">Local currency requirement :</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="local_currency_requirementdiv">
-                                            <input type="radio" name="localCurrencyRequirement" value="1" checked> Yes
-                                            <input type="radio" name="localCurrencyRequirement" value="0"> No
+                                            <input type="radio" name="localCurrencyRequirement"
+                                                   value="1" checked=""> Yes <input type="radio"
+                                                                                    name="localCurrencyRequirement" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
-                                        <div class="sameline" id="local_currency_requirement_textdiv">
-                                            <input id="localCurrencyRequirementText" type="text"  name="localCurrencyRequirementText" size="20">
+                                        <div class="sameline"
+                                             id="local_currency_requirement_textdiv">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-usd"></i> <input
+                                                    id="localCurrencyRequirementText" type="text"
+                                                    name="localCurrencyRequirementText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">State reinsurer involvement in placements?</div>
+                                    <div class="sameline">State reinsurer involvement in
+                                        placements?</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="state_reinsur_involvdiv">
-                                            <input type="radio" name="stateReinsurInvolv" value="1" checked> Yes
-                                            <input type="radio" name="stateReinsurInvolv" value="0"> No
+                                            <input type="radio" name="stateReinsurInvolv" value="1"
+                                                   checked=""> Yes <input type="radio"
+                                                                          name="stateReinsurInvolv" value="0"> No
                                         </div>
                                     </div>
                                     <div class="field-row field-column">or</div>
                                     <div class="field-row field-column">
                                         <div class="sameline" id="state_reinsur_involv_textdiv">
-                                            <input id="stateReinsurInvolvText" type="text"  name="stateReinsurInvolvText" size="20">
+                                            <div class="inner-addon left-addon">
+                                                <i class="glyphicon glyphicon-info-sign"></i> <input
+                                                    id="stateReinsurInvolvText" type="text"
+                                                    name="stateReinsurInvolvText" size="20">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
-                                    <div class="sameline">Accounting or Other Requirements : </div>
+                                    <div class="sameline">Accounting or Other
+                                        Requirements :</div>
                                     <div class="sameline" id="accountingdiv">
-                                        <input id="accounting" type="text"  name="accounting" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-pencil"></i> <input
+                                                id="accounting" type="text" name="accounting" size="20">
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="field-row">
                                     <div class="sameline">A general comments field</div>
                                     <div class="sameline" id="general_commentsdiv">
-                                        <input id="generalComments" type="text"  name="generalComments" size="20">
+                                        <div class="inner-addon left-addon">
+                                            <i class="glyphicon glyphicon-pencil"></i> <input
+                                                id="generalComments" type="text" name="generalComments"
+                                                size="20">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field-row">
+                                    <div class="sameline">A general attachment field :</div>
+                                    <div class="sameline" id="generalAttachmentdiv">
+                                        <div style="width: 125%; padding: 0px">
+                                            <input id="generalAttachment" type="file"
+                                                   name="general_attachment" size="50">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="field-row">
-                                    <div class="sameline">A general attachment field : </div>
-                                    <div class="sameline" id="generalAttachmentdiv"><input id="generalAttachment" type="file" name="general_attachment" size="50"></div>
-                                </div>
-                                <div class="field-row">
-                                    <div class="sameline">POLICY FORMS AND WORDINGS - ATTACHEMENTS : </div>
-                                    <div class="sameline" id="policy_forms_wording_attachdiv"><input id="policyFormsWordingAttach" type="file" name="policyFormsWordingAttach" size="50"></div>
+                                    <div class="sameline">POLICY FORMS AND WORDINGS -
+                                        ATTACHEMENTS :</div>
+                                    <div class="sameline" id="policy_forms_wording_attachdiv">
+                                        <input id="policyFormsWordingAttach" type="file"
+                                               name="policyFormsWordingAttach" size="50">
+                                    </div>
                                 </div>
 
                             </div>
 
                         </div>
-                          <input type="hidden" id="accountId" name="id" >
-                      </form>
-                    </div>
+                        <input type="hidden" id="accountId" name="id">
+                    </form>
+                </div>
+
 
                 <!--step 5 -->
                 <div class="lm-registration-step-section lm-registration-step5" style="display: block;">

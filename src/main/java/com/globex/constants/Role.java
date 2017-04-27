@@ -5,9 +5,9 @@ package com.globex.constants;
  */
 public enum Role{
     ROLE_SUPER_ADMIN("ROLE_SUPER_ADMIN",1),ROLE_ADMIN("ROLE_ADMIN",2),
-    ROLE_GLOBEX_ADMIN("ROLE_GLOBEX_ADMIN",10),ROLE_GLOBEX("ROLE_GLOBEX_USER",11),
-    ROLE_PM_ADMIN("ROLE_PM_ADMIN",20),ROLE_PM_USER("ROLE_PM_USER",21),
-    ROLE_LM_ADMIN("ROLE_LM_ADMIN",30),ROLE_LM_USER("ROLE_LM_USER",31),
+    ROLE_GLOBEX_ADMIN("ROLE_GLOBEX_ADMIN",3),ROLE_GLOBEX("ROLE_GLOBEX_USER",4),
+    ROLE_PM_ADMIN("ROLE_PM_ADMIN",5),ROLE_PM_USER("ROLE_PM_USER",6),
+    ROLE_LM_ADMIN("ROLE_LM_ADMIN",7),ROLE_LM_USER("ROLE_LM_USER",8),
     ROLE_SUPPORT("ROLE_SUPPORT",40),
     ROLE_USER("ROLE_USER",50);
     private String roleName;
@@ -17,7 +17,7 @@ public enum Role{
         this.roleValue=roleValue;
     }
 
-    public Role getValue(int roleValue){
+    public static Role getValue(int roleValue){
         for(Role role: Role.values()){
             if(role.getRoleValue()==roleValue){
                 return role;
@@ -26,7 +26,7 @@ public enum Role{
         return null;
     }
 
-    public Role getValue(String roleName){
+    public static Role getValue(String roleName){
         for(Role role: Role.values()){
             if(role.getRoleName().equals(roleName)){
                 return role;
