@@ -1,11 +1,14 @@
 package com.globex.controller;
 
 import com.globex.model.entity.common.File;
+import com.globex.model.entity.pm.Organization;
+import com.globex.model.entity.user.User;
 import com.globex.model.vo.ExposureDataDO;
 import com.globex.model.vo.LocalBrokerInsuredContactDO;
 import com.globex.model.vo.PageModel;
 import com.globex.model.vo.pm.ApplicationDO;
 import com.globex.model.vo.pm.FileInfoDO;
+import com.globex.service.UserService;
 import com.globex.service.pm.FileService;
 import com.utils.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,9 @@ public class ApplicationController {
     @Autowired
     FileService fileService;
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping("/secure/viewApplications")
     @ResponseBody
     public Map<String, Object> viewApplications(@RequestParam(value = "pageNo",required=false) Integer pageNo,
@@ -43,6 +49,11 @@ public class ApplicationController {
         pageModel.setPageNo(pageNo);
         pageModel.setPageSize(pageSize);
 
+        User user=userService.getCurrentUser();
+        Organization organization=user.getOrganization();
+        Map<String,Object> filters=new HashMap<String,Object>();
+        filters.put("orgId",organization.getId());
+        pageModel.setFilters(filters);
         PageModel<FileInfoDO> fileInfoPage=fileService.list(pageModel);
         List<FileInfoDO> fileList=fileInfoPage.getContent();
         Map<String, Object> model = new HashMap<String, Object>();

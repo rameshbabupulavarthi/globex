@@ -6,14 +6,25 @@ var UserDetailView =Backbone.View.extend({
     render: function(){
         var _self=this;
         require(['text!'+'templates/user/user_details.html'], function(user_details) {
-            var variables ={id:"",firstName:"",lastName:"",email:"",phone:"",userName:"",role:"",status:"",loggedInUserRole:$("#currentUserRole").val()};
+            var variables ={id:"",userName:"",firstName:"",lastName:"",email:"",status:"",
+                    phoneCountryCode:"",phoneAreaCode:"",phone:"",phoneExtension:"",faxCountryCode:"",faxAreaCode:"",fax:"",
+                    mobileCountryCode:"",mobile:"",userType:"",comments:"",status:"",address:"",city:"",state:"",country:"",zip:"",
+                    branchOffice:"",thumbnail:"",userType:"",loggedInUserRole:$("#currentUserRole").val()
+            };
             if(_self.model){
-                variables ={id:_self.model.get("userId"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),
-                                phone:_self.model.get("phone"),userName:_self.model.get("userName"),role:_self.model.get("role"),status:_self.model.get("status"),
-                                loggedInUserRole:$("#currentUserRole").val()};
+                variables ={  id:_self.model.get("userId"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),
+                              userName:_self.model.get("userName"),userType:_self.model.get("userType"),status:_self.model.get("status"),
+                              phoneCountryCode:_self.model.get("phoneCountryCode"),phoneAreaCode:_self.model.get("phoneAreaCode"),phone:_self.model.get("phone"),
+                              phoneExtension:_self.model.get("phoneExtension"),faxCountryCode:_self.model.get("faxCountryCode"),faxAreaCode:_self.model.get("faxAreaCode"),
+                              fax:_self.model.get("fax"),mobileCountryCode:_self.model.get("mobileCountryCode"),mobile:_self.model.get("mobile"),
+                              userType:_self.model.get("userType"),comments:_self.model.get("comments"),address:_self.model.get("address"),city:_self.model.get("city"),
+                              state:_self.model.get("state"),country:_self.model.get("country"),zip:_self.model.get("zip"),branchOffice:_self.model.get("branchOffice"),
+                              thumbnail:_self.model.get("thumbnail"),loggedInUserRole:$("#currentUserRole").val()
+                           };
             }
              user_details = _.template( user_details, variables );
             _self.$el.html(user_details);
+            _self.$el.find("[name='userType']").val(variables.userType);
             _self.validateDetails();
         });
     },
@@ -79,14 +90,31 @@ var UserProfileView =Backbone.View.extend({
                     firstName:user.firstName,
                     lastName:user.lastName,
                     name:fullName,
-                    role:user.role,
-                    //status:user.status,
+                    userType:user.userType,
                     email:user.email,
-                    phone:user.telephone,
+                    status:user.status,
+                    phoneCountryCode:user.phoneCountryCode,
+                    phoneAreaCode:user.phoneAreaCode,
+                    phone:user.phone,
+                    phoneExtension:user.phoneExtension,
+                    faxCountryCode:user.faxCountryCode,
+                    faxAreaCode:user.faxAreaCode,
+                    fax:user.fax,
+                    mobileCountryCode:user.mobileCountryCode,
+                    mobile:user.mobile,
+                    userType:user.userType,
+                    comments:user.comments,
+                    address:user.address,
+                    city:user.city,
+                    state:user.state,
+                    country:user.country,
+                    zip:user.zip,
+                    branchOffice:user.branchOffice,
+                    thumbnail:user.thumbnail,
                     loggedInUserRole:$("#currentUserRole").val()
-                   });
+                });
                 var userDetailView =new UserDetailView({el:"#layout-body-content",model:userModel});
-                _self.$el.html("");
+                _self.$el.empty();
                 userDetailView.render();
             }
         });
@@ -102,21 +130,25 @@ var UserPopupView =Backbone.View.extend({
 
     },
     render: function(){
-
         var _self=this;
         require(['text!'+'templates/user/user_edit_view.html'], function(user_details) {
             var popupView=new PopupView({el:"#popupWrapper"});
             popupView.render();
-            var variables ={id:_self.model.get("userId"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),phone:_self.model.get("phone"),
-                    userName:_self.model.get("userName"),role:_self.model.get("role"),status:_self.model.get("status"),loggedInUserRole:$("#currentUserRole").val()};
+            var variables ={ id:_self.model.get("userId"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),
+                             userName:_self.model.get("userName"),userType:_self.model.get("userType"),status:_self.model.get("status"),
+                             phoneCountryCode:_self.model.get("phoneCountryCode"),phoneAreaCode:_self.model.get("phoneAreaCode"),phone:_self.model.get("phone"),
+                             phoneExtension:_self.model.get("phoneExtension"),faxCountryCode:_self.model.get("faxCountryCode"),faxAreaCode:_self.model.get("faxAreaCode"),
+                             fax:_self.model.get("fax"),mobileCountryCode:_self.model.get("mobileCountryCode"),mobile:_self.model.get("mobile"),
+                             userType:_self.model.get("userType"),comments:_self.model.get("comments"),address:_self.model.get("address"),city:_self.model.get("city"),
+                             state:_self.model.get("state"),country:_self.model.get("country"),zip:_self.model.get("zip"),branchOffice:_self.model.get("branchOffice"),
+                             thumbnail:_self.model.get("thumbnail"),loggedInUserRole:$("#currentUserRole").val()
+                          };
             var template = _.template( user_details, variables );
-
             popupView.$el.find("#popup-content").append(template);
+            popupView.$el.find("[name='userType']").val(variables.userType);
             popupView.$el.find("#popup-title").html("User Details");
             _self.validateDetails();
         });
-
-
     },
     validateDetails:function(){
             var _self=this;
@@ -200,6 +232,35 @@ UserListView =Backbone.View.extend({
                     index++;
                     var rowClass=(index%2)==0?"table-column-even":"table-column-odd";
                     var fullName=user.firstName+","+user.lastName;
+                    var roleStr="";
+                    switch(user.userType){
+                        case 1: roleStr="ROLE_SUPER_ADMIN";
+                                break;
+                        case 2: roleStr="ROLE_ADMIN";
+                                break;
+                        case 3: roleStr="ROLE_GLOBEX_ADMIN";
+                                break;
+                        case 4: roleStr="ROLE_GLOBEX_USER";
+                                break;
+                        case 5: roleStr="ROLE_PM_ADMIN";
+                                break;
+                        case 6: roleStr="ROLE_PM_USER";
+                                break;
+                        case 7: roleStr="ROLE_LM_ADMIN";
+                                break;
+                        case 8: roleStr="ROLE_LM_USER";
+                                break;
+                    }
+                    var phoneNo="";
+                    if(user.phoneCountryCode){
+                       phoneNo=user.phoneCountryCode+"-";
+                    }
+                    if(user.phoneAreaCode){
+                        phoneNo=phoneNo+user.phoneAreaCode+"-";
+                    }
+                    if(user.phone){
+                        phoneNo=phoneNo+user.phone;
+                    }
                     var userModel = new UserModel({
                         rowClass:rowClass,
                         userId:user.id,
@@ -207,10 +268,30 @@ UserListView =Backbone.View.extend({
                         firstName:user.firstName,
                         lastName:user.lastName,
                         name:fullName,
-                        role:user.role,
-                        //status:user.status,
+                        userType:user.userType,
                         email:user.email,
-                        phone:user.telephone,
+                        status:user.status,
+                        phoneCountryCode:user.phoneCountryCode,
+                        phoneAreaCode:user.phoneAreaCode,
+                        phone:user.phone,
+                        phoneExtension:user.phoneExtension,
+                        faxCountryCode:user.faxCountryCode,
+                        faxAreaCode:user.faxAreaCode,
+                        fax:user.fax,
+                        mobileCountryCode:user.mobileCountryCode,
+                        mobile:user.mobile,
+                        userType:user.userType,
+                        comments:user.comments,
+                        address:user.address,
+                        city:user.city,
+                        state:user.state,
+                        country:user.country,
+                        zip:user.zip,
+                        branchOffice:user.branchOffice,
+                        thumbnail:user.thumbnail,
+
+                        roleStr:roleStr,
+                        phoneNo:phoneNo,
                         loggedInUserRole:$("#currentUserRole").val()
                        });
                     var userView = new UserView({model: userModel});
@@ -228,7 +309,7 @@ UserListView =Backbone.View.extend({
     },
     addUser:function(){
         var userDetailView=new UserDetailView({el:"#layout-body-content"});
-        this.$el.html("");
+        this.$el.empty();
         userDetailView.render();
     }
 });
@@ -248,17 +329,28 @@ var UserView =Backbone.View.extend({
         "click .edit-user":"editUser",
         "click .delete-user":"deleteUser"
     },
-    userTemplate:'<td class="table-column"><%=name%></td>  <td class="table-column"><%=role%></td> <td class="table-column"><%=status%></td>'+
-                 '<td class="table-column"><%=email%></td> <td class="table-column"><%=phone%></td>  <td class="table-column"><div class="edit-icon edit-user"></div></td> '+
+    userTemplate:'<td class="table-column"><%=name%></td>  <td class="table-column"><%=roleStr%></td> <td class="table-column"><%=status%></td>'+
+                 '<td class="table-column"><%=email%></td> <td class="table-column"><%=phoneNo%></td>  <td class="table-column"><div class="edit-icon edit-user"></div></td> '+
                  '<td class="table-column"><div class="delete-icon delete-user"></div></td>',
     initialize: function(){},
     render: function(){
-        var variables = {name:this.model.get("name"),role:this.model.get("role"),status:this.model.get("status"),email:this.model.get("email"),
-                            phone:this.model.get("phone"),loggedInUserRole:$("#currentUserRole").val()};
+        var _self=this;
+        var variables ={  id:_self.model.get("userId"),firstName:_self.model.get("firstName"),lastName:_self.model.get("lastName"),email:_self.model.get("email"),
+                      name:this.model.get("name"),
+                      userName:_self.model.get("userName"),userType:_self.model.get("userType"),status:_self.model.get("status"),
+                      phoneCountryCode:_self.model.get("phoneCountryCode"),phoneAreaCode:_self.model.get("phoneAreaCode"),phone:_self.model.get("phone"),
+                      phoneExtension:_self.model.get("phoneExtension"),faxCountryCode:_self.model.get("faxCountryCode"),faxAreaCode:_self.model.get("faxAreaCode"),
+                      fax:_self.model.get("fax"),mobileCountryCode:_self.model.get("mobileCountryCode"),mobile:_self.model.get("mobile"),
+                      userType:_self.model.get("userType"),comments:_self.model.get("comments"),address:_self.model.get("address"),city:_self.model.get("city"),
+                      state:_self.model.get("state"),country:_self.model.get("country"),zip:_self.model.get("zip"),branchOffice:_self.model.get("branchOffice"),
+                      thumbnail:_self.model.get("thumbnail"),loggedInUserRole:$("#currentUserRole").val(),
+                      roleStr:_self.model.get("roleStr"),phoneNo:_self.model.get("phoneNo")
+                   };
         var template = _.template( this.userTemplate, variables );
         var rowClass=this.model.get("rowClass");
         this.$el.addClass(rowClass);
         this.$el.append($(template));
+        this.$el.find("[name='userType']").val(variables.userType);
     },
     editUser:function(){
         var userId=this.model.get("userId");
@@ -279,10 +371,27 @@ var UserView =Backbone.View.extend({
                     userName:user.userName,
                     firstName:user.firstName,
                     lastName:user.lastName,
-                    role:user.role,
-                    //status:user.status,
+                    userType:user.userType,
                     email:user.email,
-                    phone:user.telephone,
+                    status:user.status,
+                    phoneCountryCode:user.phoneCountryCode,
+                    phoneAreaCode:user.phoneAreaCode,
+                    phone:user.phone,
+                    phoneExtension:user.phoneExtension,
+                    faxCountryCode:user.faxCountryCode,
+                    faxAreaCode:user.faxAreaCode,
+                    fax:user.fax,
+                    mobileCountryCode:user.mobileCountryCode,
+                    mobile:user.mobile,
+                    userType:user.userType,
+                    comments:user.comments,
+                    address:user.address,
+                    city:user.city,
+                    state:user.state,
+                    country:user.country,
+                    zip:user.zip,
+                    branchOffice:user.branchOffice,
+                    thumbnail:user.thumbnail,
                    });
                 var userPopupView = new UserPopupView({model: userModel});
                 userPopupView.render();

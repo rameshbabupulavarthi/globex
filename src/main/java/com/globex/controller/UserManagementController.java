@@ -1,5 +1,6 @@
 package com.globex.controller;
 
+import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
 import com.globex.model.vo.PageModel;
 import com.globex.model.vo.UserDO;
@@ -70,13 +71,22 @@ public class UserManagementController {
 
         pageNo=pageNo==null?0:pageNo;
         pageSize=pageSize==null? AppConstants.DEFAULT_PAGE_SIZE:pageSize;
-        Map<String,Object> dataMap=userService.list(pageNo, pageSize);
+        User user=userService.getCurrentUser();
+        Organization organization=user.getOrganization();
+        Map<String,Object> filters=new HashMap<String,Object>();
+        filters.put("orgId",organization.getId());
+        PageModel<UserDO> pageModel=new PageModel<UserDO>();
+        pageModel.setPageNo(pageNo);
+        pageModel.setPageSize(pageSize);
+        pageModel.setFilters(filters);
 
+        PageModel<UserDO> fileInfoPage=userService.list(pageModel);
+        List<UserDO> users=fileInfoPage.getContent();
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("pageNo",pageNo);
         model.put("pageSize",pageSize);
-        model.put("totalRecords",dataMap.get("totalRecords"));
-        model.put("users",dataMap.get("users"));
+        model.put("totalRecords",fileInfoPage.getTotalRecords());
+        model.put("users",users);
         return model;
     }
 

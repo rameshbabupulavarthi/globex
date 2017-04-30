@@ -68,22 +68,38 @@ public class UserServiceImpl implements UserService {
         user.setLastName(userDO.getLastName());
         user.setUserName(userDO.getUserName());
         user.setEmail(userDO.getEmail());
-        user.setPhone(userDO.getTelephone());
         user.setPassword(encoder.encode(userDO.getPassword()));
-        user.setStatus(UserDO.Status.ACTIVE.getValue());
+        user.setPhoneCountryCode(userDO.getPhoneCountryCode());
+        user.setPhoneAreaCode(userDO.getPhoneAreaCode());
+        user.setPhone(userDO.getPhone());
+        user.setPhoneExtension(userDO.getPhoneExtension());
+        user.setFaxCountryCode(userDO.getFaxCountryCode());
+        user.setFaxAreaCode(userDO.getFaxAreaCode());
+        user.setFax(userDO.getFax());
+        user.setMobileCountryCode(userDO.getMobileCountryCode());
+        user.setMobile(userDO.getMobile());
+        user.setUserType(userDO.getUserType());
+        user.setComments(userDO.getComments());
+        user.setStatus(userDO.getStatus());
+        user.setAddress(userDO.getAddress());
+        user.setCity(userDO.getCity());
+        user.setState(userDO.getState());
+        user.setCountry(userDO.getCountry());
+        user.setZip(userDO.getZip());
+        user.setBranchOffice(userDO.getBranchOffice());
         user.setThumbnail(userDO.getThumbnail());
-        user.setUserType(1);
-        /*user.setCreatedDate(new Date());
-        user.setModifiedDate(new Date());*/
+        user.setStatus(UserDO.Status.ACTIVE.getValue());
+        user.setCreatedDate(new Date());
+        user.setModifiedDate(new Date());
 
-        UserRole userRole=new UserRole();
+        /*UserRole userRole=new UserRole();
         userRole.setUser(user);
         userRole.setDefaultRole(Boolean.TRUE);
         userRole.setPermission("1");
         userRole.setType(userDO.getRole());
         userRole.setCreatedBy(getCurrentUserDO().getUserId());
-        //userRole.setCreatedDate(new Date());
-        /*Set<UserRole> userRoles=new HashSet<UserRole>();
+        userRole.setCreatedDate(new Date());
+        Set<UserRole> userRoles=new HashSet<UserRole>();
         userRoles.add(userRole);
         user.setUserRole(userRoles);*/
 
@@ -119,8 +135,15 @@ public class UserServiceImpl implements UserService {
         if(pageModel.getFilters()!=null){
             Map<String,Object> filters=pageModel.getFilters();
             for(Map.Entry<String,Object> entry: filters.entrySet()){
-                criteria.add(Restrictions.ilike(entry.getKey(), "%"+entry.getValue()+"%"));
-                criteriaForCount.add(Restrictions.ilike(entry.getKey(), "%"+entry.getValue()+"%"));
+                if(entry.getKey().equals("orgId")){
+                    criteria.createAlias("organization","organization");
+                    criteria.add(Restrictions.eq("organization.id",entry.getValue()));
+                    criteriaForCount.createAlias("organization","organization");
+                    criteriaForCount.add(Restrictions.eq("organization.id",entry.getValue()));
+                }else {
+                    criteria.add(Restrictions.ilike(entry.getKey(), "%" + entry.getValue() + "%"));
+                    criteriaForCount.add(Restrictions.ilike(entry.getKey(), "%" + entry.getValue() + "%"));
+                }
             }
         }
 

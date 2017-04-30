@@ -427,6 +427,32 @@ li{
 
 }
 
+.hidden-form{
+    display:none;
+}
+
+.split-boxes{
+    width:100%;
+}
+
+.split-box-small{
+    display:inline-block;
+    width:40px;
+    margin:0 10px 0 0;
+}
+
+.split-box-medium{
+    display:inline-block;
+    width:60px;
+    margin:0 10px 0 0;
+}
+
+.split-box-big{
+    display:inline-block;
+    width:150px;
+    margin:0 10px 0 0;
+}
+
 .search-user-card{
     display: inline-block;
 }

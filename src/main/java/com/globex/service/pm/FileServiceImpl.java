@@ -50,8 +50,15 @@ public class FileServiceImpl implements FileService {
         if(pageModel.getFilters()!=null){
             Map<String,Object> filters=pageModel.getFilters();
             for(Map.Entry<String,Object> entry: filters.entrySet()){
-                criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
-                criteriaForCount.add(Restrictions.eq(entry.getKey(),entry.getValue()));
+                if(entry.getKey().equals("orgId")){
+                    criteria.createAlias("organization","organization");
+                    criteria.add(Restrictions.eq("organization.id",entry.getValue()));
+                    criteriaForCount.createAlias("organization","organization");
+                    criteriaForCount.add(Restrictions.eq("organization.id",entry.getValue()));
+                }else {
+                    criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+                    criteriaForCount.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+                }
             }
         }
 

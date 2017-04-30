@@ -118,13 +118,13 @@ public class User implements Serializable{
     @Column(name = "thumbnail")
     private String thumbnail;
 
-    /*@Column(name = "created_date")
+    @Column(name = "created_date")
     private Date createdDate;
 
     @Column(name = "modified_date")
     private Date modifiedDate;
 
-    @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    /*@OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     private Set<UserRole> userRole;*/
 }

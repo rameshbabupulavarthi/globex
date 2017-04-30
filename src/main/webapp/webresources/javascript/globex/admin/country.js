@@ -27,7 +27,7 @@ var CountryDetailView =Backbone.View.extend({
                        };
             }
              country_details = _.template( country_details, variables );
-            _self.$el.append(country_details);
+            _self.$el.html(country_details);
             _self.validateDetails();
         });
     },
@@ -90,7 +90,7 @@ CountryListView =Backbone.View.extend({
             type: 'POST',
             success: function(collection, response){
                 $self.pageNo=response.pageNo;
-                $self.$el.html("");
+                $self.$el.empty();
 
                 var $country_list_container=$("<div/>" , {
                      "id":"country_list_container",
@@ -102,7 +102,7 @@ CountryListView =Backbone.View.extend({
                     "id": "table-container",
                     html:$self.headerTemplate
                 });
-                $self.$el.append($country_list_container);
+                $self.$el.html($country_list_container);
                 $country_list_container.append($country_table);
                 var countries=response.countries;
                 var index=0;
@@ -134,7 +134,7 @@ CountryListView =Backbone.View.extend({
     },
      addCountry:function(){
          var countryDetailView=new CountryDetailView({el:"#layout-body-content"});
-         this.$el.html("");
+         this.$el.empty();
          countryDetailView.render();
      }
 });
@@ -249,7 +249,7 @@ var CountryPopupView =Backbone.View.extend({
            };
             var template = _.template( country_details, variables );
 
-            _self.$el.append(template);
+            _self.$el.html(template);
             /*popupView.$el.find("#popup-content").append(template);*/
             _self.validateDetails();
         });

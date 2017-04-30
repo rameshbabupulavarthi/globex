@@ -39,8 +39,12 @@ require.config({
     require(['jQuery'], function() {
         require(['jQueryUI'], function() {
           require(['underScore'], function() {
-            require(['backBone','commons','select2'], function() {
-                initApp();
+            require(['backBone'], function() {
+                require(['commons'], function() {
+                   require(['select2'], function() {
+                       initApp();
+                   });
+                });
             });
           });
         });
@@ -50,7 +54,7 @@ require.config({
 function initApp(){
 
     var currentUserRole=$("#currentUserRole").val();
-    if(currentUserRole=='ROLE_SUPER_ADMIN' ||currentUserRole=='ROLE_ADMIN'|| currentUserRole=='ROLE_GLOBEX'|| currentUserRole=='ROLE_GLOBEX_USER'){
+    if(currentUserRole=='ROLE_SUPER_ADMIN' ||currentUserRole=='ROLE_ADMIN'|| currentUserRole=='ROLE_GLOBEX_ADMIN'|| currentUserRole=='ROLE_GLOBEX_USER'){
          require(['dashboard','menu'], function() {
              var dashboardView=new DashboardView({});
          });

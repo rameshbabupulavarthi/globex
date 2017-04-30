@@ -568,6 +568,10 @@ a{
     width: 80%;
 }
 
+#popup-content .user-registration-form{
+    width: 100%;
+}
+
 .user-registration-form .field-label{
     /*width: 150px;
     display: inline-block;
@@ -581,7 +585,7 @@ a{
 }
 
 .user-registration-form .field{
-    width:200px;
+   /* width:200px;*/
 }
 
 .user-registration-form .form-column{

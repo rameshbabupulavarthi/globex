@@ -27,20 +27,40 @@
        </div>
       </div>
 
-      <div class="form-row">
-          <div class="form-column">
-            <div class="field-label">Email</div>
-            <div class="field">
-                <input class="stylish" id="email" type="text" value="<%=email%>" name="email" placeholder="&#xf0e0; &nbsp; Enter Email ID">
-            </div>
-          </div>
-          <div class="form-column">
-            <div class="field-label">Mobile</div>
-            <div class="field">
-                <input class="stylish" id="mobileNumber" type="text" value="<%=phone%>" name="telephone" placeholder="&#xf095; &nbsp; Enter Mobiile Number">
-            </div>
-          </div>
-      </div>
+     <div class="form-row">
+         <div class="form-column">
+             <div class="field-label">Email</div>
+             <div class="field">
+                 <input class="stylish" id="email" type="text" value="<%=email%>" name="email" placeholder="Enter Email ID">
+             </div>
+         </div>
+         <div class="form-column">
+             <div class="field-label">Phone</div>
+             <div class="field ">
+                 <input id="phoneCountryCode" class="stylish split-box-small" type="text" value="<%=phoneCountryCode%>" name="phoneCountryCode">
+                 <input id="phoneAreaCode" class="stylish split-box-medium" type="text" value="<%=phoneAreaCode%>" name="phoneAreaCode">
+                 <input id="phone" class="stylish split-box-big" type="text" value="<%=phone%>" name="phone">
+             </div>
+         </div>
+     </div>
+
+     <div class="form-row">
+         <div class="form-column">
+             <div class="field-label">Fax</div>
+             <div class="field">
+                 <input id="faxCountryCode" class="stylish split-box-small" type="text" value="<%=faxCountryCode%>" name="faxCountryCode">
+                 <input id="faxAreaCode" class="stylish split-box-medium" type="text" value="<%=faxAreaCode%>" name="faxAreaCode">
+                 <input id="fax" class="stylish split-box-big" type="text" value="<%=fax%>" name="fax">
+             </div>
+         </div>
+         <div class="form-column">
+             <div class="field-label">Mobile</div>
+             <div class="field">
+                 <input id="mobileCountryCode" class="stylish split-box-small" type="text" value="<%=mobileCountryCode%>" name="mobileCountryCode" >
+                 <input id="mobileNumber" class="stylish split-box-big" type="text" value="<%=phone%>" name="telephone">
+             </div>
+         </div>
+     </div>
 
       <div class="form-row">
           <div class="form-column">
@@ -62,46 +82,44 @@
               <div class="field-label">Role</div>
               <div class="field">
                   <% if(loggedInUserRole=='ROLE_PM_ADMIN' || loggedInUserRole=='ROLE_PM_USER') {%>
-                  <select class="stylish" id="role" name="role">
+                  <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="ROLE_PM_ADMIN">PM Admin</option>
-                      <option value="ROLE_PM_USER">PM User</option>
+                      <option value="5">PM Admin</option>
+                      <option value="6">PM User</option>
                   </select>
 
                   <%} else if(loggedInUserRole=='ROLE_PM_USER') {%>
-                  <select class="stylish" id="role" name="role">
+                  <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="ROLE_PM_USER">PM User</option>
+                      <option value="6">PM User</option>
                   </select>
                   <%} else if(loggedInUserRole=='ROLE_GLOBEX_USER') {%>
-                  <select class="stylish" id="role" name="role">
+                  <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="ROLE_GLOBEX_USER">Globex User</option>
-                      <option value="ROLE_PM_ADMIN">PM Admin</option>
-                      <option value="ROLE_PM_USER">PM User</option>
-                      <option value="ROLE_LM_ADMIN">LM Admin</option>
-                      <option value="ROLE_LM_USER">LM User</option>
-                      <option value="ROLE_SUPPORT">Support User</option>
+                      <option value="4">Globex User</option>
+                      <option value="5">PM Admin</option>
+                      <option value="6">PM User</option>
+                      <option value="7">LM Admin</option>
+                      <option value="8">LM User</option>
                   </select>
 
                   <%} else if(loggedInUserRole=='ROLE_LM_ADMIN' || loggedInUserRole=='ROLE_LM_USER') {%>
-                  <select id="role" name="role">
+                  <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="ROLE_LM_ADMIN">LM Admin</option>
-                      <option value="ROLE_LM_USER">LM User</option>
+                      <option value="7">LM Admin</option>
+                      <option value="8">LM User</option>
                   </select>
                   <%} else {%>
-                  <select id="role" name="role">
+                  <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="ROLE_SUPER_ADMIN">Super Admin</option>
-                      <option value="ROLE_ADMIN">Admin</option>
-                      <option value="ROLE_GLOBEX_ADMIN">Globex Admin</option>
-                      <option value="ROLE_GLOBEX_USER">Globex User</option>
-                      <option value="ROLE_PM_ADMIN">PM Admin</option>
-                      <option value="ROLE_PM_USER">PM User</option>
-                      <option value="ROLE_LM_ADMIN">LM Admin</option>
-                      <option value="ROLE_LM_USER">LM User</option>
-                      <option value="ROLE_SUPPORT">Support User</option>
+                      <option value="1">Super Admin</option>
+                      <option value="2">Admin</option>
+                      <option value="3">Globex Admin</option>
+                      <option value="4">Globex User</option>
+                      <option value="5">PM Admin</option>
+                      <option value="6">PM User</option>
+                      <option value="7">LM Admin</option>
+                      <option value="8">LM User</option>
                   </select>
                   <%}%>
               </div>
