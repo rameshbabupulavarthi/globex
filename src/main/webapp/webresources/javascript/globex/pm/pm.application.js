@@ -153,11 +153,14 @@ AppSubmissionListView=Backbone.View.extend({
     layoutTemplate:'<div class="tab-wrapper"><div class="tab-header-wrapper"> <div class="tab-list">'+
                    ' <div class="tab"><span class="tab-header-text">Current Applications</span></div></div>'+
                    ' <div class=""><div id="createPMApplication" class="add-user-button"><span class="add-button"></span>'+
-                   ' <span class="add-user-text">Create Application</span> </div> </div> </div>'+
+                   ' <span class="add-user-text add-application">Create Application</span> </div> </div> </div>'+
                    ' <div class="tab-container"><div class="pm-app-container"> <div class="pm-app-list">'+
                    ' <div class="pm-app-item-wrapper">  </div>'+
                    ' </div></div></div></div>',
 
+    events:{
+        'click .add-application':'renderPMRegistration',
+    },
     render: function() {
         var $self=this;
         $self.renderPage();
@@ -214,6 +217,12 @@ AppSubmissionListView=Backbone.View.extend({
              pagingView.$pageContextEl=$self.$el.find(".pm-app-list");
              pagingView.render();
             }
+        });
+    },
+    renderPMRegistration:function(){
+       require(['globex/pm/pmRegistration'], function() {
+            var registrationView=new RegistrationView();
+            registrationView.render();
         });
     }
 });

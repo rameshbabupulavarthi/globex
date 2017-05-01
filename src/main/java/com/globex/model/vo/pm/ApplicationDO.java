@@ -7,9 +7,7 @@ import com.globex.model.vo.ExposureDataDO;
 import com.globex.model.vo.LocalBrokerInsuredContactDO;
 import lombok.Data;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Sunil Golla on 2/10/2017.
@@ -180,6 +178,10 @@ public class ApplicationDO {
     private Set<ExposureDataDO> exposureDatas;
 
     private Set<LocalBrokerInsuredContactDO> localBrokerInsuredContacts;
+
+    private String exposureJson;
+
+    private String localBrokerInsuredContactsJson;
 
     public ApplicationDO(){
 
@@ -444,6 +446,20 @@ public class ApplicationDO {
         return null;
     }
 
+    public Set<ExposureData> getExposureDataValues(Application application){
+        if(exposureDatas!=null && !exposureDatas.isEmpty()){
+            Set<ExposureData> exposures=new HashSet<ExposureData>();
+            for(ExposureDataDO exposureData:exposureDatas){
+                ExposureData exposure=exposureData.getValue();
+                exposure.setApplication(application);
+                exposures.add(exposure);
+            }
+            application.setExposureDatas(exposures);
+            return exposures;
+        }
+        return null;
+    }
+
     private Set<LocalBrokerInsuredContactDO> getlocalBrokerContacts(Set<LocalBrokerInsuredContact> localBrokerInsuredContacts){
         if(localBrokerInsuredContacts!=null && !localBrokerInsuredContacts.isEmpty()){
             Set<LocalBrokerInsuredContactDO> localBrokerInsuredContactList=new HashSet<LocalBrokerInsuredContactDO>();
@@ -455,4 +471,17 @@ public class ApplicationDO {
         return null;
     }
 
+    public Set<LocalBrokerInsuredContact> getlocalBrokerContactValues(Application application){
+        if(localBrokerInsuredContacts!=null && !localBrokerInsuredContacts.isEmpty()){
+            Set<LocalBrokerInsuredContact> localBrokerInsuredContactList=new HashSet<LocalBrokerInsuredContact>();
+            for(LocalBrokerInsuredContactDO localBrokerInsuredContact:localBrokerInsuredContacts){
+                LocalBrokerInsuredContact localBrokerContact=localBrokerInsuredContact.getValue();
+                localBrokerContact.setApplication(application);
+                localBrokerInsuredContactList.add(localBrokerContact);
+            }
+            application.setLocalBrokerInsuredContacts(localBrokerInsuredContactList);
+            return localBrokerInsuredContactList;
+        }
+        return null;
+    }
 }

@@ -85,13 +85,19 @@
                     $(".loading-icon-wrapper").show();
                     $("body").css({opacity:0.5});
 
-                    var form=document.getElementById("saveCountryDetails");
+                    var application=_self.model.get("application");
+                    var exposureData=application.exposureDatas?JSON.stringify(application.exposureDatas):null;
+                    var localBrokerInsuredContacts=application.localBrokerInsuredContacts?JSON.stringify(application.localBrokerInsuredContacts):null;
+                    var form=document.getElementById("applicationForm");
                     var formData=new FormData(form);
+                    formData.append('exposureJson', exposureData);
+                    formData.append('localBrokerInsuredContactsJson', localBrokerInsuredContacts);
                     /*
                     formData.append(name, value);
                     var formData=$('#applicationForm').serialize();*/
                     $.ajax({
                         type: 'POST',
+                        dataType : "json",
                         url: form.action,
                         data: formData,
                         async: false,
@@ -108,22 +114,12 @@
                             _self.$el.empty();
                             $(".loading-icon-wrapper").hide();
                             $("body").css({opacity:1});
-                            $(".navigate-pm-apps").trigger("click");
+
                         }
                     });
                 }
             });
         });
-
-
-
-
-
-
-
-
-
-
     },
     renderCoveragePage:function(e){
         var _self=this;
@@ -192,15 +188,14 @@
                 });
                 exposureCollection.add(exposureModel);
             }
-            var popupView=new PopupView({el:"#popupWrapper"});
-            popupView.render();
-            popupView.$el.find("#popup-title").html("Exposure Data");
-            popupView.$el.find("#popup-content").empty();
-            var $el=popupView.$el.find("#popup-content");
-
-           var exposureListView=new ExposureListView({el:$el,collection:exposureCollection,application:application});
-           exposureListView.render();
        }
+          var popupView=new PopupView({el:"#popupWrapper"});
+          popupView.render();
+          popupView.$el.find("#popup-title").html("Exposure Data");
+          popupView.$el.find("#popup-content").empty();
+          var $el=popupView.$el.find("#popup-content");
+          var exposureListView=new ExposureListView({el:$el,collection:exposureCollection,application:application});
+          exposureListView.render();
     },
     renderLocalInsuranceDetails:function(e){
         var localInsuranceCollection=new LocalInsuranceCollection();
@@ -220,15 +215,15 @@
                 });
                 localInsuranceCollection.add(localInsuranceModel);
             }
-            var popupView=new PopupView({el:"#popupWrapper"});
-            popupView.render();
-            popupView.$el.find("#popup-title").html("Local Insurance Contact Details");
-            popupView.$el.find("#popup-content").empty();
-            var $el=popupView.$el.find("#popup-content");
-
-           var localInsuranceListView=new LocalInsuranceListView({el:$el,collection:localInsuranceCollection,application:application});
-           localInsuranceListView.render();
        }
+       var popupView=new PopupView({el:"#popupWrapper"});
+       popupView.render();
+       popupView.$el.find("#popup-title").html("Local Insurance Contact Details");
+       popupView.$el.find("#popup-content").empty();
+       var $el=popupView.$el.find("#popup-content");
+
+       var localInsuranceListView=new LocalInsuranceListView({el:$el,collection:localInsuranceCollection,application:application});
+       localInsuranceListView.render();
     }
   });
 

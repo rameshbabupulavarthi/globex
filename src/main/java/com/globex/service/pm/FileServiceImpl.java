@@ -1,9 +1,12 @@
 package com.globex.service.pm;
 
 import com.globex.model.entity.common.Application;
+import com.globex.model.entity.common.ExposureData;
 import com.globex.model.entity.common.File;
+import com.globex.model.entity.common.LocalBrokerInsuredContact;
 import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
+import com.globex.model.vo.ExposureDataDO;
 import com.globex.model.vo.PageModel;
 import com.globex.model.vo.pm.ApplicationDO;
 import com.globex.model.vo.pm.FileInfoDO;
@@ -128,6 +131,8 @@ public class FileServiceImpl implements FileService {
         application.setPlClaimsMade(Boolean.TRUE);
         application.setElClaimsMade(Boolean.TRUE);
 
+        applicationDO.getExposureDataValues(application);
+        applicationDO.getlocalBrokerContactValues(application);
         applications.add(application);
         file.setApplications(applications);
         File f=fileRepository.save(file);

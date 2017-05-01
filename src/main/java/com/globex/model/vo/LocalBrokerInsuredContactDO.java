@@ -54,4 +54,21 @@ public class LocalBrokerInsuredContactDO implements Serializable{
         this.email=localBrokerInsuredContact.getEmail();
         this.contactType=localBrokerInsuredContact.getContactType();
     }
+
+    public LocalBrokerInsuredContact getValue(){
+        LocalBrokerInsuredContact localBrokerInsuredContact=new LocalBrokerInsuredContact();
+        localBrokerInsuredContact.setCountry(this.getCountry());
+        localBrokerInsuredContact.setContactName(this.getContactName());
+        localBrokerInsuredContact.setAddress(this.getAddress());
+        localBrokerInsuredContact.setPhoneCountryCode(this.getPhoneCountryCode());
+        localBrokerInsuredContact.setPhoneAreaCode(this.getPhoneAreaCode());
+        localBrokerInsuredContact.setPhone(this.getPhone());
+        localBrokerInsuredContact.setPhoneExtension(this.getPhoneExtension());
+        localBrokerInsuredContact.setFaxCountryCode(this.getFaxCountryCode());
+        localBrokerInsuredContact.setFaxAreaCode(this.getFaxAreaCode());
+        localBrokerInsuredContact.setFax(this.getFax());
+        localBrokerInsuredContact.setEmail(this.getEmail());
+        localBrokerInsuredContact.setContactType(this.getContactType());
+        return localBrokerInsuredContact;
+    }
 }

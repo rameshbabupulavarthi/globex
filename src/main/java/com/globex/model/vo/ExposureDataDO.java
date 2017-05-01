@@ -24,10 +24,23 @@ public class ExposureDataDO implements Serializable {
 
     private String states;
 
+    public ExposureDataDO(){
+
+    }
+
     public ExposureDataDO(ExposureData exposureData){
         this.country= exposureData.getCountry();
         this.states=exposureData.getStates();
         this.exposure=exposureData.getExposure();
         this.rate=exposureData.getRate();
+    }
+
+    public ExposureData getValue(){
+        ExposureData exposureData=new ExposureData();
+        exposureData.setCountry(this.getCountry());
+        exposureData.setStates(this.getStates());
+        exposureData.setExposure(this.getExposure());
+        exposureData.setRate(this.getRate());
+        return exposureData;
     }
 }

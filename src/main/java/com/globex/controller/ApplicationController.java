@@ -1,5 +1,7 @@
 package com.globex.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.globex.model.entity.common.File;
 import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
@@ -20,10 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Sunil Golla on 4/1/2017.
@@ -66,8 +65,22 @@ public class ApplicationController {
 
     @RequestMapping("/secure/submitApplication")
     @ResponseBody
-    public ApplicationDO submitApplication(HttpServletRequest request, @ModelAttribute("userData")ApplicationDO applicationDO){
+    public ApplicationDO submitApplication(HttpServletRequest request, @ModelAttribute("userData")ApplicationDO applicationDO) throws Exception{
 
+        String exposureJson=applicationDO.getExposureJson();
+        String localBrokerInsuredContactsJson=applicationDO.getLocalBrokerInsuredContactsJson();
+
+        ObjectMapper mapper = new ObjectMapper();
+        Set<ExposureDataDO> exposureData=null;
+        Set<LocalBrokerInsuredContactDO> localBrokerInsuredContacts=null;
+        if(exposureJson!=null && !exposureJson.isEmpty()){
+            exposureData=mapper.readValue(exposureJson, new TypeReference<Set<ExposureDataDO>>() {});
+        }
+        if(localBrokerInsuredContactsJson!=null && !localBrokerInsuredContactsJson.isEmpty()){
+            localBrokerInsuredContacts=mapper.readValue(localBrokerInsuredContactsJson, new TypeReference<Set<ExposureDataDO>>() {});
+        }
+        applicationDO.setExposureDatas(exposureData);
+        applicationDO.setLocalBrokerInsuredContacts(localBrokerInsuredContacts);
         fileService.save(applicationDO);
         return applicationDO;
     }
