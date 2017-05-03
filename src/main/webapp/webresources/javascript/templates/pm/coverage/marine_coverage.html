@@ -292,7 +292,7 @@
                     <div class="form-column">
                         <div class="field-label">Attach File </div>
                         <div class="field">
-                            <input type="file" name="fileAttachment">
+                            <input type="file" name="attachment">
                         </div>
                     </div>
                 </div>
@@ -301,7 +301,11 @@
                     <div class="form-column">
                         <div class="field-label">Existing Files: </div>
                         <div class="field">
-
+                            <% _.each(fileAttachments, function(fileAttachment){ %>
+                              <div class="comment-details">
+                                  <a class="mail-attachment" href="/secure/downloadFile?filePath=<%= fileAttachment.fileName %>" title="Attachment"><%= fileAttachment.fileName %></a>
+                              </div>
+                            <% }); %>
                         </div>
                     </div>
                 </div>

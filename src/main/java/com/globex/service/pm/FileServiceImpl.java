@@ -1,9 +1,6 @@
 package com.globex.service.pm;
 
-import com.globex.model.entity.common.Application;
-import com.globex.model.entity.common.ExposureData;
-import com.globex.model.entity.common.File;
-import com.globex.model.entity.common.LocalBrokerInsuredContact;
+import com.globex.model.entity.common.*;
 import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
 import com.globex.model.vo.ExposureDataDO;
@@ -12,6 +9,8 @@ import com.globex.model.vo.pm.ApplicationDO;
 import com.globex.model.vo.pm.FileInfoDO;
 import com.globex.repository.rdbms.pm.FileRepository;
 import com.globex.service.UserService;
+import com.utils.DateUtil;
+import com.utils.FileUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +24,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -87,6 +87,7 @@ public class FileServiceImpl implements FileService {
         List<File> list= criteria.list();
         List<FileInfoDO> fileInfoDOs=new ArrayList<FileInfoDO>();
         for(File fileInfo:list){
+            fileInfo.getFileAttachments();
             FileInfoDO fileInfoDO=new FileInfoDO(fileInfo);
             fileInfoDOs.add(fileInfoDO);
         }
@@ -96,7 +97,7 @@ public class FileServiceImpl implements FileService {
     }
 
     //TODO:needs modification
-    public void save(ApplicationDO applicationDO){
+    public void save(ApplicationDO applicationDO,String rootPath){
         User user=userService.getCurrentUser();
         Organization organization=user.getOrganization();
 
@@ -115,12 +116,12 @@ public class FileServiceImpl implements FileService {
         file.setDateUpdated(new Timestamp(System.currentTimeMillis()));
 
         Set<Application> applications=new HashSet<Application>();
-        Application application=applicationDO.getValue();
+        Application application=applicationDO.value();
         application.setFile(file);
 
         //TODO:TEMPORARY CODE
-        application.setPolicyStartDate(new Timestamp(System.currentTimeMillis()));
-        application.setPolicyEndDate(new Timestamp(System.currentTimeMillis()));
+        application.setPolicyStartDate(DateUtil.getTimestamp(applicationDO.getPolicyStartDate()));
+        application.setPolicyEndDate(DateUtil.getTimestamp(applicationDO.getPolicyEndDate()));
         application.setCollectionType(1);
         application.setApplicationStatus(1);
         application.setDateEmailedLocalMarkets(new Timestamp(System.currentTimeMillis()));
@@ -135,11 +136,16 @@ public class FileServiceImpl implements FileService {
         applicationDO.getlocalBrokerContactValues(application);
         applications.add(application);
         file.setApplications(applications);
-        File f=fileRepository.save(file);
+        File filePersisted=fileRepository.save(file);
+
         Session session=sessionFactory.openSession();
-        for(Application a:applications){
-            a.setFile(f);
-            session.save(a);
+        CommonsMultipartFile fileToUpload=applicationDO.getAttachment();
+        if (fileToUpload != null && fileToUpload.getBytes().length > 0) {
+            String relativePath = FileUtils.uploadFile(fileToUpload, rootPath);
+            FileAttachment fileAttachment=new FileAttachment();
+            fileAttachment.setFile(filePersisted);
+            fileAttachment.setFileName(relativePath);
+            session.save(fileAttachment);
         }
     }
 }

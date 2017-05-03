@@ -5,25 +5,30 @@ import com.globex.model.entity.common.ExposureData;
 import com.globex.model.entity.common.LocalBrokerInsuredContact;
 import com.globex.model.vo.ExposureDataDO;
 import com.globex.model.vo.LocalBrokerInsuredContactDO;
+import com.utils.DateUtil;
 import lombok.Data;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by Sunil Golla on 2/10/2017.
  */
 @Data
-public class ApplicationDO {
+public class ApplicationDO implements Serializable {
 
     private Integer applicationId;
+
+    private Long fileId;
 
     private FileInfoDO fileInfo;
 
     private String appNo;
 
-/*    private Date policyStartDate;
+    private String policyStartDate;
 
-    private Date policyEndDate;*/
+    private String policyEndDate;
 
     private String insuredCompany;
 
@@ -47,7 +52,7 @@ public class ApplicationDO {
 
     private String noticeOfCancellation ;
 
-    private String limitsOfLiabilty ;
+    private String limitsOfLiability ;
 
     private String deductibles ;
 
@@ -174,6 +179,9 @@ public class ApplicationDO {
 
    private String otherAllReinsurance ;
 
+
+    private CommonsMultipartFile attachment;
+
     /***childs**/
     private Set<ExposureDataDO> exposureDatas;
 
@@ -193,9 +201,9 @@ public class ApplicationDO {
 
         this.appNo=application.getApplicationNo();
 
-        /*this.policyStartDate=application.getPolicyStartDate() ;
+        this.policyStartDate= DateUtil.formatDate(application.getPolicyStartDate()) ;
 
-        this.policyEndDate=application.getPolicyEndDate() ;*/
+        this.policyEndDate=DateUtil.formatDate(application.getPolicyEndDate());
 
         this.insuredCompany=application.getInsuredCompany() ;
 
@@ -219,7 +227,7 @@ public class ApplicationDO {
 
         this.noticeOfCancellation =application.getNoticeOfCancellation();
 
-        this.limitsOfLiabilty =application.getLimitsOfLiability();
+        this.limitsOfLiability =application.getLimitsOfLiability();
 
         this.deductibles =application.getDeductibles();
 
@@ -350,7 +358,7 @@ public class ApplicationDO {
         this.localBrokerInsuredContacts=getlocalBrokerContacts(application.getLocalBrokerInsuredContacts());
     }
 
-    public Application getValue(){
+    public Application value(){
 
         Application application=new Application();
         application.setApplicationId(applicationId);
@@ -368,7 +376,7 @@ public class ApplicationDO {
          application.setTotalUsaValue(totalUSAValue);
          application.setTermsAndConditions(termsAndConditions);
          application.setNoticeOfCancellation(noticeOfCancellation);
-         application.setLimitsOfLiability(limitsOfLiabilty);
+         application.setLimitsOfLiability(limitsOfLiability);
          application.setDeductibles(deductibles);
          application.setValuation(valuation);
          application.setLossHistory(lossHistory);
@@ -450,7 +458,7 @@ public class ApplicationDO {
         if(exposureDatas!=null && !exposureDatas.isEmpty()){
             Set<ExposureData> exposures=new HashSet<ExposureData>();
             for(ExposureDataDO exposureData:exposureDatas){
-                ExposureData exposure=exposureData.getValue();
+                ExposureData exposure=exposureData.value();
                 exposure.setApplication(application);
                 exposures.add(exposure);
             }
@@ -475,7 +483,7 @@ public class ApplicationDO {
         if(localBrokerInsuredContacts!=null && !localBrokerInsuredContacts.isEmpty()){
             Set<LocalBrokerInsuredContact> localBrokerInsuredContactList=new HashSet<LocalBrokerInsuredContact>();
             for(LocalBrokerInsuredContactDO localBrokerInsuredContact:localBrokerInsuredContacts){
-                LocalBrokerInsuredContact localBrokerContact=localBrokerInsuredContact.getValue();
+                LocalBrokerInsuredContact localBrokerContact=localBrokerInsuredContact.value();
                 localBrokerContact.setApplication(application);
                 localBrokerInsuredContactList.add(localBrokerContact);
             }

@@ -54,11 +54,11 @@ public class File implements java.io.Serializable {
     @Column(name = "DATE_UPDATED")
     private Timestamp dateUpdated;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "file")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "file",cascade = { CascadeType.ALL,CascadeType.PERSIST})
     @Fetch(FetchMode.SELECT)
     private Set<Application> applications;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "file")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "file",cascade = { CascadeType.ALL,CascadeType.PERSIST})
 	private Set<Communication> communications;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "file")

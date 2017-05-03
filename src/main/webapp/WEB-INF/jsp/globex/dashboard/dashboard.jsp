@@ -31,7 +31,7 @@
     <link href="/webresources/css/form.css" type="text/css" rel="stylesheet">
     <link href="/webresources/css/css" rel="stylesheet" type="text/css">
 
-  <!--- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"-->>
+  <!--- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"-->
 </head>
 
 <body>
@@ -89,7 +89,7 @@
                              <div class="sub-menu">
                                  <ul class="sub-menu-ul">
                                      <li class="sub-menu-item navigate-manage-country">Country</li>
-                                     <li class="sub-menu-item navigate-manage-pm">Partner Market</li>
+                                     <li class="sub-menu-item navigate-pm-registration">Partner Market</li>
                                      <li class="sub-menu-item navigate-manage-lm">Local Market</li>
                                  </ul>
                              </div>

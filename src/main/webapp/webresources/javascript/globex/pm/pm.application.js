@@ -202,6 +202,7 @@ AppSubmissionListView=Backbone.View.extend({
                            prospect:file.prospect,
                            organization:organization,
                            application:application,
+                           file:file
                     });
 
                     var appSubmissionView=new AppSubmissionView({

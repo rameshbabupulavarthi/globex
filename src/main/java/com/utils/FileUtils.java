@@ -53,7 +53,7 @@ public class FileUtils {
         return dir.listFiles(filenameFilter);
     }
 
-    public static String uploadFile(CommonsMultipartFile fileToUpload,Long currentUserId,String absolutePath){
+    public static String uploadThumbnail(CommonsMultipartFile fileToUpload,Long currentUserId,String absolutePath){
         String filename=fileToUpload.getOriginalFilename();
         filename = org.springframework.util.StringUtils.replace(filename, ",", "");
         Integer dot = filename.lastIndexOf(".");
@@ -65,6 +65,23 @@ public class FileUtils {
 
         File existingFile = new File(absoluteSaveFilePath);
         existingFile.delete();
+        byte[] file = fileToUpload.getBytes();
+        FileUtils fu = new FileUtils();
+        boolean result = fu.saveBytesIntoFile(file, absoluteSaveFilePath, true);
+        System.out.print("result : "+result);
+        return relativePath;
+    }
+
+    public static String uploadFile(CommonsMultipartFile fileToUpload,String absolutePath){
+        String filename=fileToUpload.getOriginalFilename();
+        /*filename = org.springframework.util.StringUtils.replace(filename, ",", "");
+        Integer dot = filename.lastIndexOf(".");
+        String extension = filename.substring(dot + 1);
+        filename = filename.substring(0, dot);
+        filename = filename + FileUtils.fileNameSeparator + currentUserId + "." + extension;*/
+        String relativePath=FileUtils.FILE_PATH + filename;
+        String absoluteSaveFilePath= absolutePath+relativePath;
+
         byte[] file = fileToUpload.getBytes();
         FileUtils fu = new FileUtils();
         boolean result = fu.saveBytesIntoFile(file, absoluteSaveFilePath, true);

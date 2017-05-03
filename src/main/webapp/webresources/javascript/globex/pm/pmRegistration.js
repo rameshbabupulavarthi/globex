@@ -57,6 +57,8 @@
                 var prospect =_self.model.get("prospect");
                 var organization =_self.model.get("organization");
                 var application =_self.model.get("application");
+                var file =_self.model.get("file");
+                var fileAttachments=file.fileAttachments;
 
                 variables={
                     fileId:fileId,
@@ -67,7 +69,8 @@
                     messageContent:messageContent,
                     prospect:prospect,
                     organization:organization,
-                    application:application
+                    application:application,
+                    fileAttachments:fileAttachments
                 };
              }
              var template=_.template(registrationForm,variables);
@@ -90,6 +93,13 @@
                     var localBrokerInsuredContacts=application.localBrokerInsuredContacts?JSON.stringify(application.localBrokerInsuredContacts):null;
                     var form=document.getElementById("applicationForm");
                     var formData=new FormData(form);
+
+                    var fileId=_self.model.get("fileId");
+                    var applicationId=application.applicationId;
+                    var fileInfo={fileId:fileId};
+                    //formData.append('fileInfo',JSON.stringify(fileInfo));
+                    formData.append('fileId',fileId);
+                    formData.append('applicationId',applicationId);
                     formData.append('exposureJson', exposureData);
                     formData.append('localBrokerInsuredContactsJson', localBrokerInsuredContacts);
                     /*
@@ -111,10 +121,10 @@
                            }, 3000);
                         },
                         success: function(userJSON) {
-                            _self.$el.empty();
+                           // _self.$el.empty();
                             $(".loading-icon-wrapper").hide();
                             $("body").css({opacity:1});
-
+                            $(".navigate-pm-registration").trigger("click");
                         }
                     });
                 }

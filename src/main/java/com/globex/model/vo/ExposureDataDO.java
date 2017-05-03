@@ -35,7 +35,7 @@ public class ExposureDataDO implements Serializable {
         this.rate=exposureData.getRate();
     }
 
-    public ExposureData getValue(){
+    public ExposureData value(){
         ExposureData exposureData=new ExposureData();
         exposureData.setCountry(this.getCountry());
         exposureData.setStates(this.getStates());

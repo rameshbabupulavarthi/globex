@@ -40,6 +40,10 @@ public class LocalBrokerInsuredContactDO implements Serializable{
 
     private int contactType;
 
+    public LocalBrokerInsuredContactDO(){
+
+    }
+
     public LocalBrokerInsuredContactDO(LocalBrokerInsuredContact localBrokerInsuredContact){
         this.country=localBrokerInsuredContact.getCountry();
         this.contactName=localBrokerInsuredContact.getContactName();
@@ -55,7 +59,7 @@ public class LocalBrokerInsuredContactDO implements Serializable{
         this.contactType=localBrokerInsuredContact.getContactType();
     }
 
-    public LocalBrokerInsuredContact getValue(){
+    public LocalBrokerInsuredContact value(){
         LocalBrokerInsuredContact localBrokerInsuredContact=new LocalBrokerInsuredContact();
         localBrokerInsuredContact.setCountry(this.getCountry());
         localBrokerInsuredContact.setContactName(this.getContactName());

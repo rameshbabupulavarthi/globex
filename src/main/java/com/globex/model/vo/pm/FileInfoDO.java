@@ -2,6 +2,8 @@ package com.globex.model.vo.pm;
 
 import com.globex.model.entity.common.Application;
 import com.globex.model.entity.common.File;
+import com.globex.model.entity.common.FileAttachment;
+import com.globex.model.vo.FileAttachmentDO;
 import com.globex.model.vo.OrganizationDO;
 import com.globex.model.vo.UserDO;
 import lombok.Data;
@@ -36,6 +38,8 @@ public class FileInfoDO implements Serializable {
 
     private Set<ApplicationDO> applications;
 
+    private Set<FileAttachmentDO> fileAttachments;
+
     public FileInfoDO(){
 
     }
@@ -52,6 +56,7 @@ public class FileInfoDO implements Serializable {
         this.updatedBy=fileInfo.getUpdatedBy()!=null?new UserDO(fileInfo.getUpdatedBy()):null;
         //this.dateUpdated=fileInfo.getDateUpdated();
         this.applications=getApplications(fileInfo.getApplications());
+        this.fileAttachments=getFileAttachments(fileInfo.getFileAttachments());
     }
 
     public Set<ApplicationDO> getApplications(Set<Application> applications){
@@ -65,4 +70,14 @@ public class FileInfoDO implements Serializable {
         return null;
     }
 
+    public Set<FileAttachmentDO> getFileAttachments(Set<FileAttachment> fileAttachments){
+        if(fileAttachments!=null && !fileAttachments.isEmpty()){
+            Set<FileAttachmentDO> fileAttachmentDOs=new HashSet<FileAttachmentDO>();
+            for(FileAttachment fileAttachment:fileAttachments){
+                fileAttachmentDOs.add(new FileAttachmentDO(fileAttachment));
+            }
+            return fileAttachmentDOs;
+        }
+        return null;
+    }
 }

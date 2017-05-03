@@ -8,7 +8,7 @@ MenuNavigatorView=Backbone.View.extend({
          'click .navigate-manage-user':'renderManageUser',
          'click .navigate-dashboard':'renderDashboard',
          'click .navigate-manage-country':'renderManageCountry',
-         'click .navigate-manage-pm':'renderPMList'
+         'click .navigate-pm-registration':'renderPMList'
      },
      initialize:function(){
      },

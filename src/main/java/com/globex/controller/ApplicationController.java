@@ -13,6 +13,7 @@ import com.globex.model.vo.pm.FileInfoDO;
 import com.globex.service.UserService;
 import com.globex.service.pm.FileService;
 import com.utils.AppConstants;
+import com.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -77,11 +79,16 @@ public class ApplicationController {
             exposureData=mapper.readValue(exposureJson, new TypeReference<Set<ExposureDataDO>>() {});
         }
         if(localBrokerInsuredContactsJson!=null && !localBrokerInsuredContactsJson.isEmpty()){
-            localBrokerInsuredContacts=mapper.readValue(localBrokerInsuredContactsJson, new TypeReference<Set<ExposureDataDO>>() {});
+            localBrokerInsuredContacts=mapper.readValue(localBrokerInsuredContactsJson, new TypeReference<Set<LocalBrokerInsuredContactDO>>() {});
         }
         applicationDO.setExposureDatas(exposureData);
         applicationDO.setLocalBrokerInsuredContacts(localBrokerInsuredContacts);
-        fileService.save(applicationDO);
+
+        FileInfoDO fileInfo=new FileInfoDO();
+        fileInfo.setFileId(applicationDO.getFileId());
+        applicationDO.setFileInfo(fileInfo);
+        String rootPath = request.getServletContext().getRealPath("/");
+        fileService.save(applicationDO,rootPath);
         return applicationDO;
     }
 

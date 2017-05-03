@@ -92,7 +92,7 @@ public class CommunicationController {
         CommonsMultipartFile fileToUpload=communication.getAttachment();
         if (fileToUpload != null && fileToUpload.getBytes().length > 0) {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
-            String relativePath =FileUtils.uploadFile(fileToUpload,currentUserId,rootPath);
+            String relativePath =FileUtils.uploadFile(fileToUpload,/*currentUserId,*/rootPath);
             communication.setFileAttachment(relativePath);
         }
         communicationService.saveComment(communication);

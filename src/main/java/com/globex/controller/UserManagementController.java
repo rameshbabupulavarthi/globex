@@ -57,7 +57,7 @@ public class UserManagementController {
         CommonsMultipartFile fileToUpload=userDO.getThumbnailFile();
         if (fileToUpload != null && fileToUpload.getBytes().length > 0) {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
-            String relativePath =FileUtils.uploadFile(fileToUpload,currentUserId,rootPath);
+            String relativePath =FileUtils.uploadThumbnail(fileToUpload,currentUserId,rootPath);
             userDO.setThumbnail(relativePath);
         }
         userService.saveUser(userDO);

@@ -15,5 +15,5 @@ public interface FileService {
 
     public PageModel<FileInfoDO> list(PageModel<FileInfoDO> pageModel);
 
-    public void save(ApplicationDO applicationDO);
+    public void save(ApplicationDO applicationDO,String rootPath);
 }
