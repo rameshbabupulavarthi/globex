@@ -461,3 +461,150 @@ li{
     padding: 10px;
 }
 
+label.error {
+    display: block;
+    color: red;
+}
+
+
+
+
+/*******************************************   font awsome  ****************************************************/
+
+.user-registration-form .field::before{
+    color: #9b59b6;
+    font-family: "FontAwesome";
+    font-size: 16px;
+    position: absolute;
+    padding-left: 9px;
+    padding-top: 8px;
+}
+
+.field input[type=text]:hover,.field textarea:hover, .field select:hover,.field input[type=password]:hover,.field input[type=file]:hover,
+.field input[type=text]:focus,.field textarea:focus, .field select:focus,.field input[type=password]:hover,.field input[type=file]:focus{
+	border-color: #c71585;
+}
+
+.user-icon::before {
+	content: "\f007";
+}
+
+.email-icon::before {
+    content: "\f2b6";
+}
+
+.phone-icon::before{
+    content: "\f095";
+}
+
+.fax-icon::before{
+    content: "\f1ac";
+}
+
+.mobile-icon::before{
+    content: "\f10b";
+}
+
+.password-icon::before{
+    content: "\f023";
+}
+
+.upload-icon::before{
+    content: "\f15b";
+}
+
+
+
+
+html {
+	font-family: 'Roboto', sans-serif;
+}
+
+.shadow {
+	-webkit-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.form-centent {
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+input[type=text].stylish, input[type=password].stylish, input[type=email].stylish,
+	input[type=file].stylish {
+	padding: 10px;
+	padding-left: 30px;
+	border: 2px solid #d3d7cf;
+	/*width: 90%;*/
+	font-family: Roboto, FontAwesome;
+	border-radius: 2px;
+	margin-bottom: 20px;
+}
+
+input[type=date].stylish, select.stylish, textarea.stylish {
+	padding: 10px;
+	border-radius: 3px;
+	border: 3px rgba(168, 172, 173, 0.75);
+	font-family: Roboto, FontAwesome;
+	background-color: white;
+	border: 2px solid #d3d7cf;
+
+}
+
+.form-input::before {
+	content: "\f007";
+	position: absolute;
+	font-family: "FontAwesome";
+	font-size: 20px;
+	padding-left: 9px;
+	color: #9b59b6;
+	padding-top: 27px;
+}
+
+.form-input:nth-child(3)::before {
+	content: "\f2b6";
+	font-size: 15px;
+	padding-top: 30px;
+}
+
+.form-input:nth-child(4)::before {
+	content: "\f095";
+}
+
+.form-input:nth-child(5)::before {
+	content: "\f1ac";
+}
+
+.form-input:nth-child(6)::before {
+	content: "\f10b";
+}
+
+.form-input:nth-child(8)::before {
+	content: "\f023";
+}
+
+.form-input:nth-child(10)::before {
+	content: "\f15b";
+	font-size: 15px;
+	padding-top: 36px;
+}
+
+.form-input input[type=text]:hover, .form-input input[type=tel]:hover,
+	.form-input input[type=password]:hover, .form-input input[type=email]:hover,
+	.form-input input[type=url]:hover, .form-input input[type=date]:hover,
+	.form-input input[type=number]:hover, .form-input input[type=file]:hover,
+	.form-input textarea:hover, .form-input select:hover {
+	border-color: #db98e6;
+}
+
+.form-input input[type=text]:focus, .form-input input[type=tel]:focus,
+	.form-input input[type=password]:focus, .form-input input[type=email]:focus,
+	.form-input input[type=url]:focus, .form-input input[type=date]:focus,
+	.form-input input[type=number]:focus, .form-input input[type=file]:focus,
+	.form-input textarea:focus, .form-input select:focus {
+	border-color: #c71585;
+}
+
+/*******************************************         end of font awsome                       ****************************************************/

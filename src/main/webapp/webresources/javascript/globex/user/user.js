@@ -33,6 +33,47 @@ var UserDetailView =Backbone.View.extend({
         require(["jquery.validate"],function(){
             _self.$el.find("#saveUserDetails").validate({
                 invalidHandler: function(e, validator) {},
+                rules: {
+                    firstName:"required",
+                    lastName:"required",
+                    email:"required",
+                    phone:"required",
+                    fax:"required",
+                    mobileNumber:"required",
+                    userName:"required",
+                    password:"required",
+                    userType:"required",
+                    phone: {
+                        required: true,
+                        number: true,
+                        minlength: 5,
+                        maxlength: 10,
+                    },
+                    mobileNumber: {
+                        required: true,
+                        number: true,
+                        minlength: 5,
+                        maxlength: 10,
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                        maxlength: 255
+                    }
+                },
+                messages: {
+                    phone:{
+                        required: "<div class='validation-mes'>Please provide your phone no.</div>",
+                        maxlength: "The maximum allowed length is {0} characters.",
+                        noSpecialChars: "<div class='validation-mes'>No special characters allowed.</div>"
+                    },
+                    email: {
+                        required: "<div class='validation-mes' id='email-validation-mes'>Please enter a valid email address.</div>",
+                        email: "<div class='validation-mes' id='email-validation-mes'>Please enter a valid email address.</div>",
+                        noSpecialChars: "<div class='validation-mes'>Enter a valid email address.</div>",
+                        maxlength: "<div class='validation-mes'>The maximum allowed length is {0} characters.</div>"
+                    }
+                },
                 submitHandler: function(form) {
                     $(".loading-icon-wrapper").show();
                     $("body").css({opacity:0.5});
@@ -55,7 +96,7 @@ var UserDetailView =Backbone.View.extend({
                         },
                         success: function(userJSON) {
                          $(".loading-icon-wrapper").hide();
-                         $("body").css({opacity:1})
+                         $("body").css({opacity:1});
                          $(".navigate-manage-user").trigger("click");
                          console.log("success"+userJSON);
                         }
@@ -144,7 +185,8 @@ var UserPopupView =Backbone.View.extend({
                              thumbnail:_self.model.get("thumbnail"),loggedInUserRole:$("#currentUserRole").val()
                           };
             var template = _.template( user_details, variables );
-            popupView.$el.find("#popup-content").append(template);
+            popupView.$el.find("#popupContainer").addClass("user-popup");
+            popupView.$el.find("#popup-content").html(template);
             popupView.$el.find("[name='userType']").val(variables.userType);
             popupView.$el.find("#popup-title").html("User Details");
             _self.validateDetails();
@@ -153,8 +195,49 @@ var UserPopupView =Backbone.View.extend({
     validateDetails:function(){
             var _self=this;
             require(["jquery.validate"],function(){
-                _self.$el.find("#saveUserDetails").validate({
+                $("#popupWrapper #saveUserDetails").validate({
                     invalidHandler: function(e, validator) {},
+                    rules: {
+                        firstName:"required",
+                        lastName:"required",
+                        email:"required",
+                        phone:"required",
+                        fax:"required",
+                        mobileNumber:"required",
+                        userName:"required",
+                        password:"required",
+                        userType:"required",
+                        phone: {
+                            required: true,
+                            number: true,
+                            minlength: 5,
+                            maxlength: 10,
+                        },
+                        mobileNumber: {
+                            required: true,
+                            number: true,
+                            minlength: 5,
+                            maxlength: 10,
+                        },
+                        email: {
+                            required: true,
+                            email: true,
+                            maxlength: 255
+                        }
+                    },
+                    messages: {
+                        phone:{
+                            required: "<div class='validation-mes'>Please provide your phone no.</div>",
+                            maxlength: "The maximum allowed length is {0} characters.",
+                            noSpecialChars: "<div class='validation-mes'>No special characters allowed.</div>"
+                        },
+                        email: {
+                            required: "<div class='validation-mes' id='email-validation-mes'>Please enter a valid email address.</div>",
+                            email: "<div class='validation-mes' id='email-validation-mes'>Please enter a valid email address.</div>",
+                            noSpecialChars: "<div class='validation-mes'>Enter a valid email address.</div>",
+                            maxlength: "<div class='validation-mes'>The maximum allowed length is {0} characters.</div>"
+                        }
+                    },
                     submitHandler: function(form) {
                         $(".loading-icon-wrapper").show();
                         $("body").css({opacity:0.5});
@@ -176,8 +259,10 @@ var UserPopupView =Backbone.View.extend({
                                }, 3000);
                             },
                             success: function(userJSON) {
+                                $(".loading-icon-wrapper").hide();
+                                $("body").css({opacity:1});
+                                $(".popup-close").trigger("click");
                                 $(".navigate-manage-user").trigger("click");
-                                console.log("success"+userJSON);
                             }
                         });
                     },

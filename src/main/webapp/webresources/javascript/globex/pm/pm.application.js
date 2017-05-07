@@ -450,6 +450,8 @@ FileApplicationPopupView=Backbone.View.extend({
             var prospect =this.model.get("prospect");
             var organization =this.model.get("organization");
             var application =this.model.get("application");
+            var file =this.model.get("file");
+            var fileAttachments=file.fileAttachments;
 
             variables={
                 fileId:fileId,
@@ -460,7 +462,8 @@ FileApplicationPopupView=Backbone.View.extend({
                 messageContent:messageContent,
                 prospect:prospect,
                 organization:organization,
-                application:application
+                application:application,
+                fileAttachments:fileAttachments
             };
         }
       var _self=this;

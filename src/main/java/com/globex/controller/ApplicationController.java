@@ -89,6 +89,7 @@ public class ApplicationController {
         applicationDO.setFileInfo(fileInfo);
         String rootPath = request.getServletContext().getRealPath("/");
         fileService.save(applicationDO,rootPath);
+        applicationDO.setAttachment(null);
         return applicationDO;
     }
 

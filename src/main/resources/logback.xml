@@ -52,12 +52,12 @@
 
 	</appender>
 
-    <!--<logger name="org.springframework" level="debug"
+    <logger name="org.springframework" level="debug"
             additivity="false">
         <appender-ref ref="FILE-AUDIT" />
         <appender-ref ref="STDOUT" />
     </logger>
-    <logger name="com.fasterxml" level="debug"
+    <!--<logger name="com.fasterxml" level="debug"
             additivity="false">
         <appender-ref ref="FILE-AUDIT" />
         <appender-ref ref="STDOUT" />

@@ -568,6 +568,10 @@ a{
     width: 80%;
 }
 
+#popupWrapper .user-popup{
+    width: 1000px;
+}
+
 #popup-content .user-registration-form{
     width: 100%;
 }

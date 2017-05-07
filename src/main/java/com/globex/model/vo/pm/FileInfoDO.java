@@ -6,6 +6,7 @@ import com.globex.model.entity.common.FileAttachment;
 import com.globex.model.vo.FileAttachmentDO;
 import com.globex.model.vo.OrganizationDO;
 import com.globex.model.vo.UserDO;
+import com.utils.DateUtil;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -32,9 +33,9 @@ public class FileInfoDO implements Serializable {
 
     private Integer prospect;
 
-    /*private Date dateCreated;
+    private String dateCreated;
 
-    private Date dateUpdated;*/
+    private String dateUpdated;
 
     private Set<ApplicationDO> applications;
 
@@ -52,9 +53,9 @@ public class FileInfoDO implements Serializable {
         this.fileStatus=fileInfo.getFileStatus();
         this.prospect=fileInfo.getProspect();
         this.createdBy=fileInfo.getCreatedBy()!=null?new UserDO(fileInfo.getCreatedBy()):null;
-        //this.dateCreated=fileInfo.getDateCreated();
+        this.dateCreated=DateUtil.formatDate(fileInfo.getDateCreated());
         this.updatedBy=fileInfo.getUpdatedBy()!=null?new UserDO(fileInfo.getUpdatedBy()):null;
-        //this.dateUpdated=fileInfo.getDateUpdated();
+        this.dateUpdated=DateUtil.formatDate(fileInfo.getDateUpdated());
         this.applications=getApplications(fileInfo.getApplications());
         this.fileAttachments=getFileAttachments(fileInfo.getFileAttachments());
     }

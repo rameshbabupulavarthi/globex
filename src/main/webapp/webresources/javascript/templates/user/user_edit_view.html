@@ -5,13 +5,13 @@
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">First Name</div>
-                    <div class="field">
+                    <div class="field user-icon">
                         <input class="stylish" id="firstName" type="text" value="<%=firstName%>" placeholder="Enter First Name" name="firstName">
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Last Name</div>
-                    <div class="field">
+                    <div class="field user-icon">
                         <input class="stylish" id="lastName" type="text" value="<%=lastName%>" placeholder="Enter Last Name" name="lastName">
                     </div>
                 </div>
@@ -20,13 +20,13 @@
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">Email</div>
-                    <div class="field">
+                    <div class="field email-icon">
                         <input class="stylish" id="email" type="text" value="<%=email%>" name="email" placeholder="Enter Email ID">
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Phone</div>
-                    <div class="field">
+                    <div class="field phone-icon">
                         <input id="phoneCountryCode" class="stylish split-box-small" type="text" value="<%=phoneCountryCode%>" name="phoneCountryCode">
                         <input id="phoneAreaCode" class="stylish split-box-medium" type="text" value="<%=phoneAreaCode%>" name="phoneAreaCode">
                         <input id="phone" class="stylish split-box-big" type="text" value="<%=phone%>" name="phone">
@@ -37,7 +37,7 @@
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">Fax</div>
-                    <div class="field">
+                    <div class="field fax-icon">
                         <input id="faxCountryCode" class="stylish split-box-small" type="text" value="<%=faxCountryCode%>" name="faxCountryCode">
                         <input id="faxAreaCode" class="stylish split-box-medium" type="text" value="<%=faxAreaCode%>" name="faxAreaCode">
                         <input id="fax" class="stylish split-box-big" type="text" value="<%=fax%>" name="fax">
@@ -45,9 +45,9 @@
                 </div>
                 <div class="form-column">
                     <div class="field-label">Mobile</div>
-                    <div class="field">
+                    <div class="field mobile-icon">
                         <input id="mobileCountryCode" class="stylish split-box-small" type="text" value="<%=mobileCountryCode%>" name="mobileCountryCode" placeholder="Enter Mobile Country Code">
-                        <input id="mobileNumber" class="stylish split-box-big" type="text" value="<%=phone%>" name="telephone" placeholder="Enter Mobile Number">
+                        <input id="mobile" name="mobile" class="stylish split-box-big" type="text" value="<%=mobile%>" placeholder="Enter Mobile Number">
                     </div>
                 </div>
             </div>
@@ -55,13 +55,13 @@
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">User Name</div>
-                    <div class="field">
+                    <div class="field user-icon">
                         <input class="stylish" id="userName" type="text" value="<%=userName%>" name="userName" placeholder="Enter User Name">
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="field-label">Password</div>
-                    <div class="field">
+                    <div class="field password-icon">
                         <input class="stylish" id="password" type="password" value="" name="password" placeholder="Enter Password">
                     </div>
                 </div>
@@ -70,7 +70,7 @@
             <div class="form-row">
                 <div class="form-column">
                     <div class="field-label">Role</div>
-                    <div class="field">
+                    <div class="field user-icon">
                         <% if(loggedInUserRole=='ROLE_PM_ADMIN' || loggedInUserRole=='ROLE_PM_USER') {%>
                             <select class="stylish"  name="userType">
                                 <option>&#xf0f0; &nbsp; Select Role</option>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="form-column">
                     <div class="field-label">Upload profile picture</div>
-                    <div class="field">
+                    <div class="field upload-icon">
                         <input class="stylish" id="thumbnail" type="file" name="thumbnailFile" size="50">
                     </div>
                 </div>

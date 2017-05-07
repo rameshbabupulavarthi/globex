@@ -68,7 +68,6 @@ public class UserServiceImpl implements UserService {
         user.setLastName(userDO.getLastName());
         user.setUserName(userDO.getUserName());
         user.setEmail(userDO.getEmail());
-        user.setPassword(encoder.encode(userDO.getPassword()));
         user.setPhoneCountryCode(userDO.getPhoneCountryCode());
         user.setPhoneAreaCode(userDO.getPhoneAreaCode());
         user.setPhone(userDO.getPhone());
@@ -87,22 +86,12 @@ public class UserServiceImpl implements UserService {
         user.setCountry(userDO.getCountry());
         user.setZip(userDO.getZip());
         user.setBranchOffice(userDO.getBranchOffice());
-        user.setThumbnail(userDO.getThumbnail());
         user.setStatus(UserDO.Status.ACTIVE.getValue());
         user.setCreatedDate(new Date());
         user.setModifiedDate(new Date());
 
-        /*UserRole userRole=new UserRole();
-        userRole.setUser(user);
-        userRole.setDefaultRole(Boolean.TRUE);
-        userRole.setPermission("1");
-        userRole.setType(userDO.getRole());
-        userRole.setCreatedBy(getCurrentUserDO().getUserId());
-        userRole.setCreatedDate(new Date());
-        Set<UserRole> userRoles=new HashSet<UserRole>();
-        userRoles.add(userRole);
-        user.setUserRole(userRoles);*/
-
+        user.setThumbnail(userDO.getThumbnail());
+        user.setPassword(encoder.encode(userDO.getPassword()));
         User currentUser=getCurrentUser();
         Organization organization=currentUser.getOrganization();
         user.setOrganization(organization);
@@ -167,6 +156,8 @@ public class UserServiceImpl implements UserService {
         criteriaForCount.setProjection(Projections.rowCount());
         Long totalCount = (Long) criteriaForCount.uniqueResult();
         List<User> list= criteria.list();
+
+        session.close();
         List<UserDO> userDOs=new ArrayList<UserDO>();
         for(User user:list){
             UserDO userDO=new UserDO(user);

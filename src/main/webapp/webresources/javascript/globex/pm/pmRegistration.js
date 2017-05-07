@@ -42,7 +42,8 @@
                 messageContent:"",
                 prospect:prospect,
                 organization:{},
-                application:{}
+                application:{},
+                fileAttachments:[]
             };
             if(_self.model){
                 var fileId =_self.model.get("fileId");
@@ -84,22 +85,53 @@
         require(["jquery.validate"],function(){
             _self.$el.find("#applicationForm").validate({
                 invalidHandler: function(e, validator) {},
+
+                rules: {
+                    coverage:"required",
+                    insuredCompany:"required",
+                    reinsuringCompany:"required",
+                    policyStartDate:"required",
+                    policyEndDate:"required",
+                    currency:"required",
+                    interest:"required",
+                    perils:"required",
+                    totalWorldWideValue:{
+                        required: true,
+                        number: true
+                    },
+                    totalUSAValue:{
+                      required: true,
+                      number: true
+                    },
+                    underWriterName:"required",
+                    phone:{
+                       required: true,
+                       number: true
+                    },
+                    email:{
+                       required: true,
+                       email: true
+                    },
+                    branchOffice:"required",
+                },
                 submitHandler: function(form) {
                     $(".loading-icon-wrapper").show();
                     $("body").css({opacity:0.5});
 
-                    var application=_self.model.get("application");
+                    var application=_self.model?_self.model.get("application"):{};
+                    var fileId=_self.model?_self.model.get("fileId"):null;
                     var exposureData=application.exposureDatas?JSON.stringify(application.exposureDatas):null;
                     var localBrokerInsuredContacts=application.localBrokerInsuredContacts?JSON.stringify(application.localBrokerInsuredContacts):null;
                     var form=document.getElementById("applicationForm");
                     var formData=new FormData(form);
 
-                    var fileId=_self.model.get("fileId");
                     var applicationId=application.applicationId;
                     var fileInfo={fileId:fileId};
                     //formData.append('fileInfo',JSON.stringify(fileInfo));
-                    formData.append('fileId',fileId);
-                    formData.append('applicationId',applicationId);
+                    if(_self.model){
+                        formData.append('fileId',fileId);
+                        formData.append('applicationId',applicationId);
+                    }
                     formData.append('exposureJson', exposureData);
                     formData.append('localBrokerInsuredContactsJson', localBrokerInsuredContacts);
                     /*
