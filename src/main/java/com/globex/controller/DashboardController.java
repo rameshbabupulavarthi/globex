@@ -4,6 +4,8 @@ import com.globex.model.entity.Message;
 import com.globex.model.entity.common.Communication;
 import com.globex.model.entity.common.File;
 import com.globex.model.entity.common.Reminder;
+import com.globex.model.entity.pm.Organization;
+import com.globex.model.entity.user.User;
 import com.globex.model.vo.CommunicationDO;
 import com.globex.model.vo.PageModel;
 import com.globex.model.vo.ReminderDO;
@@ -70,14 +72,21 @@ public class DashboardController {
         Integer pageSizeLimit=5;
 
         PageModel<CommunicationDO> pageModel=new PageModel<CommunicationDO>();
+
+        User user=userService.getCurrentUser();
+        Organization organization=user.getOrganization();
+        Map<String,Object> filters=new HashMap<String,Object>();
+        filters.put("orgId",organization.getId());
+        pageModel.setFilters(filters);
         pageModel.setPageNo(pageNo);
         pageModel.setPageSize(pageSize);
         communicationService.list(pageModel);
         List<CommunicationDO> communications=pageModel.getContent();
 
         PageModel<FileInfoDO> fileModel=new PageModel<FileInfoDO>();
+        pageModel.setFilters(filters);
         fileModel.setPageNo(pageNo);
-        fileModel.setPageSize(pageSize);
+        fileModel.setPageSize(pageSizeLimit);
         PageModel<FileInfoDO> fileInfoPage=fileService.list(fileModel);
         List<FileInfoDO> fileList=fileInfoPage.getContent();
 

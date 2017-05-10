@@ -132,15 +132,15 @@ DashboardTilesView=Backbone.View.extend({
        popupView.render();
     },
     jumpOut:function(){
-        /*require(['globex/pm/pm.application'], function() {
+        require(['globex/pm/pm.application'], function() {
             var appSubmissionListView=new AppSubmissionListView({el:"#layout-body-content"});
             appSubmissionListView.render();
-        });*/
+        });
 
-        require(['globex/dashboard/dashboardDetailView'], function() {
+        /*require(['globex/dashboard/dashboardDetailView'], function() {
             var messageDetailView=new MessageDetailView({el:"#layout-body-content"});
             messageDetailView.render();
-        });
+        });*/
 
 
 

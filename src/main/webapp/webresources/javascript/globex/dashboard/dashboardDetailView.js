@@ -15,12 +15,16 @@ MessageDetailView=Backbone.View.extend({
             success: function(collection, response){
                 $self.pageNo=response.pageNo;
                 $self.$el.html("");
-                for(var i=0; i< response.messages.length; i++){
+                var communications=response.communications;
+                for(var i=0; i< communications.length; i++){
+                    var communication=communications[i];
+                    var user=communication.user;
+                     var userName=user.firstName+","+user.lastName;
                     var messageModel = new MessageModel({
-                        senderName:"Charlie",
-                        messageTime: " 02:25 AM",
-                        senderImage:"https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" ,
-                        messageContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+                        senderName:userName,
+                        messageTime: "02:25 AM",
+                        senderImage:user.thumbnail,
+                        messageContent:communication.content
                     });
                     var messageView = new MessageView({model: messageModel});
                     messageView.render();
@@ -29,9 +33,9 @@ MessageDetailView=Backbone.View.extend({
             }
         });
 
-        $(window).off("scroll").on("scroll", function() {
+        /*$(window).off("scroll").on("scroll", function() {
             $self.renderPage();
-        });
+        });*/
     },
     renderPage:function(){
         var $self=this;
