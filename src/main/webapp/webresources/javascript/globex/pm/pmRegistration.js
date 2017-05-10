@@ -165,14 +165,38 @@
     },
     renderCoveragePage:function(e){
         var _self=this;
-        var coverageType=$(e.currentTarget).val();
+       /* var coverageType=$(e.currentTarget).val();
         var coveragePage="marineRegistrationForm.html";
         if(coverageType==2){
            coveragePage="marineRegistrationForm.html";
         }else if(coverageType==3){
             coveragePage="propertyRegistrationForm.html";
+        }*/
+
+        var coverage=parseInt($(e.currentTarget).val());
+        var coverageTemplate=null;
+        switch(coverage){
+
+            case 2 : coverageTemplate="marine_coverage.html";
+                     break;
+            case 3 : coverageTemplate="property_coverage.html";
+                      break;
+            case 4 : coverageTemplate="general_liability_coverage.html";
+                     break;
+            case 5 : coverageTemplate="profession_liability_coverage.html";
+                     break;
+
+            case 6 : coverageTemplate="package_policy_coverage.html";
+                     break;
+            case 7 : coverageTemplate="health_coverage.html";
+                      break;
+            case 8 : coverageTemplate="other_coverage.html";
+                     break;
         }
-        require(['text!'+'templates/pm/'+coveragePage], function(registrationForm) {
+
+
+
+        require(['text!'+'templates/pm/coverage/'+coverageTemplate], function(registrationForm) {
 
             var variables={
                 fileId:"",
@@ -183,7 +207,8 @@
                 messageContent:"",
                 prospect:prospect,
                 organization:{},
-                application:{}
+                application:{},
+                fileAttachments:[]
             };
             if(_self.model){
                 var fileId =_self.model.get("fileId");
@@ -198,6 +223,8 @@
                 var prospect =_self.model.get("prospect");
                 var organization =_self.model.get("organization");
                 var application =_self.model.get("application");
+                var file =_self.model.get("file");
+                var fileAttachments=file.fileAttachments;
 
                 variables={
                     fileId:fileId,
@@ -208,11 +235,14 @@
                     messageContent:messageContent,
                     prospect:prospect,
                     organization:organization,
-                    application:application
+                    application:application,
+                    fileAttachments:fileAttachments
                 };
              }
              var template=_.template(registrationForm,variables);
+             _self.$el.find("#layout-body-content .application-form").empty();
             _self.$el.find("#layout-body-content .application-form").html(template);
+            _self.validateDetails();
         });
     },
     renderExposureDetails:function(e){

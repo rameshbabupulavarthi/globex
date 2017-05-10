@@ -1,267 +1,322 @@
-<div class="pm-file-form">
-    <form method="post" autocomplete="off" action="/secure/saveCountry" id="saveCountryDetails" enctype="multipart/form-data">
-
-        <div class="accordian-header">
-            <div class="accordian-header-text">
-                File Details
-            </div>
-            <div class="accordian-toggle">
-                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-            </div>
-        </div>
-
-        <div class="accordian-body">
-            <div class="edit-country-form">
-                <div class="">
-                    <div class="form-row">
-                        <div class="form-column">
-                            <div class="field-label">Select Coverage</div>
-                            <div class="field">
-                                <select name="coverage" id="pmCoverage" >
-                                    <option value="-1">Select ...</option>
-                                    <option value="2" selected="selected">Marine</option>
-                                    <option value="3">Property</option>
-                                    <option value="4">General Liability</option>
-                                    <option value="5">Professional Liability</option>
-                                    <option value="6">Package Policy</option>
-                                    <option value="7" selected="selected">Accident and Health</option>
-                                    <option value="8">Other Coverage</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fieldset-wrapper">
-                        <fieldset class="fieldset">
-                            <legend class="legend">Enter Details</legend>
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Insured Company</div>
-                                    <div class="field">
-                                        <input type="text" name="insuredCompany" maxlength="100" value="" id="insuredCompany" >
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Reinsuring Company</div>
-                                    <div class="field">
-                                        <input type="text" name="reinsuringCompany" maxlength="100" value="" id="reinsuringCompany" >
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Start Date</div>
-                                    <div class="field">
-                                        <input name="startDate" type="text" value="" style="vertical-align: middle; width: 7em;" dojoattachpoint="inputNode" autocomplete="off">
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">End Date</div>
-                                    <div class="field">
-                                        <input name="endDate" type="text" value="" style="vertical-align: middle; width: 7em;" dojoattachpoint="inputNode" autocomplete="off">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Coverages</div>
-                                    <div class="field">
-                                        <textarea name="coverages"  id="pmApplicationFormId_coverages"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Currency</div>
-                                    <div class="field">
-                                        <select name="currency" id="fileStatusId" onchange="getCurrency();">
-                                            <option value="-1">Select...</option>
-                                            <option value="1">USD</option>
-                                            <option value="2">GBP</option>
-                                            <option value="3">EUR</option>
-                                            <option value="4">CAD</option>
-                                            <option value="5">CNY</option>
-                                            <option value="6">OTHER</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Total Global Value</div>
-                                    <div class="field">
-                                        <input type="text" name="totalWorldWideValue" maxlength="20" value="" id="worldvalue" >
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Total Domestic Value</div>
-                                    <div class="field">
-                                        <input type="text" name="totalUSAValue" maxlength="20" value="" id="usavalue">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Exposure Data</div>
-                                    <div class="field">
-                                        <a id="details" href="javascript:void">Enter Exposure Details</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Interest</div>
-                                    <div class="field">
-                                        <textarea name="interest"  id="pmApplicationFormId_interest"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Perils</div>
-                                    <div class="field">
-                                        <textarea name="perils"  id="pmApplicationFormId_perils"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Terms &amp; Conditions</div>
-                                    <div class="field">
-                                        <textarea name="termsAndConditions"  id="pmApplicationFormId_termsAndConditions"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Notice of Cancellation</div>
-                                    <div class="field">
-                                        <textarea name="noticeOfCancellation"  id="pmApplicationFormId_noticeOfCancellation"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Limit(s) of Liability</div>
-                                    <div class="field">
-                                        <textarea name="limitsOfLiability"  id="pmApplicationFormId_limitsOfLiability"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Deductible(s)</div>
-                                    <div class="field">
-                                        <textarea name="deductibles"  id="pmApplicationFormId_deductibles"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Valuation </div>
-                                    <div class="field">
-                                        <textarea name="valuation"  id="pmApplicationFormId_valuation"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Loss History  </div>
-                                    <div class="field">
-                                        <textarea name="lossHistory"  id="pmApplicationFormId_lossHistory"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Claims Handling Procedures </div>
-                                    <div class="field">
-                                        <textarea name="claimsHandlingProcedures"  id="pmApplicationFormId_claimsHandlingProcedures"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Reinsurance  100% or Maximum Allowable or</div>
-                                    <div class="field">
-                                        <input type="text" name="reinsurance" maxlength="8" value="" id="pmApplicationFormId_reinsurance" style=" width: 50px;">
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label"> Is this an existing account or if you are competing on it:</div>
-                                    <div class="field">
-                                        <textarea name="extaccORcompeting"  id="pmApplicationFormId_extaccORcompeting"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Comment</div>
-                                    <div class="field">
-                                        <textarea name="comment"  id="pmApplicationFormId_comment"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </fieldset>
-                    </div>
-
-                    <div class="fieldset-wrapper">
-                        <fieldset class="fieldset">
-                            <legend class="legend">Collection Method Information </legend>
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Any other services to be provided by local fronting companies beyond policy issuance, if any </div>
-                                    <div class="field">
-                                        <textarea name="otherServices"  id="pmApplicationFormId_otherServices"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Collection Type* </div>
-                                    <div class="field">
-                                        <input type="radio" name="collectionType" id="stateSide1" value="1"><label for="stateSide1">Central Collection</label>
-                                        <br>
-                                        <input type="radio" name="collectionType" id="localSide2" value="2"><label for="localSide2">Local Side Collection (premium collected from local insured or broker in different countries)</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Master Policy No. </div>
-                                    <div class="field">
-                                        <input type="text" name="masterPolicyno" maxlength="20" value="" id="pmApplicationFormId_masterPolicyno" style=" width: 180px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Local Broker/Insured Contact </div>
-                                    <div class="field">
-                                        <a href="javascript:MakePop('AddEditLocalBrokerInsuredContact!showLocalBrokerInsuredContact.action', 700, 500);">Local Broker/Insured Contact details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="button-align-right">
-                            <input type="submit" class="save-button form-button" value="Save">
-                            <input type="submit" class="cancel-button form-button" value="Cancel">
-                        </div>
-                    </div>
-
+<form method="post" autocomplete="off" action="/secure/submitApplication" id="applicationForm">
+    <div class="">
+        <div class="form-row">
+            <div class="form-column">
+                <div class="field-label">Select Coverage</div>
+                <div class="field">
+                    <select name="coverage" id="pmCoverage" >
+                        <option value="-1">Select ...</option>
+                        <option value="2">Marine</option>
+                        <option value="3">Property</option>
+                        <option value="4">General Liability</option>
+                        <option value="5">Professional Liability</option>
+                        <option value="6">Package Policy</option>
+                        <option value="7" selected="selected">Accident and Health</option>
+                        <option value="8">Other Coverage</option>
+                    </select>
                 </div>
             </div>
         </div>
-        <input id="countryId" type="hidden" value="<%=id%>" name="id">
-    </form>
-</div>
+
+        <div class="fieldset-wrapper">
+            <fieldset class="fieldset">
+                <legend class="legend">Enter Details</legend>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Insured Company</div>
+                        <div class="field company-icon">
+                            <input class="stylish" type="text" name="insuredCompany" maxlength="100" value="<%= application.insuredCompany %>" id="insuredCompany" >
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Reinsuring Company</div>
+                        <div class="field company-icon">
+                            <input class="stylish" type="text" name="reinsuringCompany" maxlength="100" value="<%= application.reinsuringCompany %>" id="reinsuringCompany" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Start Date</div>
+                        <div class="field calendar-icon">
+                            <input class="stylish" name="policyStartDate" class="date-picker" type="text" value="<%= application.policyStartDate %>" dojoattachpoint="inputNode" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">End Date</div>
+                        <div class="field calendar-icon">
+                            <input class="stylish" name="policyEndDate" class="date-picker" type="text" value="<%= application.policyEndDate %>" dojoattachpoint="inputNode" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Coverages</div>
+                        <div class="field graph-icon">
+                            <textarea class="stylish" name="coverages"  id="pmApplicationFormId_coverages"><%= application.coverages %></textarea>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Currency</div>
+                        <div class="field currency-icon">
+                            <select class="stylish" name="currency" id="fileStatusId" onchange="getCurrency();" >
+                                <option value="-1">Select...</option>
+                                <option value="1">USD</option>
+                                <option value="2">GBP</option>
+                                <option value="3">EUR</option>
+                                <option value="4">CAD</option>
+                                <option value="5">CNY</option>
+                                <option value="6">OTHER</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Total Global Value</div>
+                        <div class="field currency-icon">
+                            <input class="stylish" type="text" name="totalWorldWideValue" maxlength="20" value="<%= application.totalWorldWideValue %>" id="worldvalue" >
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Total Domestic Value</div>
+                        <div class="field currency-icon">
+                            <input class="stylish" type="text" name="totalUSAValue" maxlength="20" value="<%= application.totalUSAValue %>" id="usavalue">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Exposure Data</div>
+                        <div class="field">
+                            <a id="details" class="pm-exposure-details" href="#">Enter Exposure Details</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Interest</div>
+                        <div class="field percent-icon">
+                            <textarea class="stylish" name="interest"  id="pmApplicationFormId_interest"><%= application.interest %></textarea>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Perils</div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="perils"  id="pmApplicationFormId_perils"><%= application.perils %></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Terms &amp; Conditions</div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="termsAndConditions"  id="pmApplicationFormId_termsAndConditions"><%= application.termsAndConditions %></textarea>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Notice of Cancellation</div>
+                        <div class="field notice-icon">
+                            <textarea class="stylish" name="noticeOfCancellation"  id="noticeOfCancellation"><%= application.noticeOfCancellation %></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Limit(s) of Liability</div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="limitsOfLiability"  id="limitsOfLiability"><%= application.limitsOfLiability %></textarea>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Deductible(s)</div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="deductibles"  id="deductibles"><%= application.deductibles %></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Valuation </div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="valuation"  id="pmApplicationFormId_valuation"><%= application.valuation %></textarea>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Loss History  </div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="lossHistory"  id="pmApplicationFormId_lossHistory"><%= application.lossHistory %></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Claims Handling Procedures </div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="claimsHandling" id="pmApplicationFormId_claimsHandlingProcedures"><%= application.claimsHandling %></textarea>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Reinsurance  100% or Maximum Allowable or</div>
+                        <div class="field pencil-icon">
+                            <input class="stylish" type="text" name="reinsurance" value="<%= application.reinsurance %>" maxlength="8" value="" id="pmApplicationFormId_reinsurance" >
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label"> Is this an existing account or if you are competing on it:</div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="extAccOrCompt"  id="pmApplicationFormId_extaccORcompeting"><%= application.extAccOrCompt %></textarea>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Comment</div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="comment"  id="pmApplicationFormId_comment"><%= application.comment %></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <div class="fieldset-wrapper">
+            <fieldset class="fieldset">
+                <legend class="legend">Collection Method Information </legend>
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Any other services to be provided by local fronting companies beyond policy issuance, if any </div>
+                        <div class="field pencil-icon">
+                            <textarea class="stylish" name="otherServices"  id="pmApplicationFormId_otherServices"><%= application.otherServices  %></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Collection Type* </div>
+                        <div class="field">
+                            <input type="radio" name="collectionType" id="stateSide1" value="1"><label for="stateSide1">Central Collection</label>
+                            <br>
+                            <input type="radio" name="collectionType" id="localSide2" value="2"><label for="localSide2">Local Side Collection (premium collected from local insured or broker in different countries)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Master Policy No. </div>
+                        <div class="field pencil-icon">
+                            <input class="stylish" type="text" name="masterPolicyNo" maxlength="20" value="<%= application.masterPolicyNo %>" id="pmApplicationFormId_masterPolicyno" style=" width: 180px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Local Broker/Insured Contact </div>
+                        <div class="field">
+                            <a class="pm-broker-details" href="#">Local Broker/Insured Contact details</a>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="fieldset-wrapper">
+            <fieldset class="fieldset">
+                <legend class="legend">Program Underwriter Details </legend>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Name </div>
+                        <div class="field user-icon">
+                            <input class="stylish" type="text" name="underWriterName" maxlength="20" value="<%= application.underWriterName %>" id="underWriterName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Phone Number </div>
+                        <div class="field phone-icon">
+                            <input class="stylish split-box-small" type="text" name="phoneCountryCode" maxlength="20" value="<%= application.phoneCountryCode %>" id="phoneCountryCode">
+                            <input class="stylish split-box-medium" type="text" name="phoneAreaCode" maxlength="20" value="<%= application.phoneAreaCode %>" id="phoneAreaCode">
+                            <input class="stylish split-box-big" type="text" name="phone" maxlength="20" value="<%= application.phone %>" id="phone">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Email </div>
+                        <div class="field email-icon">
+                            <input class="stylish" type="text" name="email" maxlength="20" value="<%= application.email %>" id="email">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Branch Office </div>
+                        <div class="field company-icon">
+                            <input class="stylish" type="text" name="branchOffice" maxlength="20" value="<%= application.branchOffice %>" id="branchOffice">
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <div class="fieldset-wrapper">
+            <fieldset class="fieldset">
+                <legend class="legend">File Attachment </legend>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Attach File </div>
+                        <div class="field upload-icon">
+                            <input class="stylish" type="file" name="attachment">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Existing Files: </div>
+                        <div class="field">
+                            <% _.each(fileAttachments, function(fileAttachment){ %>
+                            <div class="comment-details">
+                                <a class="mail-attachment" href="/secure/downloadFile?filePath=<%= fileAttachment.fileName %>" title="Attachment"><%= fileAttachment.fileName %></a>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="form-row">
+            <div class="button-align-right">
+                <input type="submit" class="save-button form-button" value="Save">
+                <input type="submit" class="cancel-button form-button" value="Cancel">
+            </div>
+        </div>
+    </div>
+</form>
