@@ -2,6 +2,7 @@ package com.globex.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.globex.constants.Role;
 import com.globex.model.entity.common.File;
 import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
@@ -51,10 +52,13 @@ public class ApplicationController {
         pageModel.setPageSize(pageSize);
 
         User user=userService.getCurrentUser();
-        Organization organization=user.getOrganization();
-        Map<String,Object> filters=new HashMap<String,Object>();
-        filters.put("orgId",organization.getId());
-        pageModel.setFilters(filters);
+        Role roleType=Role.getValue(user.getUserType());
+        if(Role.ROLE_GLOBEX==roleType || Role.ROLE_GLOBEX_ADMIN==roleType){
+            Organization organization=user.getOrganization();
+            Map<String,Object> filters=new HashMap<String,Object>();
+            filters.put("orgId",organization.getId());
+            pageModel.setFilters(filters);
+        }
         PageModel<FileInfoDO> fileInfoPage=fileService.list(pageModel);
         List<FileInfoDO> fileList=fileInfoPage.getContent();
         Map<String, Object> model = new HashMap<String, Object>();
