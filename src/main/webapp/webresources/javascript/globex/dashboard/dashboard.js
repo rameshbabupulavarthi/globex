@@ -63,10 +63,12 @@ DashboardTilesView=Backbone.View.extend({
         if(communications){
              for(var i=0;i<communications.length;i++){
                     var communication=communications[i];
+                    var user=communication.user;
+                    var userName=user.firstName+","+user.lastName;
                     var messageModel=new MessageModel({
-                        /*senderName:communication.content,
-                        messageTime:communication.content,
-                        senderImage:communication.content,*/
+                        senderName:userName,
+                        senderImage:user.thumbnail,
+                        /* messageTime:communication.content,*/
                         messageContent:communication.content
                     });
                     var messageTileView=new MessageTileView({
@@ -85,9 +87,8 @@ DashboardTilesView=Backbone.View.extend({
                 var userName=user.firstName+","+user.lastName;
                 var appSubmissionModel=new AppSubmissionModel({
                     senderName:userName,
-                    senderImage:application.thumbnailFile,
-                    /*messageTime:communication.content,
-                    */
+                    senderImage:user.thumbnail,
+                    /*messageTime:communication.content, */
                     messageContent:application.coverages
                 });
                 var appSubmissionTileView=new AppSubmissionTileView({
@@ -104,6 +105,7 @@ DashboardTilesView=Backbone.View.extend({
                 var userName=user.firstName+","+user.lastName;
                 var reminderModel=new ReminderModel({
                     senderName:userName,
+                    senderImage:user.thumbnail,
                     messageContent:reminder.details
                 });
                 var reminderTileView=new ReminderTileView({
