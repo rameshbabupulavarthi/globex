@@ -53,7 +53,7 @@ public class ApplicationController {
 
         User user=userService.getCurrentUser();
         Role roleType=Role.getValue(user.getUserType());
-        if(! (Role.ROLE_GLOBEX==roleType || Role.ROLE_GLOBEX_ADMIN==roleType || Role.ROLE_ADMIN==roleType || Role.ROLE_SUPER_ADMIN==roleType) ){
+        if(!(Role.ROLE_GLOBEX==roleType || Role.ROLE_GLOBEX_ADMIN==roleType) ){
             Organization organization=user.getOrganization();
             Map<String,Object> filters=new HashMap<String,Object>();
             filters.put("orgId",organization.getId());

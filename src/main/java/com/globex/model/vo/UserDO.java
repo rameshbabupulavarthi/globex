@@ -7,6 +7,7 @@ import lombok.Data;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Sunil Golla on 1/12/2017.
@@ -44,6 +45,10 @@ public class UserDO implements Serializable {
     private String role;
     private OrganizationDO organization;
 
+    public UserDO(){
+
+    }
+
     public UserDO(User user){
         this.id=user.getId();
         this.userName=user.getUserName();
@@ -76,9 +81,43 @@ public class UserDO implements Serializable {
         this.organization=new OrganizationDO(user.getOrganization());
     }
 
-    public UserDO(){
+    public User value(){
 
+        User user=new User();
+        user.setId(this.getId());
+        user.setFirstName(this.getFirstName());
+        user.setLastName(this.getLastName());
+        user.setUserName(this.getUserName());
+        user.setEmail(this.getEmail());
+        user.setPhoneCountryCode(this.getPhoneCountryCode());
+        user.setPhoneAreaCode(this.getPhoneAreaCode());
+        user.setPhone(this.getPhone());
+        user.setPhoneExtension(this.getPhoneExtension());
+        user.setFaxCountryCode(this.getFaxCountryCode());
+        user.setFaxAreaCode(this.getFaxAreaCode());
+        user.setFax(this.getFax());
+        user.setMobileCountryCode(this.getMobileCountryCode());
+        user.setMobile(this.getMobile());
+        user.setUserType(this.getUserType());
+        user.setComments(this.getComments());
+        user.setStatus(this.getStatus());
+        user.setAddress(this.getAddress());
+        user.setCity(this.getCity());
+        user.setState(this.getState());
+        user.setCountry(this.getCountry());
+        user.setZip(this.getZip());
+        user.setBranchOffice(this.getBranchOffice());
+        user.setStatus(UserDO.Status.ACTIVE.getValue());
 
+        user.setThumbnail(this.getThumbnail());
+
+        user.setPassword(this.getPassword());
+        /*user.setCreatedDate(new Date());
+        user.setModifiedDate(new Date());
+        user.setPassword(encoder.encode(this.getPassword()));
+        User currentUser=getCurrentUser();
+        Organization organization=currentUser.getOrganization();*/
+        return user;
     }
 
     public enum Status{

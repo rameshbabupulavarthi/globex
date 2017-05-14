@@ -2,7 +2,10 @@ package com.globex.model.vo;
 
 import com.globex.model.entity.common.Reminder;
 import com.globex.model.entity.user.User;
+import com.utils.DateUtil;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * Created by Sunil Golla on 3/13/2017.
@@ -17,15 +20,15 @@ public class ReminderDO {
 
     private Integer communicationId;
 
-    /*private Date reminderDate;*/
-
     private String information;
 
     private String details;
 
     private int status;
 
-    /*private Date dateCreated;*/
+    private String dateCreated;
+
+    private String reminderDate;
 
     public ReminderDO(){
 
@@ -38,5 +41,6 @@ public class ReminderDO {
         this.information=reminder.getInformation();
         this.details=reminder.getDetails();
         this.status=reminder.getStatus();
+        //this.dateCreated= DateUtil.formatDate(reminder.getDateCreated());
     }
 }

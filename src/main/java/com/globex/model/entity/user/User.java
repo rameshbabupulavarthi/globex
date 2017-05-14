@@ -21,6 +21,7 @@ import javax.persistence.Table;
 
 import com.globex.model.entity.pm.Organization;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -32,6 +33,7 @@ import org.hibernate.annotations.FetchMode;
 
 
 @Data
+@EqualsAndHashCode(exclude = {"organization"})
 @ToString(exclude={"userRole"})
 @Entity
 @Table(name="user")

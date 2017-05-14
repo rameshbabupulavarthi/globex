@@ -75,7 +75,7 @@ PMListView =Backbone.View.extend({
 
                 var $pm_list_container=$("<div/>" , {
                      "id":"pm_list_container",
-                     html:'<div class="btn-wrapper"> <div id="createPM" class="add-user-button"><span class="add-button"></span> <span class="add-pm-text" >Add PM </span></div></div>'
+                     html:'<div class=""><div class="btn-wrapper"> <div id="createPM" class="add-user-button"><span class="add-button"></span> <span class="add-pm-text" >Add PM </span></div></div></div>'
                  });
 
                 var $pm_table=$("<table/>" , {

@@ -84,8 +84,8 @@ AppSubmissionView=Backbone.View.extend({
 
              require(['globex/pm/pmRegistration'], function() {
                 $("#layout-body-content").empty();
-                var registrationView = new RegistrationView({model:_self.model});
-                registrationView.render();
+                var applicationView = new ApplicationView({model:_self.model});
+                applicationView.render();
              });
 
 
@@ -222,8 +222,8 @@ AppSubmissionListView=Backbone.View.extend({
     },
     renderPMRegistration:function(){
        require(['globex/pm/pmRegistration'], function() {
-            var registrationView=new RegistrationView();
-            registrationView.render();
+            var applicationView=new ApplicationView();
+            applicationView.render();
         });
     }
 });

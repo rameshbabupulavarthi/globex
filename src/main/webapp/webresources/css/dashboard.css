@@ -459,9 +459,12 @@ a{
    color:#727272;
 }
 
-
+.btn-layout{
+   width: 100%;
+   display: inline-block;
+}
 .btn-wrapper{
-    width: 100%;
+    /*width: 100%;*/
     float: right;
     margin-bottom: 10px;
 }
@@ -485,6 +488,7 @@ a{
     text-align: center;
     float:right;
     cursor:pointer;
+    margin-right:10px;
 }
 
 .add-user-text{
@@ -576,7 +580,7 @@ a{
     width: 100%;
 }
 
-.user-registration-form .field-label,.edit-country-form .field-label{
+.user-registration-form .field-label,.edit-country-form .field-label,.form-wrapper .field-label{
     /*width: 150px;
     display: inline-block;
     text-align: right;
@@ -601,12 +605,13 @@ a{
 }
 
 
-.edit-country-form .form-row{
+.edit-country-form .form-row,.form-wrapper .form-row{
     padding:10px;
 }
 
-.edit-country-form .form-column{
+.edit-country-form .form-column,.form-wrapper .form-column{
     width:45%;
+    vertical-align:top;
 }
 
 #applicationForm .form-column{

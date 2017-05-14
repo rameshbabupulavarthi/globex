@@ -300,7 +300,7 @@ UserListView =Backbone.View.extend({
 
                 var $user_list_container=$("<div/>" , {
                      "id":"user_list_container",
-                     html:'<div class="btn-wrapper"> <div id="createUser" class="add-user-button"><span class="add-button"></span> <span class="add-user-text" >Add User </span></div></div>'
+                     html:'<div class=""><div class="btn-wrapper"> <div id="createUser" class="add-user-button"><span class="add-button"></span> <span class="add-user-text" >Add User </span></div></div></div>'
                  });
 
                 var $user_table=$("<table/>" , {

@@ -84,42 +84,40 @@
                   <% if(loggedInUserRole=='ROLE_PM_ADMIN' || loggedInUserRole=='ROLE_PM_USER') {%>
                   <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="5">PM Admin</option>
-                      <option value="6">PM User</option>
+                      <option value="3">PM Admin</option>
+                      <option value="4">PM User</option>
                   </select>
 
                   <%} else if(loggedInUserRole=='ROLE_PM_USER') {%>
                   <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="6">PM User</option>
+                      <option value="4">PM User</option>
                   </select>
                   <%} else if(loggedInUserRole=='ROLE_GLOBEX_USER') {%>
                   <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="4">Globex User</option>
-                      <option value="5">PM Admin</option>
-                      <option value="6">PM User</option>
-                      <option value="7">LM Admin</option>
-                      <option value="8">LM User</option>
+                      <option value="2">Globex User</option>
+                      <option value="3">PM Admin</option>
+                      <option value="4">PM User</option>
+                      <option value="5">LM Admin</option>
+                      <option value="6">LM User</option>
                   </select>
 
                   <%} else if(loggedInUserRole=='ROLE_LM_ADMIN' || loggedInUserRole=='ROLE_LM_USER') {%>
                   <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="7">LM Admin</option>
-                      <option value="8">LM User</option>
+                      <option value="5">LM Admin</option>
+                      <option value="6">LM User</option>
                   </select>
                   <%} else {%>
                   <select class="stylish"  name="userType">
                       <option>&#xf0f0; &nbsp; Select Role</option>
-                      <option value="1">Super Admin</option>
-                      <option value="2">Admin</option>
-                      <option value="3">Globex Admin</option>
-                      <option value="4">Globex User</option>
-                      <option value="5">PM Admin</option>
-                      <option value="6">PM User</option>
-                      <option value="7">LM Admin</option>
-                      <option value="8">LM User</option>
+                      <option value="1">Globex Admin</option>
+                      <option value="2">Globex User</option>
+                      <option value="3">PM Admin</option>
+                      <option value="4">PM User</option>
+                      <option value="5">LM Admin</option>
+                      <option value="6">LM User</option>
                   </select>
                   <%}%>
               </div>

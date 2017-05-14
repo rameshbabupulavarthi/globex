@@ -19,6 +19,15 @@ public class DateUtil {
         return dateStr;
     }
 
+    public static String formatDate(Date date){
+        String dateStr=null;
+        if(date!=null) {
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            dateStr=format.format(date);
+        }
+        return dateStr;
+    }
+
     public static Timestamp getTimestamp(String dateStr){
         Timestamp timestamp=null;
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");

@@ -4,6 +4,7 @@ import com.globex.model.entity.user.User;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -23,7 +24,7 @@ public class Reminder implements java.io.Serializable {
 	private Integer communicationId;
 
     /*@Column(name = "REMINDER_DATE")
-	private Date reminderDate;*/
+	private Timestamp reminderDate;*/
 
     @Column(name = "INFORMATION", nullable = false, length = 50)
 	private String information;
@@ -35,5 +36,5 @@ public class Reminder implements java.io.Serializable {
 	private int status;
 
     /*@Column(name = "DATE_CREATED")
-	private Date dateCreated;*/
+	private Timestamp dateCreated;*/
 }

@@ -214,7 +214,7 @@ li{
 }
 
 .fieldset-wrapper{
-    margin:15px;
+    padding:15px;
 }
 
 .fieldset{
@@ -423,6 +423,15 @@ li{
     box-shadow: none;
 }
 
+.filter-list{
+    color: #9b59b6;
+    font-family: "FontAwesome";
+    font-size: 22px;
+    padding-left: 9px;
+    padding-right: 10px;
+    display: inline-block;
+    cursor:pointer;
+}
 .search-item{
 
 }
@@ -461,6 +470,15 @@ li{
     padding: 10px;
 }
 
+.pm-contact,.pm-bank{
+    padding-top: 0px;
+}
+
+#contactSection .btn-wrapper,#bankSection .btn-wrapper{
+    margin-bottom:0px;
+    margin-right: 40px;
+}
+
 label.error {
     display: block;
     color: red;
@@ -471,7 +489,7 @@ label.error {
 
 /*******************************************   font awsome  ****************************************************/
 
-.user-registration-form .field::before,.edit-country-form .field::before,#applicationForm .field::before{
+.user-registration-form .field::before,.edit-country-form .field::before,#applicationForm .field::before,.form-wrapper .field::before{
     color: #9b59b6;
     font-family: "FontAwesome";
     font-size: 16px;
@@ -559,6 +577,14 @@ label.error {
 
 .notice-icon::before{
     content: "\f256";
+}
+
+.filter-icon::before{
+    content: "\f0b0";
+}
+
+.download-icon::before{
+   content: "\f019";
 }
 
 select.stylish{

@@ -1,4 +1,4 @@
-  RegistrationView=Backbone.View.extend({
+  ApplicationView=Backbone.View.extend({
     el:".layout-body",
     layoutTemplate:'<div class="page-content-section">'+
                       '<div class="lm-layout-wrapper">'+
@@ -156,7 +156,7 @@
                            // _self.$el.empty();
                             $(".loading-icon-wrapper").hide();
                             $("body").css({opacity:1});
-                            $(".navigate-pm-registration").trigger("click");
+                            $(".navigate-applications").trigger("click");
                         }
                     });
                 }

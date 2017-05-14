@@ -94,7 +94,7 @@ CountryListView =Backbone.View.extend({
 
                 var $country_list_container=$("<div/>" , {
                      "id":"country_list_container",
-                     html:'<div class="btn-wrapper"> <div id="createCountry" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Country </span></div></div>'
+                     html:'<div class=""><div class="btn-wrapper"> <div id="createCountry" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Country </span></div></div></div>'
                  });
 
                 var $country_table=$("<table />" , {

@@ -1,28 +1,38 @@
 package com.globex.model.entity.pm;
 
+import com.globex.model.entity.user.User;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Set;
 
 /**
  * Created by Sunil Golla on 2/10/2017.
  */
 @Data
+@EqualsAndHashCode(of = {"id"})
+@ToString(exclude={"users","accountInfos","coverageAreas"})
 @Entity
 @Table(name="organization")
-public class Organization {
+public class Organization implements Serializable{
 
     @Id
     @Column(name="ORGANIZATION_ID")
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name="ORGANIZATION_NAME")
     private String orgName;
 
     @Column(name="REGISTRATION_DATE")
-    private Date regDate;
+    private Timestamp regDate;
 
     @Column(name="ADDRESS_LINE_1")
     private String address1;
@@ -59,5 +69,17 @@ public class Organization {
 
     @Column(name="LICENSED_STATE")
     private String licenceState;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL,CascadeType.PERSIST})
+    @Fetch(FetchMode.SELECT)
+    private Set<User> users;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL,CascadeType.PERSIST})
+    @Fetch(FetchMode.SELECT)
+    private Set<AccountInfo> accountInfos;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL,CascadeType.PERSIST})
+    @Fetch(FetchMode.SELECT)
+    private Set<CoverageArea> coverageAreas;
 
 }

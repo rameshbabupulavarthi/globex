@@ -1,0 +1,321 @@
+<form method="post" autocomplete="off" action="/secure/savePM" id="savePMDetails" enctype="multipart/form-data">
+
+    <div class="accordian-header">
+        <div class="accordian-header-text">
+            Partner Market Details
+        </div>
+        <div class="accordian-toggle">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </div>
+    </div>
+
+    <div class="accordian-body">
+        <div class="form-wrapper">
+            <div class="container">
+
+                <!-- Organization Details-->
+                <div id="organizationSection">
+                    <div class="fieldset-wrapper">
+                    <fieldset class="fieldset">
+                        <legend class="legend">Enter Details</legend>
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Organization Name</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="orgName" maxlength="100"  >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Address Line 1</div>
+                                <div class="field pencil-icon">
+                                    <input class="stylish" type="text" name="address1" maxlength="100"  >
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label">Address Line 2</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="address2" maxlength="100" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Country</div>
+                                <div class="field pencil-icon">
+                                    <input class="stylish" type="text" name="country" maxlength="100" >
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label">State</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="state" maxlength="100" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">City</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="city" maxlength="100" >
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label"> Zip Code</div>
+                                <div class="field pencil-icon">
+                                    <input class="stylish" type="text" name="zip" maxlength="100" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Website</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="website" maxlength="100" >
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="approved" value="0">
+                    </fieldset>
+                </div>
+                </div>
+
+                <!-- Contact Details-->
+                <div id="contactSection">
+                  <div class="btn-layout">
+                    <div class="btn-wrapper">
+                        <div id="addContact" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Contact </span></div>
+                    </div>
+                  </div>
+                  <div id="contactDetails">
+                    <div class="fieldset-wrapper pm-contact">
+                    <fieldset class="fieldset">
+                        <legend class="legend"> Primary Contact Person - Administrator </legend>
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">First Name</div>
+                                <div class="field user-icon">
+                                    <input class="stylish" type="text" placeholder="Enter First Name" name="firstName">
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label">Last Name</div>
+                                <div class="field user-icon">
+                                    <input class="stylish" type="text" placeholder="Enter Last Name" name="lastName">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">User Name</div>
+                                <div class="field user-icon">
+                                    <input class="stylish" type="text" name="userName" placeholder="Enter User Name">
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label">Email</div>
+                                <div class="field email-icon">
+                                    <input class="stylish" type="text" name="email" placeholder="Enter Email ID">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Password</div>
+                                <div class="field password-icon">
+                                    <input class="stylish" type="password" value="" name="password" placeholder="Enter Password">
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label">Confirm Password</div>
+                                <div class="field password-icon">
+                                    <input class="stylish" type="password" value="" name="confirmPassword" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Phone</div>
+                                <div class="field phone-icon">
+                                    <input class="stylish split-box-small" type="text" name="phoneCountryCode">
+                                    <input class="stylish split-box-medium" type="text" name="phoneAreaCode">
+                                    <input class="stylish split-box-big" type="text" name="phone">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Fax</div>
+                                <div class="field fax-icon">
+                                    <input class="stylish split-box-small" type="text" name="faxCountryCode">
+                                    <input class="stylish split-box-medium" type="text" name="faxAreaCode">
+                                    <input class="stylish split-box-big" type="text" name="fax">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Mobile</div>
+                                <div class="field mobile-icon">
+                                    <input class="stylish split-box-small" type="text" name="mobileCountryCode" >
+                                    <input name="mobile" class="stylish split-box-big" type="text" >
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label">Comments</div>
+                                <div class="field pencil-icon">
+                                    <textarea class="stylish" name="comments"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="userType" value="3">
+                    </fieldset>
+                </div>
+                  </div>
+                </div>
+
+                <!-- Banking Details-->
+                <div id="bankSection">
+                    <div class="btn-layout">
+                        <div class="btn-wrapper">
+                            <div id="addBankDetails" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Bank Details </span></div>
+                        </div>
+                    </div>
+                    <div id="bankDetails">
+                        <div class="fieldset-wrapper pm-bank">
+                        <fieldset class="fieldset">
+                            <legend class="legend">Banking Information</legend>
+
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="field-label">Accounting Contact</div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="field-label">First Name</div>
+                                    <div class="field user-icon">
+                                        <input class="stylish" type="text" placeholder="Enter First Name" name="contactFirstName">
+                                    </div>
+                                </div>
+                                <div class="form-column">
+                                    <div class="field-label">Last Name</div>
+                                    <div class="field user-icon">
+                                        <input class="stylish" type="text" placeholder="Enter Last Name" name="contactLastName">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="field-label">Email</div>
+                                    <div class="field email-icon">
+                                        <input class="stylish" type="text" name="contactEmail" placeholder="Enter Email ID">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="field-label">Phone</div>
+                                    <div class="field phone-icon">
+                                        <input class="stylish split-box-small" type="text" name="contactPhoneCountryCode">
+                                        <input class="stylish split-box-medium" type="text" name="contactPhoneAreaCode">
+                                        <input class="stylish split-box-big" type="text" name="contactPhone">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="field-label">Fax</div>
+                                    <div class="field fax-icon">
+                                        <input class="stylish split-box-small" type="text" name="contactFaxCountryCode">
+                                        <input class="stylish split-box-medium" type="text" name="contactFaxAreaCode">
+                                        <input class="stylish split-box-big" type="text" name="contactFax">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="field-label">Mobile</div>
+                                    <div class="field mobile-icon">
+                                        <input class="stylish split-box-small" type="text" name="contactMobileCountryCode" >
+                                        <input name="contactMobile" class="stylish split-box-big" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="field-label">Banking Info</div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="field-label">Bank Details</div>
+                                    <div class="field pencil-icon">
+                                        <textarea class="stylish" name="bankInfo"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-column">
+                                    <div class="field-label">Other Details</div>
+                                    <div class="field pencil-icon">
+                                        <textarea class="stylish" name="otherInfo"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Service Details-->
+                <div id="serviceSection">
+                    <div class="fieldset-wrapper">
+                    <fieldset class="fieldset">
+                        <legend class="legend">Service Details</legend>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Coverages</div>
+                                <div class="field">
+                                    <input type="checkbox" name="marine" value="true" checked="true"><span >Marine</span>
+                                    <input type="checkbox" name="property" value="true" checked="true"><span >Property</span>
+                                    <input type="checkbox" name="healthAndBenefits" value="true" checked="true"><span >Health And Benefits</span>
+                                    <input type="checkbox" name="liabilities" value="true" checked="true"><span >Liability</span>
+                                    <input type="checkbox" name="directorsAndOfficers" value="true" checked="true"><span >Directors And Officers</span>
+                                    <input type="checkbox" name="aviation" value="true" checked="true"><span >Aviation</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+                </div>
+                <div class="form-column" align="right" style="padding: 15px">
+                    <div>
+                        <input type="submit" class="save-button form-button" value="Save">
+                        <input type="submit" class="save-button form-button" value="Cancel">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <input type="hidden" value="<%=orgId%>" name="orgId">
+</form>

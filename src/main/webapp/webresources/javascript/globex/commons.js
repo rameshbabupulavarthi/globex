@@ -104,3 +104,54 @@ PagingView=Backbone.View.extend({
         this.$el.empty();
     }
 });
+
+FilterView=Backbone.View.extend({
+    events:{
+            'click .filter-list':'showFilters'
+    },
+    template:'<div class="">'+
+                '<div class="popup-content">'+
+                   '<div class="">Filter</div>'+
+                   '<div class="popup-body">'+
+
+                   '</div>'+
+                '</div>'+
+             '</div>',
+    render: function() {
+        /*var template = this.template;
+        this.$el.append($(template));
+        $("body").addClass("blur-background");
+        this.$el.find("#popupContainer").show("slow",function(){ });*/
+    },
+    showFilters:function(){
+        var template = this.template;
+        this.$el.html($(template));
+    }
+});
+
+
+
+
+function getPhoneNumber(user){
+    var phoneNo="";
+    if(user.phoneCountryCode){
+       phoneNo=user.phoneCountryCode+"-";
+    }
+    if(user.phoneAreaCode){
+        phoneNo=phoneNo+user.phoneAreaCode+"-";
+    }
+    if(user.phone){
+        phoneNo=phoneNo+user.phone;
+    }
+    return phoneNo;
+}
+
+function getUserName(user){
+    var fullName=user.firstName+","+user.lastName;
+    return fullName;
+}
+
+function getAddress(address){
+    var fullAddress=address.address1+","+address.address1;
+    return fullAddress;
+}

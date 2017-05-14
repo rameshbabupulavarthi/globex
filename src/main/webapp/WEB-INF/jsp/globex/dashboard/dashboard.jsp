@@ -90,7 +90,8 @@
                              <div class="sub-menu">
                                  <ul class="sub-menu-ul">
                                      <li class="sub-menu-item navigate-manage-country">Country</li>
-                                     <li class="sub-menu-item navigate-pm-registration">Partner Market</li>
+                                     <!-- <li class="sub-menu-item navigate-manage-pm">PM Registration</li> -->
+                                     <li class="sub-menu-item navigate-applications">Partner Market</li>
                                      <li class="sub-menu-item navigate-manage-lm">Local Market</li>
                                  </ul>
                              </div>
@@ -101,6 +102,10 @@
                      <li class="menu-group-item-text menu-toggle-content">BUSINESS ACTIVITIES</li>
                      <li class="menu-group-item">
                        <ul>
+                           <li class="menu-item navigate-manage-pm">
+                              <span class="menu-item-img"><span class="menu-item-img menu-item-dashboard"></span></span>
+                              <span class="menu-item-text menu-toggle-content">Current Applications</span>
+                           </li>
                            <li class="menu-item">
                               <span class="menu-item-img"><span class="menu-item-img menu-item-dashboard"></span></span>
                               <span class="menu-item-text menu-toggle-content">Accounts</span>

@@ -1,0 +1,337 @@
+<form method="post" autocomplete="off" action="/secure/savePM" id="savePMDetails" enctype="multipart/form-data">
+
+    <div class="accordian-header">
+        <div class="accordian-header-text">
+            Partner Market Details
+        </div>
+        <div class="accordian-toggle">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </div>
+    </div>
+
+    <div class="accordian-body">
+        <div class="form-wrapper">
+            <div class="container">
+
+                <!-- Organization Details-->
+                <div id="organizationSection">
+                    <div class="fieldset-wrapper">
+                    <fieldset class="fieldset">
+                        <legend class="legend">Enter Details</legend>
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Organization Name</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="orgName" maxlength="100" value="<%= orgName %>" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Address Line 1</div>
+                                <div class="field pencil-icon">
+                                    <input class="stylish" type="text" name="address1" maxlength="100" value="<%= address1 %>" >
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label">Address Line 2</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="address2" maxlength="100" value="<%= address2 %>" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Country</div>
+                                <div class="field pencil-icon">
+                                    <input class="stylish" type="text" name="country" maxlength="100" value="<%= country %>" >
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label">State</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="state" maxlength="100" value="<%= state %>" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">City</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="city" maxlength="100" value="<%= city %>" >
+                                </div>
+                            </div>
+                            <div class="form-column">
+                                <div class="field-label"> Zip Code</div>
+                                <div class="field pencil-icon">
+                                    <input class="stylish" type="text" name="zip" maxlength="100" value="<%= zip %>" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-column">
+                                <div class="field-label">Website</div>
+                                <div class="field company-icon">
+                                    <input class="stylish" type="text" name="website" maxlength="100" value="<%= website %>" >
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="approved" value="<%= approved %>">
+                        <input type="hidden" name="orgType" value="<%= orgType %>">
+                        <input type="hidden" name="orgId" value="<%= orgId %>">
+                    </fieldset>
+                </div>
+                </div>
+
+                <!-- Contact Details-->
+                <div id="contactSection">
+                    <div class="btn-layout">
+                        <div class="btn-wrapper">
+                            <div id="addContact" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Contact </span></div>
+                        </div>
+                    </div>
+                    <div id="contactDetails">
+                        <% if(users) {%>
+                        <% _.each(users, function(user){ %>
+                            <div class="fieldset-wrapper pm-contact">
+                            <fieldset class="fieldset">
+                                <legend class="legend"> Primary Contact Person - Administrator </legend>
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">First Name</div>
+                                        <div class="field user-icon">
+                                            <input class="stylish" type="text" value="<%=user.firstName%>" placeholder="Enter First Name" name="firstName">
+                                        </div>
+                                    </div>
+                                    <div class="form-column">
+                                        <div class="field-label">Last Name</div>
+                                        <div class="field user-icon">
+                                            <input class="stylish" type="text" value="<%=user.lastName%>" placeholder="Enter Last Name" name="lastName">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">User Name</div>
+                                        <div class="field user-icon">
+                                            <input class="stylish" type="text" value="<%=user.userName%>" name="userName" placeholder="Enter User Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-column">
+                                        <div class="field-label">Email</div>
+                                        <div class="field email-icon">
+                                            <input class="stylish" type="text" value="<%=user.email%>" name="email" placeholder="Enter Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Password</div>
+                                        <div class="field password-icon">
+                                            <input class="stylish" type="password" value="" name="password" placeholder="Enter Password">
+                                        </div>
+                                    </div>
+                                    <div class="form-column">
+                                        <div class="field-label">Confirm Password</div>
+                                        <div class="field password-icon">
+                                            <input class="stylish" type="password" value="" name="confirmPassword" placeholder="Confirm Password">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Phone</div>
+                                        <div class="field phone-icon">
+                                            <input class="stylish split-box-small" type="text" value="<%=user.phoneCountryCode%>" name="phoneCountryCode">
+                                            <input class="stylish split-box-medium" type="text" value="<%=user.phoneAreaCode%>" name="phoneAreaCode">
+                                            <input class="stylish split-box-big" type="text" value="<%=user.phone%>" name="phone">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Fax</div>
+                                        <div class="field fax-icon">
+                                            <input class="stylish split-box-small" type="text" value="<%=user.faxCountryCode%>" name="faxCountryCode">
+                                            <input class="stylish split-box-medium" type="text" value="<%=user.faxAreaCode%>" name="faxAreaCode">
+                                            <input class="stylish split-box-big" type="text" value="<%=user.fax%>" name="fax">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Mobile</div>
+                                        <div class="field mobile-icon">
+                                            <input class="stylish split-box-small" type="text" value="<%=user.mobileCountryCode%>" name="mobileCountryCode" >
+                                            <input name="mobile" class="stylish split-box-big" type="text" value="<%=user.mobile%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-column">
+                                        <div class="field-label">Comments</div>
+                                        <div class="field pencil-icon">
+                                            <textarea class="stylish" name="comments"><%=user.comments%></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="id" value="<%=user.id%>">
+                                <input type="hidden" name="userType" value="<%=user.userType%>">
+                            </fieldset>
+                        </div>
+                        <% }); %>
+                        <% } %>
+                    </div>
+                </div>
+
+                <!-- Banking Details-->
+                <div id="bankSection">
+                    <div class="btn-layout">
+                        <div class="btn-wrapper">
+                            <div id="addBankDetails" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Bank Details </span></div>
+                        </div>
+                    </div>
+                    <div id="bankDetails">
+                        <% if(accountInfos) {%>
+                        <% _.each(accountInfos, function(accountInfo){ %>
+                          <div class="fieldset-wrapper pm-bank">
+                            <fieldset class="fieldset">
+                                <legend class="legend">Banking Information</legend>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Accounting Contact</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">First Name</div>
+                                        <div class="field user-icon">
+                                            <input class="stylish" type="text" value="<%=accountInfo.contactFirstName%>" placeholder="Enter First Name" name="contactFirstName">
+                                        </div>
+                                    </div>
+                                    <div class="form-column">
+                                        <div class="field-label">Last Name</div>
+                                        <div class="field user-icon">
+                                            <input class="stylish" type="text" value="<%=accountInfo.contactLastName%>" placeholder="Enter Last Name" name="contactLastName">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Email</div>
+                                        <div class="field email-icon">
+                                            <input class="stylish" type="text" value="<%=accountInfo.contactEmail%>" name="contactEmail" placeholder="Enter Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Phone</div>
+                                        <div class="field phone-icon">
+                                            <input class="stylish split-box-small" type="text" value="<%=accountInfo.contactPhoneCountryCode%>" name="contactPhoneCountryCode">
+                                            <input class="stylish split-box-medium" type="text" value="<%=accountInfo.contactPhoneAreaCode%>" name="contactPhoneAreaCode">
+                                            <input class="stylish split-box-big" type="text" value="<%=accountInfo.contactPhone%>" name="contactPhone">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Fax</div>
+                                        <div class="field fax-icon">
+                                            <input class="stylish split-box-small" type="text" value="<%=accountInfo.contactFaxCountryCode%>" name="contactFaxCountryCode">
+                                            <input class="stylish split-box-medium" type="text" value="<%=accountInfo.contactFaxAreaCode%>" name="contactFaxAreaCode">
+                                            <input class="stylish split-box-big" type="text" value="<%=accountInfo.contactFax%>" name="contactFax">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Mobile</div>
+                                        <div class="field mobile-icon">
+                                            <input class="stylish split-box-small" type="text" value="<%=accountInfo.contactMobileCountryCode%>" name="contactMobileCountryCode" >
+                                            <input name="contactMobile" class="stylish split-box-big" type="text" value="<%=accountInfo.contactMobile%>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Banking Info</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Bank Details</div>
+                                        <div class="field pencil-icon">
+                                            <textarea class="stylish" name="bankInfo"><%=accountInfo.bankInfo%></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-column">
+                                        <div class="field-label">Other Details</div>
+                                        <div class="field pencil-icon">
+                                            <textarea class="stylish" name="otherInfo"><%=accountInfo.otherInfo%></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="accountInfoId" value="<%=accountInfo.accountInfoId%>">
+                            </fieldset>
+                        </div>
+                        <% }); %>
+                        <% } %>
+                    </div>
+                </div>
+
+                <!-- Service Details-->
+                <div id="serviceSection">
+                    <% if(accountInfos) {%>
+                    <% _.each(coverageAreas, function(coverageArea){ %>
+                    <div class="fieldset-wrapper ">
+                        <fieldset class="fieldset">
+                            <legend class="legend">Service Details</legend>
+
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <div class="field-label">Coverages</div>
+                                    <div class="field">
+                                        <input type="checkbox" name="marine" value="<%=coverageArea.marine%>" checked="<%=coverageArea.marine%>"><span >Marine</span>
+                                        <input type="checkbox" name="property" value="<%=coverageArea.property%>" checked="<%=coverageArea.property%>"><span >Property</span>
+                                        <input type="checkbox" name="healthAndBenefits" value="<%=coverageArea.healthAndBenefits%>" checked="<%=coverageArea.healthAndBenefits%>"><span >Health And Benefits</span>
+                                        <input type="checkbox" name="liabilities" value="<%=coverageArea.liabilities%>" checked="<%=coverageArea.liabilities%>"><span >Liability</span>
+                                        <input type="checkbox" name="directorsAndOfficers" value="<%=coverageArea.directorsAndOfficers%>" checked="<%=coverageArea.directorsAndOfficers%>"><span >Directors And Officers</span>
+                                        <input type="checkbox" name="aviation" value="<%=coverageArea.aviation%>" checked="<%=coverageArea.aviation%>"><span >Aviation</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="coverageAreaId" value="<%=coverageArea.coverageAreaId%>">
+                        </fieldset>
+                    </div>
+                    <% }); %>
+                    <% } %>
+                </div>
+
+                <div class="form-column" align="right" style="padding: 15px">
+                    <div>
+                        <input type="submit" class="save-button form-button" value="Save">
+                        <input type="submit" class="save-button form-button" value="Cancel">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <input type="hidden" value="<%=orgId%>" name="orgId">
+</form>

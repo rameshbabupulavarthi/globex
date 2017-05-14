@@ -5,7 +5,7 @@ MenuNavigatorView=Backbone.View.extend({
          'mouseleave .menu-container':'hideMenu',
          'click .navigate-manage-user':'renderManageUser',
          'click .navigate-dashboard':'renderDashboard',
-         'click .navigate-pm-registration':'renderPMRegistration',
+         'click .navigate-applications':'renderPMRegistration',
          'click .navigate-pm-apps':'renderPMApplications'
      },
      initialize:function(){
@@ -35,8 +35,8 @@ MenuNavigatorView=Backbone.View.extend({
      },
      renderPMRegistration:function(){
        require(['globex/pm/pmRegistration'], function() {
-            var registrationView=new RegistrationView();
-            registrationView.render();
+            var applicationView=new ApplicationView();
+            applicationView.render();
         });
      },
      renderPMApplications:function(){

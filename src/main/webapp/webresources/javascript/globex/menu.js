@@ -8,7 +8,8 @@ MenuNavigatorView=Backbone.View.extend({
          'click .navigate-manage-user':'renderManageUser',
          'click .navigate-dashboard':'renderDashboard',
          'click .navigate-manage-country':'renderManageCountry',
-         'click .navigate-pm-registration':'renderPMList'
+         'click .navigate-applications':'renderApplication',
+         'click .navigate-manage-pm':'renderPMList',
      },
      initialize:function(){
      },
@@ -48,10 +49,16 @@ MenuNavigatorView=Backbone.View.extend({
 
          });
      },
-     renderPMList:function(){
+     renderApplication:function(){
         require(['globex/pm/pm.application'], function() {
             var appSubmissionListView=new AppSubmissionListView({el:"#layout-body-content"});
             appSubmissionListView.render();
         });
+     },
+     renderPMList:function(){
+         require(['globex/pm/pm.registration'], function() {
+             var pmListView=new PMListView({el:"#layout-body-content"});
+             pmListView.render();
+         });
      }
 });

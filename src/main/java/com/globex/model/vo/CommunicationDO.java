@@ -2,10 +2,12 @@ package com.globex.model.vo;
 
 import com.globex.model.entity.common.Communication;
 import com.globex.model.vo.pm.*;
+import com.utils.DateUtil;
 import lombok.Data;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Sunil Golla on 3/12/2017.
@@ -43,6 +45,10 @@ public class CommunicationDO implements Serializable{
 
     private Long fileId;
 
+    private String dateCreated;
+
+    private String replyExpectedBy;
+
     public CommunicationDO(){
 
     }
@@ -61,5 +67,7 @@ public class CommunicationDO implements Serializable{
         this.showToLm=communication.isShowToLm();
         this.replySent=communication.isReplySent();
         this.country=communication.getCountry();
+        /*this.dateCreated= DateUtil.formatDate(communication.getDateCreated());
+        this.replyExpectedBy=DateUtil.formatDate(communication.getReplyExpectedBy());*/
     }
 }

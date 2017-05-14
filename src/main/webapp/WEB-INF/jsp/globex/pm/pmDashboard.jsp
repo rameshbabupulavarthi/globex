@@ -84,7 +84,7 @@
                               <span class="menu-item-wrapper"><span class="menu-item-img menu-item-dashboard"></span>
                               <span class="menu-item-text menu-toggle-content">Current Applications</span>
                            </li>
-                           <li class="navigate-pm-registration">
+                           <li class="navigate-applications">
                               <span class="menu-item-wrapper"><span class="menu-item-img menu-item-dashboard"></span>
                               <span class="menu-item-text menu-toggle-content">New Application</span>
                            </li>
