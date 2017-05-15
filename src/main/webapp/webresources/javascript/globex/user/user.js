@@ -2,6 +2,7 @@ var UserDetailView =Backbone.View.extend({
     model:UserModel,
     events: {
         //'click #saveUser' :'saveUserDetails'
+        "click .cancel-button":"cancel",
     },
     render: function(){
         var _self=this;
@@ -104,6 +105,10 @@ var UserDetailView =Backbone.View.extend({
                 }
             });
         });
+    },
+    cancel:function(e){
+        e.preventDefault();
+        $(".navigate-manage-user").trigger("click");
     }
 });
 
@@ -168,7 +173,7 @@ var UserProfileView =Backbone.View.extend({
 var UserPopupView =Backbone.View.extend({
     model:UserModel,
     events: {
-
+        "click .cancel-button":"cancel"
     },
     render: function(){
         var _self=this;
@@ -189,6 +194,13 @@ var UserPopupView =Backbone.View.extend({
             popupView.$el.find("#popup-content").html(template);
             popupView.$el.find("[name='userType']").val(variables.userType);
             popupView.$el.find("#popup-title").html("User Details");
+
+            popupView.$el.find("#popupContainer .cancel-button").click(function(e){
+                e.preventDefault();
+                $(".popup-close").trigger("click");
+                $(".navigate-manage-user").trigger("click");
+            });
+
             _self.validateDetails();
         });
     },
@@ -268,6 +280,11 @@ var UserPopupView =Backbone.View.extend({
                     },
                 });
             });
+    },
+    cancel:function(e){
+        e.preventDefault();
+        $(".popup-close").trigger("click");
+        $(".navigate-manage-user").trigger("click");
     }
 });
 /**popup view to display user**/

@@ -99,6 +99,12 @@ AppSubmissionView=Backbone.View.extend({
                 popupView.$el.find("#popup-title").html("File Details");
                 var fileApplicationPopupView = new FileApplicationPopupView({el:"#popup-content",model:_self.model});
                 fileApplicationPopupView.render();
+
+                popupView.$el.find("#popupContainer .cancel-button").click(function(e){
+                    e.preventDefault();
+                    $(".popup-close").trigger("click");
+                    $(".navigate-applications").trigger("click");
+                });
             });
         },
         renderComments:function(){
@@ -249,6 +255,7 @@ FileApplicationDetailView=Backbone.View.extend({
                  '</div>',
   events:{
     "change #pmCoverage":"renderCoverage"
+    "click .cancel-button":"cancel"
   },
   model : AppSubmissionModel,
   initialize: function(opts) {
@@ -410,7 +417,11 @@ FileApplicationDetailView=Backbone.View.extend({
                       },
                   });
               });
-      }
+      },
+  cancel:function(e){
+      e.preventDefault();
+      $(".navigate-applications").trigger("click");
+  }
 });
 
 
@@ -418,7 +429,8 @@ FileApplicationDetailView=Backbone.View.extend({
 FileApplicationPopupView=Backbone.View.extend({
   //el:".message-holder",
   events:{
-    "change .pmCoverage":"renderCoverage"
+    "change .pmCoverage":"renderCoverage",
+    "click .cancel-button":"cancel"
   },
   model : AppSubmissionModel,
   initialize: function(opts) {
@@ -509,7 +521,11 @@ FileApplicationPopupView=Backbone.View.extend({
                       },
                   });
               });
-      }
+      },
+  cancel:function(e){
+        e.preventDefault();
+        $(".navigate-applications").trigger("click");
+  }
 });
 
 /*** comments ****/

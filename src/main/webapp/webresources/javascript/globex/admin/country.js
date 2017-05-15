@@ -1,6 +1,7 @@
 var CountryDetailView =Backbone.View.extend({
     model:CountryModel,
     events: {
+        "click .cancel-button":"cancel"
     },
     render: function(){
         var _self=this;
@@ -63,6 +64,10 @@ var CountryDetailView =Backbone.View.extend({
                 }
             });
         });
+    },
+    cancel:function(e){
+         e.preventDefault();
+         $(".navigate-manage-country").trigger("click");
     }
 });
 
@@ -227,7 +232,7 @@ var CountryView =Backbone.View.extend({
 var CountryPopupView =Backbone.View.extend({
     model:CountryModel,
     events: {
-
+        "click .cancel-button":"cancel"
     },
     render: function(){
 
@@ -253,8 +258,6 @@ var CountryPopupView =Backbone.View.extend({
             /*popupView.$el.find("#popup-content").append(template);*/
             _self.validateDetails();
         });
-
-
     },
     validateDetails:function(){
             var _self=this;
@@ -287,6 +290,11 @@ var CountryPopupView =Backbone.View.extend({
                     },
                 });
             });
-    }
+    },
+    cancel:function(e){
+          e.preventDefault();
+          $(".popup-close").trigger("click");
+          $(".navigate-manage-country").trigger("click");
+      }
 });
 /**popup view to display Country**/

@@ -114,7 +114,7 @@ var PMCollection=Backbone.Collection.extend({
 var PartnerMarketPopupView =Backbone.View.extend({
     model:PartnerMarketModel,
     events: {
-
+        "click .cancel-button":"cancel"
     },
     render: function(){
         var _self=this;
@@ -143,14 +143,19 @@ var PartnerMarketPopupView =Backbone.View.extend({
             popupView.$el.find("#popup-title").html("Partner Market Details");
             //_self.validateDetails();
         });
-    }
+    },
+    cancel:function(e){
+          e.preventDefault();
+          $(".navigate-manage-pm").trigger("click");
+      }
 });
 
 var PMRegistrationView=Backbone.View.extend({
         model:PartnerMarketModel,
         events: {
             "click #addContact":"addContact",
-            "click #addBankDetails":"addBankDetails"
+            "click #addBankDetails":"addBankDetails",
+            "click .cancel-button":"cancel",
         },
         render: function(){
             var _self=this;
@@ -345,6 +350,10 @@ var PMRegistrationView=Backbone.View.extend({
             require(['text!'+'templates/pm/registration/banking_details.html'], function(banking_details) {
                 _self.$el.find("#bankDetails").append(banking_details);
             });
+        },
+        cancel:function(e){
+            e.preventDefault();
+             $(".navigate-manage-pm").trigger("click");
         }
 });
 
