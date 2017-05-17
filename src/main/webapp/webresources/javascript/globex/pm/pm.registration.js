@@ -155,6 +155,9 @@ var PMRegistrationView=Backbone.View.extend({
         events: {
             "click #addContact":"addContact",
             "click #addBankDetails":"addBankDetails",
+            "click #addRegistrationDetails":"addRegistrationDetails",
+            "click #addCoverageContacts":"addCoverageContacts",
+            "click #addBranchOffices":"addBranchOffices",
             "click .cancel-button":"cancel",
         },
         render: function(){
@@ -349,6 +352,24 @@ var PMRegistrationView=Backbone.View.extend({
             var _self=this;
             require(['text!'+'templates/pm/registration/banking_details.html'], function(banking_details) {
                 _self.$el.find("#bankDetails").append(banking_details);
+            });
+        },
+        addRegistrationDetails:function(){
+            var _self=this;
+            require(['text!'+'templates/pm/registration/partner_registered_country.html'], function(partner_registered_country) {
+                _self.$el.find("#registeredCountrySection").append(partner_registered_country);
+            });
+        },
+        addCoverageContacts:function(){
+            var _self=this;
+            require(['text!'+'templates/pm/registration/partner_coverage_contact.html'], function(partner_coverage_contact) {
+                _self.$el.find("#coverageCountrySection").append(partner_coverage_contact);
+            });
+        },
+        addBranchOffices:function(){
+            var _self=this;
+            require(['text!'+'templates/pm/registration/partner_branch_office.html'], function(partner_branch_office) {
+                _self.$el.find("#branchOfficeSection").append(partner_branch_office);
             });
         },
         cancel:function(e){

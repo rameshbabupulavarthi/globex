@@ -254,7 +254,7 @@ FileApplicationDetailView=Backbone.View.extend({
                      '</form>'+
                  '</div>',
   events:{
-    "change #pmCoverage":"renderCoverage"
+    "change #pmCoverage":"renderCoverage",
     "click .cancel-button":"cancel"
   },
   model : AppSubmissionModel,

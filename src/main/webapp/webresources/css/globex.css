@@ -474,9 +474,13 @@ li{
     padding-top: 0px;
 }
 
-#contactSection .btn-wrapper,#bankSection .btn-wrapper{
+.addOptions .btn-wrapper{
     margin-bottom:0px;
     margin-right: 40px;
+}
+
+.repeatable-wrapper{
+    border-top: 1px dotted #adadad;
 }
 
 label.error {
