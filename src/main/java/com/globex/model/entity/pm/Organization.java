@@ -1,5 +1,6 @@
 package com.globex.model.entity.pm;
 
+import com.globex.model.entity.common.Attachment;
 import com.globex.model.entity.user.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,7 +10,6 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -18,7 +18,7 @@ import java.util.Set;
  */
 @Data
 @EqualsAndHashCode(of = {"id"})
-@ToString(exclude={"users","accountInfos","coverageAreas"})
+@ToString(exclude={"users","accountInfos","coverageAreas","attachments","registeredCountries","coverageContacts","branchOffices"})
 @Entity
 @Table(name="organization")
 public class Organization implements Serializable{
@@ -70,16 +70,33 @@ public class Organization implements Serializable{
     @Column(name="LICENSED_STATE")
     private String licenceState;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL,CascadeType.PERSIST})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     private Set<User> users;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL,CascadeType.PERSIST})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     private Set<AccountInfo> accountInfos;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL,CascadeType.PERSIST})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     private Set<CoverageArea> coverageAreas;
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<Attachment> attachments;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<RegisteredCountry> registeredCountries;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<CoverageContact> coverageContacts;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<BranchOffice> branchOffices;
 
 }

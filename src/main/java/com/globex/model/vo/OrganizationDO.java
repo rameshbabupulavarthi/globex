@@ -1,13 +1,14 @@
 package com.globex.model.vo;
 
-import com.globex.model.entity.pm.AccountInfo;
-import com.globex.model.entity.pm.CoverageArea;
-import com.globex.model.entity.pm.Organization;
+import com.globex.model.entity.pm.*;
 import com.globex.model.entity.user.User;
 import com.globex.model.vo.pm.AccountInfoDO;
+import com.globex.model.vo.pm.BranchOfficeDO;
 import com.globex.model.vo.pm.CoverageAreaDO;
+import com.globex.model.vo.pm.RegisteredCountryDO;
 import com.utils.DateUtil;
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -17,6 +18,7 @@ import java.util.Set;
  * Created by Sunil Golla on 2/10/2017.
  */
 @Data
+@ToString(exclude = {"users","accountInfoDOs","coverageAreaDOs","registeredCountryDOs","coverageContactDOs","branchOfficeDOs"})
 public class OrganizationDO implements Serializable {
 
     private Long orgId;
@@ -51,21 +53,26 @@ public class OrganizationDO implements Serializable {
 
     private Set<UserDO> users;
 
-    private Set<AccountInfoDO> accountInfos;
+    private Set<AccountInfoDO> accountInfoDOs;
 
-    private Set<CoverageAreaDO> coverageAreas;
+    private Set<CoverageAreaDO> coverageAreaDOs;
 
+    private Set<RegisteredCountryDO> registeredCountryDOs;
+
+    private Set<CoverageContactDO> coverageContactDOs;
+
+    private Set<BranchOfficeDO> branchOfficeDOs;
 
     private String userJsonStr;
     private String accountInfoJsonStr;
     private String coverageAreaJsonStr;
-
+    private String registeredCountriesJsonStr;
+    private String coverageContactsJsonStr;
+    private String branchOfficeJsonStr;
 
     public OrganizationDO(){
 
-
     }
-
 
     public OrganizationDO(Organization organization){
         this.orgId=organization.getId();
@@ -105,20 +112,32 @@ public class OrganizationDO implements Serializable {
         organization.setLicenceState(this.getLicenceState());
 
         organization.setUsers(getUsers(this.getUsers(),organization));
-        organization.setAccountInfos(getAccountInfos(this.getAccountInfos(),organization));
-        organization.setCoverageAreas(getCoverageAreas(this.getCoverageAreas(),organization));
+        organization.setAccountInfos(getAccountInfos(this.getAccountInfoDOs(),organization));
+        organization.setCoverageAreas(getCoverageAreas(this.getCoverageAreaDOs(),organization));
+
+        organization.setRegisteredCountries(getRegisteredCountries(this.getRegisteredCountryDOs(), organization));
+        organization.setCoverageContacts(getCoverageContacts(this.getCoverageContactDOs(), organization));
+        organization.setBranchOffices(getBranchOffices(this.getBranchOfficeDOs(), organization));
+
         return organization;
     }
 
-    public void loadChildren(Organization organization){
+    public void loadFullDetails(Organization organization){
 
         Set<User> users= organization.getUsers();
         Set<AccountInfo> accountInfos=organization.getAccountInfos();
         Set<CoverageArea> coverageAreas=organization.getCoverageAreas();
+        Set<RegisteredCountry> registeredCountries=organization.getRegisteredCountries();
+        Set<CoverageContact> coverageContacts=organization.getCoverageContacts();
+        Set<BranchOffice> branchOffices=organization.getBranchOffices();
+
 
         Set<UserDO> userDOs= new HashSet<UserDO>();
         Set<AccountInfoDO> accountInfoDOs=new HashSet<AccountInfoDO>();
         Set<CoverageAreaDO> coverageAreaDOs=new HashSet<CoverageAreaDO>();
+        Set<RegisteredCountryDO> registeredCountryDOs=new HashSet<RegisteredCountryDO>();
+        Set<CoverageContactDO> coverageContactDOs=new HashSet<CoverageContactDO>();
+        Set<BranchOfficeDO> branchOfficeDOs=new HashSet<BranchOfficeDO>();
 
         for(User user: users){
             UserDO userDO=new UserDO(user);
@@ -135,9 +154,38 @@ public class OrganizationDO implements Serializable {
             coverageAreaDOs.add(coverageAreaDO);
         }
 
+        for(RegisteredCountry registeredCountry:registeredCountries){
+            RegisteredCountryDO registeredCountryDO=new RegisteredCountryDO(registeredCountry);
+            registeredCountryDOs.add(registeredCountryDO);
+        }
+
+        for(CoverageContact coverageContact:coverageContacts){
+            CoverageContactDO coverageContactDO=new CoverageContactDO(coverageContact);
+            coverageContactDOs.add(coverageContactDO);
+        }
+
+        for(BranchOffice branchOffice:branchOffices){
+            BranchOfficeDO branchOfficeDO=new BranchOfficeDO(branchOffice);
+            branchOfficeDOs.add(branchOfficeDO);
+        }
+
         this.users=userDOs;
-        this.accountInfos=accountInfoDOs;
-        this.coverageAreas=coverageAreaDOs;
+        this.accountInfoDOs=accountInfoDOs;
+        this.coverageAreaDOs=coverageAreaDOs;
+        this.registeredCountryDOs=registeredCountryDOs;
+        this.coverageContactDOs=coverageContactDOs;
+        this.branchOfficeDOs=branchOfficeDOs;
+    }
+
+    public void loadUsers(Organization organization){
+        Set<UserDO> userDOs= new HashSet<UserDO>();
+        Set<User> users= organization.getUsers();
+        for(User user: users){
+            UserDO userDO=new UserDO(user);
+            userDOs.add(userDO);
+        }
+
+        this.users=userDOs;
     }
 
     private Set<User> getUsers(Set<UserDO> userDOs,Organization organization){
@@ -175,6 +223,46 @@ public class OrganizationDO implements Serializable {
                 coverageAreas.add(coverageArea);
             }
             return coverageAreas;
+        }
+        return null;
+    }
+
+
+    private Set<RegisteredCountry> getRegisteredCountries(Set<RegisteredCountryDO> registeredCountryDOs,Organization organization){
+        if(registeredCountryDOs!=null && !registeredCountryDOs.isEmpty()){
+            Set<RegisteredCountry> registeredCountries=new HashSet<RegisteredCountry>();
+            for(RegisteredCountryDO registeredCountryDO:registeredCountryDOs){
+                RegisteredCountry registeredCountry=registeredCountryDO.value();
+                registeredCountry.setOrganization(organization);
+                registeredCountries.add(registeredCountry);
+            }
+            return registeredCountries;
+        }
+        return null;
+    }
+
+    private Set<CoverageContact> getCoverageContacts(Set<CoverageContactDO> coverageContactDOs,Organization organization){
+        if(coverageContactDOs!=null && !coverageContactDOs.isEmpty()){
+            Set<CoverageContact> coverageContacts=new HashSet<CoverageContact>();
+            for(CoverageContactDO coverageContactDO:coverageContactDOs){
+                CoverageContact coverageContact=coverageContactDO.value();
+                coverageContact.setOrganization(organization);
+                coverageContacts.add(coverageContact);
+            }
+            return coverageContacts;
+        }
+        return null;
+    }
+
+    private Set<BranchOffice> getBranchOffices(Set<BranchOfficeDO> branchOfficeDOs,Organization organization){
+        if(branchOfficeDOs!=null && !branchOfficeDOs.isEmpty()){
+            Set<BranchOffice> branchOffices=new HashSet<BranchOffice>();
+            for(BranchOfficeDO branchOfficeDO:branchOfficeDOs){
+                BranchOffice branchOffice=branchOfficeDO.value();
+                branchOffice.setOrganization(organization);
+                branchOffices.add(branchOffice);
+            }
+            return branchOffices;
         }
         return null;
     }

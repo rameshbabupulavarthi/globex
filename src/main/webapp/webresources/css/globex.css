@@ -444,21 +444,21 @@ li{
     width:100%;
 }
 
-.split-box-small{
+.form-wrapper .field .stylish.split-box-small{
     display:inline-block;
     width:40px;
     margin:0 10px 0 0;
 }
 
-.split-box-medium{
+.form-wrapper .field .stylish.split-box-medium{
     display:inline-block;
     width:60px;
     margin:0 10px 0 0;
 }
 
-.split-box-big{
+.form-wrapper .field .stylish.split-box-big{
     display:inline-block;
-    width:150px;
+    width: 194px;
     margin:0 10px 0 0;
 }
 
@@ -480,7 +480,34 @@ li{
 }
 
 .repeatable-wrapper{
+    margin-top: 20px;
+}
+
+.repeatable-section-seperator{
     border-top: 1px dotted #adadad;
+}
+
+.dotted-border{
+    border-top: 1px dotted #9b59b6;
+}
+
+.section-seperator-icon{
+    position: relative;
+    top: -10px;
+    text-align: center;
+    width: 100%;
+}
+
+.repeatable-section{
+    float:right;
+}
+
+.delete-section{
+    font: normal normal normal 14px/1 FontAwesome;
+    float: right;
+    margin-right: 35px;
+    color: #c71585;
+    font-size: 20px;
 }
 
 label.error {
@@ -500,6 +527,19 @@ label.error {
     position: absolute;
     padding-left: 9px;
     padding-top: 8px;
+}
+
+.form-wrapper .field {
+   display: inline-block;
+   width: 100%;
+}
+
+.form-wrapper .field .stylish {
+    width: 70%;
+}
+
+.form-wrapper .field .stylish {
+    width: 70%;
 }
 
 .field input[type=text]:hover,.field textarea:hover, .field select:hover,.field input[type=password]:hover,.field input[type=file]:hover,
@@ -591,11 +631,20 @@ label.error {
    content: "\f019";
 }
 
+.minus-circle::before{
+    content: "\f056";
+}
+
+.align-justify::before{
+    content: "\f039";
+}
+
 select.stylish{
     width: 220px;
     background: white;
     height: 40px;
-    padding: 2px 8px 4px 32px;
+    color: black;
+    padding: 11px 0px 8px 25px;
 }
 
 

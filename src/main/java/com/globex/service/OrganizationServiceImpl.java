@@ -15,6 +15,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -79,7 +80,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         List<OrganizationDO> orgDOs=new ArrayList<OrganizationDO>();
         for(Organization organization:list){
             OrganizationDO organizationDO=new OrganizationDO(organization);
-            organizationDO.loadChildren(organization);
+            organizationDO.loadUsers(organization);
             orgDOs.add(organizationDO);
         }
         session.close();
@@ -92,7 +93,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         Session session=sessionFactory.openSession();
         Organization organization=(Organization)session.get(Organization.class, orgId);
         OrganizationDO organizationDO=new OrganizationDO(organization);
-        organizationDO.loadChildren(organization);
+        organizationDO.loadFullDetails(organization);
         session.close();
         return organizationDO;
     }
@@ -104,6 +105,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         session.close();
     }
 
+    @Transactional
     public void save(OrganizationDO organizationDO){
 
         Organization organization= organizationDO.value();
@@ -120,6 +122,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         }else {
             session.save(organization);
         }
+        session.flush();;
         session.close();
     }
 }

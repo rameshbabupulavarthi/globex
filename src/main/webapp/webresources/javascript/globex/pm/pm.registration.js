@@ -83,8 +83,8 @@ PMListView =Backbone.View.extend({
                         licenceState:organization.licenceState,
 
                         users:users,
-                        accountInfos:accountInfos,
-                        coverageAreas:coverageAreas
+                        /*accountInfos:accountInfos,
+                        coverageAreas:coverageAreas*/
                     });
                     var partnerMarketView = new PartnerMarketView({model: partnerMarketModel});
                     partnerMarketView.render();
@@ -135,7 +135,9 @@ var PartnerMarketPopupView =Backbone.View.extend({
                     zip:_self.model.get("zip"),website:_self.model.get("website"),orgType:_self.model.get("orgType"),
                     parentOrgId:_self.model.get("parentOrgId"),approved:_self.model.get("approved"),comment:_self.model.get("comment"),
                     licenceState:_self.model.get("licenceState"),
-                    users:_self.model.get("users"),accountInfos:_self.model.get("accountInfos"),coverageAreas:_self.model.get("coverageAreas")
+                    users:_self.model.get("users"),accountInfos:_self.model.get("accountInfos"),coverageAreas:_self.model.get("coverageAreas"),
+                    registeredCountries:_self.model.get("registeredCountries"),coverageContacts:_self.model.get("coverageContacts"),
+                    branchOffices:_self.model.get("branchOffices")
                 };
             }
             var template = _.template( partner_registration, variables );
@@ -178,7 +180,10 @@ var PMRegistrationView=Backbone.View.extend({
                     zip:_self.model.get("zip"),website:_self.model.get("website"),orgType:_self.model.get("orgType"),
                     parentOrgId:_self.model.get("parentOrgId"),approved:_self.model.get("approved"),comment:_self.model.get("comment"),
                     licenceState:_self.model.get("licenceState"),
-                    users:_self.model.get("users"),accountInfos:_self.model.get("accountInfos"),coverageAreas:_self.model.get("coverageAreas")
+                    users:_self.model.get("users"),accountInfos:_self.model.get("accountInfos"),coverageAreas:_self.model.get("coverageAreas"),
+                    accountInfos:_self.model.get("accountInfos"),coverageAreas:_self.model.get("coverageAreas"),
+                    registeredCountries:_self.model.get("registeredCountries"),coverageContacts:_self.model.get("coverageContacts"),
+                    branchOffices:_self.model.get("branchOffices")
                 };
                 partner_registration="partner_edit_view.html";
             }
@@ -187,6 +192,7 @@ var PMRegistrationView=Backbone.View.extend({
                  partner_registration = _.template( partner_registration, variables );
                 _self.$el.html(partner_registration);
                 _self.validateDetails();
+                $(".date-picker").datepicker({ dateFormat: 'dd-mm-yy'});
             });
 
         },
@@ -318,6 +324,53 @@ var PMRegistrationView=Backbone.View.extend({
                         coverageAreaJsonArray.push(coverageAreaJson);
                         organizationJson.coverageAreaJsonStr=JSON.stringify(coverageAreaJsonArray);
 
+                        var $registeredCountriesSection=_self.$el.find("#registeredCountriesSection");
+                        var registeredCountries=$registeredCountriesSection.find(".registered-country");
+                        var registeredCountriesJsonArray=[];
+                        for(var i=0;i<registeredCountries.length;i++){
+                            var $registeredCountry=$(registeredCountries[i]);
+                            var registeredCountryJson={
+                              registeredCountryId:$registeredCountry.find("[name='registeredCountryId']").val(),
+                              countryName:$registeredCountry.find("[name='countryName']").val(),
+                              registrationNumber:$registeredCountry.find("[name='registrationNumber']").val(),
+                              registrationDate:$registeredCountry.find("[name='registrationDate']").val(),
+                              //regAttachments:$registeredCountry.find("[name='regAttachments']").val(),
+                            }
+                            registeredCountriesJsonArray.push(registeredCountryJson);
+                        }
+                        organizationJson.registeredCountriesJsonStr=JSON.stringify(registeredCountriesJsonArray);
+
+                        var $coverageContactsSection=_self.$el.find("#coverageContactsSection");
+                        var coverageContacts=$coverageContactsSection.find(".coverage-contact");
+                        var coverageContactsJsonArray=[];
+                        for(var i=0;i<coverageContacts.length;i++){
+                            var $coverageContact=$(coverageContacts[i]);
+                            var coverageContactJson={
+                              coverageContactId:$coverageContact.find("[name='coverageContactId']").val(),
+                              coverageArea:$coverageContact.find("[name='contactDepartment']").val(),
+                              contactName:$coverageContact.find("[name='contactPersonName']").val(),
+                              contactPhone:$coverageContact.find("[name='contactPhoneNumber']").val(),
+                              contactEmail:$coverageContact.find("[name='contactEmail']").val(),
+                              contactPosition:$coverageContact.find("[name='contactPosition']").val()
+                            };
+                            coverageContactsJsonArray.push(coverageContactJson);
+                        }
+                        organizationJson.coverageContactsJsonStr=JSON.stringify(coverageContactsJsonArray);
+
+                        var branchOfficesSection=_self.$el.find("#branchOfficesSection");
+                        var branchOffices=branchOfficesSection.find(".branch-office");
+                        var branchOfficesJsonArray=[];
+                        for(var i=0;i<branchOffices.length;i++){
+                            var $branchOffice=$(branchOffices[i]);
+                            var branchOfficeJson={
+                              branchOfficeId:$branchOffice.find("[name='branchOfficeId']").val(),
+                              branchCountry:$branchOffice.find("[name='branchCountry']").val(),
+                              branchAddress:$branchOffice.find("[name='branchAddress']").val(),
+                            }
+                            branchOfficesJsonArray.push(branchOfficeJson);
+                        }
+                        organizationJson.branchOfficeJsonStr=JSON.stringify(branchOfficesJsonArray);
+
                         var organizationJsonStr=JSON.stringify(organizationJson);
                         var formData=organizationJson;
 
@@ -430,8 +483,11 @@ var PartnerMarketView=Backbone.View.extend({
                    comment:organization.comment,
                    licenceState:organization.licenceState,
                    users:organization.users,
-                   accountInfos:organization.accountInfos,
-                   coverageAreas:organization.coverageAreas
+                   accountInfos:organization.accountInfoDOs,
+                   coverageAreas:organization.coverageAreaDOs,
+                   registeredCountries:organization.registeredCountryDOs,
+                   coverageContacts:organization.coverageContactDOs,
+                   branchOffices:organization.branchOfficeDOs
                });
 
                var popupView=new PopupView({el:"#popupWrapper"});
@@ -469,8 +525,11 @@ var PartnerMarketView=Backbone.View.extend({
                    comment:organization.comment,
                    licenceState:organization.licenceState,
                    users:organization.users,
-                   accountInfos:organization.accountInfos,
-                   coverageAreas:organization.coverageAreas
+                   accountInfos:organization.accountInfoDOs,
+                   coverageAreas:organization.coverageAreaDOs,
+                   registeredCountries:organization.registeredCountryDOs,
+                   coverageContacts:organization.coverageContactDOs,
+                   branchOffices:organization.branchOfficeDOs
                });
                var pmRegistrationView = new PMRegistrationView({el:"#layout-body-content",model: partnerMarketModel});
                pmRegistrationView.render();

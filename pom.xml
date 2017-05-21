@@ -458,51 +458,6 @@
             <artifactId>spring-data-solr</artifactId>
             <version>1.2.0.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.idpf</groupId>
-            <artifactId>epubcheck</artifactId>
-            <version>3.0.1</version>
-        </dependency>
-        <!-- dependencies for epublib -->
-        <dependency>
-            <groupId>net.sourceforge.htmlcleaner</groupId>
-            <artifactId>htmlcleaner</artifactId>
-            <version>2.2</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jdom</groupId>
-                    <artifactId>jdom</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.ant</groupId>
-                    <artifactId>ant</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.kxml</groupId>
-            <artifactId>kxml2</artifactId>
-            <version>2.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>3.1</version>
-        </dependency>
-        <!-- Rabit MQ -->
-        <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit</artifactId>
-            <version>${org.springframework.amqp.version}</version>
-        </dependency>
-
-        <!-- CSV reader. For unit test only -->
-        <dependency>
-            <groupId>net.sourceforge.javacsv</groupId>
-            <artifactId>javacsv</artifactId>
-            <version>2.0</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>net.sourceforge.cssparser</groupId>

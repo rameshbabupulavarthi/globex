@@ -6,11 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.globex.constants.Role;
 import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
+import com.globex.model.vo.CoverageContactDO;
 import com.globex.model.vo.OrganizationDO;
 import com.globex.model.vo.PageModel;
 import com.globex.model.vo.UserDO;
 import com.globex.model.vo.pm.AccountInfoDO;
+import com.globex.model.vo.pm.BranchOfficeDO;
 import com.globex.model.vo.pm.CoverageAreaDO;
+import com.globex.model.vo.pm.RegisteredCountryDO;
 import com.globex.service.OrganizationService;
 import com.globex.service.UserService;
 import com.utils.AppConstants;
@@ -102,9 +105,18 @@ public class RegistrationController {
             Set<AccountInfoDO> accountInfoDOs= mapper.readValue(organizationDO.getAccountInfoJsonStr(), new TypeReference<Set<AccountInfoDO>>() {});
             Set<CoverageAreaDO> coverageAreaDOs= mapper.readValue(organizationDO.getCoverageAreaJsonStr(), new TypeReference<Set<CoverageAreaDO>>() {});
 
+            Set<RegisteredCountryDO> registeredCountryDOs=mapper.readValue(organizationDO.getRegisteredCountriesJsonStr(), new TypeReference<Set<RegisteredCountryDO>>() {});
+            Set<CoverageContactDO> coverageContactDOs=mapper.readValue(organizationDO.getCoverageContactsJsonStr(), new TypeReference<Set<CoverageContactDO>>() {});
+            Set<BranchOfficeDO> branchOfficeDOs=mapper.readValue(organizationDO.getBranchOfficeJsonStr(), new TypeReference<Set<BranchOfficeDO>>() {});
+
             organizationDO.setUsers(userDOs);
-            organizationDO.setAccountInfos(accountInfoDOs);
-            organizationDO.setCoverageAreas(coverageAreaDOs);
+            organizationDO.setAccountInfoDOs(accountInfoDOs);
+            organizationDO.setCoverageAreaDOs(coverageAreaDOs);
+
+            organizationDO.setRegisteredCountryDOs(registeredCountryDOs);
+            organizationDO.setCoverageContactDOs(coverageContactDOs);
+            organizationDO.setBranchOfficeDOs(branchOfficeDOs);
+
             organizationService.save(organizationDO);
         }catch (JsonMappingException e) {
             logger.error("JsonMappingException error",e);
@@ -132,11 +144,14 @@ public class RegistrationController {
 
         String [] headers={"Organization","Address","Registered Date","Country","Website"};
 
+        HSSFCellStyle headerStyle=getCellStyle(workbook,headerColor,(short)50);
+        HSSFCellStyle dataStyle=getCellStyle(workbook, dataColor, (short) 51);
+
         HSSFRow row= sheet.createRow(startRow++);
         int cellNo=startCell;
         for(String header: headers) {
             HSSFCell cell = row.createCell(cellNo);
-            cell.setCellStyle(getCellStyle(workbook,headerColor,(short)50));
+            cell.setCellStyle(headerStyle);
             cell.setCellValue(header);
             sheet.setColumnWidth(cellNo,WIDTH);
             cellNo++;
@@ -152,27 +167,28 @@ public class RegistrationController {
             PageModel<OrganizationDO> orgInfoPage=organizationService.list(pageModel);
             List<OrganizationDO> orgList=orgInfoPage.getContent();
             pageModel.setPageNo(pageModel.getPageNo()+1);
+
             for (OrganizationDO organizationDO : orgList) {
                 cellNo = startCell;
                 row = sheet.createRow(rowNo++);
                 HSSFCell orgNameCell = row.createCell(cellNo++);
-                orgNameCell.setCellStyle(getCellStyle(workbook, dataColor, (short) 51));
+                orgNameCell.setCellStyle(dataStyle);
                 orgNameCell.setCellValue(organizationDO.getOrgName());
 
                 HSSFCell addressCell = row.createCell(cellNo++);
-                addressCell.setCellStyle(getCellStyle(workbook, dataColor, (short) 51));
+                addressCell.setCellStyle(dataStyle);
                 addressCell.setCellValue(organizationDO.getAddress1());
 
                 HSSFCell regDateCell = row.createCell(cellNo++);
-                regDateCell.setCellStyle(getCellStyle(workbook, dataColor, (short) 51));
+                regDateCell.setCellStyle(dataStyle);
                 regDateCell.setCellValue(organizationDO.getRegDate());
 
                 HSSFCell countryCell = row.createCell(cellNo++);
-                countryCell.setCellStyle(getCellStyle(workbook, dataColor, (short) 51));
+                countryCell.setCellStyle(dataStyle);
                 countryCell.setCellValue(organizationDO.getCountry());
 
                 HSSFCell websiteCell = row.createCell(cellNo++);
-                websiteCell.setCellStyle(getCellStyle(workbook, dataColor, (short) 50));
+                websiteCell.setCellStyle(dataStyle);
                 websiteCell.setCellValue(organizationDO.getWebsite());
             }
         }
