@@ -133,9 +133,13 @@ public class Country {
     @Column(name="GENERAL_COMMENTS")
     private String generalComments;
 
-    @Column(name="GENERAL_COMMENTS")
-    private Set<Attachment> generalAttachments;
+/*    @Column(name="GENERAL_COMMENTS")
+    private Set<Attachment> generalAttachments;*/
 
+
+    private Long createdBy;
+
+    private Long updatedBy;
 
    /* @Column(name="RETAIL_BROKER_REQUIRED")
     private Boolean retailBrokerRequired;

@@ -71,7 +71,7 @@ public class CountryDO {
 
         nonAdmittedComments=country.getNonAdmittedComments();
 
-        retailBrokerRequired=country.getRetailBrokerRequired();
+        /*retailBrokerRequired=country.getRetailBrokerRequired();
 
         retailBrokerComments=country.getRetailBrokerComments();
 
@@ -109,7 +109,7 @@ public class CountryDO {
 
        createdBy=country.getCreatedBy();
 
-       updatedBy=country.getUpdatedBy();
+       updatedBy=country.getUpdatedBy();*/
 
     }
 }

@@ -27,8 +27,8 @@ public class Clause {
     @Column(name = "COMMENTS")
     private String comments;
 
-    /*@OneToMany(fetch = FetchType.LAZY,mappedBy = "attachments")*/
-    private Set<Attachment> attachments;
+    /*@OneToMany(fetch = FetchType.LAZY,mappedBy = "attachments")
+    private Set<Attachment> attachments;*/
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COUNTRY_ID")
