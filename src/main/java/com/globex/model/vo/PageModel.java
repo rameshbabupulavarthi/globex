@@ -22,6 +22,10 @@ public class PageModel<T> {
 
     private List<T> content;
 
+    private String filterJson;
+
+    private String sortJson;
+
     private Map<String,Object> filters;
 
     private LinkedHashMap<String,SortOrder> sortFields;

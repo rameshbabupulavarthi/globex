@@ -41,17 +41,17 @@ public class OrganizationServiceImpl implements OrganizationService {
         Criteria criteria=session.createCriteria(Organization.class);
         Criteria criteriaForCount=session.createCriteria(Organization.class);
 
-        if(pageModel.getFilters()!=null){
+        if(pageModel.getFilters()!=null && !pageModel.getFilters().isEmpty()){
             Map<String,Object> filters=pageModel.getFilters();
+            //criteria.createAlias("users","u");
+            //criteriaForCount.createAlias("users","u");
             for(Map.Entry<String,Object> entry: filters.entrySet()){
-                if(entry.getKey().equals("orgId")){
-                    criteria.createAlias("organization","organization");
-                    criteria.add(Restrictions.eq("organization.id", entry.getValue()));
-                    criteriaForCount.createAlias("organization","organization");
-                    criteriaForCount.add(Restrictions.eq("organization.id",entry.getValue()));
-                }else {
+                if(entry.getValue() instanceof String){
                     criteria.add(Restrictions.ilike(entry.getKey(), "%" + entry.getValue() + "%"));
                     criteriaForCount.add(Restrictions.ilike(entry.getKey(), "%" + entry.getValue() + "%"));
+                }else{
+                    criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+                    criteriaForCount.add(Restrictions.eq(entry.getKey(),entry.getValue()));
                 }
             }
         }

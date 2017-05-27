@@ -54,24 +54,36 @@ public class RegistrationController {
 
     @RequestMapping("/secure/listPMs")
     @ResponseBody
-    public Map<String, Object> listPMs(@RequestParam(value = "pageNo",required=false) Integer pageNo,
-                                  @RequestParam(value = "pageSize", required=false) Integer pageSize){
+    public Map<String, Object> listPMs(HttpServletRequest request,@ModelAttribute("pageModel") PageModel<OrganizationDO> pageModel/*@RequestParam(value = "pageNo",required=false) Integer pageNo,
+                                  @RequestParam(value = "pageSize", required=false) Integer pageSize*/){
 
-        pageNo=pageNo==null?0:pageNo;
-        pageSize=pageSize==null? AppConstants.DEFAULT_PAGE_SIZE:pageSize;
 
-        PageModel<OrganizationDO> pageModel=new PageModel<OrganizationDO>();
+        Integer pageNo=pageModel.getPageNo()==null?0:pageModel.getPageNo();
+        Integer pageSize=pageModel.getPageSize()==null? AppConstants.DEFAULT_PAGE_SIZE:pageModel.getPageSize();
         pageModel.setPageNo(pageNo);
         pageModel.setPageSize(pageSize);
 
         User user=userService.getCurrentUser();
         Role roleType=Role.getValue(user.getUserType());
+        Map<String,Object> filters=null;
+        if(pageModel.getFilterJson()!=null && !pageModel.getFilterJson().isEmpty()){
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                filters=mapper.readValue(pageModel.getFilterJson(), new TypeReference<Map<String, Object>>() {});
+            }catch (JsonMappingException e) {
+                logger.error("JsonMappingException error",e);
+            }catch (Exception e) {
+                logger.error("Exception error",e);
+            }
+        }else{
+            filters=new HashMap<String,Object>();
+        }
+
         if(!(Role.ROLE_GLOBEX==roleType || Role.ROLE_GLOBEX_ADMIN==roleType) ){
             Organization organization=user.getOrganization();
-            Map<String,Object> filters=new HashMap<String,Object>();
-            filters.put("orgId",organization.getId());
-            pageModel.setFilters(filters);
+            filters.put("id",organization.getId());
         }
+        pageModel.setFilters(filters);
         PageModel<OrganizationDO> orgInfoPage=organizationService.list(pageModel);
         List<OrganizationDO> orgList=orgInfoPage.getContent();
         Map<String, Object> model = new HashMap<String, Object>();

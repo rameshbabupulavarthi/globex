@@ -12,14 +12,23 @@ PMListView =Backbone.View.extend({
                             '<th class="header-column">Edit<div class="header-column-sort"></div></th>'+
                             '<th class="header-column">Delete</th>'+
                     '</tr></thead>',
+    filterTemplate:'<div>'+
+                        '<div class="form-row">'+
+                            '<div class="form-column"><div class="field-label">Organization</div><input class="filter-field" type="text" name="orgName" value="<%=orgName%>"></div>'+
+                            '<div class="form-column"><div class="field-label">Address</div><input class="filter-field" type="text" name="address1" value="<%=address1%>"></div>'+
+                            '<div class="form-column"><div class="field-label">Contact Name</div><input class="filter-field" type="text" name="users.firstName" value="<%=contactName%>"></div>'+
+                        '</div>'+
+                    '</div>',
     events: {
-        "click #createPM":"addPM"
+        "click #createPM":"addPM",
+        'click .show-filter':'showFilters',
     },
     render: function(){
 
         var $self=this;
         var pageNo=$self.pageNo;
-        var pageData={pageNo:pageNo};
+        var filters=JSON.stringify($self.filterData);
+        var pageData={pageNo:pageNo,filterJson:filters};
         var pmCollection=new PMCollection();
         pmCollection.fetch({
             data: pageData,
@@ -32,7 +41,7 @@ PMListView =Backbone.View.extend({
                      "id":"pm_list_container",
                      html:'<div class="">'+
                             '<div class="btn-wrapper">'+
-                                '<div class="filter-list filter-icon"></div>'+
+                                '<div class="show-filter filter-list filter-icon"></div>'+
                                 ' <a href="/secure/downloadPMs"><div class="filter-list download-icon"></div> </a>'+
                                 '<div id="createPM" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Partner Market </span></div>'+
                             '</div>'+
@@ -98,6 +107,19 @@ PMListView =Backbone.View.extend({
              pagingView.render();
             }
         });
+    },
+    addFilters:function(){
+
+    },
+    showFilters:function(){
+        this.$el.find(".filter-wrapper").show();
+        var filterData=this.filterData;
+        var variables={orgName:"",address1:"",contactName:"",phone:""};
+        if(filterData){
+            variables={orgName:filterData.orgName,address1:filterData.address1,contactName:filterData.contactName,phone:filterData.phone};
+        }
+        var template = _.template( this.filterTemplate, variables );
+        $(".filter-data").html(template);
     },
     addPM:function(){
          this.$el.empty();

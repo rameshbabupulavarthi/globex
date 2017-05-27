@@ -207,6 +207,26 @@ li{
    margin: 0 3px;
 }
 
+
+
+.filter-wrapper{
+    border: 1px solid #CDCDCD;
+    top: 155px;
+    position: absolute;
+    width: 76%;
+    margin: 0 20px;
+    padding: 5px;
+    display:none;
+    background: #FFF/*#F1F4F5*/;
+    border-radius: 3px;
+}
+
+.save-filter,.cancel-filter{
+    display: inline-block;
+    margin: 10px;
+    cursor:pointer;
+}
+
 .nav-page-options{
    color:#3896BE;
    cursor:pointer;
@@ -693,34 +713,6 @@ input[type=date].stylish/*, select.stylish, textarea.stylish*/ {
 	padding-left: 9px;
 	color: #9b59b6;
 	padding-top: 27px;
-}
-
-.form-input:nth-child(3)::before {
-	content: "\f2b6";
-	font-size: 15px;
-	padding-top: 30px;
-}
-
-.form-input:nth-child(4)::before {
-	content: "\f095";
-}
-
-.form-input:nth-child(5)::before {
-	content: "\f1ac";
-}
-
-.form-input:nth-child(6)::before {
-	content: "\f10b";
-}
-
-.form-input:nth-child(8)::before {
-	content: "\f023";
-}
-
-.form-input:nth-child(10)::before {
-	content: "\f15b";
-	font-size: 15px;
-	padding-top: 36px;
 }
 
 .form-input input[type=text]:hover, .form-input input[type=tel]:hover,

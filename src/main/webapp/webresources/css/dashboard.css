@@ -542,6 +542,11 @@ a{
   padding:0 10px;
 }
 
+.form-cell{
+  display:inline-block;
+  padding:0 10px;
+}
+
 .label{
     color:#333 !important;
     font-size:100% !important;
@@ -581,11 +586,6 @@ a{
 }
 
 .user-registration-form .field-label,.edit-country-form .field-label,.form-wrapper .field-label{
-    /*width: 150px;
-    display: inline-block;
-    text-align: right;
-    margin-right: 10px;*/
-
     margin-right: 10px;
     margin-bottom: 5px;
     font-size: 13px;

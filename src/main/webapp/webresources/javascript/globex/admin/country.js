@@ -41,6 +41,84 @@ var CountryDetailView =Backbone.View.extend({
                     $(".loading-icon-wrapper").show();
                     $("body").css({opacity:0.5});
 
+                    var countryJson={};
+                    countryJson['countryName=']_self.$el.find("[name='country']").val();
+                    countryJson['territoryComments']=_self.$el.find("[name='territoryComments']").val();
+
+                    var $taxRows= _self.$el.find("#taxWrapper .tax-row");
+                    var taxJsonArray=[];
+                    for(var i=0;i<$taxRows.length;i++){
+                        var taxRow=$($taxRows[i]);
+                        var taxTypeJson={};
+                        taxTypeJson['taxType']=taxRow.find("[name='taxType']").val();
+                        taxTypeJson['lob']=taxRow.find("[name='lob']").val();
+                        taxTypeJson['percent']=taxRow.find("[name='percent']").val();
+                        taxTypeJson['appliedTo']=taxRow.find("[name='appliedTo']").val();
+                        taxTypeJson['amount']=taxRow.find("[name='amount']").val();
+                        taxTypeJson['currency']=taxRow.find("[name='currency']").val();
+                        taxTypeJson['resposiblility']=taxRow.find("[name='resposiblility']").val();
+                        taxJsonArray.push(taxTypeJson);
+                    }
+
+                    var $taxRequirements=_self.$el.find("#taxRequirements .taxRequirement");
+                    var taxRequirementJsonArray=[];
+                    for(var i=0;i<$taxRequirements.length;i++){
+                        var $taxRequirement=$($taxRequirements[i]);
+                        var taxRequirementJson={};
+                        taxRequirementJson['requirementName']=taxRow.find("[name='requirementName']").val();
+                        taxRequirementJson['lob']=taxRow.find("[name='lob']").val();
+                        taxRequirementJson['rate']=taxRow.find("[name='rate']").val();
+                        taxRequirementJson['appliedTo']=taxRow.find("[name='appliedTo']").val();
+                        taxRequirementJson['minPremium']=taxRow.find("[name='minPremium']").val();
+                        taxRequirementJson['currency']=taxRow.find("[name='currency']").val();
+                        taxRequirementJson['reqType']=taxRow.find("[name='reqType']").val();
+                        taxRequirementJsonArray.push(taxRequirementJson);
+                    }
+
+                    var $clauses=_self.$el.find("#clauses .clause");
+                    var clausesJsonArray=[];
+                    for(var i=0;i<$taxRequirements.length;i++){
+                        var $clause=$($clauses[i]);
+                        var clauseJson={};
+                        clauseJson['name']=$clause.find("[name='name']").val();
+                        clauseJson['lob']=$clause.find("[name='lob']").val();
+                        clauseJson['comments']=$clause.find("[name='comments']").val();
+                        clausesJsonArray.push(clauseJson);
+                    }
+
+                    countryJson['locCurOnLocPol']=_self.$el.find("[name='locCurOnLocPol']").val();
+                    countryJson['locCurOnLocPolComments']=_self.$el.find("[name='locCurOnLocPolComments']").val();
+                    countryJson['foreignLawOnLocalPolicy']=_self.$el.find("[name='foreignLawOnLocalPolicy']").val();
+                    countryJson['foreignLawOnLocalPolicyComments']=_self.$el.find("[name='foreignLawOnLocalPolicyComments']").val();
+                    countryJson['useManuScript']=_self.$el.find("[name='useManuScript']").val();
+                    countryJson['manuScriptLOB']=_self.$el.find("[name='manuScriptLOB']").val();
+                    countryJson['manuScriptComments']=_self.$el.find("[name='manuScriptComments']").val();
+                    countryJson['reInsuranceSupport']=_self.$el.find("[name='reInsuranceSupport']").val();
+                    countryJson['reInsuranceSupportLOB']=_self.$el.find("[name='reInsuranceSupportLOB']").val();
+                    countryJson['reInsuranceSupportComments']=_self.$el.find("[name='reInsuranceSupportComments']").val();
+                    countryJson['foreignReinsurerRegistered']=_self.$el.find("[name='foreignReinsurerRegistered']").val();
+                    countryJson['foreignReinsurerRegisteredComments']=_self.$el.find("[name='foreignReinsurerRegisteredComments']").val();
+                    countryJson['foreignReinsurerRegisteredAdvice']=_self.$el.find("[name='foreignReinsurerRegisteredAdvice']").val();
+                    countryJson['infoReqdForPolicyInsurance']=_self.$el.find("[name='infoReqdForPolicyInsurance']").val();
+                    countryJson['premiumCollectionType']=_self.$el.find("[name='premiumCollectionType']").val();
+                    countryJson['nonAdmittedAllowed']=_self.$el.find("[name='nonAdmittedAllowed']").val();
+                    countryJson['nonAdmittedComments']=_self.$el.find("[name='nonAdmittedComments']").val();
+                    countryJson['mandatoryReInsuranceCession']=_self.$el.find("[name='mandatoryReInsuranceCession']").val();
+                    countryJson['mandatoryReInsuranceComments']=_self.$el.find("[name='mandatoryReInsuranceComments']").val();
+                    countryJson['tacitRenewal']=_self.$el.find("[name='tacitRenewal']").val();
+                    countryJson['tacticalRenewalComments']=_self.$el.find("[name='tacticalRenewalComments']").val();
+                    countryJson['cashBeforeCoverReq']=_self.$el.find("[name='cashBeforeCoverReq']").val();
+                    countryJson['cashBeforeCoverReqComments']=_self.$el.find("[name='cashBeforeCoverReqComments']").val();
+                    countryJson['localCurrencyReq']=_self.$el.find("[name='localCurrencyReq']").val();
+                    countryJson['localCurrencyReqComments']=_self.$el.find("[name='localCurrencyReqComments']").val();
+                    countryJson['stateReinsurerReqLOB']=_self.$el.find("[name='stateReinsurerReqLOB']").val();
+                    countryJson['stateReinsurerReq']=_self.$el.find("[name='stateReinsurerReq']").val();
+                    countryJson['stateReinsurerReqComments']=_self.$el.find("[name='stateReinsurerReqComments']").val();
+                    countryJson['otherRequirements']=_self.$el.find("[name='otherRequirements']").val();
+                    countryJson['generalComments']=_self.$el.find("[name='generalComments']").val();
+
+
+
                     /*var form=document.getElementById("saveCountryDetails");
                     var formData=new FormData(form);*/
                     var formData=$('#saveCountryDetails').serialize();

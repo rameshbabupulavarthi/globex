@@ -26,13 +26,30 @@ PagingView=Backbone.View.extend({
                       '<span class="nav-next-page nav-page-options"> > </span>'+
                       '<span class="nav-last-pages nav-page-options"> >> </span>'+
                   '</div>'+
+
+
+                  '<div class="filter-wrapper">'+
+                     '<div class="filter-section"><div class="popup-header" >Filter</div>'+
+                        '<div class="filter-data"></div>'+
+                        '<div class="form-column">'+
+                            '<div>'+
+                                '<div class="save-filter form-button">Save</div>'+
+                                '<div class="cancel-filter form-button">Cancel</div>'+
+                            '</div>'+
+                        '</div>'+
+                     '</div>'+
+                  '</div>'+
+
               '</div>',
     events:{
         "click .paging-wrapper .page":'renderPage',
         "click .paging-wrapper .nav-first-pages":'renderFirstPages',
         "click .paging-wrapper .nav-prev-page":'renderPrev',
         "click .paging-wrapper .nav-next-page":'renderNext',
-        "click .paging-wrapper .nav-last-pages":'renderLastPages'
+        "click .paging-wrapper .nav-last-pages":'renderLastPages',
+
+        'click .save-filter':'saveFilters',
+        'click .cancel-filter':'hideFilters',
     },
     render: function() {
         this.$el.empty();
@@ -102,12 +119,36 @@ PagingView=Backbone.View.extend({
     },
     destroy:function(){
         this.$el.empty();
+    },
+    saveFilters:function(){
+        var $filterFields=$(".filter-field");
+        var filter={};
+        for(var i=0;i<$filterFields.length;i++){
+           var $filterField= $($filterFields[i]);
+           var filterFieldName=$filterField.attr("name");
+           var filterFieldValue;
+           if($filterField.hasClass("type-int")){
+               filterFieldValue=parseInt($filterField.val());
+           }else{
+                filterFieldValue=$filterField.val();
+           }
+           if(filterFieldValue){
+                filter[filterFieldName]=filterFieldValue;
+           }
+        }
+        this.pageContext.filterData=filter;
+        this.pageContext.render();
+    },
+    hideFilters:function(){
+        this.$el.find(".filter-wrapper").hide();
     }
 });
 
 FilterView=Backbone.View.extend({
+    el:$('<div/>',{class:'filter-container'}),
     events:{
-            'click .filter-list':'showFilters'
+        'click .filter-list':'showFilters',
+        'mouseout .filter-wrapper':'hideFilters',
     },
     template:'<div class="">'+
                 '<div class="popup-content">'+
@@ -118,18 +159,21 @@ FilterView=Backbone.View.extend({
                 '</div>'+
              '</div>',
     render: function() {
-        /*var template = this.template;
-        this.$el.append($(template));
-        $("body").addClass("blur-background");
+        var template = this.template;
+        this.$el.html($(template));
+        this.$pageContextEl.prepend(this.$el);
+        /*$("body").addClass("blur-background");
         this.$el.find("#popupContainer").show("slow",function(){ });*/
+
     },
     showFilters:function(){
         var template = this.template;
         this.$el.html($(template));
+    },
+    hideFilters:function(){
+
     }
 });
-
-
 
 
 function getPhoneNumber(user){
