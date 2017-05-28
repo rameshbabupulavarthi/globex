@@ -220,7 +220,7 @@ CountryListView =Backbone.View.extend({
     tagName:'div',
     className:'table-container',
     headerTemplate:'<thead><tr class="header-row"> <th class="header-column">Country<div class="header-column-sort"></div></th>  <th class="header-column">Reinsurance Comments<div class="header-column-sort"></div></th> <th class="header-column"><div class="header-column-text">Non-Admitted Comments</div><div class="header-column-sort"></div></th>'+
-                    '<th class="header-column">Taxes<div class="header-column-sort"></div></th> <th class="header-column">VAT<div class="header-column-sort"></div></th> <th class="header-column">Reinsurance Tax<div class="header-column-sort"></div></th> <th class="header-column">View</th> <th class="header-column">Delete</th> </tr></thead>',
+                    '<th class="header-column">Accounting or Other Requirements<div class="header-column-sort"></div></th> <th class="header-column">Cash Before Cover requirement<div class="header-column-sort"></div></th> <th class="header-column">Tacit Renewal<div class="header-column-sort"></div></th> <th class="header-column">Edit</th> <th class="header-column">Delete</th> </tr></thead>',
     events: {
         "click #createCountry":"addCountry"
     },
@@ -259,9 +259,10 @@ CountryListView =Backbone.View.extend({
                         country:country.country,
                         mandatoryReInsuranceComments:country.mandatoryReInsuranceComments,
                         nonAdmittedComments:country.nonAdmittedComments,
-                        taxes:country.taxes,
+                        otherRequirements:country.otherRequirements,
+                        cashBeforeCoverReqComments:country.cashBeforeCoverReqComments,
                         vat:country.vat,
-                        reInsuranceTax:country.reInsuranceTax
+                        tacitRenewalReasons:country.tacitRenewalReasons
                     });
                     var countryView = new CountryView({model: countryModel});
                     countryView.render();
@@ -299,12 +300,12 @@ var CountryView =Backbone.View.extend({
         "click .delete-country":"deleteCountry"
     },
     countryTemplate:'<td class="table-column"><p class="table-column-text"><%=country%></p></td>  <td class="table-column"><p class="table-column-text"><%=mandatoryReInsuranceComments%></p></td> <td class="table-column"><p class="table-column-text"><%=nonAdmittedComments%></p></td>'+
-                 '<td class="table-column"><p class="table-column-text"><%=taxes%></p></td> <td class="table-column"><p class="table-column-text"><%=vat%></p></td> <td class="table-column"><p class="table-column-text"><%=reInsuranceTax%></p></td>'+
+                 '<td class="table-column"><p class="table-column-text"><%=otherRequirements%></p></td> <td class="table-column"><p class="table-column-text"><%=mandatoryReInsuranceComments%></p></td> <td class="table-column"><p class="table-column-text"><%=tacitRenewalReasons%></p></td>'+
                  '<td class="table-column"><div class="edit-icon edit-country"></div></td> <td class="table-column"><div class="delete-icon delete-country"></div></td>',
     initialize: function(){},
     render: function(){
         var variables = {country:this.model.get("country"),mandatoryReInsuranceComments:this.model.get("mandatoryReInsuranceComments"),nonAdmittedComments:this.model.get("nonAdmittedComments"),
-                        taxes:this.model.get("taxes"),vat:this.model.get("vat"),reInsuranceTax:this.model.get("reInsuranceTax")};
+                        otherRequirements:this.model.get("otherRequirements"),mandatoryReInsuranceComments:this.model.get("mandatoryReInsuranceComments"),tacitRenewalReasons:this.model.get("tacitRenewalReasons")};
         var template = _.template( this.countryTemplate, variables );
         var rowClass=this.model.get("rowClass");
         this.$el.addClass(rowClass);

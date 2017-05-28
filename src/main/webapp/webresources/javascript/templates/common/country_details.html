@@ -36,7 +36,7 @@
                                 <table width="100%">
                                     <tbody id="taxTypeBody">
                                     <tr>
-                                        <th></th>
+                                        <th>Tax Type</th>
                                         <td>Which LOB</td>
                                         <td>%</td>
                                         <td>Applied To</td>
@@ -120,6 +120,7 @@
                             <table width="100%">
                                 <tbody id="taxRequirementBody">
                                 <tr>
+                                    <td>Requirement Name</td>
                                     <td>Which LOB</td>
                                     <td>% rate</td>
                                     <td>Applied To</td>
@@ -129,6 +130,9 @@
                                 </tr>
                                 <% _.each(rateRequirements, function(rateRequirement){ %>
                                     <tr class="taxRequirement">
+                                    <td>
+                                        <input class="stylish" type="text"  placeholder="Enter Requirement Name" name="requirementName" value="<%=rateRequirement.requirementName%>">
+                                    </td>
                                     <td>
                                         <div class="field align-justify">
                                             <select class="stylish lob-dropdown" name="requirementLob" value="<%=rateRequirement.requirementLob%>">
