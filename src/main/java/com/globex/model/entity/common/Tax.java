@@ -1,16 +1,21 @@
 package com.globex.model.entity.common;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Sunil Golla on 5/23/2017.
  */
 @Data
+@EqualsAndHashCode(exclude = {"country"})
+@ToString(exclude = {"country"})
 @Entity
 @Table(name = "tax")
-public class Tax {
+public class Tax implements Serializable {
 
     @Id
     @Column(name = "TAX_ID")
@@ -36,7 +41,7 @@ public class Tax {
     private String currency;
 
     @Column(name = "RESPONSIBILITY")
-    private String resposiblility;
+    private String responsiblility;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COUNTRY_ID")

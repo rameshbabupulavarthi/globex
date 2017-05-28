@@ -1,0 +1,50 @@
+<tr class="tax-row">
+    <td></td>
+    <td><div class="field align-justify">
+        <select class="stylish lob-dropdown" name="taxLob">
+            <option value="-1">Select ...</option>
+            <option value="2">Marine</option>
+            <option value="3">Property</option>
+            <option value="4">General Liability</option>
+            <option value="5">Professional Liability</option>
+            <option value="6">Package Policy</option>
+            <option value="7">Accident and Health</option>
+            <option value="8">Other Coverage</option>
+        </select>
+    </div>
+    </td>
+    <td>
+        <div class="field pencil-icon">
+            <input class="stylish" type="text" placeholder="enter % rate" name="taxRate">
+        </div>
+    </td>
+    <td><div class="field align-justify">
+        <select class="stylish" name="taxAppliedTo">
+            <option value="-1">Select</option>
+            <option value="Premium">Premium</option>
+            <option value="Premium + taxes">Premium + taxes</option>
+            <option value="Premium net of Retention">Premium net of Retention</option>
+            <option value="Brokerage">Brokerage</option>
+        </select>
+    </div>
+    </td>
+    <td>
+        <div class="field pencil-icon">
+            <input class="stylish" type="text" placeholder="Enter Amount" name="taxAmount">
+        </div>
+    </td>
+    <td><div class="field pencil-icon">
+        <input class="stylish" type="text" placeholder="Enter Currency" name="taxCurrency">
+    </div>
+    </td>
+    <td><div class="field align-justify">
+        <select class="stylish" name="taxResponsiblility">
+            <option value="-1">Select</option>
+            <option value="lob">Reinsurer payable</option>
+            <option value="lob">Insured payable</option>
+        </select>
+    </div>
+    </td>
+    <input type="hidden" name="taxType">
+    <input type="hidden" name="taxId">
+</tr>

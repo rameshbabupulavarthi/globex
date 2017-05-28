@@ -491,6 +491,10 @@ a{
     margin-right:10px;
 }
 
+.add-user-button.add-row{
+    margin-top:10px;
+}
+
 .add-user-text{
    margin-left:5px;
    vertical-align: top;

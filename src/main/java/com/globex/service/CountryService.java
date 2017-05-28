@@ -12,7 +12,7 @@ public interface CountryService {
 
     public PageModel<CountryDO> list(PageModel<CountryDO> pageModel);
 
-    public Country getCountryDetails(Long countryId);
+    public CountryDO getCountryDetails(Long countryId);
 
-    public Long saveCountry(Country country);
+    public Long saveCountry(CountryDO countryDO);
 }

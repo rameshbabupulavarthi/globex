@@ -82,16 +82,21 @@ public class CountryServiceImpl implements CountryService {
         return pageModel;
     }
 
-    public Country getCountryDetails(Long countryId){
-        return countryRepository.findOne(countryId);
+    public CountryDO getCountryDetails(Long countryId){
+        Country country=countryRepository.findOne(countryId);
+        CountryDO countryDO=new CountryDO(country);
+        countryDO.loadFullDetails(country);
+        return countryDO;
     }
 
-    public Long saveCountry(Country country){
+    public Long saveCountry(CountryDO countryDO){
         CurrentUserDO userDO=userService.getCurrentUserDO();
+        Country country=countryDO.value();
+
         country.setCreatedBy(userDO.getUserId());
         country.setUpdatedBy(userDO.getUserId());
-        /*country.setCreatedDate(new Date());
-        country.setUpdatedDate(new Date());*/
+        country.setCreatedDate(new Date());
+        country.setUpdatedDate(new Date());
         Country countrySaved=countryRepository.save(country);
         return countrySaved.getId();
     }

@@ -1,0 +1,51 @@
+<tr class="taxRequirement">
+    <td>
+        <div class="field align-justify">
+            <select class="stylish lob-dropdown" name="requirementLob">
+                <option value="-1">Select ...</option>
+                <option value="2">Marine</option>
+                <option value="3">Property</option>
+                <option value="4">General Liability</option>
+                <option value="5">Professional Liability</option>
+                <option value="6">Package Policy</option>
+                <option value="7">Accident and Health</option>
+                <option value="8">Other Coverage</option>
+            </select>
+        </div>
+    </td>
+    <td>
+        <div class="field pencil-icon">
+            <input class="stylish" type="text" placeholder="Enter % rate" name="requirementRate" size="50" >
+        </div>
+    </td>
+    <td>
+        <div class="field pencil-icon">
+            <input class="stylish" type="text" placeholder="Applied To" name="requirementAppliedTo" size="50" >
+        </div>
+    </td>
+    <td>
+        <div class="field pencil-icon">
+            <input class="stylish" type="text" placeholder="Enter min. premium" name="requirementMinPremium" size="50" >
+        </div>
+    </td>
+    <td>
+        <div class="field align-justify">
+            <select name="requirementCurrency" class="stylish">
+                <option value="-1">Select</option>
+                <option value="sum">Sum Insured</option>
+                <option value="sum">Fixed Sum</option>
+            </select>
+        </div>
+    </td>
+    <td>
+        <div class="field align-justify">
+            <select name="requirementType" class="stylish">
+                <option value="-1">Select</option>
+                <option value="sum">Country Requirement</option>
+                <option value="sum">Company Requirement</option>
+            </select>
+        </div>
+    </td>
+    <input type="hidden" name="requirementName">
+    <input type="hidden" name="requirementId">
+</tr>

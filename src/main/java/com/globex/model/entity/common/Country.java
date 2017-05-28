@@ -1,6 +1,8 @@
 package com.globex.model.entity.common;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -13,7 +15,8 @@ import java.util.Set;
  */
 @Data
 @Entity
-/*@Table(name = "country_data")*/
+@EqualsAndHashCode(of = {"id"})
+@ToString(exclude={"taxes","rateRequirements","clauses"})
 @Table(name = "country")
 public class Country {
 
@@ -41,19 +44,19 @@ public class Country {
     private Set<Clause> clauses;
 
     @Column(name="LOC_CUR_ON_LOC_POL")
-    private Boolean locCurOnLocPol;
+    private Short locCurOnLocPol;
 
     @Column(name="LOC_CUR_ON_LOC_POL_COM")
     private String locCurOnLocPolComments;
 
     @Column(name="FOR_LAW_ON_LOC_POL")
-    private Boolean foreignLawOnLocalPolicy;
+    private Short foreignLawOnLocalPolicy;
 
     @Column(name="FOR_LAW_ON_LOC_POL_COM")
     private String foreignLawOnLocalPolicyComments;
 
     @Column(name="MAN_SCR")
-    private Boolean useManuScript;
+    private Short useManuScript;
 
     @Column(name="MAN_SCR_LOB")
     private String manuScriptLOB;
@@ -62,7 +65,7 @@ public class Country {
     private String manuScriptComments;
 
     @Column(name="RE_INS_SUP")
-    private Boolean reInsuranceSupport;
+    private Short reInsuranceSupport;
 
     @Column(name="RE_INS_SUP_LOB")
     private String reInsuranceSupportLOB;
@@ -71,7 +74,7 @@ public class Country {
     private String reInsuranceSupportComments;
 
     @Column(name="FOR_RE_INS_REG_")
-    private Boolean foreignReinsurerRegistered;
+    private Short foreignReinsurerRegistered;
 
     @Column(name="FOR_RE_INS_REG_COM")
     private String foreignReinsurerRegisteredComments;
@@ -89,37 +92,40 @@ public class Country {
     private String premiumCollectionType;
 
     @Column(name="NON_ADMITTED_ALLOWED")
-    private Boolean nonAdmittedAllowed;
+    private Short nonAdmittedAllowed;
 
     @Column(name="NON_ADMITTED_COMMENTS")
     private String nonAdmittedComments;
 
     @Column(name="MANDATORY_REINSURANCE_CESSION")
-    private Boolean mandatoryReInsuranceCession;
+    private Short mandatoryReInsuranceCession;
 
     @Column(name="MANDATORY_REINSURANCE_COMMENTS")
     private String mandatoryReInsuranceComments;
 
     @Column(name="TACIT_RENEWAL")
-    private Boolean tacitRenewal;
+    private Short tacitRenewal;
+
+    @Column(name="TACIT_RENEWAL_REASON")
+    private String tacitRenewalReason;
 
     @Column(name="TACIT_RENEWAL_COMMENTS")
     private String tacticalRenewalComments;
 
     @Column(name="CASH_BEFORE_COVER")
-    private Boolean cashBeforeCoverReq;
+    private Short cashBeforeCoverReq;
 
     @Column(name="CASH_BEFORE_COVER_COMMENTS")
-    private Boolean cashBeforeCoverReqComments;
+    private String cashBeforeCoverReqComments;
 
     @Column(name="LOCAL_CURRENCY_REQ")
-    private Boolean localCurrencyReq;
+    private Short localCurrencyReq;
 
     @Column(name="LOCAL_CURRENCY_REQ_COMMENTS")
-    private Boolean localCurrencyReqComments;
+    private String localCurrencyReqComments;
 
     @Column(name="STA_RE_INS_REQ_LOB")
-    private Boolean stateReinsurerReqLOB;
+    private String stateReinsurerReqLOB;
 
     @Column(name="STA_RE_INS_REQ")
     private String stateReinsurerReq;
@@ -133,49 +139,11 @@ public class Country {
     @Column(name="GENERAL_COMMENTS")
     private String generalComments;
 
-/*    @Column(name="GENERAL_COMMENTS")
-    private Set<Attachment> generalAttachments;*/
+    @Column(name="DATE_CREATED")
+    private Date createdDate;
 
-
-    private Long createdBy;
-
-    private Long updatedBy;
-
-   /* @Column(name="RETAIL_BROKER_REQUIRED")
-    private Boolean retailBrokerRequired;
-
-    @Column(name="RETAIL_BROKER_COMMENTS")
-    private String retailBrokerComments;
-
-    @Column(name="REINSURANCE_BROKER_REQUIRED")
-    private Boolean reInsuranceBrokerRequired;
-
-    @Column(name="REINSURANCE_BROKER_COMMENTS")
-    private String reInsuranceBrokerComments;
-
-    @Column(name="STATESIDE_PREMIUM_ALLOWED")
-    private Boolean stateSidePremiumAllowed;
-
-    @Column(name="STATESIDE_PREMIUM_COMMENTS")
-    private String stateSidePremiumComments;
-
-    @Column(name="OTHER_ACCOUNTING_REQUIREMENTS")
-    private String otherAccRequirements;
-
-    @Column(name="PREMIUM_RESERVE")
-    private String premiumReserve;
-
-    @Column(name="TAXES")
-    private String taxes;
-
-    @Column(name="VAT")
-    private String vat;
-
-    @Column(name="REINSURANCE_TAX")
-    private String reInsuranceTax;
-
-    @Column(name="POLICY_LANGUAGE")
-    private String policyLanguage;
+    @Column(name="DATE_UPDATED")
+    private Date updatedDate;
 
     @Column(name="CREATED_BY")
     private Long createdBy;
@@ -183,10 +151,6 @@ public class Country {
     @Column(name="UPDATED_BY")
     private Long updatedBy;
 
-    @Column(name="DATE_CREATED")
-    private Date createdDate;
-
-    @Column(name="DATE_UPDATED")
-    private Date updatedDate;*/
-
+    /*@Column(name="GENERAL_COMMENTS")
+    private Set<Attachment> generalAttachments;*/
 }

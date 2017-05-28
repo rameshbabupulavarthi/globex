@@ -12,19 +12,20 @@
     <div class="accordian-body">
         <div class="form-wrapper">
             <div class="container">
+
                 <div class="form-row">
                   <div class="form-column">
                     <div class="field-label">Country</div>
                     <div class="field country-icon">
-                        <input class="stylish" type="text" placeholder="Country Name" name="country">
+                        <input class="stylish" type="text" placeholder="Country Name" name="country" value="<%=country%>">
                     </div>
                   </div>
-                    <div class="form-column">
+                  <div class="form-column">
                         <div class="field-label">General Comments for territory :</div>
                         <div class="field pencil-icon">
-                            <input class="stylish" type="text" placeholder="Enter Territory Comments" name="territoryComments">
+                            <textarea class="stylish"   placeholder="Enter Territory Comments" name="territoryComments"><%=territoryComments%></textarea>
                         </div>
-                    </div>
+                  </div>
                 </div>
 
                 <div class="fieldset-wrapper">
@@ -33,7 +34,7 @@
                         <div class="field-row">
                             <div class="sameline">
                                 <table width="100%">
-                                    <tbody>
+                                    <tbody id="taxTypeBody">
                                     <tr>
                                         <th></th>
                                         <td>Which LOB</td>
@@ -43,45 +44,58 @@
                                         <td>Currency</td>
                                         <td>Who is responsible of the tax</td>
                                     </tr>
-                                    <tr class="tax-row">
-                                        <td></td>
+                                    <% _.each(taxes, function(tax){ %>
+                                        <tr class="tax-row">
+                                        <td><%=tax.taxType%></td>
                                         <td><div class="field align-justify">
-                                             <select class="stylish">
-                                                <option>Select</option>
-                                                <option value="lob">lob</option>
-                                                <option value="lob">lob</option>
-                                                <option value="lob">lob</option>
-                                                </select>
+                                             <select class="stylish lob-dropdown" name="taxLob" value="<%=tax.taxLob%>">
+                                                 <option value="-1">Select ...</option>
+                                                 <option value="2">Marine</option>
+                                                 <option value="3">Property</option>
+                                                 <option value="4">General Liability</option>
+                                                 <option value="5">Professional Liability</option>
+                                                 <option value="6">Package Policy</option>
+                                                 <option value="7">Accident and Health</option>
+                                                 <option value="8">Other Coverage</option>
+                                             </select>
                                             </div>
                                         </td>
-                                        <td><div class="field pencil-icon"><input class="stylish" type="text"  placeholder="" name="name">
+                                        <td>
+                                            <div class="field pencil-icon">
+                                                <input class="stylish" type="text"  placeholder="enter % rate"  name="taxRate" value="<%=tax.taxRate%>">
                                             </div>
                                         </td>
                                         <td><div class="field align-justify">
-                                              <select class="stylish">
-                                                <option>Select</option>
-                                                <option value="lob">Premium</option>
-                                                <option value="lob">Premium + taxes</option>
-                                                <option value="lob">Premium net of Retention</option>
-                                                <option>Brokerage</option>
+                                              <select class="stylish" name="taxAppliedTo" value="<%=tax.taxAppliedTo%>">
+                                                <option value="-1">Select</option>
+                                                <option value="Premium">Premium</option>
+                                                <option value="Premium + taxes">Premium + taxes</option>
+                                                <option value="Premium net of Retention">Premium net of Retention</option>
+                                                <option value="Brokerage">Brokerage</option>
                                               </select>
                                             </div>
                                         </td>
-                                        <td><div class="field pencil-icon"><input class="stylish" type="text"  placeholder="" name="name">
+                                        <td>
+                                            <div class="field pencil-icon">
+                                                <input class="stylish" type="text"  placeholder="Enter Amount" name="taxAmount" value="<%=tax.taxAmount%>">
                                             </div>
                                         </td>
-                                        <td><div class="field pencil-icon"><input class="stylish" type="text"  placeholder="" name="name">
+                                        <td><div class="field pencil-icon">
+                                            <input class="stylish" type="text"  placeholder="Enter Currency" name="taxCurrency" value="<%=tax.taxCurrency%>">
                                             </div>
                                         </td>
                                         <td><div class="field align-justify">
-                                            <select class="stylish" class="">
-                                                <option>Select</option>
+                                            <select class="stylish" name="taxResponsiblility" value="<%=tax.taxResponsiblility%>">
+                                                <option value="-1">Select</option>
                                                 <option value="lob">Reinsurer payable</option>
                                                 <option value="lob">Insured payable</option>
                                             </select>
                                             </div>
                                         </td>
-                                    </tr>
+                                        <input type="hidden" name="taxType" value="<%=tax.taxType%>">
+                                        <input type="hidden" name="taxId" value="<%=tax.taxId%>">
+                                        </tr>
+                                    <% }) %>
                                     </tbody>
                                 </table>
                             </div>
@@ -89,53 +103,13 @@
 
                         <div class="field-row">
                             <div class="sameline" >
-                                Add a different Tax Type:<br>
-                                <small>(A + button for tax types,
-                                    will generate another group of fields just like the
-                                    above - Name of the tax should be free form example below)</small>
+                                <div id="addTaxType" class="add-user-button add-row">
+                                    <span class="add-button"></span>
+                                    <span class="add-user-text add-application">Add Another</span>
+                                </div>
                             </div>
                         </div>
                     </fieldset>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-cell">
-                        Freeform Tax Name
-                    </div>
-                    <div class="form-cell">
-                        <div class="field pencil-icon">
-                            <input class="stylish" type="text" name="name">
-                        </div>
-                    </div>
-                    <div class="form-cell">
-                        <div class="field pencil-icon">
-                            <input class="stylish" type="text" name="name">
-                        </div>
-                    </div>
-                    <div class="form-cell">
-                        <div class="field pencil-icon">
-                        <input class="stylish" type="text" name="name">
-                        </div>
-                    </div>
-                    <div class="form-cell">
-                        <div class="field pencil-icon">
-                        <input class="stylish" type="text" name="name">
-                        </div>
-                    </div>
-                    <div class="form-cell">
-                        <div class="field pencil-icon">
-                        <input class="stylish" type="text" name="name">
-                        </div>
-                    </div>
-                    <div class="form-cell">
-                        <div class="field ">
-                            <select class="">
-                                <option>Select</option>
-                                <option value="lob"></option>
-                                <option value="lob"></option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="fieldset-wrapper">
@@ -143,40 +117,51 @@
                         <legend class="legend">Are there any Tariff, Minimum Premium or Rate requirements in your country? </legend>
                     <div class="field-row">
                         <div class="sameline" >
-                            <table>
-                                <tbody>
-                                <tr class="taxRequirement">
+                            <table width="100%">
+                                <tbody id="taxRequirementBody">
+                                <tr>
                                     <td>Which LOB</td>
                                     <td>% rate</td>
+                                    <td>Applied To</td>
                                     <td>min. premium </td>
                                     <td>currency</td>
                                     <td>Type of requirement </td>
                                 </tr>
-                                <tr>
+                                <% _.each(rateRequirements, function(rateRequirement){ %>
+                                    <tr class="taxRequirement">
                                     <td>
                                         <div class="field align-justify">
-                                            <select class="stylish">
-                                                <option>Select</option>
-                                                <option value="lob">lob</option>
-                                                <option value="lob">lob</option>
-                                                <option value="lob">lob</option>
+                                            <select class="stylish lob-dropdown" name="requirementLob" value="<%=rateRequirement.requirementLob%>">
+                                                <option value="-1">Select ...</option>
+                                                <option value="2">Marine</option>
+                                                <option value="3">Property</option>
+                                                <option value="4">General Liability</option>
+                                                <option value="5">Professional Liability</option>
+                                                <option value="6">Package Policy</option>
+                                                <option value="7">Accident and Health</option>
+                                                <option value="8">Other Coverage</option>
                                             </select>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="field pencil-icon">
-                                            <input type="text"  placeholder="" name="name" size="50">
+                                            <input class="stylish" type="text"  placeholder="Enter % rate" name="requirementRate" size="50" value="<%=rateRequirement.requirementRate%>">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="field pencil-icon">
-                                            <input class="stylish" type="text"  placeholder="" name="name" size="50">
+                                            <input class="stylish" type="text"  placeholder="Applied To" name="requirementAppliedTo" size="50" value="<%=rateRequirement.requirementAppliedTo%>">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field pencil-icon">
+                                            <input class="stylish" type="text"  placeholder="Enter min. premium" name="requirementMinPremium" size="50" value="<%=rateRequirement.requirementMinPremium%>">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="field align-justify">
-                                        <select class="stylish">
-                                            <option>Select</option>
+                                        <select name="requirementCurrency" class="stylish" value="<%=rateRequirement.requirementCurrency%>">
+                                            <option value="-1">Select</option>
                                             <option value="sum">Sum Insured</option>
                                             <option value="sum">Fixed Sum</option>
                                         </select>
@@ -184,80 +169,40 @@
                                     </td>
                                     <td>
                                         <div class="field align-justify">
-                                        <select class="stylish">
-                                            <option>Select</option>
+                                        <select name="requirementType" class="stylish" value="<%=rateRequirement.requirementType%>">
+                                            <option value="-1">Select</option>
                                             <option value="sum">Country Requirement</option>
                                             <option value="sum">Company Requirement</option>
                                         </select>
                                         </div>
                                     </td>
+                                        <input type="hidden" name="requirementName" value="<%=rateRequirement.requirementName%>">
+                                        <input type="hidden" name="requirementId" value="<%=rateRequirement.requirementId%>">
                                 </tr>
+                                <% }) %>
                                 </tbody></table>
                         </div>
                     </div>
-                    <div class="field-row">
-                        <div class="sameline"></div>
-                        <div class="sameline" >
-                            <input type="checkbox" name="" >Requirement Name
-
-                        </div>
-                    </div>
 
                     <div class="field-row">
-                        <div class="sameline"></div>
-                        <div class="sameline" >
-                            <i class="material-icons">add_box</i>
-                            Add a different Minimum Premium or Rate requirement<br>
-                            <small>(A + button for Minimum Premium or Rate requirements, will generate
-                                another group of fields just like the above - Name of the Minimum Premium
-                                or Rate requirements should be free form like the one above)</small>
-                        </div>
+                      <div class="sameline" >
+                          <div id="addRateRequirement" class="add-user-button add-row">
+                              <span class="add-button"></span>
+                              <span class="add-user-text add-application">Add Another</span>
+                          </div>
+                      </div>
                     </div>
                 </fieldset>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-cell">
-                        <input type="checkbox" name="" >Requirement Name
-                    </div>
-                    <div class="form-cell">
-                        <select class="">
-                            <option>Select</option>
-                            <option value="lob">lob</option>
-                            <option value="lob">lob</option>
-                            <option value="lob">lob</option>
-                        </select>
-                    </div>
-
-                    <div class="form-cell">
-                        <input class="stylish" type="text" name="name">
-                    </div>
-                    <div class="form-cell">
-                        <input class="stylish" type="text" name="name">
-                    </div>
-                    <div class="form-cell">
-                        <input class="stylish" type="text" name="name">
-                    </div>
-                    <div class="form-cell">
-                        <input class="stylish" type="text" name="name">
-                    </div>
-                    <div class="form-cell">
-                        <select class="">
-                            <option>Select</option>
-                            <option value="lob">lob</option>
-                            <option value="lob">lob</option>
-                            <option value="lob">lob</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="fieldset-wrapper">
-                    <fieldset class="fieldset">
+                    <fieldset class="fieldset" id="clauses">
                         <legend class="legend">Are there any Mandatory Clauses or exclusions</legend>
                         <div class="field-row">
                                 <div class="sameline">
-                                    <table>
-                                        <tbody><tr>
+                                    <table width="100%;">
+                                        <tbody>
+                                        <tr>
                                             <td>Name of Clause</td>
                                             <td>LOB
                                                 <small>(All or LOB names, more than one)</small></td>
@@ -265,124 +210,170 @@
                                             <td>Please attach the clause wording</td>
 
                                         </tr>
-                                        <tr>
+                                        <% _.each(clauses, function(clause){ %>
+                                            <tr class="clause">
                                             <td>
                                                 <div class="field pencil-icon">
-                                                    <input class="stylish" type="text"  placeholder="" name="name" size="30">
+                                                    <input class="stylish" type="text"  placeholder="Enter Clause Name" name="clauseName" size="30" value="<%=clause.clauseName%>">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="field align-justify">
-                                                    <select class="stylish">
-                                                        <option>Select</option>
-                                                        <option value="lob">lob</option>
-                                                        <option value="lob">lob</option>
-                                                        <option value="lob">lob</option>
+                                                    <select class="stylish lob-dropdown" name="clauseLob" value="<%=clause.clauseLob%>">
+                                                        <option value="-1">Select ...</option>
+                                                        <option value="2">Marine</option>
+                                                        <option value="3">Property</option>
+                                                        <option value="4">General Liability</option>
+                                                        <option value="5">Professional Liability</option>
+                                                        <option value="6">Package Policy</option>
+                                                        <option value="7">Accident and Health</option>
+                                                        <option value="8">Other Coverage</option>
                                                     </select>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="field pencil-icon">
-                                                    <input class="stylish" type="text"  placeholder="" name="name" size="30">
+                                                    <input class="stylish" type="text"  placeholder="Comments" name="clauseComments" size="30" value="<%=clause.clauseComments%>">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="field upload-icon">
-                                                    <input class="stylish" id="insuRequiredDocAttach" type="file" name="insuRequiredDocAttach" size="50">
+                                                    <input name="comments" class="stylish" id="insuRequiredDocAttach" type="file" name="insuRequiredDocAttach" size="50">
                                                 </div>
                                             </td>
+                                            <input type="hidden" name="clauseId" value="<%=clause.clauseId%>">
                                         </tr>
+                                        <% }) %>
                                         </tbody></table>
                                 </div>
                             </div>
                     </fieldset>
                 </div>
 
-
                 <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Should Local currency be reflected on local policy</div>
                         <div class="field pencil-icon">
-                            <select class="stylish selectbox" name="locCurOnLocPol">
-                                <option>---select---</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                            <select class="stylish selectbox" name="locCurOnLocPol" value="<%=locCurOnLocPol%>">
+                                <option value="-1">---select---</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-column">
+                        <div class="field-label">Comments</div>
+                        <div class="field pencil-icon">
+                            <textarea name="locCurOnLocPolComments" class="stylish"  placeholder="Enter your Comments"> <%=locCurOnLocPolComments%></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">Is Foreign law and jurisdiction available on local policy</div>
+                        <div class="field pencil-icon">
+                            <select class="stylish selectbox" name="foreignLawOnLocalPolicy" value="<%=foreignLawOnLocalPolicy%>">
+                                <option value="-1">---select---</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-column">
-                        <div class="field-label">Is Foreign law and jurisdiction available on local policy</div>
+                        <div class="field-label">Comments</div>
                         <div class="field pencil-icon">
-                            <select class="stylish selectbox" name="locCurOnLocPolComments">
-                                <option>---select---</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
+                            <textarea name="foreignLawOnLocalPolicyComments" class="stylish"  placeholder="Enter your Comments"> <%=foreignLawOnLocalPolicyComments%></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="fieldset-wrapper">
                     <fieldset class="fieldset">
-                            <legend class="legend">Is Using a Manuscript wording<br> acceptable?</legend>
-                            <div class="field-row">
-                                <div class="form-column" >
-                                    <div class="field-label">LOB</div>
-                                    <div class="inner-addon left-addon">
-                                        <input  type="text"  placeholder="All or LOB names, more than one"  name="locCurOnLocPolComments">
-                                    </div>
-                                    <div class="inner-addon left-addon">
-                                        <select  class="selectbox"  name="locCurOnLocPolComments">
-                                            <option>---Select---</option>
-                                            <option value="yes">Yes</option>
-                                            <option value="no">No</option>
-                                        </select>
-                                    </div>
+                        <legend class="legend">Is Using a Manuscript wording acceptable?</legend>
+                        <div class="field-row">
+                            <div class="form-column">
+                                <div class="field-label">Acceptable</div>
+                                <div class="field align-justify">
+                                    <select name="useManuScript" class="stylish" value="<%=useManuScript%>">
+                                        <option value="-1">Acceptable</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div></div>
+                            <div class="form-column">
+                                <div class="field-label">Comments</div>
+                                <div class="field pencil-icon">
+                                    <textarea name="manuScriptComments" class="stylish"  placeholder="Enter your Comments"><%=manuScriptComments%></textarea>
                                 </div>
                             </div>
-                            <div class="field-row">
-                                <div class="form-column" >
+                        </div>
 
-                                <div>Comments</div>
-                                <div class="inner-addon left-addon">
-                                    <input  type="text"  placeholder="comments"  name="locCurOnLocPolComments">
+                        <div class="field-row">
+                            <div class="form-column">
+                                <div class="field-label">LOB</div>
+                                <div class="field align-justify">
+                                    <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="manuScriptLOB" value="<%=manuScriptLOB%>">
+                                        <option value="-1">Select ...</option>
+                                        <option value="2">Marine</option>
+                                        <option value="3">Property</option>
+                                        <option value="4">General Liability</option>
+                                        <option value="5">Professional Liability</option>
+                                        <option value="6">Package Policy</option>
+                                        <option value="7">Accident and Health</option>
+                                        <option value="8">Other Coverage</option>
+                                    </select>
                                 </div>
                             </div>
-                        </fieldset>
+                        </div>
+                    </fieldset>
                 </div>
-
 
                 <div class="fieldset-wrapper">
                     <fieldset class="fieldset">
                             <legend class="legend">Can you issue policies and cede the risk to foreign insurers/reinsurers
                                 with their facultative reinsurance support?</legend>
+                        <div class="field-row">
+                            <div class="form-column">
+                                <div class="field-label">Issue Policies</div>
+                                <div class="field align-justify">
+                                    <select name="reInsuranceSupport" class="stylish" value="<%=reInsuranceSupport%>">
+                                        <option value="-1">Issue Policies</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div></div>
 
-                            <div class="field-row">
-                                <div class="sameline" >
-                                    LOB
-                                    <div class="inner-addon left-addon">
-                                        <i class="material-icons">format_align_justify</i>
-                                        <input  type="text"  placeholder="All or LOB names, more than one"  name="locCurOnLocPolComments">
-
-                                    </div>
-
-                                    <div class="inner-addon left-addon">
-
-                                        <i class="material-icons">list</i>
-                                        <select  class="selectbox" name="locCurOnLocPolComments">
-                                            <option>---Select---</option>
-                                            <option value="yes">Yes</option>
-                                            <option value="no">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div>Comments</div>
-                                <div class="inner-addon left-addon">
-
-                                    <i class="material-icons">create</i>
-                                    <input  type="text"  placeholder="comments"  name="locCurOnLocPolComments">
+                            <div class="form-column">
+                                <div class="field-label">Comments</div>
+                                <div class="field pencil-icon">
+                                    <textarea name="reInsuranceSupportComments" class="stylish"  placeholder="Enter your Comments">
+                                        <%=reInsuranceSupportComments%>
+                                    </textarea>
                                 </div>
                             </div>
+
+                        </div>
+
+                        <div class="field-row">
+                            <div class="form-column">
+                                <div class="field-label">LOB</div>
+                                <div class="field align-justify">
+                                    <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="reInsuranceSupportLOB" value="<%=reInsuranceSupportLOB%>">
+                                        <option value="-1">Select ...</option>
+                                        <option value="2">Marine</option>
+                                        <option value="3">Property</option>
+                                        <option value="4">General Liability</option>
+                                        <option value="5">Professional Liability</option>
+                                        <option value="6">Package Policy</option>
+                                        <option value="7">Accident and Health</option>
+                                        <option value="8">Other Coverage</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
                         </fieldset>
                 </div>
 
@@ -390,39 +381,43 @@
                     <div class="form-column">
                         <div class="field-label">Does the foreign Reinsurer have to be registered with the Regulator in your country?</div>
                         <div class="field">
-                            <input type="radio" name="nonAdmittedPolicy" value="1" checked=""> Yes <input type="radio" name="nonAdmittedPolicy" value="0"> No
+                            <input type="radio" name="foreignReinsurerRegistered" value="1" checked="">Yes
+                            <input type="radio" name="foreignReinsurerRegistered" value="0"> No
                             or
-                            <input id="nonAdmittedPolicyText" type="text" name="nonAdmittedPolicyText" size="20">
+                            <div class="field pencil-icon">
+                                <textarea name="foreignReinsurerRegisteredComments" class="stylish"  placeholder="Enter your Comments"><%=foreignReinsurerRegisteredComments%></textarea>
+                            </div>
                         </div>
                     </div>
                     <div class="form-column">
                         <div class="field-label">If so, please advise what needs to be done to get registered</div>
-                        <div class="field">
-                            <input class="stylish" type="text" name="registrationProcedure">
+                        <div class="field pencil-icon">
+                            <textarea name="foreignReinsurerRegisteredAdvice" class="stylish"  placeholder="Enter your Advice"><%=foreignReinsurerRegisteredAdvice%></textarea>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">What specific information/documents do you require from the insured for
                             policy issuance? For example, local insured registration documents, Know Your Client forms, Proposal Forms, etc.</div>
                         <div class="field pencil-icon">
-                            <input class="stylish" type="text" name="insuRequiredDoc" size="20">
+                            <textarea name="infoReqdForPolicyInsurance" class="stylish"  placeholder="ex : local insured registration documents, Proposal Forms">
+                                <%=infoReqdForPolicyInsurance%>
+                            </textarea>
                         </div>
+
                     </div>
                     <div class="form-column">
                         <div class="field-label">
                             Can the premium be collected overseas and remitted to your company, or do you have to collect the premium in your country?
                         </div>
-                        <div class="field pencil-icon">
-                            <input type="radio" name="premiumPayOption" value="1" checked=""> Only Local Collection Allowed <input type="radio" name="premiumPayOption" value="2">
-                            Receiving Premium from Overseas is possible
+                        <div class="field">
+                            <input type="radio" name="premiumCollectionType" value="1"> Only Local Collection Allowed
+                            <input type="radio" name="premiumCollectionType" value="2"> Receiving Premium from Overseas is possible
                         </div>
                     </div>
                 </div>
-
 
                 <div class="form-row">
                     <div class="form-column">
@@ -431,106 +426,144 @@
                             <input class="stylish" type="file" name="insuRequiredDocAttach" size="50">
                         </div>
                     </div>
-                </div>
+                    <div class="form-column">
+                        <div class="field-label">Mandatory Reinsurace Cession</div>
+                        <div class="field">
+                            <input type="radio" name="mandatoryReInsuranceCession" value="1">Yes
+                            <input type="radio" name="mandatoryReInsuranceCession" value="0">No
+                            or
+                            <div class="field pencil-icon">
+                                <textarea name="mandatoryReInsuranceComments" class="stylish" placeholder="Enter your Comments">
+                                    <%=mandatoryReInsuranceComments%>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
 
                 <div class="form-row">
                   <div class="form-column">
                         <div class="field-label">Non-Admitted Policy Allowed</div>
-                    <div class="field">
-                        <input type="radio" name="nonAdmittedPolicy" value="1" checked=""> Yes <input type="radio" name="nonAdmittedPolicy" value="0"> No
-                        <div class="field-row field-column">or</div>
-                        <input class="stylish" type="text" name="nonAdmittedPolicyText" size="20">
-                    </div>
+                      <div class="field">
+                          <input type="radio" name="nonAdmittedAllowed" value="1">Yes
+                          <input type="radio" name="nonAdmittedAllowed" value="0">No
+                          <div class="field pencil-icon">
+                              <textarea name="nonAdmittedComments" class="stylish"  placeholder="Enter your Comments"><%=nonAdmittedComments%></textarea>
+                          </div>
+                      </div>
                   </div>
+                    <div class="form-column">
+                        <div class="field-label">Tacit Renewal :</div>
+                        <div class="field">
+                            <input type="radio" name="tacitRenewal" value="1">Yes
+                            <input type="radio" name="tacitRenewal" value="0">No
+                            or
+                            <div class="field pencil-icon">
+                                <textarea name="tacitRenewalReasons" class="stylish"  placeholder="Enter your Comments"><%=tacitRenewalReasons%></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-row">
-                  <div class="form-column">
-                    <div class="field-label">Mandatory Reinsurace Cession</div>
-                    <div class="field">
-                        <input type="radio" name="nonAdmittedPolicy" value="1" checked=""> Yes <input type="radio" name="nonAdmittedPolicy" value="0"> No
-                        <div class="field-row field-column">or</div>
-                        <input class="stylish" type="text" name="nonAdmittedPolicyText" placeholder="All or LOB names, more than one">
-                    </div>
-                  </div>
-                  <div class="form-column">
-                    <div class="field-label">Tacit Renewal :</div>
-                    <div class="field">
-                        <input type="radio" name="tacitRenewal" value="1" checked=""> Yes <input type="radio" name="tacitRenewal" value="0"> No
-                        <div class="field-row field-column">or</div>
-                        <input class="stylish" type="text" name="tacitRenewalText" size="20">
-                    </div>
-                  </div>
-                </div>
-
 
                 <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Tacit Renewal Comments :</div>
-                        <div class="field">
-                           <input class="stylish" type="text" name="tacitRenewalComments" size="20">
+                        <div class="field pencil-icon">
+                            <textarea name="tacticalRenewalComments" class="stylish"  placeholder="Enter your Comments"><%=tacticalRenewalComments%></textarea>
                         </div>
                     </div>
                     <div class="form-column">
                         <div class="field-label">Cash Before Cover requirement</div>
-                        <div class="field align-justify">
-                            <select class="stylish selectbox">
-                                <option>---select---</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
+                        <div class="field">
+                            <input type="radio" name="cashBeforeCoverReq" value="1">Yes
+                            <input type="radio" name="cashBeforeCoverReq" value="0">No
+                            or
+                            <div class="field pencil-icon">
+                                <textarea name="cashBeforeCoverReqComments" class="stylish"  placeholder="Enter your Comments"><%=cashBeforeCoverReqComments%></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Local currency requirement </div>
                         <div class="field">
-                            <input type="radio" name="premiumPayOption" value="1" checked="">Yes
-                            <input type="radio" name="premiumPayOption" value="2">No
+                            <input type="radio" name="localCurrencyReq" value="1">Yes
+                            <input type="radio" name="localCurrencyReq" value="0">No
+                            or
+                            <div class="field pencil-icon">
+                                <textarea name="localCurrencyReqComments" class="stylish"  placeholder="Enter your Comments"><%=localCurrencyReqComments%></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="field-label">LOB</div>
+                        <div class="field align-justify">
+                            <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="stateReinsurerReqLOB" value="<%=stateReinsurerReqLOB%>">
+                                <option value="-1">Select ...</option>
+                                <option value="2">Marine</option>
+                                <option value="3">Property</option>
+                                <option value="4">General Liability</option>
+                                <option value="5">Professional Liability</option>
+                                <option value="6">Package Policy</option>
+                                <option value="7">Accident and Health</option>
+                                <option value="8">Other Coverage</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-column">
                         <div class="field-label">State reinsurer involvement in placements required? :</div>
                         <div class="field">
-                            <input type="radio" name="tacitRenewal" value="1" checked=""> Yes <input type="radio" name="tacitRenewal" value="0"> No
+                            <input type="radio" name="stateReinsurerReq" value="1">Yes
+                            <input type="radio" name="stateReinsurerReq" value="0"> No
                             <div class="field-row field-column">or</div>
-                            <input class="stylish" type="text" name="tacitRenewalText" placeholder="All or LOB names, more than one" size="30">
+                            <div class="field pencil-icon">
+                                <textarea class="stylish" name="stateReinsurerReqComments"  placeholder="Enter your Comments"><%=stateReinsurerReqComments%></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Accounting or Other Requirements :</div>
                         <div class="field pencil-icon">
-                            <input class="stylish" type="text" name="name">
+                            <textarea name="otherRequirements" class="stylish"  placeholder="Enter your Comments"><%=otherRequirements%></textarea>
                         </div>
                     </div>
 
                     <div class="form-column">
                         <div class="field-label">General comments :</div>
                         <div class="field pencil-icon">
-                            <input class="stylish" type="text" name="generalComments">
+                            <textarea name="generalComments" class="stylish"  placeholder="Enter your Comments"><%=generalComments%></textarea>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">General Attachments:</div>
                         <div class="field upload-icon">
-                            <input class="stylish" type="file" name="generalAttachment" size="50">
+                            <input class="stylish" type="file" name="generalComments" size="50" value="<%=generalComments%>">
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="form-column" align="right" style="padding: 15px">
+                <div>
+                    <input type="submit" class="save-button form-button" value="Save">
+                    <input type="submit" class="cancel-button form-button" value="Cancel">
+                </div>
+            </div>
+          </div>
         </div>
     </div>
-    <input id="countryId" type="hidden" value="<%=id%>" name="id">
+
+    <input id="countryId" type="hidden" value="<%=countryId%>" name="countryId">
 </form>

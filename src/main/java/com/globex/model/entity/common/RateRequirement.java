@@ -1,16 +1,21 @@
 package com.globex.model.entity.common;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Sunil Golla on 5/24/2017.
  */
 @Data
+@EqualsAndHashCode(exclude = {"country"})
+@ToString(exclude = {"country"})
 @Entity
 @Table(name = "rate_requirement")
-public class RateRequirement {
+public class RateRequirement implements Serializable {
 
     @Id
     @Column(name = "REQ_ID")

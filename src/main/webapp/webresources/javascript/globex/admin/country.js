@@ -1,62 +1,107 @@
 var CountryDetailView =Backbone.View.extend({
     model:CountryModel,
     events: {
-        "click .cancel-button":"cancel"
+        "click .cancel-button":"cancel",
+        "click #addTaxType":"addTaxType",
+        "click #addRateRequirement":"addRateRequirement"
     },
     render: function(){
         var _self=this;
         require(['text!'+'templates/common/country_details.html'], function(country_details) {
+
+            var taxes=[
+                {"taxType":"Value Added Tax","taxLob":"","taxRate":"","taxAppliedTo":"","taxAmount":"","taxCurrency":"","taxResponsiblility":""},
+                {"taxType":"Reinsurance Tax","taxLob":"","taxRate":"","taxAppliedTo":"","taxAmount":"","taxCurrency":"","taxResponsiblility":""},
+                {"taxType":"Policy Issuance Fee","taxLob":"","taxRate":"","taxAppliedTo":"","taxAmount":"","taxCurrency":"","taxResponsiblility":""},
+                {"taxType":"Stamp Duty","taxLob":"","taxRate":"","taxAppliedTo":"","taxAmount":"","taxCurrency":"","taxResponsiblility":""},
+                {"taxType":"Solvency Tax","taxLob":"","taxRate":"","taxAppliedTo":"","taxAmount":"","taxCurrency":"","taxResponsiblility":""},
+            ];
+
+            var rateRequirements=[
+                {"requirementLob":"","requirementRate":"","requirementAppliedTo":"","requirementMinPremium":"","requirementCurrency":"","requirementType":""},
+            ];
+
+            var clauses=[
+                {"clauseName":"","clauseLob":"","clauseComments":""},
+            ];
+
             var variables ={
-                    id:"",country:"",nonAdmittedAllowed:"",nonAdmittedComments:"",
-                    retailBorkerRequired:"",retailBrokerComments:"",reInsuranceBrokerRequired:"",
-                    reInsuranceBrokerComments:"",mandatoryReInsuranceCession:"",mandatoryReInsuranceComments:"",stateSidePremiumAllowed:"",stateSidePremiumComments:"",
-                    otherAccRequirements:"",premiumReserve:"",taxes:"",vat:"",reInsuranceTax:"",
-                    otherRequirements:"",policyLanguage:"",tacitRenewal:"",tacticalRenewalComments:"",generalComments:"",createdBy:""
-               };
+                    countryId:"",country:"",territoryComments:"",locCurOnLocPol:"",
+                    locCurOnLocPolComments:"",foreignLawOnLocalPolicy:"",foreignLawOnLocalPolicyComments:"",
+                    useManuScript:"",manuScriptLOB:"",manuScriptComments:"",
+                    reInsuranceSupport:"",reInsuranceSupportLOB:"",reInsuranceSupportComments:"",
+                    foreignReinsurerRegistered:"",foreignReinsurerRegisteredComments:"",foreignReinsurerRegisteredAdvice:"",
+                    infoReqdForPolicyInsurance:"",premiumCollectionType:"",nonAdmittedAllowed:"",nonAdmittedComments:"",
+                    mandatoryReInsuranceCession:"",mandatoryReInsuranceComments:"",tacitRenewal:"",tacitRenewalReasons:"",
+                    tacticalRenewalComments:"",cashBeforeCoverReq:"",cashBeforeCoverReqComments:"",localCurrencyReq:"",
+                    localCurrencyReqComments:"",stateReinsurerReqLOB:"",stateReinsurerReq:"",stateReinsurerReqComments:"",
+                    otherRequirements:"",generalComments:"",
+                    taxes:taxes,rateRequirements:rateRequirements,clauses:clauses
+            };
             if(_self.model){
-                variables = {
-                            id:_self.model.get("id"),country:_self.model.get("country"),nonAdmittedAllowed:_self.model.get("nonAdmittedAllowed"),nonAdmittedComments:_self.model.get("nonAdmittedComments"),
-                            retailBorkerRequired:_self.model.get("retailBorkerRequired"),retailBrokerComments:_self.model.get("retailBrokerComments"),reInsuranceBrokerRequired:_self.model.get("reInsuranceBrokerRequired"),
-                            reInsuranceBrokerComments:_self.model.get("reInsuranceBrokerComments"),mandatoryReInsuranceCession:_self.model.get("mandatoryReInsuranceCession"),
-                            mandatoryReInsuranceComments:_self.model.get("mandatoryReInsuranceComments"),
-                            stateSidePremiumAllowed:_self.model.get("stateSidePremiumAllowed"),stateSidePremiumComments:_self.model.get("stateSidePremiumComments"),
-                            otherAccRequirements:_self.model.get("otherAccRequirements"),premiumReserve:_self.model.get("premiumReserve"),
-                            taxes:_self.model.get("taxes"),vat:_self.model.get("vat"),reInsuranceTax:_self.model.get("reInsuranceTax"),
-                            otherRequirements:_self.model.get("otherRequirements"),policyLanguage:_self.model.get("policyLanguage"),tacitRenewal:_self.model.get("tacitRenewal"),
-                            tacticalRenewalComments:_self.model.get("tacticalRenewalComments"),generalComments:_self.model.get("generalComments"),
-                            createdBy:_self.model.get("createdBy")
-                       };
+               variables = {
+                countryId:_self.model.get("countryId"),country:_self.model.get("country"),territoryComments:_self.model.get("territoryComments"),
+                locCurOnLocPol:_self.model.get("locCurOnLocPol"),locCurOnLocPolComments:_self.model.get("locCurOnLocPolComments"),
+                foreignLawOnLocalPolicy:_self.model.get("foreignLawOnLocalPolicy"),foreignLawOnLocalPolicyComments:_self.model.get("foreignLawOnLocalPolicyComments"),
+                useManuScript:_self.model.get("useManuScript"),manuScriptLOB:_self.model.get("manuScriptLOB"),
+                manuScriptComments:_self.model.get("manuScriptComments"),reInsuranceSupport:_self.model.get("reInsuranceSupport"),
+                reInsuranceSupportLOB:_self.model.get("reInsuranceSupportLOB"),reInsuranceSupportComments:_self.model.get("reInsuranceSupportComments"),
+                foreignReinsurerRegistered:_self.model.get("foreignReinsurerRegistered"),foreignReinsurerRegisteredComments:_self.model.get("foreignReinsurerRegisteredComments"),
+                foreignReinsurerRegisteredAdvice:_self.model.get("foreignReinsurerRegisteredAdvice"),infoReqdForPolicyInsurance:_self.model.get("infoReqdForPolicyInsurance"),
+                premiumCollectionType:_self.model.get("premiumCollectionType"),nonAdmittedAllowed:_self.model.get("nonAdmittedAllowed"),
+                nonAdmittedComments:_self.model.get("nonAdmittedComments"),mandatoryReInsuranceCession:_self.model.get("mandatoryReInsuranceCession"),
+                mandatoryReInsuranceComments:_self.model.get("mandatoryReInsuranceComments"),tacitRenewal:_self.model.get("tacitRenewal"),
+                tacitRenewalReasons:_self.model.get("tacitRenewalReasons"),tacticalRenewalComments:_self.model.get("tacticalRenewalComments"),
+                cashBeforeCoverReq:_self.model.get("cashBeforeCoverReq"),cashBeforeCoverReqComments:_self.model.get("cashBeforeCoverReqComments"),
+                localCurrencyReq:_self.model.get("localCurrencyReq"),localCurrencyReqComments:_self.model.get("localCurrencyReqComments"),
+                stateReinsurerReqLOB:_self.model.get("stateReinsurerReqLOB"),stateReinsurerReq:_self.model.get("stateReinsurerReq"),
+                stateReinsurerReqComments:_self.model.get("stateReinsurerReqComments"),otherRequirements:_self.model.get("otherRequirements"),
+                generalComments:_self.model.get("generalComments"),
+                taxes:_self.model.get("taxes"),rateRequirements:_self.model.get("rateRequirements"),clauses:_self.model.get("clauses"),
+              };
             }
              country_details = _.template( country_details, variables );
             _self.$el.html(country_details);
+
+            var $selectBoxes=_self.$el.find("select");
+            for(var i=0;i<$selectBoxes.length;i++){
+                var $selectBox=$($selectBoxes[i]);
+                var value=$selectBox.attr("value");
+                if(value){
+                    $selectBox.val(value);
+                }
+            }
+
             _self.validateDetails();
         });
     },
     validateDetails:function(){
         var _self=this;
         require(["jquery.validate"],function(){
-            _self.$el.find("#saveCountryDetails").validate({
+                _self.$el.find("#saveCountryDetails").validate({
                 invalidHandler: function(e, validator) {},
                 submitHandler: function(form) {
                     $(".loading-icon-wrapper").show();
                     $("body").css({opacity:0.5});
 
                     var countryJson={};
-                    countryJson['countryName=']_self.$el.find("[name='country']").val();
+                    countryJson['countryId']=_self.$el.find("[name='countryId']").val();
+                    countryJson['country']=_self.$el.find("[name='country']").val();
                     countryJson['territoryComments']=_self.$el.find("[name='territoryComments']").val();
 
                     var $taxRows= _self.$el.find("#taxWrapper .tax-row");
                     var taxJsonArray=[];
                     for(var i=0;i<$taxRows.length;i++){
-                        var taxRow=$($taxRows[i]);
+                        var $taxRow=$($taxRows[i]);
                         var taxTypeJson={};
-                        taxTypeJson['taxType']=taxRow.find("[name='taxType']").val();
-                        taxTypeJson['lob']=taxRow.find("[name='lob']").val();
-                        taxTypeJson['percent']=taxRow.find("[name='percent']").val();
-                        taxTypeJson['appliedTo']=taxRow.find("[name='appliedTo']").val();
-                        taxTypeJson['amount']=taxRow.find("[name='amount']").val();
-                        taxTypeJson['currency']=taxRow.find("[name='currency']").val();
-                        taxTypeJson['resposiblility']=taxRow.find("[name='resposiblility']").val();
+                        taxTypeJson['taxId']=$taxRow.find("[name='taxId']").val();
+                        taxTypeJson['taxType']=$taxRow.find("[name='taxType']").val();
+                        taxTypeJson['taxLob']=$taxRow.find("[name='taxLob']").val();
+                        taxTypeJson['taxRate']=$taxRow.find("[name='taxRate']").val();
+                        taxTypeJson['taxAppliedTo']=$taxRow.find("[name='taxAppliedTo']").val();
+                        taxTypeJson['taxAmount']=$taxRow.find("[name='taxAmount']").val();
+                        taxTypeJson['taxCurrency']=$taxRow.find("[name='taxCurrency']").val();
+                        taxTypeJson['taxResponsiblility']=$taxRow.find("[name='taxResponsiblility']").val();
                         taxJsonArray.push(taxTypeJson);
                     }
 
@@ -65,27 +110,28 @@ var CountryDetailView =Backbone.View.extend({
                     for(var i=0;i<$taxRequirements.length;i++){
                         var $taxRequirement=$($taxRequirements[i]);
                         var taxRequirementJson={};
-                        taxRequirementJson['requirementName']=taxRow.find("[name='requirementName']").val();
-                        taxRequirementJson['lob']=taxRow.find("[name='lob']").val();
-                        taxRequirementJson['rate']=taxRow.find("[name='rate']").val();
-                        taxRequirementJson['appliedTo']=taxRow.find("[name='appliedTo']").val();
-                        taxRequirementJson['minPremium']=taxRow.find("[name='minPremium']").val();
-                        taxRequirementJson['currency']=taxRow.find("[name='currency']").val();
-                        taxRequirementJson['reqType']=taxRow.find("[name='reqType']").val();
+                        taxRequirementJson['requirementId']=$taxRequirement.find("[name='requirementId']").val();
+                        taxRequirementJson['requirementName']=$taxRequirement.find("[name='requirementName']").val();
+                        taxRequirementJson['requirementLob']=$taxRequirement.find("[name='requirementLob']").val();
+                        taxRequirementJson['requirementRate']=$taxRequirement.find("[name='requirementRate']").val();
+                        taxRequirementJson['requirementAppliedTo']=$taxRequirement.find("[name='requirementAppliedTo']").val();
+                        taxRequirementJson['requirementMinPremium']=$taxRequirement.find("[name='requirementMinPremium']").val();
+                        taxRequirementJson['requirementCurrency']=$taxRequirement.find("[name='requirementCurrency']").val();
+                        taxRequirementJson['requirementType']=$taxRequirement.find("[name='requirementType']").val();
                         taxRequirementJsonArray.push(taxRequirementJson);
                     }
 
                     var $clauses=_self.$el.find("#clauses .clause");
                     var clausesJsonArray=[];
-                    for(var i=0;i<$taxRequirements.length;i++){
+                    for(var i=0;i<$clauses.length;i++){
                         var $clause=$($clauses[i]);
                         var clauseJson={};
-                        clauseJson['name']=$clause.find("[name='name']").val();
-                        clauseJson['lob']=$clause.find("[name='lob']").val();
-                        clauseJson['comments']=$clause.find("[name='comments']").val();
+                        clauseJson['clauseId']=$clause.find("[name='clauseId']").val();
+                        clauseJson['clauseName']=$clause.find("[name='clauseName']").val();
+                        clauseJson['clauseLob']=$clause.find("[name='clauseLob']").val();
+                        clauseJson['clauseComments']=$clause.find("[name='clauseComments']").val();
                         clausesJsonArray.push(clauseJson);
                     }
-
                     countryJson['locCurOnLocPol']=_self.$el.find("[name='locCurOnLocPol']").val();
                     countryJson['locCurOnLocPolComments']=_self.$el.find("[name='locCurOnLocPolComments']").val();
                     countryJson['foreignLawOnLocalPolicy']=_self.$el.find("[name='foreignLawOnLocalPolicy']").val();
@@ -117,11 +163,14 @@ var CountryDetailView =Backbone.View.extend({
                     countryJson['otherRequirements']=_self.$el.find("[name='otherRequirements']").val();
                     countryJson['generalComments']=_self.$el.find("[name='generalComments']").val();
 
-
+                    countryJson.taxTypesJsonStr=JSON.stringify(taxJsonArray);
+                    countryJson.taxRequirementsJsonStr= JSON.stringify(taxRequirementJsonArray);
+                    countryJson.clausesJsonStr=JSON.stringify(clausesJsonArray);
+                    var formData=countryJson;
 
                     /*var form=document.getElementById("saveCountryDetails");
                     var formData=new FormData(form);*/
-                    var formData=$('#saveCountryDetails').serialize();
+                    //var formData=$('#saveCountryDetails').serialize();
                     $.ajax({
                         type: 'POST',
                         url: form.action,
@@ -133,8 +182,8 @@ var CountryDetailView =Backbone.View.extend({
                            }, 3000);
                         },
                         success: function(userJSON) {
-                            $(".navigate-manage-country").trigger("click");
                             _self.$el.empty();
+                            $(".navigate-manage-country").trigger("click");
                             $(".loading-icon-wrapper").hide();
                             $("body").css({opacity:1});
                         }
@@ -146,6 +195,18 @@ var CountryDetailView =Backbone.View.extend({
     cancel:function(e){
          e.preventDefault();
          $(".navigate-manage-country").trigger("click");
+    },
+    addTaxType:function(){
+        var _self=this;
+        require(['text!'+'templates/common/tax_type.html'], function(tax_type) {
+            _self.$el.find("#taxTypeBody").append(tax_type);
+        });
+    },
+    addRateRequirement:function(){
+        var _self=this;
+        require(['text!'+'templates/common/rate_requirement.html'], function(rate_requirement) {
+            _self.$el.find("#taxRequirementBody").append(rate_requirement);
+        });
     }
 });
 
@@ -194,7 +255,7 @@ CountryListView =Backbone.View.extend({
                    var rowClass=(index%2)==0?"table-column-even":"table-column-odd";
                     var countryModel = new CountryModel({
                         rowClass:rowClass,
-                        countryId:country.id,
+                        countryId:country.countryId,
                         country:country.country,
                         mandatoryReInsuranceComments:country.mandatoryReInsuranceComments,
                         nonAdmittedComments:country.nonAdmittedComments,
@@ -261,23 +322,33 @@ var CountryView =Backbone.View.extend({
             error: function() {},
             success: function(country) {
                var countryModel = new CountryModel({
-                   id:country.id,country:country.country,nonAdmittedAllowed:country.nonAdmittedAllowed,nonAdmittedComments:country.nonAdmittedComments,
-                   retailBorkerRequired:country.retailBorkerRequired,retailBrokerComments:country.retailBrokerComments,reInsuranceBrokerRequired:country.reInsuranceBrokerRequired,
-                   reInsuranceBrokerComments:country.reInsuranceBrokerComments,mandatoryReInsuranceCession:country.mandatoryReInsuranceCession,
-                   mandatoryReInsuranceComments:country.mandatoryReInsuranceComments,
-                   stateSidePremiumAllowed:country.stateSidePremiumAllowed,stateSidePremiumComments:country.stateSidePremiumComments,
-                   otherAccRequirements:country.otherAccRequirements,premiumReserve:country.premiumReserve,
-                   taxes:country.taxes,vat:country.vat,reInsuranceTax:country.reInsuranceTax,
-                   otherRequirements:country.otherRequirements,policyLanguage:country.policyLanguage,tacitRenewal:country.tacitRenewal,
-                   tacticalRenewalComments:country.tacticalRenewalComments,generalComments:country.generalComments,
-                   createdBy:country.createdBy
+                   countryId:country.countryId,country:country.country,territoryComments:country.territoryComments,
+                   locCurOnLocPol:country.locCurOnLocPol,locCurOnLocPolComments:country.locCurOnLocPolComments,
+                   foreignLawOnLocalPolicy:country.foreignLawOnLocalPolicy,foreignLawOnLocalPolicyComments:country.foreignLawOnLocalPolicyComments,
+                   useManuScript:country.useManuScript,manuScriptLOB:country.manuScriptLOB,
+                   manuScriptComments:country.manuScriptComments,reInsuranceSupport:country.reInsuranceSupport,
+                   reInsuranceSupportLOB:country.reInsuranceSupportLOB,reInsuranceSupportComments:country.reInsuranceSupportComments,
+                   foreignReinsurerRegistered:country.foreignReinsurerRegistered,foreignReinsurerRegisteredComments:country.foreignReinsurerRegisteredComments,
+                   foreignReinsurerRegisteredAdvice:country.foreignReinsurerRegisteredAdvice,infoReqdForPolicyInsurance:country.infoReqdForPolicyInsurance,
+                   premiumCollectionType:country.premiumCollectionType,nonAdmittedAllowed:country.nonAdmittedAllowed,
+                   nonAdmittedComments:country.nonAdmittedComments,mandatoryReInsuranceCession:country.mandatoryReInsuranceCession,
+                   mandatoryReInsuranceComments:country.mandatoryReInsuranceComments,tacitRenewal:country.tacitRenewal,
+                   tacitRenewalReasons:country.tacitRenewalReasons,tacticalRenewalComments:country.tacticalRenewalComments,
+                   cashBeforeCoverReq:country.cashBeforeCoverReq,cashBeforeCoverReqComments:country.cashBeforeCoverReqComments,
+                   localCurrencyReq:country.localCurrencyReq,localCurrencyReqComments:country.localCurrencyReqComments,
+                   stateReinsurerReqLOB:country.stateReinsurerReqLOB,stateReinsurerReq:country.stateReinsurerReq,
+                   stateReinsurerReqComments:country.stateReinsurerReqComments,otherRequirements:country.otherRequirements,
+                   generalComments:country.generalComments,
+                   taxes:country.taxes,rateRequirements:country.rateRequirements,clauses:country.clauses,
                });
 
-                var popupView=new PopupView({el:"#popupWrapper"});
+                /*var popupView=new PopupView({el:"#popupWrapper"});
                 popupView.render();
                 popupView.$el.find("#popup-title").html("Country Details");
                 var countryPopupView = new CountryPopupView({el:"#popup-content",model: countryModel});
-                countryPopupView.render();
+                countryPopupView.render();*/
+                var countryDetailView = new CountryDetailView({el:"#layout-body-content",model: countryModel});
+                countryDetailView.render();
             }
         });
     },
@@ -315,20 +386,28 @@ var CountryPopupView =Backbone.View.extend({
     render: function(){
 
         var _self=this;
-        require(['text!'+'templates/common/country_edit_view.html'], function(country_details) {
+        require(['text!'+'templates/common/country_details.html'], function(country_details) {
 
             var variables =
             {
-                id:_self.model.get("id"),country:_self.model.get("country"),nonAdmittedAllowed:_self.model.get("nonAdmittedAllowed"),nonAdmittedComments:_self.model.get("nonAdmittedComments"),
-                retailBorkerRequired:_self.model.get("retailBorkerRequired"),retailBrokerComments:_self.model.get("retailBrokerComments"),reInsuranceBrokerRequired:_self.model.get("reInsuranceBrokerRequired"),
-                reInsuranceBrokerComments:_self.model.get("reInsuranceBrokerComments"),mandatoryReInsuranceCession:_self.model.get("mandatoryReInsuranceCession"),
-                mandatoryReInsuranceComments:_self.model.get("mandatoryReInsuranceComments"),
-                stateSidePremiumAllowed:_self.model.get("stateSidePremiumAllowed"),stateSidePremiumComments:_self.model.get("stateSidePremiumComments"),
-                otherAccRequirements:_self.model.get("otherAccRequirements"),premiumReserve:_self.model.get("premiumReserve"),
-                taxes:_self.model.get("taxes"),vat:_self.model.get("vat"),reInsuranceTax:_self.model.get("reInsuranceTax"),
-                otherRequirements:_self.model.get("otherRequirements"),policyLanguage:_self.model.get("policyLanguage"),tacitRenewal:_self.model.get("tacitRenewal"),
-                tacticalRenewalComments:_self.model.get("tacticalRenewalComments"),generalComments:_self.model.get("generalComments"),
-                createdBy:_self.model.get("createdBy")
+                countryId:_self.model.get("countryId"),country:_self.model.get("country"),territoryComments:_self.model.get("territoryComments"),
+                locCurOnLocPol:_self.model.get("locCurOnLocPol"),locCurOnLocPolComments:_self.model.get("locCurOnLocPolComments"),
+                foreignLawOnLocalPolicy:_self.model.get("foreignLawOnLocalPolicy"),foreignLawOnLocalPolicyComments:_self.model.get("foreignLawOnLocalPolicyComments"),
+                useManuScript:_self.model.get("useManuScript"),manuScriptLOB:_self.model.get("manuScriptLOB"),
+                manuScriptComments:_self.model.get("manuScriptComments"),reInsuranceSupport:_self.model.get("reInsuranceSupport"),
+                reInsuranceSupportLOB:_self.model.get("reInsuranceSupportLOB"),reInsuranceSupportComments:_self.model.get("reInsuranceSupportComments"),
+                foreignReinsurerRegistered:_self.model.get("foreignReinsurerRegistered"),foreignReinsurerRegisteredComments:_self.model.get("foreignReinsurerRegisteredComments"),
+                foreignReinsurerRegisteredAdvice:_self.model.get("foreignReinsurerRegisteredAdvice"),infoReqdForPolicyInsurance:_self.model.get("infoReqdForPolicyInsurance"),
+                premiumCollectionType:_self.model.get("premiumCollectionType"),nonAdmittedAllowed:_self.model.get("nonAdmittedAllowed"),
+                nonAdmittedComments:_self.model.get("nonAdmittedComments"),mandatoryReInsuranceCession:_self.model.get("mandatoryReInsuranceCession"),
+                mandatoryReInsuranceComments:_self.model.get("mandatoryReInsuranceComments"),tacitRenewal:_self.model.get("tacitRenewal"),
+                tacitRenewalReasons:_self.model.get("tacitRenewalReasons"),tacticalRenewalComments:_self.model.get("tacticalRenewalComments"),
+                cashBeforeCoverReq:_self.model.get("cashBeforeCoverReq"),cashBeforeCoverReqComments:_self.model.get("cashBeforeCoverReqComments"),
+                localCurrencyReq:_self.model.get("localCurrencyReq"),localCurrencyReqComments:_self.model.get("localCurrencyReqComments"),
+                stateReinsurerReqLOB:_self.model.get("stateReinsurerReqLOB"),stateReinsurerReq:_self.model.get("stateReinsurerReq"),
+                stateReinsurerReqComments:_self.model.get("stateReinsurerReqComments"),otherRequirements:_self.model.get("otherRequirements"),
+                generalComments:_self.model.get("generalComments"),
+                taxes:_self.model.get("taxes"),rateRequirements:_self.model.get("rateRequirements"),clauses:_self.model.get("clauses"),
            };
             var template = _.template( country_details, variables );
 

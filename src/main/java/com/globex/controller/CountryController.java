@@ -1,11 +1,19 @@
 package com.globex.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.globex.model.entity.common.Country;
 import com.globex.model.vo.CountryDO;
 import com.globex.model.vo.PageModel;
+import com.globex.model.vo.common.ClauseDO;
+import com.globex.model.vo.common.RateRequirementDO;
+import com.globex.model.vo.common.TaxDO;
 import com.globex.repository.rdbms.CountryRepository;
 import com.globex.service.CountryService;
 import com.utils.AppConstants;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -17,12 +25,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Sunil Golla on 2/22/2017.
  */
 @Controller
 public class CountryController {
+
+    final Logger logger = LoggerFactory.getLogger(CountryController.class);
 
     @Autowired
     CountryService countryService;
@@ -58,18 +69,31 @@ public class CountryController {
 
     @RequestMapping("/secure/getCountryDetails")
     @ResponseBody
-    public Country getCountryDetails(@RequestParam(value = "countryId",required=true) Long countryId){
-
-        Country country= countryService.getCountryDetails(countryId);
+    public CountryDO getCountryDetails(@RequestParam(value = "countryId",required=true) Long countryId){
+        CountryDO country= countryService.getCountryDetails(countryId);
         return country;
     }
 
 
     @RequestMapping("/secure/saveCountry")
     @ResponseBody
-    public String saveCountryDetails(@ModelAttribute("country")Country country){
+    public String saveCountryDetails(@ModelAttribute("country")CountryDO countryDO){
 
-        Long countryId= countryService.saveCountry(country);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            Set<TaxDO> taxDOs=mapper.readValue(countryDO.getTaxTypesJsonStr(), new TypeReference<Set<TaxDO>>() {});
+            Set<RateRequirementDO> rateRequirementDOs=mapper.readValue(countryDO.getTaxRequirementsJsonStr(), new TypeReference<Set<RateRequirementDO>>() {});
+            Set<ClauseDO> clauseDOs=mapper.readValue(countryDO.getClausesJsonStr(), new TypeReference<Set<ClauseDO>>() {});
+            countryDO.setTaxes(taxDOs);
+            countryDO.setRateRequirements(rateRequirementDOs);
+            countryDO.setClauses(clauseDOs);
+
+            Long countryId= countryService.saveCountry(countryDO);
+        }catch (JsonMappingException e) {
+            logger.error("JsonMappingException error",e);
+        } catch (Exception e) {
+            logger.error("Exception error",e);
+        }
         return "success";
     }
 
