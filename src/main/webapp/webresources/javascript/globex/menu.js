@@ -34,6 +34,8 @@ MenuNavigatorView=Backbone.View.extend({
      },
      renderManageUser:function(){
         require(['user'], function() {
+           $("#layout-body-content").empty();
+           $("#layout-body-content").unbind();
            var userListView=new UserListView();
            userListView.render();
 
@@ -44,6 +46,8 @@ MenuNavigatorView=Backbone.View.extend({
      },
      renderManageCountry:function(){
          require(['globex/admin/country'], function() {
+            $("#layout-body-content").empty();
+            $("#layout-body-content").unbind();
             var countryListView=new CountryListView();
             countryListView.render();
 
@@ -51,12 +55,16 @@ MenuNavigatorView=Backbone.View.extend({
      },
      renderApplication:function(){
         require(['globex/pm/pm.application'], function() {
+            $("#layout-body-content").empty();
+            $("#layout-body-content").unbind();
             var appSubmissionListView=new AppSubmissionListView({el:"#layout-body-content"});
             appSubmissionListView.render();
         });
      },
      renderPMList:function(){
          require(['globex/pm/pm.registration'], function() {
+             $("#layout-body-content").empty();
+             $("#layout-body-content").unbind();
              var pmListView=new PMListView({el:"#layout-body-content"});
              pmListView.render();
          });

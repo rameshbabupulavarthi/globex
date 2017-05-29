@@ -19,6 +19,8 @@ public class ClauseDO implements Serializable{
 
     private String clauseComments;
 
+    private String clauseAttach;
+
     public ClauseDO(){
 
     }
@@ -28,6 +30,7 @@ public class ClauseDO implements Serializable{
         this.clauseName=clause.getName();
         this.clauseLob=clause.getLob();
         this.clauseComments=clause.getComments();
+        this.clauseAttach=clause.getAttachment();
     }
 
     public Clause value(){
@@ -36,6 +39,7 @@ public class ClauseDO implements Serializable{
         clause.setName(clauseName);
         clause.setLob(clauseLob);
         clause.setComments(clauseComments);
+        clause.setAttachment(clauseAttach);
         return clause;
     }
 }

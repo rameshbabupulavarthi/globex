@@ -9,6 +9,7 @@ import com.globex.model.vo.common.RateRequirementDO;
 import com.globex.model.vo.common.TaxDO;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -93,6 +94,10 @@ public class CountryDO implements Serializable{
 
     private Long updatedBy;
 
+    private String insuRequiredDoc;
+
+    private String generalAttachment;
+
     private Set<TaxDO> taxes;
 
     private Set<RateRequirementDO> rateRequirements;
@@ -105,6 +110,12 @@ public class CountryDO implements Serializable{
     private String taxRequirementsJsonStr;
 
     private String clausesJsonStr;
+
+    private CommonsMultipartFile clauseAttachment;
+
+    private CommonsMultipartFile insuRequiredDocFile;
+
+    private CommonsMultipartFile generalAttachmentFile;
 
     public CountryDO(){
 
@@ -149,7 +160,8 @@ public class CountryDO implements Serializable{
         this.createdBy=country.getCreatedBy();
         this.updatedBy=country.getUpdatedBy();
 
-
+        this.setInsuRequiredDoc(country.getInsuRequiredDoc());
+        this.setGeneralAttachment(country.getGeneralAttachment());
     }
 
     public void loadFullDetails(Country country){
@@ -215,6 +227,9 @@ public class CountryDO implements Serializable{
         country.setGeneralComments(this.getGeneralComments());
         country.setCreatedBy(this.getCreatedBy());
         country.setUpdatedBy(this.getUpdatedBy());
+
+        country.setInsuRequiredDoc(this.getInsuRequiredDoc());
+        country.setGeneralAttachment(this.getGeneralAttachment());
 
         Set<Tax> taxes=getTaxes(this.getTaxes(),country);
         Set<RateRequirement> rateRequirements=getRateRequirements(this.getRateRequirements(),country);

@@ -25,6 +25,8 @@ MenuNavigatorView=Backbone.View.extend({
      },
      renderManageUser:function(){
         require(['user'], function() {
+           $("#layout-body-content").empty();
+           $("#layout-body-content").unbind();
            var userListView=new UserListView();
            userListView.render();
 
@@ -41,6 +43,8 @@ MenuNavigatorView=Backbone.View.extend({
      },
      renderPMApplications:function(){
         require(['globex/pm/pm.application'], function() {
+             $("#layout-body-content").empty();
+             $("#layout-body-content").unbind();
              var appSubmissionListView=new AppSubmissionListView({el:"#layout-body-content"});
              appSubmissionListView.render();
          });

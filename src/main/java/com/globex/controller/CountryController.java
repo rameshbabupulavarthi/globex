@@ -11,6 +11,7 @@ import com.globex.model.vo.common.TaxDO;
 import com.globex.repository.rdbms.CountryRepository;
 import com.globex.service.CountryService;
 import com.utils.AppConstants;
+import com.utils.FileUtils;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +80,7 @@ public class CountryController {
 
     @RequestMapping("/secure/saveCountry")
     @ResponseBody
-    public String saveCountryDetails(@ModelAttribute("country")CountryDO countryDO){
+    public String saveCountryDetails(HttpServletRequest request,@ModelAttribute("country")CountryDO countryDO){
 
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -87,6 +90,27 @@ public class CountryController {
             countryDO.setTaxes(taxDOs);
             countryDO.setRateRequirements(rateRequirementDOs);
             countryDO.setClauses(clauseDOs);
+
+            String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
+            CommonsMultipartFile fileToUpload=countryDO.getInsuRequiredDocFile();
+            if (fileToUpload != null && fileToUpload.getBytes().length > 0) {
+                String relativePath = FileUtils.uploadFile(fileToUpload, rootPath);
+                countryDO.setInsuRequiredDoc(relativePath);
+            }
+
+            CommonsMultipartFile generalAttachmentFile=countryDO.getGeneralAttachmentFile();
+            if (generalAttachmentFile != null && generalAttachmentFile.getBytes().length > 0) {
+                String relativePath = FileUtils.uploadFile(generalAttachmentFile, rootPath);
+                countryDO.setGeneralAttachment(relativePath);
+            }
+
+            CommonsMultipartFile clauseAttachment=countryDO.getClauseAttachment();
+            if (clauseAttachment != null && clauseAttachment.getBytes().length > 0) {
+                String relativePath = FileUtils.uploadFile(clauseAttachment, rootPath);
+                for(ClauseDO clauseDO:clauseDOs){//TODO:
+                    clauseDO.setClauseAttach(relativePath);
+                }
+            }
 
             Long countryId= countryService.saveCountry(countryDO);
         }catch (JsonMappingException e) {

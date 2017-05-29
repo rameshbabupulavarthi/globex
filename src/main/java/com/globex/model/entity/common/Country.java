@@ -151,6 +151,12 @@ public class Country {
     @Column(name="UPDATED_BY")
     private Long updatedBy;
 
+    @Column(name="INS_REQ_DOC")
+    private String insuRequiredDoc;
+
+    @Column(name="GENERAL_ATTACH")
+    private String generalAttachment;
+
     /*@Column(name="GENERAL_COMMENTS")
     private Set<Attachment> generalAttachments;*/
 }

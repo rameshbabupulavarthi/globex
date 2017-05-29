@@ -32,8 +32,12 @@ public class Clause implements Serializable {
     @Column(name = "COMMENTS")
     private String comments;
 
-    /*@OneToMany(fetch = FetchType.LAZY,mappedBy = "attachments")
-    private Set<Attachment> attachments;*/
+    /*@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ATTACHMENT_ID", nullable = false)
+    private Attachment attachment;*/
+
+    @Column(name = "ATTACHMENT")
+    private String attachment;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COUNTRY_ID")

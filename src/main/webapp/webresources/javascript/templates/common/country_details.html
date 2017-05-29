@@ -131,7 +131,9 @@
                                 <% _.each(rateRequirements, function(rateRequirement){ %>
                                     <tr class="taxRequirement">
                                     <td>
-                                        <input class="stylish" type="text"  placeholder="Enter Requirement Name" name="requirementName" value="<%=rateRequirement.requirementName%>">
+                                        <div class="field pencil-icon">
+                                            <input class="stylish" type="text"  placeholder="Enter Requirement Name" name="requirementName" value="<%=rateRequirement.requirementName%>">
+                                        </div>
                                     </td>
                                     <td>
                                         <div class="field align-justify">
@@ -242,7 +244,10 @@
                                             </td>
                                             <td>
                                                 <div class="field upload-icon">
-                                                    <input name="comments" class="stylish" id="insuRequiredDocAttach" type="file" name="insuRequiredDocAttach" size="50">
+                                                    <input name="clauseAttachment" class="stylish" id="clauseAttachment" type="file">
+                                                    <% if( clause.clauseAttach ){%>
+                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=clause.clauseAttach%>" title="Attachment"></a>
+                                                    <%}%>
                                                 </div>
                                             </td>
                                             <input type="hidden" name="clauseId" value="<%=clause.clauseId%>">
@@ -427,7 +432,10 @@
                     <div class="form-column">
                         <div class="field-label">Attachments for question above :</div>
                         <div class="field pencil-icon">
-                            <input class="stylish" type="file" name="insuRequiredDocAttach" size="50">
+                            <input class="stylish" type="file" name="insuRequiredDocFile" size="50">
+                            <% if( insuRequiredDoc ){%>
+                            <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=insuRequiredDoc%>" title="Attachment"></a>
+                            <%}%>
                         </div>
                     </div>
                     <div class="form-column">
@@ -553,7 +561,10 @@
                     <div class="form-column">
                         <div class="field-label">General Attachments:</div>
                         <div class="field upload-icon">
-                            <input class="stylish" type="file" name="generalComments" size="50" value="<%=generalComments%>">
+                            <input class="stylish" type="file" name="generalAttachmentFile">
+                            <% if( generalAttachment ){%>
+                                <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=generalAttachment%>" title="Attachment"></a>
+                            <%}%>
                         </div>
                     </div>
                 </div>

@@ -35,7 +35,7 @@ var CountryDetailView =Backbone.View.extend({
                     mandatoryReInsuranceCession:"",mandatoryReInsuranceComments:"",tacitRenewal:"",tacitRenewalReasons:"",
                     tacticalRenewalComments:"",cashBeforeCoverReq:"",cashBeforeCoverReqComments:"",localCurrencyReq:"",
                     localCurrencyReqComments:"",stateReinsurerReqLOB:"",stateReinsurerReq:"",stateReinsurerReqComments:"",
-                    otherRequirements:"",generalComments:"",
+                    otherRequirements:"",generalComments:"",generalAttachment:"",insuRequiredDoc:"",
                     taxes:taxes,rateRequirements:rateRequirements,clauses:clauses
             };
             if(_self.model){
@@ -57,6 +57,7 @@ var CountryDetailView =Backbone.View.extend({
                 stateReinsurerReqLOB:_self.model.get("stateReinsurerReqLOB"),stateReinsurerReq:_self.model.get("stateReinsurerReq"),
                 stateReinsurerReqComments:_self.model.get("stateReinsurerReqComments"),otherRequirements:_self.model.get("otherRequirements"),
                 generalComments:_self.model.get("generalComments"),
+                generalAttachment:_self.model.get("generalAttachment"),insuRequiredDoc:_self.model.get("insuRequiredDoc"),
                 taxes:_self.model.get("taxes"),rateRequirements:_self.model.get("rateRequirements"),clauses:_self.model.get("clauses"),
               };
             }
@@ -80,14 +81,31 @@ var CountryDetailView =Backbone.View.extend({
         require(["jquery.validate"],function(){
                 _self.$el.find("#saveCountryDetails").validate({
                 invalidHandler: function(e, validator) {},
+                rules: {
+                   country:{required: true,maxlength: 255},
+                   territoryComments:{required: true,maxlength: 255},
+                   locCurOnLocPolComments:{maxlength: 255},
+                   foreignLawOnLocalPolicyComments:{maxlength: 255},
+                   manuScriptComments:{maxlength: 255},
+                   reInsuranceSupportComments:{maxlength: 255},
+                   foreignReinsurerRegisteredComments:{maxlength: 255},
+                   foreignReinsurerRegisteredAdvice:{maxlength: 255},
+                   infoReqdForPolicyInsurance:{maxlength: 255},
+                   mandatoryReInsuranceComments:{maxlength: 255},
+                   nonAdmittedComments:{maxlength: 255},
+                   tacitRenewalReasons:{maxlength: 255},
+                   tacticalRenewalComments:{maxlength: 255},
+                   cashBeforeCoverReqComments:{maxlength: 255},
+                   localCurrencyReqComments:{maxlength: 255},
+                   stateReinsurerReqComments:{maxlength: 255},
+                   otherRequirements:{maxlength: 255},
+                   generalComments:{maxlength: 255},
+                },
                 submitHandler: function(form) {
                     $(".loading-icon-wrapper").show();
                     $("body").css({opacity:0.5});
 
                     var countryJson={};
-                    countryJson['countryId']=_self.$el.find("[name='countryId']").val();
-                    countryJson['country']=_self.$el.find("[name='country']").val();
-                    countryJson['territoryComments']=_self.$el.find("[name='territoryComments']").val();
 
                     var $taxRows= _self.$el.find("#taxWrapper .tax-row");
                     var taxJsonArray=[];
@@ -132,6 +150,10 @@ var CountryDetailView =Backbone.View.extend({
                         clauseJson['clauseComments']=$clause.find("[name='clauseComments']").val();
                         clausesJsonArray.push(clauseJson);
                     }
+                    /*
+                    countryJson['countryId']=_self.$el.find("[name='countryId']").val();
+                    countryJson['country']=_self.$el.find("[name='country']").val();
+                    countryJson['territoryComments']=_self.$el.find("[name='territoryComments']").val();
                     countryJson['locCurOnLocPol']=_self.$el.find("[name='locCurOnLocPol']").val();
                     countryJson['locCurOnLocPolComments']=_self.$el.find("[name='locCurOnLocPolComments']").val();
                     countryJson['foreignLawOnLocalPolicy']=_self.$el.find("[name='foreignLawOnLocalPolicy']").val();
@@ -161,20 +183,29 @@ var CountryDetailView =Backbone.View.extend({
                     countryJson['stateReinsurerReq']=_self.$el.find("[name='stateReinsurerReq']").val();
                     countryJson['stateReinsurerReqComments']=_self.$el.find("[name='stateReinsurerReqComments']").val();
                     countryJson['otherRequirements']=_self.$el.find("[name='otherRequirements']").val();
-                    countryJson['generalComments']=_self.$el.find("[name='generalComments']").val();
+                    countryJson['generalComments']=_self.$el.find("[name='generalComments']").val();*/
 
                     countryJson.taxTypesJsonStr=JSON.stringify(taxJsonArray);
                     countryJson.taxRequirementsJsonStr= JSON.stringify(taxRequirementJsonArray);
                     countryJson.clausesJsonStr=JSON.stringify(clausesJsonArray);
-                    var formData=countryJson;
+                    //var formData=countryJson;
 
+                    var formData=new FormData(form);
+                    formData.append('taxTypesJsonStr',countryJson.taxTypesJsonStr);
+                    formData.append('taxRequirementsJsonStr',countryJson.taxRequirementsJsonStr);
+                    formData.append('clausesJsonStr',countryJson.clausesJsonStr);
                     /*var form=document.getElementById("saveCountryDetails");
-                    var formData=new FormData(form);*/
+                    */
                     //var formData=$('#saveCountryDetails').serialize();
                     $.ajax({
                         type: 'POST',
+                        dataType : "json",
                         url: form.action,
                         data: formData,
+                        async: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
                         error: function() {
                             setTimeout(function(){
                              $(".loading-icon-wrapper").hide();
@@ -182,8 +213,8 @@ var CountryDetailView =Backbone.View.extend({
                            }, 3000);
                         },
                         success: function(userJSON) {
-                            _self.$el.empty();
                             $(".navigate-manage-country").trigger("click");
+                            _self.$el.empty();
                             $(".loading-icon-wrapper").hide();
                             $("body").css({opacity:1});
                         }
@@ -278,8 +309,9 @@ CountryListView =Backbone.View.extend({
         });
     },
      addCountry:function(){
-         var countryDetailView=new CountryDetailView({el:"#layout-body-content"});
          this.$el.empty();
+         this.$el.unbind();
+         var countryDetailView=new CountryDetailView({el:"#layout-body-content"});
          countryDetailView.render();
      }
 });
@@ -340,6 +372,7 @@ var CountryView =Backbone.View.extend({
                    stateReinsurerReqLOB:country.stateReinsurerReqLOB,stateReinsurerReq:country.stateReinsurerReq,
                    stateReinsurerReqComments:country.stateReinsurerReqComments,otherRequirements:country.otherRequirements,
                    generalComments:country.generalComments,
+                   generalAttachment:country.generalAttachment,insuRequiredDoc:country.insuRequiredDoc,
                    taxes:country.taxes,rateRequirements:country.rateRequirements,clauses:country.clauses,
                });
 
@@ -348,6 +381,8 @@ var CountryView =Backbone.View.extend({
                 popupView.$el.find("#popup-title").html("Country Details");
                 var countryPopupView = new CountryPopupView({el:"#popup-content",model: countryModel});
                 countryPopupView.render();*/
+                $("#layout-body-content").empty();
+                $("#layout-body-content").unbind();
                 var countryDetailView = new CountryDetailView({el:"#layout-body-content",model: countryModel});
                 countryDetailView.render();
             }

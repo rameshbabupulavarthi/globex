@@ -535,7 +535,10 @@ label.error {
     color: red;
 }
 
-
+#saveCountryDetails textarea{
+    width: 435px;
+    height: 29px;
+}
 
 
 /*******************************************   font awsome  ****************************************************/
