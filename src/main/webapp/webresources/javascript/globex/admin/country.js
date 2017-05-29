@@ -199,7 +199,7 @@ var CountryDetailView =Backbone.View.extend({
                     //var formData=$('#saveCountryDetails').serialize();
                     $.ajax({
                         type: 'POST',
-                        dataType : "json",
+                        /*dataType : "json",*/
                         url: form.action,
                         data: formData,
                         async: false,
