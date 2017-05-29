@@ -13,7 +13,7 @@
                                     '</div>'+
                                 '</div>'+
                                 '<div class="accordian-body">'+
-                                    '<div class="application-form">'+
+                                    '<div class="form-wrapper">'+
 
                                     '</div>'+
                                 '</div>'+
@@ -75,7 +75,7 @@
                 };
              }
              var template=_.template(registrationForm,variables);
-            _self.$el.find("#layout-body-content .application-form").html(template);
+            _self.$el.find("#layout-body-content .form-wrapper").html(template);
             _self.validateDetails();
             $(".date-picker").datepicker({ dateFormat: 'dd-mm-yy'});
         });
@@ -240,8 +240,8 @@
                 };
              }
              var template=_.template(registrationForm,variables);
-             _self.$el.find("#layout-body-content .application-form").empty();
-            _self.$el.find("#layout-body-content .application-form").html(template);
+             _self.$el.find("#layout-body-content .form-wrapper").empty();
+            _self.$el.find("#layout-body-content .form-wrapper").html(template);
             _self.validateDetails();
         });
     },
