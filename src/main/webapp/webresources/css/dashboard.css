@@ -549,7 +549,14 @@ a{
   display:inline-block;
   padding:0 10px;
 }
-
+.form-tab{
+  display:inline-block;
+  padding:0 5px;
+}
+.form-tab-row{
+  display:inline-block;
+  padding:0 5px;
+}
 .form-cell{
   display:inline-block;
   padding:0 10px;
@@ -621,11 +628,23 @@ a{
     width:45%;
     vertical-align:top;
 }
+.form-wrapper .form-tab{
+    width:30%;
 
+}
+.form-wrapper .form-tab-row{
+    width:18%;
+
+}
 #applicationForm .form-column{
     vertical-align: top;
 }
-
+#applicationForm .form-tab{
+    vertical-align: top;
+}
+#applicationForm .form-tab-row{
+    vertical-align: top;
+}
 .pm-file-form{
 
 }

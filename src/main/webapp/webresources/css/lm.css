@@ -199,14 +199,14 @@
 }
 
 .lm-registration-body input[type="text"],textarea{
-    font-size: 14px;
+   /* font-size: 14px;
     margin-right: 13px;
     padding:0px 0px 0px 30px;
     cursor: pointer;
     border-radius: 2px;
     border: 2px solid #d3d7cf;
     width:100%;
-    height: 40px;
+    height: 40px;*/
 }
 
 
@@ -606,5 +606,10 @@ label.error {
  body {
    margin: 10px;
  }
+
+.table_tax{
+margin-left:2em;
+width:100%;
+}
 
  /**end of lm**/

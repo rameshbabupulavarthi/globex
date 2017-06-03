@@ -16,11 +16,11 @@
     <link href="/webresources/css/globex.css" type="text/css" rel="stylesheet"></link>
     <link href="/webresources/css/jquery.tinyscrollbar.css" rel="stylesheet" type="text/css" />
     <script data-main="/webresources/javascript/globex" src="/webresources/javascript/require.js"></script>
-    <link href="/webresources/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- <link href="/webresources/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/webresources/javascript/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="data:text/css;charset=utf-8," rel="stylesheet" data-href="/webresources/javascript/bootstrap/css/bootstrap-theme.min.css" id="bs-theme-stylesheet">
 
-
+-->
     	<link rel="shortcut icon" type="image/ico" href="../webresources/images/logo.png">
         <link href="/webresources/css/jquery-ui.css" type="text/css" rel="stylesheet"></link>
         <link href="/webresources/css/globex.css" type="text/css" rel="stylesheet"></link>

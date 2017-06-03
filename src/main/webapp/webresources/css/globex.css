@@ -548,10 +548,17 @@ label.error {
     font-family: "FontAwesome";
     font-size: 16px;
     position: absolute;
-    padding-left: 9px;
+    padding-left: 10px;
     padding-top: 8px;
 }
-
+.ficon::before{
+    color: #9b59b6;
+    font-family: "FontAwesome";
+    font-size: 16px;
+    position: absolute;
+    padding-left: 9px;
+    padding-top:5px;
+}
 .form-wrapper .field {
    display: inline-block;
    width: 100%;
@@ -581,7 +588,9 @@ label.error {
     margin: 0px 200px 20px 0px;
     float: left;
 }
-
+.number-icon::before{
+    content: "\f16e";
+}
 .user-icon::before {
 	content: "\f007";
 }
@@ -611,9 +620,7 @@ label.error {
 .upload-icon::before{
     content: "\f15b";
 }
-.number-icon::before{
-    content: "\f16e";
-}
+
 .country-icon::before{
   content: "\f041";
 }
@@ -645,7 +652,7 @@ label.error {
 .calendar-icon::before{
   content: "\f073";
 }
-.drop-down-icon::before{
+.drop-down::before{
   content: "\f14a";
 }
 .info-icon::before{
@@ -663,10 +670,9 @@ label.error {
 .graph-icon::before{
    content: "\f012";
 }
-.bind-icon::before{
-   content: "\f066";
+.compress-icon::before{
+   content: "\f013";
 }
-
 .currency-icon::before{
    content: "\f155";
 }
