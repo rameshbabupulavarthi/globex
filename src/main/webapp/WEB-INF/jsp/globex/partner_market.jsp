@@ -19,6 +19,20 @@
     <link href="/webresources/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/webresources/javascript/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="data:text/css;charset=utf-8," rel="stylesheet" data-href="/webresources/javascript/bootstrap/css/bootstrap-theme.min.css" id="bs-theme-stylesheet">
+
+
+    	<link rel="shortcut icon" type="image/ico" href="../webresources/images/logo.png">
+        <link href="/webresources/css/jquery-ui.css" type="text/css" rel="stylesheet"></link>
+        <link href="/webresources/css/globex.css" type="text/css" rel="stylesheet"></link>
+        <link href="/webresources/css/dashboard.css" type="text/css" rel="stylesheet"></link>
+        <link href="/webresources/css/jquery.tinyscrollbar.css" rel="stylesheet" type="text/css" />
+        <script data-main="/webresources/javascript/globex" src="/webresources/javascript/require.js"></script>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="/webresources/css/css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -41,7 +55,7 @@
         </span>
     </div>
 
-    <div class="layout-body">
+    <div class="layout-body lm-layout-body">
         <div class="layout-body-menu lm-background-shadow">
             <ul class="menu-ul">
                 <li><span class="glyphicon glyphicon-th-large lm-menu-item" group="lm-org-details" target="lm-registration-step1" aria-hidden="true"></span></li>

@@ -585,7 +585,9 @@ label.error {
 .user-icon::before {
 	content: "\f007";
 }
-
+.hand-right-icon::before {
+	content: "\f0a4";
+}
 .email-icon::before {
     content: "\f2b6";
 }
@@ -609,13 +611,20 @@ label.error {
 .upload-icon::before{
     content: "\f15b";
 }
-
+.number-icon::before{
+    content: "\f16e";
+}
 .country-icon::before{
   content: "\f041";
 }
-
+.building-icon::before{
+    content: "\f1ad";
+}
 .pencil-icon::before{
   content: "\f040";
+}
+.globe-icon::before{
+  content: "\f0ac";
 }
 
 .other-req-icon::before{
@@ -629,13 +638,33 @@ label.error {
 .company-icon::before{
   content: "\f19c";
 }
+.plus-icon::before{
+  content: "\f0fe";
+}
 
 .calendar-icon::before{
   content: "\f073";
 }
-
+.drop-down-icon::before{
+  content: "\f14a";
+}
+.info-icon::before{
+  content: "\f129";
+}
+.save-icon::before{
+  content: "\f0c7";
+}
+.bookmark-icon::before{
+  content: "\f02e";
+}
+.rate-icon::before{
+  content: "\f005";
+}
 .graph-icon::before{
    content: "\f012";
+}
+.bind-icon::before{
+   content: "\f066";
 }
 
 .currency-icon::before{
@@ -661,6 +690,7 @@ label.error {
 .align-justify::before{
     content: "\f039";
 }
+
 
 select.stylish{
     width: 220px;

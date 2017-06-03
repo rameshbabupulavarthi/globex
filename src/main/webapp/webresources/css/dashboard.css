@@ -87,6 +87,10 @@ a{
    z-index: 999;
 }
 
+.lm-layout-body .layout-body-menu{
+   padding: 21px;
+}
+
 .menu-toggle-content{
     display:none;
 }
@@ -684,9 +688,3 @@ a{
   .menu-item-user:hover{
       background-image:url(../images/menu/personColor.png);
   }
-
-
-
-
-
-.
