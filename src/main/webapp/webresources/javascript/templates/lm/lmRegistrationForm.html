@@ -7,32 +7,19 @@
                 <span class="lm-registration-step-seperator"> <span class="lm-registration-step-seperator-border">  </span> </span>
                 <span class="lm-registration-step" nextStep="2" group="lm-finance-details" target="lm-registration-step2">2</span>
                 <span class="lm-registration-step-seperator"> <span class="lm-registration-step-seperator-border">  </span> </span>
-              <!--  <span class="lm-registration-step" nextStep="3" group="lm-network-details" target="lm-registration-step3">3</span>
-                <span class="lm-registration-step-seperator"> <span class="lm-registration-step-seperator-border">  </span> </span>
-                <span class="lm-registration-step" nextStep="4" group="lm-acount-details" target="lm-registration-step4">4</span>
-                <span class="lm-registration-step-seperator"> <span class="lm-registration-step-seperator-border">  </span> </span>
-                <span class="lm-registration-step" nextStep="0" group="lm-dept-details" target="lm-registration-step5">5</span>  -->
              </span>
             <span class="ls-registration-step-save">
                   <div class="ficon save-icon">
                 <span class="save-icon-text"> &nbsp;&nbsp;&nbsp;&nbsp;Save</span>
                   </div>
             </span>
-
-
-
         </div>
 
         <div class="lm-registration-body">
             <div class="lm-registration-body-wrapper">
-
-
-
-
                 <!--step 1-->
-
                 <div class="lm-registration-step-section lm-registration-step1" style="display: block;">
-                    <form method="post" autocomplete="off" action="/secure/saveFinancialInfo" id="saveFinancialInfo">
+                    <form method="post" autocomplete="off" action="/secure/saveOrgInfo" id="saveOrgInfo" enctype='application/json'>
                         <div class="lm-registration-body-section">
                             <div class="lm-registration-body-section-text">
                                 Organizational Details</div>
@@ -40,12 +27,6 @@
                                 <div class="field drop-down"></div>
                             </div>
                         </div>
-
-
-                        <!-- MY CODE -->
-
-                        <!-- My CODE END -->
-
 
                         <div class="lm-registration-form">
                             <div class="accordian-body">
@@ -55,13 +36,13 @@
                                             <div class="form-column">
                                                 <div class="field-label">Organization Name :</div>
                                                 <div class="field company-icon">
-                                                    <input class="stylish" type="text" placeholder="Organization Name" name="country">
+                                                    <input class="stylish" type="text" placeholder="Organization Name" name="orgName" value="<%=orgName%>">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Address :</div>
                                                 <div class="field email-icon">
-                                                    <input class="stylish" type="text" placeholder="Enter Address" name="country">
+                                                    <input class="stylish" type="text" placeholder="Enter Address" name="address1" value="<%=address1%>">
                                                 </div>
 
                                             </div>
@@ -70,28 +51,27 @@
                                             <div class="form-column">
                                                 <div class="field-label">Country :</div>
                                                 <div class="field country-icon">
-                                                    <input class="stylish" type="text" placeholder="Enter Country" name="country">
+                                                    <input class="stylish" type="text" placeholder="Enter Country" name="country" value="<%=country%>">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">City :</div>
                                                 <div class="field country-icon">
-                                                    <input class="stylish" type="text" placeholder="Enter City" name="country">
+                                                    <input class="stylish" type="text" placeholder="Enter City" name="city" value="<%=city%>">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-row">
-
                                             <div class="form-column">
                                                 <div class="field-label">State :</div>
                                                 <div class="field country-icon">
-                                                    <input class="stylish" type="text" placeholder="Enter State" name="country">
+                                                    <input class="stylish" type="text" placeholder="Enter State" name="state" value="<%=state%>">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Zip Code :</div>
                                                 <div class="field number-icon">
-                                                    <input class="stylish" type="text" placeholder="Enter Zip Code" name="zipcode">
+                                                    <input class="stylish" type="text" placeholder="Enter Zip Code" name="zip" value="<%=zip%>">
                                                 </div>
                                             </div>
                                         </div>
@@ -99,22 +79,21 @@
                                             <div class="form-column">
                                                 <div class="field-label">Company Website :</div>
                                                 <div class="field globe-icon">
-                                                    <input class="stylish"  id="website" name="website"  type="text" placeholder="Enter Company Website">
+                                                    <input class="stylish" name="website"  type="text" placeholder="Enter Company Website" value="<%=website%>">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Company Telephone :</div>
                                                 <div class="field mobile-icon">
-                                                    <input class="stylish"id="phone" type="text" value="" name="phone" placeholder="Enter Company Telephone">
+                                                    <input class="stylish" type="text"  name="telePhone" placeholder="Enter Company Telephone" value="<%=telePhone%>">
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="form-row">
                                             <div class="form-column">
                                                 <div class="field-label">Name of Your Parent Company, if any :</div>
                                                 <div class="field align-justify">
-                                                    <input class="stylish" id="parentCompany" name="parentCompany"  type="text" placeholder="Enter Your Parent Company">
+                                                    <input class="stylish" name="orgDetails.parentCompany"  type="text" placeholder="Enter Your Parent Company" value="<%=organizationDetails.parentCompany%>">
                                                 </div>
                                             </div>
                                             <div class="form-column">
@@ -122,28 +101,26 @@
                                                     Is Your Company Public or Private :
                                                 </div>
                                                 <div class="field">
-                                                    <input type="radio" name="premiumPayOption" value="1">Yes
-                                                    <input type="radio" name="premiumPayOption" value="2">
-                                                    No
+                                                    <input type="radio" name="orgDetails.orgType" value="1">Yes
+                                                    <input type="radio" name="orgDetails.orgType" value="0">No
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-column">
-                                                <div class="field-label">Name of Licensing <br>Authority :</div>
+                                                <div class="field-label">Name of Licensing Authority :</div>
                                                 <div class="field user-icon">
-                                                    <input class="stylish" id="licenseAuthority" name="licenseAuthority" type="text"
-                                                           placeholder="Enter Licensing Authority Name">
+                                                    <input class="stylish" name="orgDetails.licenseAuthorityName" type="text" placeholder="Enter Licensing Authority Name" value="<%=organizationDetails.licenseAuthorityName%>">
                                                 </div>
                                             </div>
-                                            <div class="form-column" id="ratedbyotheragencydiv">
-                                                <div class="field-label" id="misccompoutlookdiv">
+                                            <div class="form-column" >
+                                                <div class="field-label" >
                                                     Is your company rated by any
                                                     other rating agency? If so, please provide the
                                                     information :
                                                 </div>
                                                 <div class="field hand-right-icon">
-                                                    <input class="stylish" id="ratedByOtherAgency" type="text" value="" placeholder="Enter Other Rating Agency" name="ratedByOtherAgency" size="50">
+                                                    <input class="stylish" type="text"  placeholder="Enter Other Rating Agency" name="orgDetails.ratedByOtherAgency" value="<%=organizationDetails.ratedByOtherAgency%>" size="50">
                                                 </div>
                                             </div>
                                         </div>
@@ -152,17 +129,18 @@
                                             <div class="form-column">
                                                 <div class="field-label">Licensing Authority's website</div>
                                                 <div class="field globe-icon">
-                                                    <input class="stylish" id="licenseAuthWebsite" type="text" value=""
-                                                           placeholder="Enter Website" name="licenseAuthWebsite" size="50">
+                                                    <input class="stylish"  type="text" placeholder="Enter Website" name="orgDetails.licenseAuthWebsite"
+                                                           value="organizationDetails.licenseAuthWebsite" size="50">
                                                 </div>
                                             </div>
 
-                                            <div class="form-column" id="ratedbyotheragencydiv">
-                                                <div class="field-label" id="misccompoutlookdiv">
+                                            <div class="form-column" >
+                                                <div class="field-label" >
                                                     License Number :
                                                 </div>
                                                 <div class="field number-icon">
-                                                    <input class="stylish" id="licenseNo" type="text" value="" placeholder="Enter License Number" name="licenseNo" size="50">
+                                                    <input class="stylish" id="orgDetails.licenceNo" type="text"  placeholder="Enter License Number" name="orgDetails.licenseNo"
+                                                           value="organizationDetails.licenseNo" size="50">
                                                 </div>
                                             </div>
                                         </div>
@@ -171,7 +149,7 @@
                                                 <div class="field-label">Does your company have an AM
                                                     Best rating? If so, please provide the rating :</div>
                                                 <div class="field align-justify">
-                                                    <select class="stylish selectbox" id="amBestRating">
+                                                    <select class="stylish selectbox" name="orgDetails.amBestRating" value="<%=organizationDetails.amBestRating%>">
                                                         <option>---AM Best Rating---</option>
                                                         <option value="aplussuperior">A+ Superior</option>
                                                         <option value="aexcellent">A Excellent</option>
@@ -193,30 +171,30 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-column" id="ratedbyotheragencydiv">
+                                            <div class="form-column" >
                                                 <div class="field-label" id="comestablishmentyeardiv">
                                                     The Year your Company was established :
                                                 </div>
                                                 <div class="field calendar-icon">
-                                                    <input class="stylish" id="companyEstablishmentYear" type="text" value="" placeholder="Enter Establishment Year"
-                                                           name="companyEstablishmentYear" size="50">
+                                                    <input class="stylish date-picker" type="text" placeholder="Enter Establishment Year" name="regDate" value="<%=regDate%>" size="50" >
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-column" id="ratedbyotheragencydiv">
-                                                <div class="field-label" id="misccompoutlookdiv">
+                                            <div class="form-column" >
+                                                <div class="field-label" >
                                                     Attachments for any Company Information material :
                                                 </div>
                                                 <div class="field upload-icon">
-                                                    <input class="stylish" id="amratingattachmentdiv" type="file" name="amratingattachmentdiv" size="50">
+                                                    <input class="stylish" type="file" name="orgDetails.attachment" value="<%=organizationDetails.attachment%>" size="50">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">AM Best Outlook :</div>
                                                 <div class="field">
-                                                    <input type="radio" name="amBestLook" value="1" checked="">Positive &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="amBestLook" value="2">Stable
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;<input type="radio" name="amBestLook" value="3"> Negative
+                                                    <input type="radio" name="orgDetails.amBestLook" value="1" checked="">Positive &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <input type="radio" name="orgDetails.amBestLook" value="2">Stable&nbsp;&nbsp; &nbsp;&nbsp;
+                                                    <input type="radio" name="orgDetails.amBestLook" value="3"> Negative
                                                 </div>
                                             </div>
 
@@ -226,16 +204,16 @@
                                             <div class="form-column">
                                                 <div class="field-label">AM Best Outlook :</div>
                                                 <div class="field calendar-icon">
-                                                    <input class="stylish" id="ambestlookdiv" type="text" value="" placeholder="Enter Best Rating/Outlook Date"
-                                                           name="amBestRatingDate" size="50">
+                                                    <input class="stylish date-picker" type="text"  placeholder="Enter Best Rating/Outlook Date"
+                                                           name="orgDetails.amOutlookDate" value="<%=organizationDetails.amOutlookDate%>" size="50">
                                                 </div>
                                             </div>
-                                            <div class="form-column" id="ratedbyotheragencydiv">
-                                                <div class="field-label" id="misccompoutlookdiv">
+                                            <div class="form-column" >
+                                                <div class="field-label" >
                                                     AM Best rating attachment :
                                                 </div>
                                                 <div class="field upload-icon">
-                                                    <input class="stylish" id="amRatingAttachment" type="file" name="amRatingAttachment" size="50">
+                                                    <input class="stylish" type="file" name="orgDetails.amRatingAttachment" size="50">
                                                 </div>
                                             </div>
                                         </div>
@@ -244,8 +222,8 @@
                                                 <div class="field-label">Does your company have a
                                                     S&amp;P rating? If so, please provide the rating :</div>
                                                 <div class="field align-justify">
-                                                    <select id="sAndPRating" class="stylish">
-                                                        <option>---Select---</option>
+                                                    <select name="orgDetails.sAndPRating" value="<%=organizationDetails.sAndPRating%>" class="stylish">
+                                                        <option value="-1">---Select---</option>
                                                         <option value="1">Extremely Strong</option>
                                                         <option value="2">Very Strong</option>
                                                         <option value="3">Strong</option>
@@ -263,13 +241,12 @@
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">S&amp;P Outlook :</div>
-                                                <div class="field"  id="sandpoutlookdiv">
-                                                    <input type="radio" name="sAndPOutlook" value="1">&nbsp;Positive &nbsp;
-                                                    <input type="radio" name="sAndPOutlook" value="2">&nbsp;Stable&nbsp;
-                                                    <input type="radio" name="sAndPOutlook" value="3">&nbsp;Negative&nbsp;
-                                                    <input type="radio" name="sAndPOutlook" value="4">&nbsp;Developing&nbsp;
-                                                    <input type="radio" name="sAndPOutlook" value="5">&nbsp;Not Meaningful
-
+                                                <div class="field">
+                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="1">&nbsp;Positive &nbsp;
+                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="2">&nbsp;Stable&nbsp;
+                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="3">&nbsp;Negative&nbsp;
+                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="4">&nbsp;Developing&nbsp;
+                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="5">&nbsp;Not Meaningful
                                                 </div>
                                             </div>
 
@@ -279,244 +256,150 @@
                                             <div class="form-column">
                                                 <div class="field-label">S&amp;P Rating/Outlook Date :</div>
                                                 <div class="field calendar-icon">
-                                                    <input class="stylish" id="sAndPrRatingOutlookDate" type="text" value="" placeholder="Enter S&amp;P Rating/Outlook Date"
-                                                           name="sAndPrRatingOutlookDate" size="50">
+                                                    <input class="stylish date-picker" type="text"  placeholder="Enter S&amp;P Rating/Outlook Date"
+                                                           name="orgDetails.sAndPrRatingOutlookDate" value="<%=organizationDetails.sAndPrRatingOutlookDate%>" size="50">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">S&amp;P attachment :</div>
-                                                <div class="field upload-icon" id="sandpattachmentdiv">
-                                                    <input class="stylish" id="sAndPAttachment" type="file" name="sAndPAttachment" size="50">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-column">
-                                                <div class="field-label">Miscallenous rating company's
-                                                    name :</div>
-                                                <div class="field align-justify" id="misccompnamediv">
-                                                    <input class="stylish" id="miscCompName" type="text" value="" placeholder="Enter Company Name" name="miscCompName">
-                                                </div>
-                                            </div>
-                                            <div class="form-column">
-                                                <div class="field-label">Miscallenous rating company's
-                                                    website :</div>
-                                                <div class="field globe-icon" id="misccompwebsitediv">
-                                                    <input class="stylish" id="miscCompWebsite" type="text" value="" placeholder="Enter Company Website" name="miscCompWebsite" size="50">
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-column">
-                                                <div class="field-label">Miscallenous rating company's
-                                                    country :</div>
-                                                <div class="field country-icon" id="misccompnamediv">
-                                                    <input class="stylish" id="miscCompCountry" type="text" value=""
-                                                           placeholder="Enter Company Country" name="miscCompCountry" size="50">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-column">
-                                                <div class="field-label">Miscallenous rating company's
-                                                    outlook: (FF)</div>
-                                                <div class="field rate-icon" id="misccompoutlookdiv">
-                                                    <input class="stylish" id="miscCompOutlook" type="text" value="" placeholder="Enter Company Outlook" name="miscCompOutlook" size="50">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="form-column">
-                                                <div class="field-label">Miscallenous rating company's
-                                                    rating :(FF)</div>
-                                                <div class="field rate-icon" id="misccompratingdiv">
-                                                    <input class="stylish" id="miscCompRating" type="text" value="" placeholder="Enter Company Rating"
-                                                           name="miscCompRating" size="50">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-column">
-                                                <div class="field-label">Miscallenous rating company
-                                                    attachment :</div>
                                                 <div class="field upload-icon">
-                                                    <input class="stylish" id="miscCompAttachment" type="file" name="miscCompAttachment" size="50">
+                                                    <input class="stylish" type="file" name="orgDetails.sAndPAttachment" size="50">
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                        <div class="form-row">
+                                            <div class="fieldset-wrapper">
+                                                <fieldset class="fieldset">
+                                                <legend class="legend"> Misc. Rating Company </legend>
+                                                 <% _.each(miscRatings, function(miscRating){ %>
+                                                    <div class="form-row">
+                                                        <div class="form-column">
+                                                            <div class="field-label">Miscallenous rating company's name :</div>
+                                                            <div class="field align-justify" >
+                                                                <input class="stylish" type="text"  placeholder="Enter Company Name" name="misCompanyName" value="<%=miscRating.misCompanyName%>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-column">
+                                                            <div class="field-label">Miscallenous rating company's website :</div>
+                                                            <div class="field globe-icon">
+                                                                <input class="stylish" type="text"  placeholder="Enter Company Website" name="misCompanyWebsite" value="<%=miscRating.misCompanyWebsite%>" size="50">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-column">
+                                                            <div class="field-label">Miscallenous rating company's country :</div>
+                                                            <div class="field country-icon" >
+                                                                <input class="stylish" id="miscCompCountry" type="text"  placeholder="Enter Company Country" name="misCompanyCountry" value="<%=miscRating.misCompanyCountry%>" size="50">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-column">
+                                                            <div class="field-label">Miscallenous rating company's outlook: (FF)</div>
+                                                            <div class="field rate-icon" >
+                                                                <input class="stylish" id="miscCompOutlook" type="text"  placeholder="Enter Company Outlook" name="misCompanyOutlook" value="<%=miscRating.misCompanyOutlook%>" size="50">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-column">
+                                                            <div class="field-label">Miscallenous rating company's rating :(FF)</div>
+                                                            <div class="field rate-icon" id="misccompratingdiv">
+                                                                <input class="stylish" id="miscCompRating" type="text"  placeholder="Enter Company Rating" name="misCompanyRating" value="<%=miscRating.misCompanyRating%>" size="50">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-column">
+                                                            <div class="field-label">Miscallenous rating company's attachment :</div>
+                                                            <div class="field upload-icon">
+                                                                <input class="stylish" type="file" name="misCompanyAttachment" value="<%=miscRating.misCompanyAttachment%>" size="50">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                 <% }) %>
+                                            </fieldset>
+                                            </div>
+                                        </div>
+
+
                                         <div class="form-row">
                                             <div class="form-column">
                                                 <fieldset class="fieldset">
                                                     <legend class="legend"> Gross Written Premium </legend>
-                                                    <div class="field-row">
+                                                    <div class="form-tab"><div class="field-label"> Year :</div></div>
+                                                    <div class="form-tab"><div class="field-label"> Premium :</div></div>
+                                                    <div class="form-tab"><div class="field-label"> Premium Currency  :</div></div>
+                                                    <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                        <div class="field-row gross-premium-wrapper">
                                                         <div class="form-tab">
-                                                            <div class="field-label"> Year :</div>
                                                             <div class="field align-justify">
-                                                                <select class="stylish">
-                                                                    <option> Year :</option>
+                                                                <select class="stylish" name="year"  value="<%=organizationHistory.year%>">
+                                                                    <option value="-1"> Year :</option>
                                                                     <option value="2014">2014</option>
                                                                     <option value="2015">2015</option>
                                                                     <option value="2016">2016</option>
-
-                                                                </select>
-                                                            </div>
-                                                            </div>
-                                                        <div class="form-tab">
-                                                            <div class="field-label"> Premium :</div>
-                                                            <div class="field pencil-icon"  id="grosspremiumpremium1div">
-                                                                <input class="stylish" id="grosspremiumpremium1" type="text" value="" placeholder="Enter Premium"
-                                                                       name="grosspremiumpremium1">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-tab">
-                                                        <div class="field-label"> Premium Currency  :</div>
-                                                        <div class="field currency-icon"  id="grosspremiumcurrency1div">
-                                                            <input class="stylish" id="grosspremiumcurrency1" type="text" value=""
-                                                                   placeholder="Enter Currency" name="grosspremiumcurrency1">
-                                                        </div>
-                                                            </div>
-                                                        </div>
-                                                    <div class="field-row">
-                                                        <div class="form-tab">
-                                                            <div class="field-label"> Year :</div>
-                                                            <div class="field align-justify" id="grosspremiumyear2div">
-                                                                <select class="stylish" id="grosspremiumyear2div">
-                                                                    <option> Year :</option>
-                                                                    <option value="2014">2014</option>
-                                                                    <option value="2015">2015</option>
-                                                                    <option value="2016">2016</option>
-
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-tab">
-                                                            <div class="field-label"> Premium :</div>
-                                                            <div class="field pencil-icon"  id="grosspremiumpremium2div">
-                                                                <input class="stylish" id="grosspremiumpremium2" type="text" value="" placeholder="Enter Premium"
-                                                                       name="grosspremiumpremium2">
+                                                            <div class="field pencil-icon">
+                                                                <input class="stylish" type="text"  placeholder="Enter Premium"  name="premium" value="<%=organizationHistory.premium%>">
                                                             </div>
                                                         </div>
                                                         <div class="form-tab">
-                                                            <div class="field-label"> Premium Currency  :</div>
-                                                            <div class="field currency-icon"  id="grosspremiumcurrency2div">
-                                                                <input class="stylish" id="grosspremiumcurrency2" type="text" value=""
-                                                                       placeholder="Enter Currency" name="grosspremiumcurrency2">
+                                                            <div class="field currency-icon">
+                                                                <input class="stylish" type="text"  placeholder="Enter Currency" name="premiumCurrency" value="<%=organizationHistory.premiumCurrency%>">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="field-row">
-                                                        <div class="form-tab">
-                                                            <div class="field-label"> Year :</div>
-                                                            <div class="field align-justify" id="grosspremiumyear3div">
-                                                                <select class="stylish" id="grosspremiumyear3div">
-                                                                    <option> Year :</option>
-                                                                    <option value="2014">2014</option>
-                                                                    <option value="2015">2015</option>
-                                                                    <option value="2016">2016</option>
-
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-tab">
-                                                            <div class="field-label"> Premium :</div>
-                                                            <div class="field pencil-icon"  id="grosspremiumpremium3div">
-                                                                <input class="stylish" id="grosspremiumpremium3" type="text" value="" placeholder="Enter Premium"
-                                                                       name="grosspremiumpremium3">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-tab">
-                                                            <div class="field-label"> Premium Currency  :</div>
-                                                            <div class="field currency-icon"  id="grosspremiumcurrency3div">
-                                                                <input class="stylish" id="grosspremiumcurrency3" type="text" value=""
-                                                                       placeholder="Enter Currency" name="grosspremiumcurrency3">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                                                    <% }) %>
                                                 </fieldset>
-
                                             </div>
 
 
                                             <div class="form-column">
                                                 <fieldset  class="fieldset">
-                                                    <legend class="legend">Please state your current combined ratio
-                                                    </legend>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field-label"> Year :</div>
-                                                            <div class="field align-justify" id="currentcombratioyear1div">
-                                                                <select class="stylish" id="currentcombratioyear1">
-                                                                    <option> Year :</option>
-                                                                    <option value="2014">2014</option>
-                                                                    <option value="2015">2015</option>
-                                                                    <option value="2016">2016</option>
-
-                                                                </select>
+                                                    <legend class="legend">Please state your current combined ratio</legend>
+                                                    <div class="form-tab"><div class="field-label"> Year :</div></div>
+                                                    <div class="form-tab"><div class="field-label"> Combined Ratio :</div></div>
+                                                    <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                        <div class="field-row combined-ratio">
+                                                            <div class="form-column">
+                                                                <div class="field align-justify">
+                                                                    <select class="stylish" name="year" value="<%=organizationHistory.year%>">
+                                                                        <option value="-1"> Year :</option>
+                                                                        <option value="2014">2014</option>
+                                                                        <option value="2015">2015</option>
+                                                                        <option value="2016">2016</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-column">
+                                                                <div class="field compress-icon">
+                                                                    <input class="stylish" type="text"  placeholder="Enter Combined Ratio" name="combinedRatio" value="<%=organizationHistory.combinedRatio%>">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-column">
-                                                            <div class="field-label">Combined Ratio :</div>
-                                                            <div class="field compress-icon" id="currentcombratio1div">
-                                                                <input class="stylish" id="currentcombratio1" type="text" value=""
-                                                                       placeholder="Enter Combined Ratio" name="currentcombratio1">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field-label"> Year :</div>
-                                                            <div class="field align-justify" id="currentcombratioyear2div">
-                                                                <select class="stylish" id="currentcombratioyear2">
-                                                                    <option> Year :</option>
-                                                                    <option value="2014">2014</option>
-                                                                    <option value="2015">2015</option>
-                                                                    <option value="2016">2016</option>
-
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-column">
-                                                            <div class="field-label">Combined Ratio :</div>
-                                                            <div class="field compress-icon" id="currentcombratio2div">
-                                                                <input class="stylish" id="currentcombratio2" type="text" value=""
-                                                                       placeholder="Enter Combined Ratio" name="currentcombratio2">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field-label"> Year :</div>
-                                                            <div class="field align-justify" id="currentcombratioyear3div">
-                                                                <select class="stylish" id="currentcombratioyear1">
-                                                                    <option> Year :</option>
-                                                                    <option value="2014">2014</option>
-                                                                    <option value="2015">2015</option>
-                                                                    <option value="2016">2016</option>
-
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-column">
-                                                            <div class="field-label">Combined Ratio :</div>
-                                                            <div class="field compress-icon" id="currentcombratio3div">
-                                                                <input class="stylish" id="currentcombratio3" type="text" value=""
-                                                                       placeholder="Enter Combined Ratio" name="currentcombratio1">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <% }) %>
                                                 </fieldset>
                                             </div>
+
                                             <div class="form-row">
                                                 <div class="form-column">
                                                     <fieldset class="fieldset">
                                                         <legend class="legend"> Please state your current Total Assets </legend>
-                                                        <div class="field-row">
+                                                        <div class="form-tab"><div class="field-label"> Year :</div></div>
+                                                        <div class="form-tab"><div class="field-label"> Total Assets :</div></div>
+                                                        <div class="form-tab"><div class="field-label"> Total Assets Currency :</div></div>
+                                                        <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                            <div class="field-row total-assets">
                                                             <div class="form-tab">
-                                                                <div class="field-label"> Year :</div>
-                                                                <div class="field align-justify" id="totalassetsyear1div">
-                                                                    <select class="stylish" id="totalassetsyear1div">
-                                                                        <option> Year :</option>
+                                                                <div class="field align-justify" >
+                                                                    <select class="stylish" name="year" value="<%=organizationHistory.year%>">
+                                                                        <option value="-1"> Year :</option>
                                                                         <option value="2014">2014</option>
                                                                         <option value="2015">2015</option>
                                                                         <option value="2016">2016</option>
@@ -524,246 +407,90 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-tab">
-                                                                <div class="field-label">Total Assets :</div>
-                                                                <div class="field pencil-icon"  id="totalassets1div">
-                                                                    <input class="stylish" id="totalassets1" type="text" value="" placeholder="Enter Assets" name="totalassets1">
+                                                                <div class="field pencil-icon">
+                                                                    <input class="stylish" type="text"  placeholder="Enter Assets" name="totalAssets" value="<%=organizationHistory.totalAssets%>">
                                                                 </div>
                                                             </div>
                                                             <div class="form-tab">
-                                                                <div class="field-label">Total Assets Currency :</div>
-                                                                <div class="field currency-icon" id="totalassetscurrency1div">
-                                                                    <input class="stylish"id="totalassetscurrency1" type="text" value="" placeholder="Enter Currency"
-                                                                           name="totalassetscurrency1">
+                                                                <div class="field currency-icon">
+                                                                    <input class="stylish" type="text"  placeholder="Enter Currency" name="totalAssetsCurrency" value="<%=organizationHistory.totalAssetsCurrency%>">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="field-row">
-                                                            <div class="form-tab">
-                                                                <div class="field-label"> Year :</div>
-                                                                <div class="field align-justify" id="totalassetsyear2div">
-                                                                    <select class="stylish" id="totalassetsyear2div">
-                                                                        <option> Year :</option>
-                                                                        <option value="2014">2014</option>
-                                                                        <option value="2015">2015</option>
-                                                                        <option value="2016">2016</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Total Assets :</div>
-                                                                <div class="field pencil-icon"  id="totalassets2div">
-                                                                    <input class="stylish" id="totalassets2" type="text" value="" placeholder="Enter Assets" name="totalassets2">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Total Assets Currency :</div>
-                                                                <div class="field currency-icon" id="totalassetscurrency2div">
-                                                                    <input class="stylish"id="totalassetscurrency2" type="text" value="" placeholder="Enter Currency"
-                                                                           name="totalassetscurrency2">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field-row">
-                                                            <div class="form-tab">
-                                                                <div class="field-label"> Year :</div>
-                                                                <div class="field align-justify" id="totalassetsyear3div">
-                                                                    <select class="stylish" id="totalassetsyear3div">
-                                                                        <option> Year :</option>
-                                                                        <option value="2014">2014</option>
-                                                                        <option value="2015">2015</option>
-                                                                        <option value="2016">2016</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Total Assets :</div>
-                                                                <div class="field pencil-icon"  id="totalassets3div">
-                                                                    <input class="stylish" id="totalassets3" type="text" value="" placeholder="Enter Assets" name="totalassets3">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Total Assets Currency :</div>
-                                                                <div class="field currency-icon" id="totalassetscurrency3div">
-                                                                    <input class="stylish"id="totalassetscurrency3" type="text" value="" placeholder="Enter Currency"
-                                                                           name="totalassetscurrency3">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
+                                                        <% }) %>
                                                     </fieldset>
-
                                                 </div>
-
-
                                                 <div class="form-column">
                                                     <fieldset  class="fieldset">
                                                         <legend class="legend">Please advise your company's ranking in the
                                                             localmarket in terms of gross premium
                                                         </legend>
-                                                        <div class="field-row">
-                                                            <div class="form-tab">
-                                                                <div class="field-label"> Year :</div>
-                                                                <div class="field align-justify" id="advisecomprankyear1div">
-                                                                    <select class="stylish"  id="advisecomprankyear1div">
-                                                                        <option> Year :</option>
-                                                                        <option value="2014">2014</option>
-                                                                        <option value="2015">2015</option>
-                                                                        <option value="2016">2016</option>
-
-                                                                    </select>
+                                                        <div class="form-tab"><div class="field-label"> Year :</div></div>
+                                                        <div class="form-tab"><div class="field-label"> Ranking :</div></div>
+                                                        <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                            <div class="field-row comp-rank">
+                                                                <div class="form-tab">
+                                                                    <div class="field align-justify" >
+                                                                        <select class="stylish" name="year" value="<%=organizationHistory.year%>">
+                                                                            <option value="-1"> Year :</option>
+                                                                            <option value="2014">2014</option>
+                                                                            <option value="2015">2015</option>
+                                                                            <option value="2016">2016</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-tab">
+                                                                    <div class="field currency-icon">
+                                                                        <input class="stylish" type="text"  placeholder="Enter Ranking" name="ranking" value="<%=organizationHistory.ranking%>">
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Total Assets Currency :</div>
-                                                                <div class="field currency-icon" id="advisecompranking1div">
-                                                                    <input class="stylish" id="advisecompranking1" type="text" value="" placeholder="Enter Ranking"
-                                                                           name="advisecompranking1">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field-row">
-                                                            <div class="form-tab">
-                                                                <div class="field-label"> Year :</div>
-                                                                <div class="field align-justify" id="advisecomprankyear2div">
-                                                                    <select class="stylish"  id="advisecomprankyear2div">
-                                                                        <option> Year :</option>
-                                                                        <option value="2014">2014</option>
-                                                                        <option value="2015">2015</option>
-                                                                        <option value="2016">2016</option>
-
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Total Assets Currency :</div>
-                                                                <div class="field currency-icon" id="advisecompranking2div">
-                                                                    <input class="stylish" id="advisecompranking2" type="text" value=""
-                                                                           placeholder="Enter Ranking" name="advisecompranking2">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field-row">
-                                                            <div class="form-tab">
-                                                                <div class="field-label"> Year :</div>
-                                                                <div class="field align-justify" id="advisecomprankyear3div">
-                                                                    <select class="stylish"  id="advisecomprankyear3div">
-                                                                        <option> Year :</option>
-                                                                        <option value="2014">2014</option>
-                                                                        <option value="2015">2015</option>
-                                                                        <option value="2016">2016</option>
-
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Total Assets Currency :</div>
-                                                                <div class="field currency-icon" id="advisecompranking3div">
-                                                                    <input class="stylish" id="advisecompranking3" type="text" value="" placeholder="Enter Ranking"
-                                                                           name="advisecompranking3">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
+                                                        <% }) %>
                                                     </fieldset>
-
                                                 </div>
                                             </div>
+
                                             <div class="field-row">
                                                 <div class="form-column">
-                                                    <fieldset  class="fieldset">
+                                                    <fieldset class="fieldset">
                                                         <legend class="legend">Please provide your Financial Reports for
                                                             the past three years
                                                         </legend>
-                                                        <div class="field-row">
+                                                        <div class="form-tab"><div class="field-label"> Year :</div></div>
+                                                        <div class="form-tab"><div class="field-label"> Attachments :</div></div>
+                                                        <div class="form-tab"><div class="field-label"> Comments :</div></div>
+                                                        <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                            <div class="field-row fin-report">
                                                             <div class="form-tab">
-                                                                <div class="field-label"> Year :</div>
-                                                                <div class="field align-justify" id="financialreportyear1div">
-                                                                    <select class="stylish"  id="financialreportyear1div">
-                                                                        <option> Year :</option>
+                                                                <div class="field align-justify" >
+                                                                    <select class="stylish" name="year" value="<%=organizationHistory.year%>">
+                                                                        <option value="-1"> Year :</option>
                                                                         <option value="2014">2014</option>
                                                                         <option value="2015">2015</option>
                                                                         <option value="2016">2016</option>
-
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-tab">
-                                                                <div class="field-label">Attachment :</div>
-                                                                <div class="field upload-icon" id="financialreportattachment1div">
-                                                                    <input class="stylish" id="financialreportattachment1" type="file" name="financialreportattachment1">
+                                                                <div class="field upload-icon">
+                                                                    <input class="stylish" type="file" name="finAttachment" value="<%=organizationHistory.attachment%>" >
                                                                 </div>
-                                                                </div>
+                                                            </div>
                                                             <div class="form-tab">
-                                                                <div class="field-label">Comments :</div>
-                                                                <div class="field pencil-icon" id="financialreportcomments1div">
-                                                                    <input class="stylish" id="financialreportcomments1" type="text" value=""
-                                                                           placeholder="Enter omments" name="financialreportcomments1">
+                                                                <div class="field pencil-icon">
+                                                                    <input class="stylish" type="text"  placeholder="Enter omments" name="finComments" value="<%=organizationHistory.comments%>">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="field-row">
-                                                            <div class="form-tab">
-                                                                <div class="field-label"> Year :</div>
-                                                                <div class="field align-justify" id="financialreportyear2div">
-                                                                    <select class="stylish"  id="financialreportyear2div">
-                                                                        <option> Year :</option>
-                                                                        <option value="2014">2014</option>
-                                                                        <option value="2015">2015</option>
-                                                                        <option value="2016">2016</option>
-
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Attachment :</div>
-                                                                <div class="field upload-icon" id="financialreportattachment2div">
-                                                                    <input class="stylish" id="financialreportattachment2" type="file" name="financialreportattachment2">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Comments :</div>
-                                                                <div class="field pencil-icon" id="financialreportcomments2div">
-                                                                    <input class="stylish" id="financialreportcomments2" type="text" value=""
-                                                                           placeholder="Enter omments" name="financialreportcomments2">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="field-row">
-                                                            <div class="form-tab">
-                                                                <div class="field-label"> Year :</div>
-                                                                <div class="field align-justify" id="financialreportyear3div">
-                                                                    <select class="stylish"  id="financialreportyear3div">
-                                                                        <option> Year :</option>
-                                                                        <option value="2014">2014</option>
-                                                                        <option value="2015">2015</option>
-                                                                        <option value="2016">2016</option>
-
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Attachment :</div>
-                                                                <div class="field upload-icon" id="financialreportattachment3div">
-                                                                    <input class="stylish" id="financialreportattachment3" type="file" name="financialreportattachment3">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <div class="field-label">Comments :</div>
-                                                                <div class="field pencil-icon" id="financialreportcomments3div">
-                                                                    <input class="stylish" id="financialreportcomments3" type="text" value=""
-                                                                           placeholder="Enter omments" name="financialreportcomments3">
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        <% }) %>
                                                     </fieldset>
-
                                                 </div>
                                                 <div class="form-column">
                                                     <div class="field-label">Do you work with Alpha
                                                         Brokers, such as Marsh, Willis, and Aon? Y or N or
                                                         Other :</div>
                                                     <div class="field pencil-icon">
-                                                        <input class="stylish"  id="otherBrokers" type="text" value="" name="otherBrokers" size="20">
+                                                        <input class="stylish" type="text"  name="orgDetails.alphaBrokers" value="<%=organizationDetails.alphaBrokers%>" size="20">
                                                     </div>
                                                 </div>
 
@@ -772,35 +499,30 @@
                                             <div class="field-row">
                                                 <div class="form-column">
                                                     <fieldset  class="fieldset">
-                                                        <legend class="legend">Lines of Business :
-                                                        </legend>
-
-                                                        <div class="field"  id="businesstowritediv">
-                                                            <input type="checkbox" name="businessToWrite" value="Marine">Marine
+                                                        <legend class="legend">Lines of Business :</legend>
+                                                        <div class="form-tab"><div class="field-label"> LOB :</div></div>
+                                                        <div class="form-tab"><div class="field-label"> Authorized to write :</div></div>
+                                                        <div class="form-tab"><div class="field-label"> Willingness to Write :</div></div>
+                                                        <% _.each(lobs, function(lob){ %>
+                                                            <div class="field-row lob">
+                                                            <div class="form-tab">
+                                                                <input type="checkbox" name="lob" value="<%=lob.lob%>"><%=lob.lob%>
+                                                            </div>
+                                                            <div class="form-tab">
+                                                                <select name="authorizedToWrite" value="<%=lob.authorizedToWrite%>">
+                                                                    <option value="1">Yes</option>
+                                                                    <option value="0">No</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-tab">
+                                                                <select name="willingnessToWrite" value="<%=lob.willingnessToWrite%>">
+                                                                    <option value="1">Yes</option>
+                                                                    <option value="0">No</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                        <div class="field"  id="businesstowritediv">
-                                                            <input type="checkbox" name="businessToWrite" value="Property">Property
-                                                        </div>
-                                                        <div class="field"  id="businesstowritediv">
-                                                            <input type="checkbox" name="businessToWrite" value="GeneralLiability">General Liability
-                                                        </div>
-                                                        <div class="field"  id="businesstowritediv">
-                                                            <input type="checkbox" name="businessToWrite"
-                                                                   value="ProfessionalLiability">Professional
-                                                            Liability
-                                                        </div>
-                                                        <div class="field"  id="businesstowritediv">
-                                                            <input type="checkbox" name="businessToWrite" value="PackageAndPolicy">Package and Policy
-                                                        </div>
-                                                        <div class="field"  id="businesstowritediv">
-                                                            <input type="checkbox" name="businessToWrite" value="AccidentAndHealth">Accident and Health
-                                                        </div>
-                                                        <div class="field"  id="businesstowritediv">
-                                                            <input type="checkbox" name="businessToWrite" value="OtherCoverages">Other Coverages
-                                                        </div>
-
+                                                        <% }) %>
                                                     </fieldset>
-
                                                 </div>
                                                 <div class="form-column">
                                                     <fieldset class="fieldset">
@@ -810,38 +532,40 @@
                                                             <div class="form-tab">
                                                                 <div class="field-label">LOB</div>
                                                                 <div class="field pencil-icon">
-                                                                    <input class="stylish" type="text" placeholder="All or LOB names, more than one" name="lob">
+                                                                    <input class="stylish" type="text" placeholder="All or LOB names, more than one" name="orgDetails.reInsuranceLob"  value="<%=organizationDetails.reInsuranceLob%>">
                                                                 </div>
                                                             </div>
                                                             <div class="form-tab">
                                                                 <div class="field-label">Issue Policies</div>
                                                                 <div class="field align-justify">
-                                                                    <select class="stylish">
-                                                                        <option>Issue Policies</option>
-                                                                        <option value="yes">Yes</option>
-                                                                        <option value="no">No</option>
+                                                                    <select class="stylish" name="orgDetails.reInsuranceSupport" value="<%=organizationDetails.reInsuranceSupport%>" >
+                                                                        <option value="0">Issue Policies</option>
+                                                                        <option value="1">Yes</option>
+                                                                        <option value="0">No</option>
                                                                     </select>
                                                                 </div></div>
 
                                                             <div class="form-tab">
                                                                 <div class="field-label">Comments</div>
                                                                 <div class="field pencil-icon">
-                                                                    <input class="stylish" type="text" placeholder="Enter your Comments" name="comments">
+                                                                    <input class="stylish" type="text" placeholder="Enter your Comments" name="orgDetails.reInsuranceComments" value="<%=organizationDetails.reInsuranceComments%>">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </fieldset>
                                                 </div>
                                             </div>
+
                                             <div class="field-row">
                                             <div class="fieldset-wrapper">
-                                                <fieldset class="fieldset" id="taxRequirements">
+                                                <fieldset class="fieldset" >
                                                     <legend class="legend">Are there any Tariff, Minimum Premium or Rate requirements in your country? </legend>
-                                                    <div class="field-row">
+                                                    <% _.each(rateRequirements, function(rateRequirement){ %>
+                                                        <div class="field-row rate-req">
                                                         <div class="form-tab-row">
                                                             <div class="field-label">Which LOB</div>
                                                             <div class="field align-justify">
-                                                                <select class="stylish" width="100%">
+                                                                <select class="stylish" name="requirementLob" value="<%=rateRequirement.requirementLob%>" width="100%">
                                                                     <option>Select</option>
                                                                     <option value="lob">lob</option>
                                                                     <option value="lob">lob</option>
@@ -852,20 +576,20 @@
                                                         <div class="form-tab-row">
                                                             <div class="field-label">% rate</div>
                                                             <div class="field pencil-icon">
-                                                                <input class="stylish" type="text"  placeholder="Enter % rate" name="name">
+                                                                <input class="stylish" type="text"  placeholder="Enter % rate" name="requirementRate" value="<%=rateRequirement.requirementRate%>">
                                                             </div>
                                                         </div>
                                                         <div class="form-tab-row">
                                                             <div class="field-label">min. premium</div>
                                                             <div class="field pencil-icon">
-                                                                <input class="stylish" type="text"  placeholder="Enter min. premium" name="name">
+                                                                <input class="stylish" type="text"  placeholder="Enter min. premium" name="reqMinPremium" value="<%=rateRequirement.reqMinPremium%>">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-tab-row">
                                                             <div class="field-label">currency</div>
                                                             <div class="field align-justify">
-                                                                <select class="stylish">
+                                                                <select class="stylish" name="reqCurrency" value="<%=rateRequirement.reqCurrency%>">
                                                                     <option>Select</option>
                                                                     <option value="sum">Sum Insured</option>
                                                                     <option value="sum">Fixed Sum</option>
@@ -875,7 +599,7 @@
                                                         <div class="form-tab-row">
                                                             <div class="field-label">Type of requirement</div>
                                                             <div class="field align-justify">
-                                                                <select class="stylish">
+                                                                <select class="stylish" name="reqType" value="<%=rateRequirement.reqType%>">
                                                                     <option>Select</option>
                                                                     <option value="sum">Country Requirement</option>
                                                                     <option value="sum">Company Requirement</option>
@@ -883,26 +607,21 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <% }) %>
                                                 </fieldset>
                                             </div>
                                         </div>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
-
                             <input type="hidden" id="financeId" name="id"></div>
-
                     </form>
                 </div>
 
                 <!--step 2-->
-
                 <div class="lm-registration-step-section lm-registration-step2" style="display: block;">
-                    <form method="post" autocomplete="off" action="/secure/saveFinancialInfo" id="saveFinancialInfo">
+                    <form method="post" autocomplete="off" action="/secure/saveFinancialInfo" >
                         <div class="lm-registration-body-section">
                             <div class="lm-registration-body-section-text">
                                 ACCOUNT HANDLING DETAILS</div>
@@ -915,103 +634,102 @@
                             <div class="accordian-body">
                                 <div class="form-wrapper">
                                     <div class="container">
+                                      <div class="form-row">
 
-
-                                        <div class="form-row">
-                                            <div class="fieldset-wrapper">
-                                                <fieldset class="fieldset" id="taxRequirements">
-                                                    <legend class="legend">Please advise your Reinsurance Commission requirements</legend>
-                                                    <div class="field-row">
-                                                        <div class="form-tab-row">
-                                                            <div class="field-label">Which LOB</div>
-                                                            <div class="field align-justify">
-                                                                <select class="stylish" width="100%">
-                                                                    <option>Select</option>
-                                                                    <option value="lob">lob</option>
-                                                                    <option value="lob">lob</option>
-                                                                    <option value="lob">lob</option>
-                                                                </select>
-                                                            </div>
+                                        <div class="fieldset-wrapper">
+                                            <fieldset class="fieldset" >
+                                                <legend class="legend">Please advise your Reinsurance Commission requirements</legend>
+                                                <% _.each(commissionRequirements, function(commissionRequirement){ %>
+                                                    <div class="field-row re-ins-com-req">
+                                                    <div class="form-tab-row">
+                                                        <div class="field-label">Which LOB</div>
+                                                        <div class="field align-justify">
+                                                            <select class="stylish" name="commissionLob" value="<%=commissionRequirement.commissionLob%>" width="100%">
+                                                                <option>Select</option>
+                                                                <option value="lob">lob</option>
+                                                                <option value="lob">lob</option>
+                                                                <option value="lob">lob</option>
+                                                            </select>
                                                         </div>
-                                                        <div class="form-tab-row">
-                                                            <div class="field-label">% rate</div>
-                                                            <div class="field pencil-icon">
-                                                                <input class="stylish" type="text"  placeholder="Enter % rate" name="name">
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-tab-row">
+                                                        <div class="field-label">% rate</div>
+                                                        <div class="field pencil-icon">
+                                                            <input class="stylish" type="text"  placeholder="Enter % rate" name="commissionRate" value="<%=commissionRequirement.commissionRate%>">
                                                         </div>
-                                                        <div class="form-tab-row">
-                                                            <div class="field-label">Applied To</div>
-                                                            <div class="field align-justify">
-                                                                <select class="stylish">
-                                                                    <option>Select</option>
-                                                                    <option value="sum">Premium</option>
-                                                                    <option value="sum">Premium net of Retention</option>
-                                                                </select>
-                                                            </div>
-
+                                                    </div>
+                                                    <div class="form-tab-row">
+                                                        <div class="field-label">Applied To</div>
+                                                        <div class="field align-justify">
+                                                            <select class="stylish" name="commissionAppliedTo" value="<%=commissionRequirement.commissionAppliedTo%>">
+                                                                <option>Select</option>
+                                                                <option value="sum">Premium</option>
+                                                                <option value="sum">Premium net of Retention</option>
+                                                            </select>
                                                         </div>
 
-                                                        <div class="form-tab-row">
-                                                            <div class="field-label">Flat Amount</div>
-                                                            <div class="field pencil-icon">
-                                                                <input class="stylish" type="text"  placeholder="Enter Flat Amount" name="name">
-                                                            </div>
+                                                    </div>
+
+                                                    <div class="form-tab-row">
+                                                        <div class="field-label">Flat Amount</div>
+                                                        <div class="field pencil-icon">
+                                                            <input class="stylish" type="text"  placeholder="Enter Flat Amount"  name="commissionFlatAmount" value="<%=commissionRequirement.commissionFlatAmount%>">
                                                         </div>
-                                                        <div class="form-tab-row">
-                                                            <div class="field-label">Currency</div>
-                                                            <div class="field currency-icon">
-                                                                <input class="stylish" type="text"  placeholder="Enter Currency" name="name">
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-tab-row">
+                                                        <div class="field-label">Currency</div>
+                                                        <div class="field currency-icon">
+                                                            <input class="stylish" type="text"  placeholder="Enter Currency" name="commissionCurrency" value="<%=commissionRequirement.commissionCurrency%>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% }) %>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="fieldset-wrapper">
+                                                <fieldset class="fieldset" >
+                                                    <legend class="legend">Do you require a reinsurance
+                                                        broker for any reinsurance placement?</legend>
+                                                    <div class="form-column">
+                                                        <div class="field-label">LOB</div>
+                                                        <div class="field bookmark-icon">
+                                                        <input class="stylish" placeholder="Enter LOB" type="text" name="reInsurancePlacementLob" value="<%=organizationDetails.reInsurancePlacementLob%>">
                                                         </div>
                                                     </div>
 
+                                                    <div class="form-column">
+                                                        <div class="field-label">Do you require a reinsurance
+                                                            broker for any reinsurance placement?</div>
+                                                        <input type="radio" name="reInsurancePlacement" value="1"> Yes
+                                                        <input type="radio" name="reInsurancePlacement" value="0"> No<br>
+                                                        or
+                                                        <div class="field bookmark-icon">
+                                                            <input class="stylish" placeholder="Enter your Comments" type="text" name="reInsurancePlacementComments" value="<%=organizationDetails.reInsurancePlacementComments%>">
+                                                        </div>
+                                                    </div>
                                                 </fieldset>
                                             </div>
+
                                         <div class="form-row">
                                             <div class="form-column">
                                                 <div class="field-label">What specific information/documents
                                                     do you require from the insured for policy issuance? For example,
                                                     local insured registration documents, Know Your Client forms, Proposal Forms, etc.</div>
                                                 <div class="field info-icon">
-                                                    <input class="stylish" id="insuRequiredDoc" type="text" name="insuRequiredDoc" placeholder="Enter Your Client forms, Proposal Forms etc.">
+                                                    <input class="stylish"  type="text" name="insuRequiredDoc" value="<%=organizationDetails.insuRequiredDoc%>" placeholder="Enter Your Client forms, Proposal Forms etc.">
                                                 </div>
                                             </div>
+
                                             <div class="form-column">
-                                                <div class="field-label">Do you require a reinsurance
-                                                    broker for any reinsurance placement?</div>
-                                                <div class="field" id="reinsur_brokerdiv">
-                                                    <input type="radio" name="reinsurBroker" value="1"> Yes
-                                                    <input type="radio" name="reinsurBroker" value="0"> No<br>
-                                                    or
-                                                    <div class="field bookmark-icon">
-                                                        <input class="stylish" placeholder="Enter your Comments" id="reinsurBrokerText" type="text"
-                                                               name="reinsurBrokerText">
-                                                    </div>
+                                                <div class="field-label">Attachments for question above :</div>
+                                                <div class="field upload-icon" >
+                                                    <input class="stylish"  type="file"
+                                                           name="insuRequiredDocAttach" size="50">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="form-row">
-                                            <div class="form-column">
-                                                <div class="field-label">Attachments for question above :</div>
-                                                <div class="field upload-icon" id="spec_req_doc_reinsur_place_attachdiv">
-                                                    <input class="stylish" id="insuRequiredDocAttach" type="file"
-                                                           name="insuRequiredDocAttach" size="50">
-                                                </div>
-                                            </div>
-                                            <div class="form-column">
-                                                <div class="field-label">Does the foreign Reinsurer have to be registered with the Regulator in your country?</div>
-                                                <div class="field" id="reg_regulatordiv">
-                                                    <input type="radio" name="regRegulator" value="1"> Yes
-                                                    <input type="radio" name="regRegulator" value="0"> No
-                                                    or
-                                                    <div class="field bookmark-icon">
-                                                        <input class="stylish" placeholder="Enter your Comments" id="regRegulatorText" type="text"
-                                                               name="regRegulatorText">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="form-row">
                                             <div class="form-column">
                                                 <div class="field-label">Can you service the local
@@ -1022,95 +740,79 @@
                                                     or
                                                     <div class="field bookmark-icon">
                                                         <input class="stylish" placeholder="Enter your Comments" id="serviceOptionText" type="text"
-                                                               name="serviceOptionText">
+                                                               name="serviceOptionText" value="<%=organizationDetails.serviceOptionText%>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-column">
-                                                <div class="field-label">What specific information/documents
-                                                    do you require from the insured for policy issuance? For example,
-                                                    local insured registration documents, Know Your Client forms, Proposal Forms, etc.</div>
-                                                <div class="field info-icon">
-                                                    <input class="stylish" id="insuRequiredDoc" type="text" name="insuRequiredDoc" placeholder="Enter Your Client forms, Proposal Forms etc.">
+                                                <div class="field-label">Does the foreign Reinsurer have to be registered with the Regulator in your country?</div>
+                                                <div class="field" id="reg_regulatordiv">
+                                                    <input type="radio" name="regRegulator" value="1"> Yes
+                                                    <input type="radio" name="regRegulator" value="0"> No
+                                                    or
+                                                    <div class="field bookmark-icon">
+                                                        <input class="stylish" placeholder="Enter your Comments" id="regRegulatorText" type="text"
+                                                               name="regRegulatorText" value="<%=organizationDetails.regRegulatorText%>">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-row">
                                             <div class="form-column">
                                                 <div class="field-label">If so, please advise what needs to be done to get registered</div>
                                                 <div class="field info-icon">
-                                                    <input class="stylish" id="registrationProcedure" type="text"
-                                                           name="registrationProcedure" placeholder="Enter Your Advise">
+                                                    <input class="stylish" type="text" name="adviceRegistration" placeholder="Enter Your Advise" value="<%=organizationDetails.adviceRegistration%>">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Attachments for question above :</div>
-                                                <div class="field upload-icon" id="insu_required_doc_attachdiv">
-                                                    <input class="stylish" id="insuRequiredDocAttach" type="file"
-                                                           name="insuRequiredDocAttach" size="50">
+                                                <div class="field upload-icon">
+                                                    <input class="stylish" type="file" name="adviceRegistrationAttach" size="50">
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-row">
-                                            <div class="form-column">
-                                                <div class="field-label">Attachments for question above :</div>
-                                                <div class="field upload-icon" id="registration_procedure_attachdiv">
-                                                    <input class="stylish" id="registrationProcedureAttach" type="file"
-                                                           name="registrationProcedureAttach" size="50">
-                                                </div>
-                                            </div>
                                             <div class="form-column">
                                                 <div class="field-label">What information/documents do
                                                     you require from the Reinsurer for any reinsurance
                                                     placements?</div>
-                                                <div class="field info-icon" id="required_doc_reinsur_place_div">
-                                                    <input class="stylish" id="requiredDocReinsurPlace" type="text"
-                                                           name="requiredDocReinsurPlace" placeholder="Enter Your Information">
+                                                <div class="field info-icon">
+                                                    <input class="stylish" type="text" name="requiredDocReinsurPlace" placeholder="Enter Your Information">
+                                                </div>
+                                            </div>
+                                            <div class="form-column">
+                                                <div class="field-label">Attachments for question above :</div>
+                                                <div class="field upload-icon">
+                                                    <input class="stylish" type="file" name="registrationProcedureAttach" size="50">
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-row">
                                             <div class="form-column">
                                                 <div class="field-label">Do you require any specific
                                                     documentation or clauses for any reinsurance placement?</div>
-                                                <div class="field info-icon" id="spec_req_doc_reinsur_place_div">
-                                                    <input class="stylish" id="specReqDocReinsurPlace" type="text"
-                                                           name="specReqDocReinsurPlace" placeholder="Enter Your clause">
+                                                <div class="field info-icon">
+                                                    <input class="stylish" type="text" name="specReqDocReinsurPlace" placeholder="Enter Your clause">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Attachments for question above :</div>
-                                                <div class="field upload-icon" id="requiredDocReinsurPlaceAttachdiv">
-                                                    <input class="stylish" id="requiredDocReinsurPlaceAttach" type="file"
-                                                           name="requiredDocReinsurPlaceAttach" size="50">
+                                                <div class="field upload-icon">
+                                                    <input class="stylish" type="file" name="requiredDocReinsurPlaceAttach" size="50">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-row">
-                                            <div class="form-column">
-                                                <div class="field-label">Attachments for question above :</div>
-                                                <div class="field upload-icon" id="spec_req_doc_reinsur_place_attachdiv">
-                                                    <input class="stylish" id="specReqDocReinsurPlaceAttach" type="file"
-                                                           name="specReqDocReinsurPlaceAttach" size="50">
-                                                </div>
-                                            </div>
-                                            <div class="form-column">
-                                                <div class="field-label">If any specific Claims
-                                                    Handling wording has to be used, please provide sample
-                                                    wording :</div>
-                                                <div class="field upload-icon" id="claim_handling_wording_attachdiv">
-                                                    <input class="stylish" id="claimHandlingWordingAttach" type="file"
-                                                           name="claimHandlingWordingAttach" size="50">
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div class="form-row">
                                             <div class="form-column">
                                                 <div class="field-label">In the event of any claims on
                                                     reinsurance placement, does your company have to be
                                                     involved in the Claims Handling? If so, please specify
                                                     the involvement.</div>
-                                                <div class="field" id="comp_invol_claimsdiv">
+                                                <div class="field" >
                                                     <input type="radio"  name="compInvolClaims" value="1"> Yes
                                                     <input type="radio"  name="compInvolClaims" value="0"> No<br>
                                                     or
@@ -1120,693 +822,148 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-column">
-                                                <div class="field-label">Can the premium be collected
-                                                    overseas and remitted to your company, or do you have to
-                                                    collect the premium in your country?</div>
-                                                <div class="field" id="premium_pay_optiondiv">
-                                                    <input type="radio"  name="premiumPayOption" value="1"> Only Local Collection Allowed
-                                                    <input type="radio"  name="premiumPayOption" value="2">  Receiving Premium from Overseas is possible
+                                        </div>
+
+                                        <div class="form-row">
+                                                <div class="form-column">
+                                                    <div class="field-label">Can the premium be collected
+                                                        overseas and remitted to your company, or do you have to
+                                                        collect the premium in your country?</div>
+                                                    <div class="field" id="premium_pay_optiondiv">
+                                                        <input type="radio"  name="premiumPayOption" value="1"> Only Local Collection Allowed
+                                                        <input type="radio"  name="premiumPayOption" value="2">  Receiving Premium from Overseas is possible
+                                                    </div>
                                                 </div>
+                                                  <div class="form-column">
+                                                    <div class="field-label">If the premium can be remitted
+                                                        from overseas, do you need the full premium, inclusive of
+                                                        all taxes and fees to hit your books, or can you accept
+                                                        only taxes and fees? IF second option is chosen on the
+                                                        question above</div>
+                                                    <div class="field" >
+                                                        <input type="radio"  name="premiumWithTax" value="1"> All premium has to be received
+                                                        <input type="radio"  name="premiumWithTax" value="0"> Only taxes and fees have to be received
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                                <div class="field-label">If the premium can be remitted
-                                                    from overseas, do you need the full premium, inclusive of
-                                                    all taxes and fees to hit your books, or can you accept
-                                                    only taxes and fees? IF second option is chosen on the
-                                                    question above</div>
-                                                <div class="field" id="comp_invol_claimsdiv">
-                                                    <input type="radio"  name="premiumWithTax" value="1"> All premium has to be received
-                                                    <input type="radio"  name="premiumWithTax" value="0"> Only taxes and fees have to be received
+                                        <div class="form-row">
+                                            <div class="form-column">
+                                                <div class="field-label">If any specific Claims
+                                                    Handling wording has to be used, please provide sample
+                                                    wording :</div>
+                                                <div class="field upload-icon">
+                                                    <input class="stylish" type="file"  name="claimHandlingWordingAttach" size="50">
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-row">
-
-                                            <div class="form-column">
-                                                <fieldset  class="fieldset">
-                                                    <legend class="legend">Underwriting Department contact details (Marine)
-                                                    </legend>
-
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Name :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Name"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Role :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field user-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Role"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Comments :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Comments"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Office :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field building-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Office"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> GSM :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter GSM"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Email :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field email-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Email"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </fieldset>
-                                            </div>
-                                            <div class="form-column">
-
-                                                <fieldset  class="fieldset">
-                                                    <legend class="legend">Underwriting Department contact details (Property)
-                                                    </legend>
-
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Name :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Name"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Role :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field user-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Role"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Comments :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Comments"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Office :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field building-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Office"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> GSM :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter GSM"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Email :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field email-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Email"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </fieldset>
-                                            </div>
+                                           <fieldset class="fieldset fieldset-table">
+                                              <legend class="legend">Underwriting Department contact details (Marine)</legend>
+                                              <div class="field-row">
+                                                  <div class="tab-col"><div class="field"> <div class="field-label"> Name :</div></div></div>
+                                                  <div class="tab-col"><div class="field"> <div class="field-label"> Role :</div></div></div>
+                                                  <div class="tab-col"><div class="field"> <div class="field-label"> Comments :</div></div></div>
+                                                  <div class="tab-col"><div class="field"> <div class="field-label"> Office :</div></div></div>
+                                                  <div class="tab-col"><div class="field"> <div class="field-label"> GSM :</div></div></div>
+                                                  <div class="tab-col"><div class="field"> <div class="field-label"> Email :</div></div></div>
+                                              </div>
+                                              <% _.each(uwDepDetails, function(uwDepDetail){ %>
+                                                 <div class="field-row uw-contact">
+                                                  <div class="tab-col">
+                                                      <div class="field pencil-icon" >
+                                                          <input class="stylish"  type="text"  placeholder="Enter Name" name="uwName" value="<%=uwDepDetail.uwName%>">
+                                                      </div>
+                                                  </div>
+                                                  <div class="tab-col">
+                                                      <div class="field user-icon" >
+                                                          <input class="stylish"  type="text"  placeholder="Enter Role"  name="uwRole" value="<%=uwDepDetail.uwRole%>">
+                                                      </div>
+                                                  </div>
+                                                  <div class="tab-col">
+                                                      <div class="field pencil-icon" >
+                                                          <input class="stylish"  type="text"  placeholder="Enter Comments" name="uwComments" value="<%=uwDepDetail.uwComments%>">
+                                                      </div>
+                                                  </div>
+                                                  <div class="tab-col">
+                                                      <div class="field building-icon" >
+                                                          <input class="stylish"  type="text"  placeholder="Enter Office" name="uwOffice" value="<%=uwDepDetail.uwOffice%>">
+                                                      </div>
+                                                  </div>
+                                                  <div class="tab-col">
+                                                      <div class="field pencil-icon" >
+                                                          <input class="stylish"  type="text"  placeholder="Enter GSM" name="uwGsm" value="<%=uwDepDetail.uwGsm%>">
+                                                      </div>
+                                                  </div>
+                                                  <div class="tab-col">
+                                                      <div class="field email-icon" >
+                                                          <input class="stylish"  type="text"  placeholder="Enter Email" name="uwEmail" value="<%=uwDepDetail.uwEmail%>">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <% }) %>
+                                           </fieldset>
                                         </div>
 
                                         <div class="form-row">
-
-                                            <div class="form-column">
-                                                <fieldset  class="fieldset">
-                                                    <legend class="legend">Underwriting Department contact details (Casualty)
-                                                    </legend>
-
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Name :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Name"
-                                                                       name="authlobexacttaxes1div">
+                                           <fieldset class="fieldset fieldset-table">
+                                                <legend class="legend">Accounting Department contact details</legend>
+                                                <div class="field-row">
+                                                    <div class="tab-col"><div class="field"> <div class="field-label"> Bank Details :</div></div></div>
+                                                    <div class="tab-col"><div class="field"> <div class="field-label"> Bank Address :</div></div></div>
+                                                    <div class="tab-col"><div class="field"> <div class="field-label"> Bank Name :</div></div></div>
+                                                    <div class="tab-col"><div class="field"> <div class="field-label"> Bank Iban :</div></div></div>
+                                                    <div class="tab-col"><div class="field"> <div class="field-label"> Bank Swift Code :</div></div></div>
+                                                    <div class="tab-col"><div class="field"> <div class="field-label"> Email :</div></div></div>
+                                                </div>
+                                               <% _.each(bankingDetails, function(bankingDetail){ %>
+                                                    <div class="field-row acc-contact">
+                                                        <div class="tab-col">
+                                                            <div class="field pencil-icon" >
+                                                                <input class="stylish"  type="text"  placeholder="Enter Bank Details" name="details" value="<%=bankingDetail.details%>">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Role :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field user-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Role"
-                                                                       name="authlobexacttaxes1div">
+                                                        <div class="tab-col">
+                                                            <div class="field pencil-icon" >
+                                                                <input class="stylish"  type="text"  placeholder="Enter Bank Address" name="address" value="<%=bankingDetail.address%>">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Comments :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Comments"
-                                                                       name="authlobexacttaxes1div">
+                                                        <div class="tab-col">
+                                                            <div class="field pencil-icon" >
+                                                                <input class="stylish"  type="text"  placeholder="Enter Bank Name" name="name" value="<%=bankingDetail.name%>">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Office :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field building-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Office"
-                                                                       name="authlobexacttaxes1div">
+                                                        <div class="tab-col">
+                                                            <div class="field building-icon" >
+                                                                <input class="stylish"  type="text"  placeholder="Enter Bank Iban" name="iBan" value="<%=bankingDetail.iBan%>">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> GSM :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter GSM"
-                                                                       name="authlobexacttaxes1div">
+                                                        <div class="tab-col">
+                                                            <div class="field pencil-icon" >
+                                                                <input class="stylish"  type="text"  placeholder="Bank Swift Code" name="swiftCode" value="<%=bankingDetail.swiftCode%>">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Email :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field email-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Email"
-                                                                       name="authlobexacttaxes1div">
+                                                        <div class="tab-col">
+                                                            <div class="field email-icon" >
+                                                                <input class="stylish"  type="text"  placeholder="Enter Email" name="email" value="<%=bankingDetail.email%>">
                                                             </div>
                                                         </div>
-                                                    </div>
-
-                                                </fieldset>
-                                            </div>
-                                            <div class="form-column">
-
-                                                <fieldset  class="fieldset">
-                                                    <legend class="legend">Underwriting Department contact details (Professional Lines )
-                                                    </legend>
-
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Name :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Name"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Role :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field user-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Role"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Comments :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Comments"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Office :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field building-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Office"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> GSM :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter GSM"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Email :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field email-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Email"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </fieldset>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-row">
-
-                                            <div class="form-column">
-                                                <fieldset  class="fieldset">
-                                                    <legend class="legend">Reinsurance Department contact details
-                                                    </legend>
-
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Name :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Name"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Role :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field user-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Role"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Comments :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Comments"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Office :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field building-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Office"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> GSM :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter GSM"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Email :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field email-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Email"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-                                            <div class="form-column">
-
-                                                <fieldset  class="fieldset">
-                                                    <legend class="legend">Claim Department contact details
-                                                    </legend>
-
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Name :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Name"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Role :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field user-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Role"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Comments :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Comments"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Office :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field building-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Office"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> GSM :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter GSM"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Email :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field email-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Email"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-
-                                            <div class="form-column">
-                                                <fieldset  class="fieldset">
-                                                    <legend class="legend">Accounting Department contact details
-                                                    </legend>
-
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Name :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Name"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Role :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field user-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Role"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Comments :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Comments"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Office :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field building-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Office"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> GSM :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter GSM"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Email :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field email-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Email"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-                                            <div class="form-column">
-                                                <fieldset  class="fieldset">
-                                                    <legend class="legend">Accounting Department contact details
-                                                    </legend>
-
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Bank Details :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Bank Details"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Bank Address :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Bank Address"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Bank Name :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Bank Name"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Bank Iban :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field building-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Bank Iban"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Bank Swift Code :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field pencil-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Bank Swift Code"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field-row">
-                                                        <div class="form-column">
-                                                            <div class="field"> <div class="field-label"> Email :</div></div>
-                                                        </div>
-                                                        <div class="form-column">
-
-                                                            <div class="field email-icon" id="authlobexacttaxes1div">
-                                                                <input class="stylish" id="authlobexacttaxes1div" type="text" value="" placeholder="Enter Email"
-                                                                       name="authlobexacttaxes1div">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
+                                                      </div>
+                                               <% }) %>
+                                           </fieldset>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <input type="hidden" id="financeId" name="id">
-                </form>
+                        </div>
+                        <input type="hidden"  name="id">
+                    </form>
+                </div>
             </div>
-
         </div>
-    </div>
 
-</div>
+    </div>
 </div>

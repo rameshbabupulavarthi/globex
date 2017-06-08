@@ -11,7 +11,7 @@ public interface LMUserRegistrationService {
 
     public PartnerDO getPartnerDetails();
 
-    public OrganizationDetailsDO saveOrgInfo(OrganizationDetailsDO organizationDetailsDO);
+    public OrganizationDO saveOrgInfo(OrganizationDO organizationDO);
 
     public FinancialDetailsDO saveFinancialInfo(FinancialDetailsDO financialDetailsDO);
 

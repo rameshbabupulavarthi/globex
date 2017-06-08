@@ -16,11 +16,10 @@
     <link href="/webresources/css/globex.css" type="text/css" rel="stylesheet"></link>
     <link href="/webresources/css/jquery.tinyscrollbar.css" rel="stylesheet" type="text/css" />
     <script data-main="/webresources/javascript/globex" src="/webresources/javascript/require.js"></script>
-   <!-- <link href="/webresources/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="/webresources/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/webresources/javascript/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="data:text/css;charset=utf-8," rel="stylesheet" data-href="/webresources/javascript/bootstrap/css/bootstrap-theme.min.css" id="bs-theme-stylesheet">
-
--->
+    -->
     	<link rel="shortcut icon" type="image/ico" href="../webresources/images/logo.png">
         <link href="/webresources/css/jquery-ui.css" type="text/css" rel="stylesheet"></link>
         <link href="/webresources/css/globex.css" type="text/css" rel="stylesheet"></link>
@@ -36,9 +35,9 @@
 </head>
 
 <body>
-<div class="globex-layout">
+<div class="layout-body">
 
-    <div class="layout-header lm-background-shadow">
+    <!-- div class="layout-header lm-background-shadow">
 
         <a class="navbar-brand-img" href="#">
             <img src="../webresources/images/logo.jpg" width="40px" height="40px">
@@ -53,26 +52,50 @@
             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
             <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
         </span>
+    </div -->
+    <div class="layout-header lm-background-shadow">
+            <div class="header-wrapper">
+
+                <a class="navbar-brand-img" href="#">
+                    <img src="../webresources/images/logo.jpg" width="40px" height="40px">
+                </a>
+
+                <div class="header-logo">
+                    <div class="header-log-text">Globex World</div>
+                </div>
+                <div class="header-options">
+                    <div class="user-nav-options">
+                        <span class="user-img"><img src="${model.user.thumbnail}"></span>
+                        <span class="user-name">${model.user.fullName}</span>
+                        <i class="drop-down-img"></i>
+                    </div>
+                    <div class="profile-drop-down">
+                        <ul class="user-nav-ul">
+                            <li class="navigate-user-profile"><a href="javascript:void(0);">Profile</a><//li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
     </div>
 
-    <div class="layout-body lm-layout-body">
+    <div class="lm-layout-body">
         <div class="layout-body-menu lm-background-shadow">
             <ul class="menu-ul">
-                <li><span class="glyphicon glyphicon-th-large lm-menu-item" group="lm-org-details" target="lm-registration-step1" aria-hidden="true"></span></li>
-                <li><span class="glyphicon glyphicon-user lm-menu-item " group="lm-finance-details" target="lm-registration-step2" aria-hidden="true"></span></li>
-                <li><span class="glyphicon glyphicon-object-align-top lm-menu-item " group="lm-network-details" target="lm-registration-step3" aria-hidden="true"></span></li>
-                <li><span class="glyphicon glyphicon-education lm-menu-item " group="lm-acount-details" target="lm-registration-step4" aria-hidden="true"></span></li>
-                <li><span class="glyphicon glyphicon-list-alt lm-menu-item " group="lm-dept-details" target="lm-registration-step5" aria-hidden="true"></span></li>
+                <li><span class="faicon home-icon lm-menu-item" group="lm-org-details" target="lm-registration-step1" aria-hidden="true"></span></li>
+                <li><span class="faicon company-icon lm-menu-item " group="lm-network-details" target="lm-registration-step2" aria-hidden="true"></span></li>
+                <li><span class="faicon user-icon lm-menu-item " group="lm-finance-details" target="lm-registration-step3" aria-hidden="true"></span></li>
             </ul>
         </div>
 
-        <div id="layout-body-content" class="layout-body-content lm-background-shadow">
+        <div id="layout-body-content" class="lm-layout-body-content lm-background-shadow">
             <div class="loading-icon-wrapper" >
                 <img class="loading-icon" src="../webresources/images/loader.gif" width="130" height="130" alt="Image result for ajax loading gif transparent background">
             </div>
 
         <div id="lm-register-form">
-            <%@include file="/webresources/javascript/templates/lm/lmRegistrationForm.html"%>
+
             <div id="lmUserRegistrationJSONData" style="display: none;">
                 <script type="application/json">${model.partnerMarket}</script>
             </div>

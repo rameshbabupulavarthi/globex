@@ -3,6 +3,7 @@ package com.globex.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.globex.constants.AppConstants;
 import com.globex.constants.Role;
 import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
@@ -16,10 +17,8 @@ import com.globex.model.vo.pm.CoverageAreaDO;
 import com.globex.model.vo.pm.RegisteredCountryDO;
 import com.globex.service.OrganizationService;
 import com.globex.service.UserService;
-import com.utils.AppConstants;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -121,6 +120,7 @@ public class RegistrationController {
             Set<CoverageContactDO> coverageContactDOs=mapper.readValue(organizationDO.getCoverageContactsJsonStr(), new TypeReference<Set<CoverageContactDO>>() {});
             Set<BranchOfficeDO> branchOfficeDOs=mapper.readValue(organizationDO.getBranchOfficeJsonStr(), new TypeReference<Set<BranchOfficeDO>>() {});
 
+            organizationDO.setOrgUserType(AppConstants.OrgUserType.LM.getUserType());
             organizationDO.setUsers(userDOs);
             organizationDO.setAccountInfoDOs(accountInfoDOs);
             organizationDO.setCoverageAreaDOs(coverageAreaDOs);
@@ -129,6 +129,8 @@ public class RegistrationController {
             organizationDO.setCoverageContactDOs(coverageContactDOs);
             organizationDO.setBranchOfficeDOs(branchOfficeDOs);
 
+            organizationDO.setOrgUserType(AppConstants.OrgUserType.PM.getUserType());
+            organizationDO.setApproved(1);
             organizationService.save(organizationDO);
         }catch (JsonMappingException e) {
             logger.error("JsonMappingException error",e);

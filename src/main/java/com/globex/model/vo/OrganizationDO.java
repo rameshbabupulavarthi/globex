@@ -1,7 +1,12 @@
 package com.globex.model.vo;
 
+import com.globex.model.entity.common.RateRequirement;
+import com.globex.model.entity.lm.UWDepDetails;
+import com.globex.model.entity.partner.*;
+import com.globex.model.vo.lm.OrganizationDetailsDO;
 import com.globex.model.entity.pm.*;
 import com.globex.model.entity.user.User;
+import com.globex.model.vo.lm.*;
 import com.globex.model.vo.pm.AccountInfoDO;
 import com.globex.model.vo.pm.BranchOfficeDO;
 import com.globex.model.vo.pm.CoverageAreaDO;
@@ -41,15 +46,13 @@ public class OrganizationDO implements Serializable {
 
     private String website;
 
-    private Integer orgType;
+    private String telePhone;
 
-    private Integer parentOrgId;
+    private Integer orgUserType;
 
     private Integer approved;
 
     private String comment;
-
-    private String licenceState;
 
     private Set<UserDO> users;
 
@@ -70,6 +73,27 @@ public class OrganizationDO implements Serializable {
     private String coverageContactsJsonStr;
     private String branchOfficeJsonStr;
 
+    private OrganizationDetailsDO organizationDetails;
+
+    private Set<MiscRatingDO> miscRatings;
+
+    private Set<LobDO> lobs;
+
+    private Set<OrgRateRequirementDO> rateRequirements;
+
+    private Set<CommissionRequirementDO> commissionRequirements;
+
+    private Set<OrganizationHistoryDO> organizationHistories;
+
+    private Set<UWDepDetailsDO> uwDepDetails;
+
+    private Set<BankingDetailsDO> bankingDetails;
+
+    private String orgParametersJson;
+
+    private String orgDetailsJson;
+
+
     public OrganizationDO(){
 
     }
@@ -85,11 +109,11 @@ public class OrganizationDO implements Serializable {
         this.country=organization.getCountry();
         this.zip=organization.getZip();
         this.website=organization.getWebsite();
-        this.orgType=organization.getOrgType();
-        this.parentOrgId=organization.getParentOrgId();
-        this.approved=organization.getApproved();
+        // this.orgType=organization.getOrgType();
+        //this.parentOrgId=organization.getParentOrgId();
+        /*this.approved=organization.getApproved();
         this.comment=organization.getComment();
-        this.licenceState=organization.getLicenceState();
+        this.licenceState=organization.getLicenceState();*/
     }
 
 
@@ -105,11 +129,9 @@ public class OrganizationDO implements Serializable {
         organization.setCountry(this.getCountry());
         organization.setZip(this.getZip());
         organization.setWebsite(this.getWebsite());
-        organization.setOrgType(this.getOrgType());
-        organization.setParentOrgId(this.getParentOrgId());
         organization.setApproved(this.getApproved());
         organization.setComment(this.getComment());
-        organization.setLicenceState(this.getLicenceState());
+        organization.setOrgUserType(this.getOrgUserType());
 
         organization.setUsers(getUsers(this.getUsers(),organization));
         organization.setAccountInfos(getAccountInfos(this.getAccountInfoDOs(),organization));
@@ -118,8 +140,77 @@ public class OrganizationDO implements Serializable {
         organization.setRegisteredCountries(getRegisteredCountries(this.getRegisteredCountryDOs(), organization));
         organization.setCoverageContacts(getCoverageContacts(this.getCoverageContactDOs(), organization));
         organization.setBranchOffices(getBranchOffices(this.getBranchOfficeDOs(), organization));
-
+        getLMDetails(organization);
         return organization;
+    }
+
+    public void getLMDetails(Organization organization){
+
+        if(organizationDetails!=null){
+            OrganizationDetail organizationDet=organizationDetails.value();
+            organizationDet.setOrganization(organization);
+            organization.setOrganizationDetails(organizationDet);
+        }
+
+        if(lobs!=null && !lobs.isEmpty()){
+            Set<LOB> lobList=new HashSet<LOB>();
+            for(LobDO lobDO:lobs){
+                LOB lob=lobDO.value();
+                lob.setOrganization(organization);
+                lobList.add(lob);
+            }
+            organization.setLobs(lobList);
+        }
+
+        if(rateRequirements!=null && !rateRequirements.isEmpty()){
+            Set<OrgRateRequirement> orgRateRequirements=new HashSet<OrgRateRequirement>();
+            for(OrgRateRequirementDO rateRequirementDO:rateRequirements){
+                OrgRateRequirement orgRateRequirement=rateRequirementDO.value();
+                orgRateRequirement.setOrganization(organization);
+                orgRateRequirements.add(orgRateRequirement);
+            }
+            organization.setRateRequirements(orgRateRequirements);
+        }
+
+        if(commissionRequirements!=null && !commissionRequirements.isEmpty()){
+            Set<CommissionRequirement> commissionRequirementList=new HashSet<CommissionRequirement>();
+            for(CommissionRequirementDO commissionRequirementDO:commissionRequirements){
+                CommissionRequirement commissionRequirement=commissionRequirementDO.value();
+                commissionRequirement.setOrganization(organization);
+                commissionRequirementList.add(commissionRequirement);
+            }
+            organization.setCommissionRequirements(commissionRequirementList);
+        }
+
+        if(organizationHistories!=null && !organizationHistories.isEmpty()){
+            Set<OrganizationHistory> organizationHistoryList=new HashSet<OrganizationHistory>();
+            for(OrganizationHistoryDO organizationHistoryDO:organizationHistories){
+                OrganizationHistory organizationHistory=organizationHistoryDO.value();
+                organizationHistory.setOrganization(organization);
+                organizationHistoryList.add(organizationHistory);
+            }
+            organization.setOrganizationHistories(organizationHistoryList);
+        }
+
+        if(uwDepDetails!=null && !uwDepDetails.isEmpty()){
+            Set<UWDepDetails> uwDepDetailsList=new HashSet<UWDepDetails>();
+            for(UWDepDetailsDO uwDepDetailsDO:uwDepDetails){
+                UWDepDetails uwDepDetails=uwDepDetailsDO.value();
+                uwDepDetails.setOrganization(organization);
+                uwDepDetailsList.add(uwDepDetails);
+            }
+            organization.setUwDepDetails(uwDepDetailsList);
+        }
+
+        if(bankingDetails!=null && !bankingDetails.isEmpty()){
+            Set<BankingDetails> bankingDetailList=new HashSet<BankingDetails>();
+            for(BankingDetailsDO bankingDetailsDO:bankingDetails){
+                BankingDetails bankingDetails=bankingDetailsDO.value();
+                bankingDetails.setOrganization(organization);
+                bankingDetailList.add(bankingDetails);
+            }
+            organization.setBankingDetails(bankingDetailList);
+        }
     }
 
     public void loadFullDetails(Organization organization){
@@ -130,7 +221,6 @@ public class OrganizationDO implements Serializable {
         Set<RegisteredCountry> registeredCountries=organization.getRegisteredCountries();
         Set<CoverageContact> coverageContacts=organization.getCoverageContacts();
         Set<BranchOffice> branchOffices=organization.getBranchOffices();
-
 
         Set<UserDO> userDOs= new HashSet<UserDO>();
         Set<AccountInfoDO> accountInfoDOs=new HashSet<AccountInfoDO>();
@@ -169,12 +259,71 @@ public class OrganizationDO implements Serializable {
             branchOfficeDOs.add(branchOfficeDO);
         }
 
+        OrganizationDetail organizationDetail=organization.getOrganizationDetails();
+        Set<MiscRatingDO> miscRatingDOs=new HashSet<MiscRatingDO>();
+        Set<LobDO> lobDOs=new HashSet<LobDO>();
+        Set<OrgRateRequirementDO> orgRateRequirementDOs=new HashSet<OrgRateRequirementDO>();
+        Set<CommissionRequirementDO> commissionRequirementDOs=new HashSet<CommissionRequirementDO>();
+        Set<OrganizationHistoryDO> organizationHistoryDOs=new HashSet<OrganizationHistoryDO>();
+        Set<UWDepDetailsDO> uwDepDetailsDOs=new HashSet<UWDepDetailsDO>();
+        Set<BankingDetailsDO> bankingDetailsDOs=new HashSet<BankingDetailsDO>();
+
+
+        OrganizationDetailsDO organizationDetailsDO=null;
+        if(organizationDetail!=null){
+            organizationDetailsDO=new OrganizationDetailsDO(organizationDetail);
+        }
+
+        for(MiscRating miscRating:organization.getMiscRatings()){
+            MiscRatingDO miscRatingDO=new MiscRatingDO(miscRating);
+            miscRatingDOs.add(miscRatingDO);
+        }
+
+        for(LOB lob: organization.getLobs()){
+            LobDO lobDO=new LobDO(lob);
+            lobDOs.add(lobDO);
+        }
+
+        for(OrgRateRequirement orgRateRequirement: organization.getRateRequirements()){
+            OrgRateRequirementDO orgRateRequirementDO=new OrgRateRequirementDO(orgRateRequirement);
+            orgRateRequirementDOs.add(orgRateRequirementDO);
+        }
+
+        for (CommissionRequirement commissionRequirement:organization.getCommissionRequirements()){
+            CommissionRequirementDO commissionRequirementDO=new CommissionRequirementDO(commissionRequirement);
+            commissionRequirementDOs.add(commissionRequirementDO);
+        }
+
+        for (OrganizationHistory organizationHistory: organization.getOrganizationHistories()){
+            OrganizationHistoryDO organizationHistoryDO=new OrganizationHistoryDO(organizationHistory);
+            organizationHistoryDOs.add(organizationHistoryDO);
+        }
+        
+        for(UWDepDetails uwDepDetails:organization.getUwDepDetails()){
+            UWDepDetailsDO uwDepDetailsDO=new UWDepDetailsDO(uwDepDetails);
+            uwDepDetailsDOs.add(uwDepDetailsDO);
+        }
+
+        for(BankingDetails bankingDetails:organization.getBankingDetails()){
+            BankingDetailsDO bankingDetailsDO=new BankingDetailsDO(bankingDetails);
+            bankingDetailsDOs.add(bankingDetailsDO);
+        }
+
         this.users=userDOs;
         this.accountInfoDOs=accountInfoDOs;
         this.coverageAreaDOs=coverageAreaDOs;
         this.registeredCountryDOs=registeredCountryDOs;
         this.coverageContactDOs=coverageContactDOs;
         this.branchOfficeDOs=branchOfficeDOs;
+
+        this.organizationDetails=organizationDetailsDO;
+        this.lobs=lobDOs;
+        this.miscRatings=miscRatingDOs;
+        this.rateRequirements=orgRateRequirementDOs;
+        this.commissionRequirements=commissionRequirementDOs;
+        this.organizationHistories= organizationHistoryDOs;
+        this.uwDepDetails=uwDepDetailsDOs;
+        this.bankingDetails=bankingDetailsDOs;
     }
 
     public void loadUsers(Organization organization){

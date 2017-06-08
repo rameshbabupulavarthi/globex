@@ -1,9 +1,16 @@
 package com.globex.controller;
 
-import com.globex.model.vo.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.globex.constants.AppConstants;
+import com.globex.model.vo.OrganizationDO;
+import com.globex.model.vo.PartnerDO;
+
+import com.globex.model.vo.lm.OrganizationDetailsDO;
 import com.globex.repository.rdbms.PartnerMarketRepository;
 import com.globex.repository.rdbms.UserRepository;
 import com.globex.service.LMUserRegistrationService;
+import com.globex.service.OrganizationService;
 import com.globex.service.UserService;
 import com.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +36,9 @@ public class LMUserRegistrationController {
 
     @Autowired
     LMUserRegistrationService lmUserRegistrationService;
+
+    @Autowired
+    OrganizationService organizationService;
 
     @Autowired
     UserRepository userRepository;
@@ -66,15 +76,35 @@ public class LMUserRegistrationController {
 
     @RequestMapping("/secure/saveOrgInfo")
     @ResponseBody
-    public OrganizationDetailsDO saveOrgInfo(@ModelAttribute("userData") OrganizationDetailsDO organizationDetailsDO) {
+    public OrganizationDO saveOrgInfo(@ModelAttribute("userData") OrganizationDO organizationDO) throws Exception {
 
-        System.out.println(organizationDetailsDO);
-        organizationDetailsDO=lmUserRegistrationService.saveOrgInfo(organizationDetailsDO);
-        return organizationDetailsDO;
+        String orgParametersJson=organizationDO.getOrgParametersJson();
+        String orgDetailsJson=organizationDO.getOrgDetailsJson();
+        ObjectMapper mapper = new ObjectMapper();
+        OrganizationDO organizationJsonDO=null;
+        OrganizationDetailsDO organizationDetailsDO=null;
+        if(orgParametersJson!=null && !orgParametersJson.isEmpty()){
+            organizationJsonDO=mapper.readValue(orgParametersJson, new TypeReference<OrganizationDO>() {});
+        }
+        if(orgDetailsJson!=null && !orgDetailsJson.isEmpty()){
+            organizationDetailsDO=mapper.readValue(orgDetailsJson, new TypeReference<OrganizationDetailsDO>() {});
+        }
+        organizationDO.setLobs(organizationJsonDO.getLobs());
+        organizationDO.setRateRequirements(organizationJsonDO.getRateRequirements());
+        organizationDO.setCommissionRequirements(organizationJsonDO.getCommissionRequirements());
+        organizationDO.setOrganizationHistories(organizationJsonDO.getOrganizationHistories());
+        organizationDO.setUwDepDetails(organizationJsonDO.getUwDepDetails());
+        organizationDO.setBankingDetails(organizationJsonDO.getBankingDetails());
+        organizationDO.setOrganizationDetails(organizationDetailsDO);
+        //OrganizationDO organizationDetailDO=lmUserRegistrationService.saveOrgInfo(organizationDO);
+        organizationDO.setOrgUserType(AppConstants.OrgUserType.LM.getUserType());
+        organizationDO.setApproved(1);
+        organizationService.save(organizationDO);
+        return organizationDO;
     }
 
 
-    @RequestMapping("/secure/saveFinancialInfo")
+/*    @RequestMapping("/secure/saveFinancialInfo")
     @ResponseBody
     public FinancialDetailsDO saveFinancialInfo(@ModelAttribute("userData") FinancialDetailsDO financialDetailsDO) {
 
@@ -104,6 +134,6 @@ public class LMUserRegistrationController {
 
         bankingDetailsDO=lmUserRegistrationService.saveBankingInfo(bankingDetailsDO);
         return bankingDetailsDO;
-    }
+    }*/
 
 }

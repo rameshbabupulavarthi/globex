@@ -1,6 +1,7 @@
 package com.globex.service;
 
 import com.globex.model.entity.partner.*;
+import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
 import com.globex.model.vo.*;
 import com.globex.repository.rdbms.lm.*;
@@ -62,9 +63,11 @@ public class LMUserRegistrationServiceImpl implements LMUserRegistrationService 
        return partner;
     }
 
-    public OrganizationDetailsDO saveOrgInfo(OrganizationDetailsDO organizationDetailsDO){
+    public OrganizationDO saveOrgInfo(OrganizationDO organizationDO){
 
-        Partner partner=getPartnerInfo();
+        Organization organization= organizationDO.value();
+
+        /*Partner partner=getPartnerInfo();
         OrganizationDetails organizationDetails=organizationDetailsDO.getValue();
         if(partner.getOrganizationDetails()!=null){
             organizationDetails.setId(partner.getOrganizationDetails().getId());
@@ -75,7 +78,8 @@ public class LMUserRegistrationServiceImpl implements LMUserRegistrationService 
         organizationDetails=organizationDetailsRepository.save(organizationDetails);
         partner.setOrganizationDetails(organizationDetails);
         savePartnerInfo(partner);
-        return new OrganizationDetailsDO(organizationDetails);
+        return new OrganizationDetailsDO(organizationDetails);*/
+        return organizationDO;
     }
 
     public void saveContactInfo(ContactDetailsDO contactDetailsDO){
@@ -119,7 +123,7 @@ public class LMUserRegistrationServiceImpl implements LMUserRegistrationService 
     }
 
     public BankingDetailsDO saveBankingInfo(BankingDetailsDO bankingDetailsDO){
-        BankingDetails bankingDetails=bankingDetailsDO.getValue();
+       /* BankingDetails bankingDetails=bankingDetailsDO.getValue();
 
         ContactDetails contactDetails=bankingDetails.getContact();
         contactDetails=contactRepository.save(contactDetails);
@@ -130,6 +134,7 @@ public class LMUserRegistrationServiceImpl implements LMUserRegistrationService 
         Partner partner=getPartnerInfo();
         partner.setBankingDetails(bankingDetails);
         savePartnerInfo(partner);
-        return new BankingDetailsDO(bankingDetails);
+        return new BankingDetailsDO(bankingDetails);*/
+        return null;
     }
 }

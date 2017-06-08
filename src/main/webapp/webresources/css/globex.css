@@ -540,6 +540,12 @@ label.error {
     height: 29px;
 }
 
+.fieldset-table .tab-col{
+    vertical-align: top;
+    display: inline-block;
+    width:15%;
+}
+
 
 /*******************************************   font awsome  ****************************************************/
 
@@ -559,6 +565,26 @@ label.error {
     padding-left: 9px;
     padding-top:5px;
 }
+
+/* LM User Side Menu */
+.faicon::before{
+        color: #FFFFFF;
+        font-family: "FontAwesome";
+        font-size: 28px;
+        position: relative;
+        padding-left: 0px;
+        padding-top: 0px;
+}
+
+.home-icon::before{
+    font-size:30px;
+    content:"\f015";
+}
+.user-icon::before{
+    content:"\f2bd";
+}
+
+
 .form-wrapper .field {
    display: inline-block;
    width: 100%;
@@ -632,6 +658,12 @@ label.error {
 }
 .globe-icon::before{
   content: "\f0ac";
+}
+
+.country-icon-white::before{
+    content: "\f041";
+    color:white;
+    font-size:20px;
 }
 
 .other-req-icon::before{
@@ -771,3 +803,118 @@ input[type=date].stylish/*, select.stylish, textarea.stylish*/ {
 }
 
 /*******************************************         end of font awsome                       ****************************************************/
+
+
+
+
+/******************************************************* LM ************************************************************************/
+
+.lm-registration-header{
+   padding: 10px;
+   border-bottom: 1px solid grey;
+   border-radius: 2px;
+   background-color: #FBFCFE;
+   box-shadow:1px 0px 0px 2px rgba(0,0,0, .25);
+}
+
+.ls-registration-step-save{
+    float:right;
+    margin-right:5px;
+    cursor:pointer;
+    font-size: 26px;
+    color: #660378;
+}
+
+.lm-registration-body{
+    padding: 10px 0px;
+}
+
+.lm-registration-body-section{
+    padding: 10px 0px;
+    border-radius: 2px;
+    background-color: #FBFCFE;
+    background: rgb(220, 220, 220);
+    border: 1px solid #FBFCFE;
+}
+
+.lm-registration-form{
+    padding: 0px 0px 10px 0px;
+    border: 2px solid #CDCDCD;
+    border-radius: 2px;
+    border-top: 0px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+.lm-registration-header-text{
+    font-weight:bold;
+    font-size: 15px;
+    color:#660378;
+}
+
+.lm-registration-body-section-text{
+   display: inline-block;
+   margin-left: 10px;
+   font-weight: bold;
+   font-size: 13px;
+}
+
+.lm-registration-body-section-toggle{
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    cursor:pointer;
+}
+
+.lm-registration-body-section-toggle-img{
+    background: url(../images/select-icons.png) 0 -116px no-repeat;
+    display: block;
+    height: 22px;
+    width: 30px;
+}
+
+.lm-registration-steps{
+   margin-left: 50px;
+}
+
+.lm-registration-step-selected{
+    color: #ffffff;
+}
+
+.lm-registration-step.lm-registration-step-selected{
+    background-color: #660378;
+    color: #ffffff;
+}
+
+.lm-registration-step-seperator{
+
+}
+
+.lm-registration-step-seperator-border{
+
+}
+
+.lm-registration-step{
+    border-radius:10px;
+    padding:0px 5px;
+    border:1px solid grey;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.lm-registration-form-section-left{
+    display: inline-block;
+    width:45%;
+    vertical-align: top;
+    margin-left: 40px;
+}
+
+.lm-registration-form-section-right{
+    display: inline-block;
+    width: 45%;
+    padding-left: 5px;
+    margin-left: 40px;
+}
+
+
+/******************************************************* LM ************************************************************************/

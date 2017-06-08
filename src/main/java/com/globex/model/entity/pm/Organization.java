@@ -1,7 +1,10 @@
 package com.globex.model.entity.pm;
 
 import com.globex.model.entity.common.Attachment;
+import com.globex.model.entity.lm.UWDepDetails;
+import com.globex.model.entity.partner.*;
 import com.globex.model.entity.user.User;
+import com.globex.model.vo.lm.UWDepDetailsDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -18,7 +21,8 @@ import java.util.Set;
  */
 @Data
 @EqualsAndHashCode(of = {"id"})
-@ToString(exclude={"users","accountInfos","coverageAreas","attachments","registeredCountries","coverageContacts","branchOffices"})
+/*@ToString(exclude={"users","accountInfos","coverageAreas","attachments","registeredCountries","coverageContacts","branchOffices"})*/
+@ToString(of = {"id","orgName"})
 @Entity
 @Table(name="organization")
 public class Organization implements Serializable{
@@ -55,11 +59,11 @@ public class Organization implements Serializable{
     @Column(name="WEB_SITE")
     private String website;
 
-    @Column(name="ORGANIZATION_TYPE")
-    private Integer orgType;
+    @Column(name="TELEPHONE")
+    private String telePhone;
 
-    @Column(name="PARENT_ORGANIZATION_ID")
-    private Integer parentOrgId;
+    @Column(name="ORGANIZATION_TYPE")
+    private Integer orgUserType;
 
     @Column(name="APPROVED")
     private Integer approved;
@@ -98,5 +102,40 @@ public class Organization implements Serializable{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     private Set<BranchOffice> branchOffices;
+
+
+    /******************************** LM **************************************************/
+
+    @OneToOne(mappedBy = "organization",fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
+    private OrganizationDetail organizationDetails;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<MiscRating> miscRatings;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<LOB> lobs;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<OrgRateRequirement> rateRequirements;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<CommissionRequirement> commissionRequirements;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<OrganizationHistory> organizationHistories;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<UWDepDetails> uwDepDetails;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
+    @Fetch(FetchMode.SELECT)
+    private Set<BankingDetails> bankingDetails;
 
 }

@@ -178,24 +178,28 @@ FilterView=Backbone.View.extend({
 
 function getPhoneNumber(user){
     var phoneNo="";
-    if(user.phoneCountryCode){
+    if(user && user.phoneCountryCode){
        phoneNo=user.phoneCountryCode+"-";
     }
-    if(user.phoneAreaCode){
+    if(user && user.phoneAreaCode){
         phoneNo=phoneNo+user.phoneAreaCode+"-";
     }
-    if(user.phone){
+    if(user && user.phone){
         phoneNo=phoneNo+user.phone;
     }
     return phoneNo;
 }
 
 function getUserName(user){
-    var fullName=user.firstName+","+user.lastName;
-    return fullName;
+    if(user){
+        var fullName=user.firstName+","+user.lastName;
+        return fullName;
+    }
 }
 
 function getAddress(address){
-    var fullAddress=address.address1+","+address.address1;
-    return fullAddress;
+    if(user){
+        var fullAddress=address.address1+","+address.address1;
+        return fullAddress;
+    }
 }

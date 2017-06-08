@@ -76,6 +76,15 @@ a{
     padding: 20px;
     background-color:#e9eef1;
 }
+.lm-layout-body-content{
+    display: table-cell;
+    vertical-align: top;
+    width: 91%;
+    float:right;
+    margin-top: 1px;
+    padding: 20px;
+    background-color:#e9eef1;
+}
 
 /*** menu ******/
 .layout-body-menu{
@@ -90,6 +99,8 @@ a{
 .lm-layout-body .layout-body-menu{
    padding: 21px;
 }
+
+
 
 .menu-toggle-content{
     display:none;

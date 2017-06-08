@@ -24,6 +24,8 @@ public class BankingDetailsDO implements Serializable {
 
     private String swiftCode;
 
+    private String email;
+
     private ContactDetailsDO contact;
 
     public BankingDetailsDO(){}
@@ -35,10 +37,10 @@ public class BankingDetailsDO implements Serializable {
         name=bankingDetails.getName();
         iBan=bankingDetails.getIBan();
         swiftCode=bankingDetails.getSwiftCode();
-        contact=bankingDetails.getContact()!=null?new ContactDetailsDO(bankingDetails.getContact()):null;
+        //contact=bankingDetails.getContact()!=null?new ContactDetailsDO(bankingDetails.getContact()):null;
     }
 
-    public BankingDetails getValue(){
+    public BankingDetails value(){
         BankingDetails bankingDetails=new BankingDetails();
         bankingDetails.setId(id);
         bankingDetails.setDetails(details);
@@ -46,7 +48,8 @@ public class BankingDetailsDO implements Serializable {
         bankingDetails.setName(name);
         bankingDetails.setIBan(iBan);
         bankingDetails.setSwiftCode(swiftCode);
-        bankingDetails.setContact(contact!=null?contact.getValue():null);
+        bankingDetails.setEmail(email);
+        //bankingDetails.setContact(contact!=null?contact.getValue():null);
         return bankingDetails;
     }
 }

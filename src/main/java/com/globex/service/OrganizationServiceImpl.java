@@ -110,11 +110,13 @@ public class OrganizationServiceImpl implements OrganizationService {
 
         Organization organization= organizationDO.value();
         organization.setRegDate(new Timestamp(new Date().getTime()));
-        organization.setOrgType(Role.ROLE_PM_ADMIN.getRoleValue());
+        //organization.setOrgUserType(Role.ROLE_LM_ADMIN.getRoleValue());
 
         Set<User> users= organization.getUsers();
-        for(User user:users){
-            user.setPassword(encoder.encode(user.getPassword()));
+        if(users!=null) {
+            for (User user : users) {
+                user.setPassword(encoder.encode(user.getPassword()));
+            }
         }
         Session session=sessionFactory.openSession();
         if(organization.getId()!=null){

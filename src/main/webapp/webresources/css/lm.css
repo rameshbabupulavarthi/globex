@@ -76,7 +76,7 @@
 }
 
 
-.lm-registration-header{
+/*.lm-registration-header{
    padding: 10px;
    border-bottom: 1px solid grey;
    border-radius: 2px;
@@ -181,7 +181,7 @@
     width: 45%;
     padding-left: 5px;
     margin-left: 40px;
-}
+}*/
 
 .field-row{
     padding: 10px 10px 10px 0px;
@@ -476,7 +476,7 @@ label.error {
  html{
  	font-family: 'Roboto', sans-serif;
  	font-size: 10pt;
- 	padding: 20px;
+ 	/*padding: 20px;*/
  }
  .wrapper{
  	-webkit-box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.75);

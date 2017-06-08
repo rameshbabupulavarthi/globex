@@ -1,8 +1,5 @@
 package com.globex.controller;
 
-import com.globex.model.entity.Message;
-import com.globex.model.entity.common.Communication;
-import com.globex.model.entity.common.File;
 import com.globex.model.entity.common.Reminder;
 import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
@@ -16,7 +13,7 @@ import com.globex.service.MessageService;
 import com.globex.service.ReminderService;
 import com.globex.service.UserService;
 import com.globex.service.pm.FileService;
-import com.utils.AppConstants;
+import com.globex.constants.AppConstants;
 import com.utils.AppUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

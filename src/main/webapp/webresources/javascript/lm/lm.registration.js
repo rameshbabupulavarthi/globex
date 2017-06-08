@@ -1,4 +1,5 @@
-PMListView =Backbone.View.extend({
+/**************************************************************** LM ***********************************************/
+LMListView =Backbone.View.extend({
 
     el:"#layout-body-content",
     tagName:'div',
@@ -20,17 +21,22 @@ PMListView =Backbone.View.extend({
                         '</div>'+
                     '</div>',
     events: {
-        "click #createPM":"addPM",
+        "click #createLM":"addLM",
         'click .show-filter':'showFilters',
     },
     render: function(){
 
         var $self=this;
         var pageNo=$self.pageNo;
-        var filters=JSON.stringify($self.filterData);
+        var filterData={};
+        if($self.filterData){
+          filterData= $self.filterData;
+        }
+        filterData['orgUserType']=1;
+        var filters=JSON.stringify(filterData);
         var pageData={pageNo:pageNo,filterJson:filters};
-        var pmCollection=new PMCollection();
-        pmCollection.fetch({
+        var lmCollection=new LMCollection();
+        lmCollection.fetch({
             data: pageData,
             type: 'POST',
             success: function(collection, response){
@@ -43,7 +49,7 @@ PMListView =Backbone.View.extend({
                             '<div class="btn-wrapper">'+
                                 '<div class="show-filter filter-list filter-icon"></div>'+
                                 ' <a href="/secure/downloadPMs"><div class="filter-list download-icon"></div> </a>'+
-                                '<div id="createPM" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Partner Market </span></div>'+
+                                '<div id="createLM" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Local Market </span></div>'+
                             '</div>'+
                            '</div>'
                  });
@@ -95,9 +101,9 @@ PMListView =Backbone.View.extend({
                         /*accountInfos:accountInfos,
                         coverageAreas:coverageAreas*/
                     });
-                    var partnerMarketView = new PartnerMarketView({model: partnerMarketModel});
-                    partnerMarketView.render();
-                    $pm_table.append(partnerMarketView.$el);
+                    var lmRecordView = new LMRecordView({model: partnerMarketModel});
+                    lmRecordView.render();
+                    $pm_table.append(lmRecordView.$el);
 
                 },this);
              var pagingModel=new PagingModel({currentPage:response.pageNo,totalRecords:response.totalRecords});
@@ -121,14 +127,18 @@ PMListView =Backbone.View.extend({
         var template = _.template( this.filterTemplate, variables );
         $(".filter-data").html(template);
     },
-    addPM:function(){
-         this.$el.empty();
-         var pmRegistrationView=new PMRegistrationView({el:"#layout-body-content"});
-         pmRegistrationView.render();
+    addLM:function(){
+        this.$el.empty();
+        this.$el.unbind();
+        require(['lm'], function() {
+             var lm= new LMUserRegistrationView({el:".layout-body",model:null});
+             lm.render();
+        });
     }
 });
 
-var PMCollection=Backbone.Collection.extend({
+
+var LMCollection=Backbone.Collection.extend({
 	url: "/secure/listPMs",
 });
 
@@ -174,7 +184,7 @@ var PartnerMarketPopupView =Backbone.View.extend({
       }
 });
 
-var PMRegistrationView=Backbone.View.extend({
+var LMRegistrationView=Backbone.View.extend({
         model:PartnerMarketModel,
         events: {
             "click #addContact":"addContact",
@@ -453,22 +463,22 @@ var PMRegistrationView=Backbone.View.extend({
         }
 });
 
-var PartnerMarketView=Backbone.View.extend({
+var LMRecordView=Backbone.View.extend({
     tagName:"tr",
     className:"table-row",
     model : PartnerMarketModel,
     events:{
-        "click .view-pm":"viewPM",
-        "click .edit-pm":"editPM",
-        "click .delete-pm":"deletePM"
+        "click .view-lm":"viewLM",
+        "click .edit-lm":"editLM",
+        "click .delete-lm":"deleteLM"
     },
     PMTemplate:'<td class="table-column"><p class="table-column-text"><%=orgName%></p></td>'+
                 '<td class="table-column"><p class="table-column-text"><%=address%></p></td>'+
                 '<td class="table-column"><p class="table-column-text"><%=contactName%></p></td>'+
                 '<td class="table-column"><p class="table-column-text"><%=phoneNumber%></p></td>'+
-                '<td class="table-column"><div class="edit-icon view-pm"></div></td> '+
-                '<td class="table-column"><div class="edit-icon edit-pm"></div></td>'+
-                '<td class="table-column"><div class="delete-icon delete-pm"></div></td>',
+                '<td class="table-column"><div class="edit-icon view-lm"></div></td> '+
+                '<td class="table-column"><div class="edit-icon edit-lm"></div></td>'+
+                '<td class="table-column"><div class="delete-icon delete-lm"></div></td>',
     render: function(){
         var variables = { orgName:this.model.get("orgName"),address:this.model.get("address"),
                           phoneNumber:this.model.get("phoneNumber"),contactName:this.model.get("contactName"),
@@ -478,7 +488,7 @@ var PartnerMarketView=Backbone.View.extend({
         this.$el.addClass(rowClass);
         this.$el.append($(template));
     },
-    viewPM:function(){
+    viewLM:function(){
         var orgId=this.model.get("orgId");
         $.ajax({
             type: 'POST',
@@ -520,7 +530,7 @@ var PartnerMarketView=Backbone.View.extend({
             }
         });
     },
-    editPM:function(){
+    editLM:function(){
         var orgId=this.model.get("orgId");
         $.ajax({
             type: 'POST',
@@ -531,34 +541,37 @@ var PartnerMarketView=Backbone.View.extend({
             context: this,
             error: function() {},
             success: function(organization) {
-               var partnerMarketModel = new PartnerMarketModel({
-                   orgId:organization.orgId,
-                   orgName:organization.orgName,
-                   address1:organization.address1,
-                   address2:organization.address2,
-                   city:organization.city,
-                   state:organization.state,
-                   country:organization.country,
-                   zip:organization.zip,
-                   website:organization.website,
-                   orgType:organization.orgType,
-                   parentOrgId:organization.parentOrgId,
-                   approved:organization.approved,
-                   comment:organization.comment,
-                   licenceState:organization.licenceState,
-                   users:organization.users,
-                   accountInfos:organization.accountInfoDOs,
-                   coverageAreas:organization.coverageAreaDOs,
-                   registeredCountries:organization.registeredCountryDOs,
-                   coverageContacts:organization.coverageContactDOs,
-                   branchOffices:organization.branchOfficeDOs
+               require(["lm"],function(){
+                    var lmUserRegistrationModel=new LMUserRegistrationModel({
+                       orgId:organization.orgId,
+                       orgName:organization.orgName,
+                       address1:organization.address1,
+                       address2:organization.address2,
+                       city:organization.city,
+                       state:organization.state,
+                       country:organization.country,
+                       zip:organization.zip,
+                       website:organization.website,
+                       orgType:organization.orgType,
+                       parentOrgId:organization.parentOrgId,
+                       approved:organization.approved,
+                       comment:organization.comment,
+                       organizationDetails:organization.organizationDetails,
+                       miscRatings:organization.miscRatings,
+                       lobs:organization.lobs,
+                       rateRequirements:organization.rateRequirements,
+                       commissionRequirements:organization.commissionRequirements,
+                       organizationHistories:organization.organizationHistories,
+                       uwDepDetails:organization.uwDepDetails,
+                       bankingDetails:organization.bankingDetails,
+                   });
+                    var lmUserRegistrationView = new LMUserRegistrationView({el:"#layout-body-content",model: lmUserRegistrationModel});
+                    lmUserRegistrationView.render();
                });
-               var pmRegistrationView = new PMRegistrationView({el:"#layout-body-content",model: partnerMarketModel});
-               pmRegistrationView.render();
             }
         });
     },
-    deletePM:function(){
+    deleteLM:function(){
           var _self=this;
           var orgId=this.model.get("orgId");
 
@@ -585,7 +598,3 @@ var PartnerMarketView=Backbone.View.extend({
 var PartnerMarketModel=Backbone.Model.extend({
 
 });
-
-
-
-

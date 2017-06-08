@@ -64,7 +64,7 @@ function initApp(){
              });
     }else{
         require(['jQuery','lm'], function() {
-            var lm= new LMUserRegistrationView({ });
+            var lm= new LMUserRegistrationView({model:null });
             lm.render();
         });
     }

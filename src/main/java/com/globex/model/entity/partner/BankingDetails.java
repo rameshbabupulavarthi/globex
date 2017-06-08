@@ -1,5 +1,6 @@
 package com.globex.model.entity.partner;
 
+import com.globex.model.entity.pm.Organization;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name="t_banking")
+@Table(name="banking")
 public class BankingDetails implements Serializable {
 
     @Id
@@ -36,8 +37,14 @@ public class BankingDetails implements Serializable {
     @Column(name="swift_code")
     private String swiftCode;
 
-    @OneToOne
+    @Column(name="email")
+    private String email;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORGANIZATION_ID")
+    private Organization organization;
+/*    @OneToOne
     @JoinColumn(name="contact")
-    private ContactDetails contact;
+    private ContactDetails contact;*/
 
 }
