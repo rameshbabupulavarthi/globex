@@ -216,3 +216,76 @@ function getAddress(address){
         return fullAddress;
     }
 }
+
+
+function countrySelect($el){
+
+        function formatCountryDisplay(country){
+            if(country.loading){
+                return country.text;
+            }
+            var countrySearchTemplate= '<div class="search-user-card">'+
+                                           '<div class="search-user-card">'+
+                                                '<div class="">'+
+                                                    '<span class="comment-detail-time"><%=country%></span>'+
+                                               '</div>'+
+                                           '</div>'+
+                                        '</div>';
+            var countryData=country.country;
+            var variables = {country:countryData};
+            var template = _.template(countrySearchTemplate, variables );
+            return template;
+        }
+        function formatSelection(country){
+           return country.country;
+        }
+
+        $el.select2({
+           /* initSelection : function (element, callback) {
+                 var val=$el.val();
+                 var data = {id: val, text: val};
+                 callback(data);
+             },
+*/
+
+             ajax: {
+               url: "/secure/viewCountries",
+               dataType: 'json',
+               delay: 250,
+               data: function (params) {
+                 return {
+                       country: params.term, // search term
+                       pageNo: params.page,
+                       pageSize:10
+                  };
+               },
+               processResults: function (data, params) {
+                 // parse the results into the format expected by Select2
+                 // since we are using custom formatting functions we do not need to
+                 // alter the remote JSON data, except to indicate that infinite
+                 // scrolling can be used
+                 params.pageNo = params.pageNo || 1;
+
+                 if(data.countries){
+                     var countryList=data.countries;
+                     for(var i=0;i<countryList.length;i++){
+                        var count=countryList[i];
+                        //count.id=countryList[i].countryId;
+                        count.id=countryList[i].country
+                     }
+                 }
+                 return {
+                   results: data.countries,
+                   pagination: {
+                     more: (params.pageNo * 10) < data.totalRecords
+                   }
+                 };
+               },
+               cache: true
+             },
+             escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+             minimumInputLength: 1,
+             templateResult: formatCountryDisplay, // omitted for brevity, see the source of this page
+             templateSelection: formatSelection // omitted for brevity, see the source of this page
+           });
+   }

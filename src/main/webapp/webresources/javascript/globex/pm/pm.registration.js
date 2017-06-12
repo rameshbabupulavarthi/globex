@@ -27,7 +27,12 @@ PMListView =Backbone.View.extend({
 
         var $self=this;
         var pageNo=$self.pageNo;
-        var filters=JSON.stringify($self.filterData);
+        var filterData={};
+        if($self.filterData){
+          filterData= $self.filterData;
+        }
+        filterData['orgUserType']=2;
+        var filters=JSON.stringify(filterData);
         var pageData={pageNo:pageNo,filterJson:filters};
         var pmCollection=new PMCollection();
         pmCollection.fetch({
@@ -215,6 +220,10 @@ var PMRegistrationView=Backbone.View.extend({
                 _self.$el.html(partner_registration);
                 _self.validateDetails();
                 $(".date-picker").datepicker({ dateFormat: 'dd-mm-yy'});
+
+                var $el=_self.$el.find('.country-dropdown');
+                countrySelect($el);
+                setValues();
             });
 
         },
