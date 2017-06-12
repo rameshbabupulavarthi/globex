@@ -14,16 +14,21 @@ import com.globex.model.vo.pm.RegisteredCountryDO;
 import com.utils.DateUtil;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by Sunil Golla on 2/10/2017.
  */
 @Data
-@ToString(exclude = {"users","accountInfoDOs","coverageAreaDOs","registeredCountryDOs","coverageContactDOs","branchOfficeDOs"})
+@ToString(exclude = {"users","accountInfoDOs","coverageAreaDOs","registeredCountryDOs","coverageContactDOs","branchOfficeDOs",
+                     "orgFileAttachment","amRatingFileAttachment","snpFileAttachment",
+                     /*"organizationHistories","lobs", "rateRequirements", "commissionRequirements", "uwDepDetails","bankingDetails","miscRatings"*/})
 public class OrganizationDO implements Serializable {
 
     private Long orgId;
@@ -75,24 +80,40 @@ public class OrganizationDO implements Serializable {
 
     private OrganizationDetailsDO organizationDetails;
 
-    private Set<MiscRatingDO> miscRatings;
+    private List<MiscRatingDO> miscRatings;
 
-    private Set<LobDO> lobs;
+    private List<LobDO> lobs;
 
-    private Set<OrgRateRequirementDO> rateRequirements;
+    private List<OrgRateRequirementDO> rateRequirements;
 
-    private Set<CommissionRequirementDO> commissionRequirements;
+    private List<CommissionRequirementDO> commissionRequirements;
 
-    private Set<OrganizationHistoryDO> organizationHistories;
+    private List<OrganizationHistoryDO> organizationHistories;
 
-    private Set<UWDepDetailsDO> uwDepDetails;
+    private List<UWDepDetailsDO> uwDepDetails;
 
-    private Set<BankingDetailsDO> bankingDetails;
+    private List<BankingDetailsDO> bankingDetails;
 
     private String orgParametersJson;
 
     private String orgDetailsJson;
 
+    private CommonsMultipartFile orgFileAttachment;
+
+    private CommonsMultipartFile amRatingFileAttachment;
+
+    private CommonsMultipartFile snpFileAttachment;
+
+
+    private CommonsMultipartFile insuRequiredDocAttach;
+
+    private CommonsMultipartFile adviceRegistrationAttach;
+
+    private CommonsMultipartFile registrationProcedureAttach;
+
+    private CommonsMultipartFile requiredDocReinsurPlaceAttach;
+
+    private CommonsMultipartFile claimHandlingWordingAttach;
 
     public OrganizationDO(){
 
@@ -109,6 +130,7 @@ public class OrganizationDO implements Serializable {
         this.country=organization.getCountry();
         this.zip=organization.getZip();
         this.website=organization.getWebsite();
+        this.telePhone=organization.getTelePhone();
         // this.orgType=organization.getOrgType();
         //this.parentOrgId=organization.getParentOrgId();
         /*this.approved=organization.getApproved();
@@ -129,6 +151,7 @@ public class OrganizationDO implements Serializable {
         organization.setCountry(this.getCountry());
         organization.setZip(this.getZip());
         organization.setWebsite(this.getWebsite());
+        organization.setTelePhone(telePhone);
         organization.setApproved(this.getApproved());
         organization.setComment(this.getComment());
         organization.setOrgUserType(this.getOrgUserType());
@@ -152,8 +175,18 @@ public class OrganizationDO implements Serializable {
             organization.setOrganizationDetails(organizationDet);
         }
 
+        if(miscRatings!=null){
+            List<MiscRating> miscRatingList=new ArrayList<MiscRating>();
+            for(MiscRatingDO miscRatingDO:miscRatings){
+                MiscRating miscRating=miscRatingDO.value();
+                miscRating.setOrganization(organization);
+                miscRatingList.add(miscRating);
+            }
+            organization.setMiscRatings(miscRatingList);
+        }
+
         if(lobs!=null && !lobs.isEmpty()){
-            Set<LOB> lobList=new HashSet<LOB>();
+            List<LOB> lobList=new ArrayList<LOB>();
             for(LobDO lobDO:lobs){
                 LOB lob=lobDO.value();
                 lob.setOrganization(organization);
@@ -163,7 +196,7 @@ public class OrganizationDO implements Serializable {
         }
 
         if(rateRequirements!=null && !rateRequirements.isEmpty()){
-            Set<OrgRateRequirement> orgRateRequirements=new HashSet<OrgRateRequirement>();
+            List<OrgRateRequirement> orgRateRequirements=new ArrayList<OrgRateRequirement>();
             for(OrgRateRequirementDO rateRequirementDO:rateRequirements){
                 OrgRateRequirement orgRateRequirement=rateRequirementDO.value();
                 orgRateRequirement.setOrganization(organization);
@@ -173,7 +206,7 @@ public class OrganizationDO implements Serializable {
         }
 
         if(commissionRequirements!=null && !commissionRequirements.isEmpty()){
-            Set<CommissionRequirement> commissionRequirementList=new HashSet<CommissionRequirement>();
+            List<CommissionRequirement> commissionRequirementList=new ArrayList<CommissionRequirement>();
             for(CommissionRequirementDO commissionRequirementDO:commissionRequirements){
                 CommissionRequirement commissionRequirement=commissionRequirementDO.value();
                 commissionRequirement.setOrganization(organization);
@@ -183,7 +216,7 @@ public class OrganizationDO implements Serializable {
         }
 
         if(organizationHistories!=null && !organizationHistories.isEmpty()){
-            Set<OrganizationHistory> organizationHistoryList=new HashSet<OrganizationHistory>();
+            List<OrganizationHistory> organizationHistoryList=new ArrayList<OrganizationHistory>();
             for(OrganizationHistoryDO organizationHistoryDO:organizationHistories){
                 OrganizationHistory organizationHistory=organizationHistoryDO.value();
                 organizationHistory.setOrganization(organization);
@@ -193,7 +226,7 @@ public class OrganizationDO implements Serializable {
         }
 
         if(uwDepDetails!=null && !uwDepDetails.isEmpty()){
-            Set<UWDepDetails> uwDepDetailsList=new HashSet<UWDepDetails>();
+            List<UWDepDetails> uwDepDetailsList=new ArrayList<UWDepDetails>();
             for(UWDepDetailsDO uwDepDetailsDO:uwDepDetails){
                 UWDepDetails uwDepDetails=uwDepDetailsDO.value();
                 uwDepDetails.setOrganization(organization);
@@ -203,7 +236,7 @@ public class OrganizationDO implements Serializable {
         }
 
         if(bankingDetails!=null && !bankingDetails.isEmpty()){
-            Set<BankingDetails> bankingDetailList=new HashSet<BankingDetails>();
+            List<BankingDetails> bankingDetailList=new ArrayList<BankingDetails>();
             for(BankingDetailsDO bankingDetailsDO:bankingDetails){
                 BankingDetails bankingDetails=bankingDetailsDO.value();
                 bankingDetails.setOrganization(organization);
@@ -260,13 +293,13 @@ public class OrganizationDO implements Serializable {
         }
 
         OrganizationDetail organizationDetail=organization.getOrganizationDetails();
-        Set<MiscRatingDO> miscRatingDOs=new HashSet<MiscRatingDO>();
-        Set<LobDO> lobDOs=new HashSet<LobDO>();
-        Set<OrgRateRequirementDO> orgRateRequirementDOs=new HashSet<OrgRateRequirementDO>();
-        Set<CommissionRequirementDO> commissionRequirementDOs=new HashSet<CommissionRequirementDO>();
-        Set<OrganizationHistoryDO> organizationHistoryDOs=new HashSet<OrganizationHistoryDO>();
-        Set<UWDepDetailsDO> uwDepDetailsDOs=new HashSet<UWDepDetailsDO>();
-        Set<BankingDetailsDO> bankingDetailsDOs=new HashSet<BankingDetailsDO>();
+        List<MiscRatingDO> miscRatingDOs=new ArrayList<MiscRatingDO>();
+        List<LobDO> lobDOs=new ArrayList<LobDO>();
+        List<OrgRateRequirementDO> orgRateRequirementDOs=new ArrayList<OrgRateRequirementDO>();
+        List<CommissionRequirementDO> commissionRequirementDOs=new ArrayList<CommissionRequirementDO>();
+        List<OrganizationHistoryDO> organizationHistoryDOs=new ArrayList<OrganizationHistoryDO>();
+        List<UWDepDetailsDO> uwDepDetailsDOs=new ArrayList<UWDepDetailsDO>();
+        List<BankingDetailsDO> bankingDetailsDOs=new ArrayList<BankingDetailsDO>();
 
 
         OrganizationDetailsDO organizationDetailsDO=null;

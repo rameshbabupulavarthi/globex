@@ -27,6 +27,10 @@ public class OrgRateRequirementDO implements Serializable {
 
     private String reqType;
 
+    public OrgRateRequirementDO(){
+
+    }
+
     public OrgRateRequirementDO(OrgRateRequirement orgRateRequirement){
         requirementId=orgRateRequirement.getRequirementId();
         requirementName=orgRateRequirement.getRequirementName();

@@ -5,6 +5,7 @@ import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
 import com.globex.model.vo.OrganizationDO;
 import com.globex.model.vo.PageModel;
+import com.globex.repository.rdbms.lm.OrganizationRepository;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Session;
@@ -34,6 +35,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Autowired
     StandardPasswordEncoder encoder;
+
+    @Autowired
+    OrganizationRepository organizationRepository;
 
     public PageModel<OrganizationDO> list(PageModel<OrganizationDO> pageModel){
 
@@ -98,6 +102,18 @@ public class OrganizationServiceImpl implements OrganizationService {
         return organizationDO;
     }
 
+    public OrganizationDO getLMDetails(){
+        Long userId=userService.getCurrentUserDO().getUserId();
+        List<Organization> organizations=organizationRepository.findOrganizationByUserId(userId);
+        OrganizationDO organizationDO=null;
+        if(organizations!=null && !organizations.isEmpty()) {
+            Organization organization=organizations.get(0);
+            organizationDO= new OrganizationDO(organization);
+            organizationDO.loadFullDetails(organization);
+        }
+        return organizationDO;
+    }
+
     public void deletePM(Long orgId){
         Session session=sessionFactory.openSession();
         Organization organization=(Organization)session.get(Organization.class, orgId);
@@ -106,9 +122,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Transactional
-    public void save(OrganizationDO organizationDO){
+    public void save(Organization organization){
 
-        Organization organization= organizationDO.value();
         organization.setRegDate(new Timestamp(new Date().getTime()));
         //organization.setOrgUserType(Role.ROLE_LM_ADMIN.getRoleValue());
 
@@ -126,5 +141,13 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
         session.flush();;
         session.close();
+    }
+
+    public Organization getOrganization(Long orgId){
+        Session session=sessionFactory.openSession();
+        Organization org=(Organization) session.get(Organization.class,orgId);
+        session.flush();;
+        session.close();
+        return org;
     }
 }

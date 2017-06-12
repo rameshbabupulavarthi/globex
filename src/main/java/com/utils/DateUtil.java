@@ -39,4 +39,16 @@ public class DateUtil {
         }
        return timestamp;
     }
+
+    public static java.sql.Date getDate(String dateStr){
+        java.sql.Date sqlDate=null;
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        try{
+            Date date=format.parse(dateStr);
+            sqlDate=new java.sql.Date(date.getTime());
+        }catch (Exception e){
+
+        }
+        return sqlDate;
+    }
 }

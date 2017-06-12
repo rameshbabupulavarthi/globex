@@ -7,6 +7,7 @@ import com.globex.model.entity.partner.OrgRateRequirement;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -18,7 +19,6 @@ import java.util.Set;
 @Table(name="organization_detail")
 public class OrganizationDetail {
 
-
     @Id
     @Column(name="ORG_DET_ID")
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -29,7 +29,7 @@ public class OrganizationDetail {
     private Organization organization;
 
     @Column(name="PARENT_ORG_NAME")
-    private Integer parentCompany;
+    private String parentCompany;
 
     @Column(name="ORG_TYPE")
     private Integer orgType;
@@ -47,7 +47,7 @@ public class OrganizationDetail {
     private String licenseAuthWebsite;
 
     @Column(name="EST_DATE")
-    private Timestamp establishedDate;
+    private Date establishedDate;
 
     @Column(name="ATTACHMENT")
     private String attachment;
@@ -59,7 +59,7 @@ public class OrganizationDetail {
     private Integer amBestLook;
 
     @Column(name="AM_OUTLOOK_DATE")
-    private Timestamp amOutlookDate;
+    private Date amOutlookDate;
 
     @Column(name="AM_RAT_ATTACH")
     private String amRatingAttachment;
@@ -71,7 +71,7 @@ public class OrganizationDetail {
     private String sAndPOutlook;
 
     @Column(name="S_P_OTL_DATE")
-    private Timestamp sAndPrRatingOutlookDate;
+    private Date sAndPrRatingOutlookDate;
 
     @Column(name="S_P_ATTACH")
     private String sAndPAttachment;
@@ -97,7 +97,6 @@ public class OrganizationDetail {
     @Column(name="alphaBrokers")
     private String alphaBrokers;
 
-
     @Column(name="reInsuranceLob")
     private String reInsuranceLob;
 
@@ -115,9 +114,6 @@ public class OrganizationDetail {
 
     @Column(name="reinsurBrokerText")
     private String reinsurBrokerText;
-
-    @Column(name="insuRequiredDoc")
-    private String insuRequiredDoc;
 
     @Column(name="insuRequiredDocAttach")
     private String insuRequiredDocAttach;
@@ -140,32 +136,14 @@ public class OrganizationDetail {
     @Column(name="adviceRegistrationAttach")
     private String adviceRegistrationAttach;
 
-    @Column(name="requiredDocReinsurPlace")
-    private String requiredDocReinsurPlace;
-
     @Column(name="registrationProcedure")
     private String registrationProcedure;
 
     @Column(name="registrationProcedureAttach")
     private String registrationProcedureAttach;
 
-    @Column(name="specReqDocReinsurPlace")
-    private String specReqDocReinsurPlace;
-
     @Column(name="requiredDocReinsurPlaceAttach")
     private String requiredDocReinsurPlaceAttach;
-
-    @Column(name="compInvolClaims")
-    private Integer compInvolClaims;
-
-    @Column(name="compInvolClaimsText")
-    private String compInvolClaimsText;
-
-    @Column(name="premiumPayOption")
-    private String premiumPayOption;
-
-    @Column(name="premiumWithTax")
-    private String premiumWithTax;
 
     @Column(name="claimHandlingWordingAttach")
     private String claimHandlingWordingAttach;
@@ -187,5 +165,32 @@ public class OrganizationDetail {
 
     @Column(name="bankAttachment")
     private String bankAttachment;
+
+    @Column(name="reInsurancePlacement")
+    private Integer reInsurancePlacement;
+
+    @Column(name="reInsurancePlacementComments")
+    private String reInsurancePlacementComments;
+
+    @Column(name="insuRequiredDoc")
+    private String insuRequiredDoc;
+
+    @Column(name="requiredDocReinsurPlace")
+    private String requiredDocReinsurPlace;
+
+    @Column(name="specReqDocReinsurPlace")
+    private String specReqDocReinsurPlace;
+
+    @Column(name="compInvolClaims")
+    private String compInvolClaims;
+
+    @Column(name="compInvolClaimsText")
+    private String compInvolClaimsText;
+
+    @Column(name="premiumPayOption")
+    private String premiumPayOption;
+
+    @Column(name="premiumWithTax")
+    private String premiumWithTax;
 
 }

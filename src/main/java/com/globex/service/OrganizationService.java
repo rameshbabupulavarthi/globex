@@ -1,5 +1,6 @@
 package com.globex.service;
 
+import com.globex.model.entity.pm.Organization;
 import com.globex.model.vo.OrganizationDO;
 import com.globex.model.vo.PageModel;
 
@@ -12,7 +13,11 @@ public interface OrganizationService {
 
     public OrganizationDO getPMDetails(Long orgId);
 
+    public OrganizationDO getLMDetails();
+
     public void deletePM(Long orgId);
 
-    public void save(OrganizationDO organization);
+    public void save(Organization organization);
+
+    public Organization getOrganization(Long orgId);
 }

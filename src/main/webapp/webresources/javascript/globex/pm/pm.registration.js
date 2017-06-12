@@ -123,7 +123,7 @@ PMListView =Backbone.View.extend({
     },
     addPM:function(){
          this.$el.empty();
-         var pmRegistrationView=new PMRegistrationView({el:"#layout-body-content"});
+         var pmRegistrationView=new PMRegistrationView({el:"#layout-body-content",model:null});
          pmRegistrationView.render();
     }
 });

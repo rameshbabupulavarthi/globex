@@ -64,8 +64,42 @@ function initApp(){
              });
     }else{
         require(['jQuery','lm'], function() {
-            var lm= new LMUserRegistrationView({model:null });
-            lm.render();
+
+            var lmUserRegistrationJSONData= $("#lmUserRegistrationJSONData script").html();
+            var lmUserRegistrationModel=null;
+            if(lmUserRegistrationJSONData){
+                var lmUserRegistrationJSON = eval('(' + lmUserRegistrationJSONData +')');
+                var organization=lmUserRegistrationJSON;
+
+                lmUserRegistrationModel=new LMUserRegistrationModel({
+                    orgId:organization.orgId,
+                    orgName:organization.orgName,
+                    address1:organization.address1,
+                    address2:organization.address2,
+                    city:organization.city,
+                    state:organization.state,
+                    country:organization.country,
+                    zip:organization.zip,
+                    website:organization.website,
+                    orgType:organization.orgType,
+                    telePhone:organization.telePhone,
+                    parentOrgId:organization.parentOrgId,
+                    approved:organization.approved,
+                    comment:organization.comment,
+                    organizationDetails:organization.organizationDetails,
+                    miscRatings:organization.miscRatings,
+                    lobs:organization.lobs,
+                    rateRequirements:organization.rateRequirements,
+                    commissionRequirements:organization.commissionRequirements,
+                    organizationHistories:organization.organizationHistories,
+                    uwDepDetails:organization.uwDepDetails,
+                    bankingDetails:organization.bankingDetails,
+                });
+
+            }
+
+           var lmUserRegistrationView = new LMUserRegistrationView({el:"#layout-body-content",model: lmUserRegistrationModel});
+           lmUserRegistrationView.render();
         });
     }
 }

@@ -27,6 +27,10 @@ public class UWDepDetailsDO implements Serializable {
 
     private String uwEmail;
 
+    public UWDepDetailsDO(){
+
+    }
+
     public UWDepDetailsDO(UWDepDetails uwDepDetails){
         uwId=uwDepDetails.getUwId();
         uwLob=uwDepDetails.getUwLob();

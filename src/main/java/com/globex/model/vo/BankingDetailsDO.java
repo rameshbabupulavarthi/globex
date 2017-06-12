@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 public class BankingDetailsDO implements Serializable {
 
-    private Long id;
+    private Long bankingId;
 
     private String details;
 
@@ -20,33 +20,34 @@ public class BankingDetailsDO implements Serializable {
 
     private String name;
 
-    private String iBan;
+    private String iban;
 
     private String swiftCode;
 
     private String email;
 
-    private ContactDetailsDO contact;
+   /* private ContactDetailsDO contact;*/
 
     public BankingDetailsDO(){}
 
     public BankingDetailsDO (BankingDetails bankingDetails){
-        id=bankingDetails.getId();
+        bankingId=bankingDetails.getId();
         details=bankingDetails.getDetails();
         address=bankingDetails.getAddress();
         name=bankingDetails.getName();
-        iBan=bankingDetails.getIBan();
+        iban=bankingDetails.getIBan();
         swiftCode=bankingDetails.getSwiftCode();
+        email=bankingDetails.getEmail();
         //contact=bankingDetails.getContact()!=null?new ContactDetailsDO(bankingDetails.getContact()):null;
     }
 
     public BankingDetails value(){
         BankingDetails bankingDetails=new BankingDetails();
-        bankingDetails.setId(id);
+        bankingDetails.setId(bankingId);
         bankingDetails.setDetails(details);
         bankingDetails.setAddress(address);
         bankingDetails.setName(name);
-        bankingDetails.setIBan(iBan);
+        bankingDetails.setIBan(iban);
         bankingDetails.setSwiftCode(swiftCode);
         bankingDetails.setEmail(email);
         //bankingDetails.setContact(contact!=null?contact.getValue():null);

@@ -10,7 +10,7 @@ import javax.persistence.*;
  * Created by Sunil Golla on 6/1/2017.
  */
 @Data
-@EqualsAndHashCode(of = {"historyId"})
+@EqualsAndHashCode(exclude = {"organization"})
 @ToString(exclude={"organization"})
 @Entity
 @Table(name="org_history")

@@ -1,11 +1,10 @@
 package com.globex.model.vo.lm;
 
-import com.globex.model.entity.common.RateRequirement;
-import com.globex.model.entity.partner.CommissionRequirement;
-import com.globex.model.entity.partner.LOB;
 import com.globex.model.entity.pm.OrganizationDetail;
 import com.utils.DateUtil;
 import lombok.Data;
+import lombok.ToString;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -14,9 +13,14 @@ import java.util.Set;
  * Created by Sunil Golla on 6/4/2017.
  */
 @Data
+@ToString(exclude = {""})
 public class OrganizationDetailsDO implements Serializable {
 
-    private Integer parentCompany;
+    private Long orgDetailsId;
+
+    private String telePhone;
+
+    private String parentCompany;
 
     private Integer orgType;
 
@@ -40,13 +44,13 @@ public class OrganizationDetailsDO implements Serializable {
 
     private String amRatingAttachment;
 
-    private Integer sAndPRating;
+    private Integer snpRating;
 
-    private String sAndPOutlook;
+    private String snpOutlook;
 
-    private String sAndPrRatingOutlookDate;
+    private String snpRatingOutlookDate;
 
-    private String sAndPAttachment;
+    private String snpAttachment;
 
     private String misCompanyName;
 
@@ -91,6 +95,10 @@ public class OrganizationDetailsDO implements Serializable {
 
     private String regRegulatorText;
 
+    private String adviceRegistration;
+
+    private String adviceRegistrationAttach;
+
     private Integer serviceOption;
 
     private String serviceOptionText;
@@ -106,6 +114,8 @@ public class OrganizationDetailsDO implements Serializable {
     private String requiredDocReinsurPlaceAttach;
 
     private String compInvolClaims;
+
+    private String compInvolClaimsText;
 
     private String premiumPayOption;
 
@@ -134,9 +144,12 @@ public class OrganizationDetailsDO implements Serializable {
 
     private Set<LOB> lobs;*/
 
+    public OrganizationDetailsDO (){
+
+    }
 
     public OrganizationDetailsDO (OrganizationDetail organizationDetail){
-
+        orgDetailsId=organizationDetail.getOrgDetailsId();
         parentCompany=organizationDetail.getParentCompany();
         orgType=organizationDetail.getOrgType();
         licenseNo=organizationDetail.getLicenseNo();
@@ -149,10 +162,10 @@ public class OrganizationDetailsDO implements Serializable {
         amBestLook=organizationDetail.getAmBestLook();
         amOutlookDate=DateUtil.formatDate(organizationDetail.getAmOutlookDate());
         amRatingAttachment=organizationDetail.getAmRatingAttachment();
-        sAndPRating=organizationDetail.getSAndPRating();
-        sAndPOutlook=organizationDetail.getSAndPOutlook();
-        sAndPrRatingOutlookDate=DateUtil.formatDate(organizationDetail.getSAndPrRatingOutlookDate());
-        sAndPAttachment=organizationDetail.getSAndPAttachment();
+        snpRating=organizationDetail.getSAndPRating();
+        snpOutlook=organizationDetail.getSAndPOutlook();
+        snpRatingOutlookDate=DateUtil.formatDate(organizationDetail.getSAndPrRatingOutlookDate());
+        snpAttachment=organizationDetail.getSAndPAttachment();
         misCompanyName=organizationDetail.getMisCompanyName();
         misCompanyCountry=organizationDetail.getMisCompanyCountry();
         misCompanyWebsite=organizationDetail.getMisCompanyWebsite();
@@ -178,26 +191,44 @@ public class OrganizationDetailsDO implements Serializable {
         bankIban=organizationDetail.getBankIban();
         bankSwiftCode=organizationDetail.getBankSwiftCode();
         bankAttachment=organizationDetail.getBankAttachment();
+
+
+        reInsurancePlacement=organizationDetail.getReInsurancePlacement();
+        reInsurancePlacementComments=organizationDetail.getReInsurancePlacementComments();
+        insuRequiredDoc=organizationDetail.getInsuRequiredDoc();
+        adviceRegistration=organizationDetail.getAdviceRegistration();
+        requiredDocReinsurPlace=organizationDetail.getRequiredDocReinsurPlace();
+        specReqDocReinsurPlace=organizationDetail.getSpecReqDocReinsurPlace();
+        compInvolClaims=organizationDetail.getCompInvolClaims();
+        compInvolClaimsText=organizationDetail.getCompInvolClaimsText();
+        premiumPayOption=organizationDetail.getPremiumPayOption();
+        premiumWithTax=organizationDetail.getPremiumWithTax();
+
+        adviceRegistrationAttach=organizationDetail.getAdviceRegistrationAttach();
+        registrationProcedureAttach=organizationDetail.getRegistrationProcedureAttach();
+        requiredDocReinsurPlaceAttach=organizationDetail.getRequiredDocReinsurPlaceAttach();
+        claimHandlingWordingAttach=organizationDetail.getClaimHandlingWordingAttach();
     }
 
     public OrganizationDetail value(){
         OrganizationDetail organizationDetail=new OrganizationDetail();
+        organizationDetail.setOrgDetailsId(orgDetailsId);
         organizationDetail.setParentCompany(parentCompany);
         organizationDetail.setOrgType(orgType);
         organizationDetail.setLicenseNo(licenseNo);
         organizationDetail.setLicenseAuthorityName(licenseAuthorityName);
         organizationDetail.setRatedByOtherAgency(ratedByOtherAgency);
         organizationDetail.setLicenseAuthWebsite(licenseAuthWebsite);
-        organizationDetail.setEstablishedDate(DateUtil.getTimestamp(establishedDate));
+        organizationDetail.setEstablishedDate(DateUtil.getDate(establishedDate));
         organizationDetail.setAttachment(attachment);
         organizationDetail.setAmBestRating(amBestRating);
         organizationDetail.setAmBestLook(amBestLook);
-        organizationDetail.setAmOutlookDate(DateUtil.getTimestamp(amOutlookDate));
+        organizationDetail.setAmOutlookDate(DateUtil.getDate(amOutlookDate));
         organizationDetail.setAmRatingAttachment(amRatingAttachment);
-        organizationDetail.setSAndPRating(sAndPRating);
-        organizationDetail.setSAndPOutlook(sAndPOutlook);
-        organizationDetail.setSAndPrRatingOutlookDate(DateUtil.getTimestamp(sAndPrRatingOutlookDate));
-        organizationDetail.setSAndPAttachment(sAndPAttachment);
+        organizationDetail.setSAndPRating(snpRating);
+        organizationDetail.setSAndPOutlook(snpOutlook);
+        organizationDetail.setSAndPrRatingOutlookDate(DateUtil.getDate(snpRatingOutlookDate));
+        organizationDetail.setSAndPAttachment(snpAttachment);
         organizationDetail.setMisCompanyName(misCompanyName);
         organizationDetail.setMisCompanyCountry(misCompanyCountry);
         organizationDetail.setMisCompanyWebsite(misCompanyWebsite);
@@ -208,6 +239,17 @@ public class OrganizationDetailsDO implements Serializable {
         organizationDetail.setReInsuranceLob(reInsuranceLob);
         organizationDetail.setReInsuranceSupport(reInsuranceSupport);
         organizationDetail.setReInsuranceComments(reInsuranceComments);
+
+        organizationDetail.setReInsurancePlacement(reInsurancePlacement);
+        organizationDetail.setReInsurancePlacementComments(reInsurancePlacementComments);
+        organizationDetail.setInsuRequiredDoc(insuRequiredDoc);
+        organizationDetail.setAdviceRegistration(adviceRegistration);
+        organizationDetail.setRequiredDocReinsurPlace(requiredDocReinsurPlace);
+        organizationDetail.setSpecReqDocReinsurPlace(specReqDocReinsurPlace);
+        organizationDetail.setCompInvolClaims(compInvolClaims);
+        organizationDetail.setCompInvolClaimsText(compInvolClaimsText);
+        organizationDetail.setPremiumPayOption(premiumPayOption);
+        organizationDetail.setPremiumWithTax(premiumWithTax);
 
         organizationDetail.setReInsurancePlacementLob(reInsurancePlacementLob);
         organizationDetail.setReinsurBroker(reinsurBroker);
@@ -225,6 +267,11 @@ public class OrganizationDetailsDO implements Serializable {
         organizationDetail.setBankIban(bankIban);
         organizationDetail.setBankSwiftCode(bankSwiftCode);
         organizationDetail.setBankAttachment(bankAttachment);
+
+        organizationDetail.setAdviceRegistrationAttach(adviceRegistrationAttach);
+        organizationDetail.setRegistrationProcedureAttach(registrationProcedureAttach);
+        organizationDetail.setRequiredDocReinsurPlaceAttach(requiredDocReinsurPlaceAttach);
+        organizationDetail.setClaimHandlingWordingAttach(claimHandlingWordingAttach);
         return organizationDetail;
     }
 

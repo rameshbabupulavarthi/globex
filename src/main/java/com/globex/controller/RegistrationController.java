@@ -131,7 +131,8 @@ public class RegistrationController {
 
             organizationDO.setOrgUserType(AppConstants.OrgUserType.PM.getUserType());
             organizationDO.setApproved(1);
-            organizationService.save(organizationDO);
+            Organization organization= organizationDO.value();
+            organizationService.save(organization);
         }catch (JsonMappingException e) {
             logger.error("JsonMappingException error",e);
         } catch (Exception e) {

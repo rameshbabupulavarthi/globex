@@ -553,6 +553,7 @@ var LMRecordView=Backbone.View.extend({
                        zip:organization.zip,
                        website:organization.website,
                        orgType:organization.orgType,
+                       telePhone:organization.telePhone,
                        parentOrgId:organization.parentOrgId,
                        approved:organization.approved,
                        comment:organization.comment,

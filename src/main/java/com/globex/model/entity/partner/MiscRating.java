@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Sunil Golla on 5/31/2017.
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(of = {"id"})
 @Entity
 @Table(name="misc_rating")
-public class MiscRating {
+public class MiscRating implements Serializable{
 
     @Id
     @Column(name="MISC_ID")

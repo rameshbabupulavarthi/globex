@@ -62,7 +62,7 @@
             <div class="form-column">
                 <div class="field-label">Currency</div>
                 <div class="field currency-icon">
-                    <select class="stylish" name="currency" id="fileStatusId" >
+                    <select class="stylish selectbox" name="currency" id="fileStatusId" >
                         <option value="-1">Select...</option>
                         <option value="1">USD</option>
                         <option value="2">GBP</option>
@@ -209,8 +209,6 @@
                             <textarea class="stylish" name="otherServices"  id="pmApplicationFormId_otherServices"><%= application.otherServices  %></textarea>
                         </div>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Collection Type* </div>
                         <div class="field">
@@ -220,6 +218,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Master Policy No. </div>
@@ -227,8 +226,6 @@
                             <input class="stylish" type="text" name="masterPolicyNo" maxlength="20" value="<%= application.masterPolicyNo %>" id="pmApplicationFormId_masterPolicyno" style=" width: 180px;">
                         </div>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Local Broker/Insured Contact </div>
                         <div class="field">
@@ -250,9 +247,6 @@
                             <input class="stylish" type="text" name="underWriterName" maxlength="20" value="<%= application.underWriterName %>" id="underWriterName">
                         </div>
                     </div>
-                </div>
-
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Phone Number </div>
                         <div class="field phone-icon">
@@ -270,9 +264,7 @@
                             <input class="stylish" type="text" name="email" maxlength="20" value="<%= application.email %>" id="email">
                         </div>
                     </div>
-                </div>
 
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Branch Office </div>
                         <div class="field company-icon">
@@ -280,6 +272,7 @@
                         </div>
                     </div>
                 </div>
+
 
             </fieldset>
         </div>

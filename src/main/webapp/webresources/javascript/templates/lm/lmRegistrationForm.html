@@ -24,7 +24,7 @@
                             <div class="lm-registration-body-section-text">
                                 Organizational Details</div>
                             <div class="lm-registration-body-section-toggle">
-                                <div class="field drop-down"></div>
+                                <div class="field"></div>
                             </div>
                         </div>
 
@@ -130,7 +130,7 @@
                                                 <div class="field-label">Licensing Authority's website</div>
                                                 <div class="field globe-icon">
                                                     <input class="stylish"  type="text" placeholder="Enter Website" name="orgDetails.licenseAuthWebsite"
-                                                           value="organizationDetails.licenseAuthWebsite" size="50">
+                                                           value="<%=organizationDetails.licenseAuthWebsite%>" size="50">
                                                 </div>
                                             </div>
 
@@ -140,7 +140,7 @@
                                                 </div>
                                                 <div class="field number-icon">
                                                     <input class="stylish" id="orgDetails.licenceNo" type="text"  placeholder="Enter License Number" name="orgDetails.licenseNo"
-                                                           value="organizationDetails.licenseNo" size="50">
+                                                           value="<%=organizationDetails.licenseNo%>" size="50">
                                                 </div>
                                             </div>
                                         </div>
@@ -150,7 +150,7 @@
                                                     Best rating? If so, please provide the rating :</div>
                                                 <div class="field align-justify">
                                                     <select class="stylish selectbox" name="orgDetails.amBestRating" value="<%=organizationDetails.amBestRating%>">
-                                                        <option>---AM Best Rating---</option>
+                                                        <option value="-1">---AM Best Rating---</option>
                                                         <option value="aplussuperior">A+ Superior</option>
                                                         <option value="aexcellent">A Excellent</option>
                                                         <option value="aminusexcellent">A- Excellent</option>
@@ -176,7 +176,7 @@
                                                     The Year your Company was established :
                                                 </div>
                                                 <div class="field calendar-icon">
-                                                    <input class="stylish date-picker" type="text" placeholder="Enter Establishment Year" name="regDate" value="<%=regDate%>" size="50" >
+                                                    <input class="stylish date-picker" type="text" placeholder="Enter Establishment Year" name="orgDetails.establishedDate" value="<%=organizationDetails.establishedDate%>" size="50" >
                                                 </div>
                                             </div>
                                         </div>
@@ -186,7 +186,10 @@
                                                     Attachments for any Company Information material :
                                                 </div>
                                                 <div class="field upload-icon">
-                                                    <input class="stylish" type="file" name="orgDetails.attachment" value="<%=organizationDetails.attachment%>" size="50">
+                                                    <input class="stylish" type="file" name="orgFileAttachment" size="50">
+                                                    <% if( organizationDetails.attachment ){%>
+                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.attachment%>" title="Attachment"></a>
+                                                    <%}%>
                                                 </div>
                                             </div>
                                             <div class="form-column">
@@ -213,7 +216,10 @@
                                                     AM Best rating attachment :
                                                 </div>
                                                 <div class="field upload-icon">
-                                                    <input class="stylish" type="file" name="orgDetails.amRatingAttachment" size="50">
+                                                    <input class="stylish" type="file" name="amRatingFileAttachment" size="50">
+                                                    <% if( organizationDetails.amRatingAttachment ){%>
+                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.amRatingAttachment%>" title="Attachment"></a>
+                                                    <%}%>
                                                 </div>
                                             </div>
                                         </div>
@@ -222,7 +228,7 @@
                                                 <div class="field-label">Does your company have a
                                                     S&amp;P rating? If so, please provide the rating :</div>
                                                 <div class="field align-justify">
-                                                    <select name="orgDetails.sAndPRating" value="<%=organizationDetails.sAndPRating%>" class="stylish">
+                                                    <select name="orgDetails.snpRating" value="<%=organizationDetails.snpRating%>" class="stylish selectbox">
                                                         <option value="-1">---Select---</option>
                                                         <option value="1">Extremely Strong</option>
                                                         <option value="2">Very Strong</option>
@@ -242,11 +248,11 @@
                                             <div class="form-column">
                                                 <div class="field-label">S&amp;P Outlook :</div>
                                                 <div class="field">
-                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="1">&nbsp;Positive &nbsp;
-                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="2">&nbsp;Stable&nbsp;
-                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="3">&nbsp;Negative&nbsp;
-                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="4">&nbsp;Developing&nbsp;
-                                                    <input type="radio" name="orgDetails.sAndPOutlook" value="5">&nbsp;Not Meaningful
+                                                    <input type="radio" name="orgDetails.snpOutlook" value="1">&nbsp;Positive &nbsp;
+                                                    <input type="radio" name="orgDetails.snpOutlook" value="2">&nbsp;Stable&nbsp;
+                                                    <input type="radio" name="orgDetails.snpOutlook" value="3">&nbsp;Negative&nbsp;
+                                                    <input type="radio" name="orgDetails.snpOutlook" value="4">&nbsp;Developing&nbsp;
+                                                    <input type="radio" name="orgDetails.snpOutlook" value="5">&nbsp;Not Meaningful
                                                 </div>
                                             </div>
 
@@ -257,73 +263,77 @@
                                                 <div class="field-label">S&amp;P Rating/Outlook Date :</div>
                                                 <div class="field calendar-icon">
                                                     <input class="stylish date-picker" type="text"  placeholder="Enter S&amp;P Rating/Outlook Date"
-                                                           name="orgDetails.sAndPrRatingOutlookDate" value="<%=organizationDetails.sAndPrRatingOutlookDate%>" size="50">
+                                                           name="orgDetails.snpRatingOutlookDate" value="<%=organizationDetails.snpRatingOutlookDate%>" size="50">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">S&amp;P attachment :</div>
                                                 <div class="field upload-icon">
-                                                    <input class="stylish" type="file" name="orgDetails.sAndPAttachment" size="50">
+                                                    <input class="stylish" type="file" name="snpFileAttachment" size="50">
+                                                    <% if( organizationDetails.snpAttachment ){%>
+                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.snpAttachment%>" title="Attachment"></a>
+                                                    <%}%>
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="form-row">
                                             <div class="fieldset-wrapper">
                                                 <fieldset class="fieldset">
                                                 <legend class="legend"> Misc. Rating Company </legend>
                                                  <% _.each(miscRatings, function(miscRating){ %>
-                                                    <div class="form-row">
-                                                        <div class="form-column">
-                                                            <div class="field-label">Miscallenous rating company's name :</div>
-                                                            <div class="field align-justify" >
-                                                                <input class="stylish" type="text"  placeholder="Enter Company Name" name="misCompanyName" value="<%=miscRating.misCompanyName%>">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-column">
-                                                            <div class="field-label">Miscallenous rating company's website :</div>
-                                                            <div class="field globe-icon">
-                                                                <input class="stylish" type="text"  placeholder="Enter Company Website" name="misCompanyWebsite" value="<%=miscRating.misCompanyWebsite%>" size="50">
-                                                            </div>
-                                                        </div>
+                                                   <div class="field-row misc-rating">
+                                                     <div class="form-row">
+                                                         <div class="form-column">
+                                                             <div class="field-label">Miscallenous rating company's name :</div>
+                                                             <div class="field align-justify" >
+                                                                 <input class="stylish" type="text"  placeholder="Enter Company Name" name="companyName" value="<%=miscRating.companyName%>">
+                                                             </div>
+                                                         </div>
+                                                         <div class="form-column">
+                                                             <div class="field-label">Miscallenous rating company's website :</div>
+                                                             <div class="field globe-icon">
+                                                                 <input class="stylish" type="text"  placeholder="Enter Company Website" name="companyWebsite" value="<%=miscRating.companyWebsite%>" size="50">
+                                                             </div>
+                                                         </div>
 
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-column">
-                                                            <div class="field-label">Miscallenous rating company's country :</div>
-                                                            <div class="field country-icon" >
-                                                                <input class="stylish" id="miscCompCountry" type="text"  placeholder="Enter Company Country" name="misCompanyCountry" value="<%=miscRating.misCompanyCountry%>" size="50">
-                                                            </div>
-                                                        </div>
+                                                     </div>
+                                                     <div class="form-row">
+                                                         <div class="form-column">
+                                                             <div class="field-label">Miscallenous rating company's country :</div>
+                                                             <div class="field country-icon" >
+                                                                 <input class="stylish" id="miscCompCountry" type="text"  placeholder="Enter Company Country" name="companyCountry" value="<%=miscRating.companyCountry%>" size="50">
+                                                             </div>
+                                                         </div>
 
-                                                        <div class="form-column">
-                                                            <div class="field-label">Miscallenous rating company's outlook: (FF)</div>
-                                                            <div class="field rate-icon" >
-                                                                <input class="stylish" id="miscCompOutlook" type="text"  placeholder="Enter Company Outlook" name="misCompanyOutlook" value="<%=miscRating.misCompanyOutlook%>" size="50">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-column">
-                                                            <div class="field-label">Miscallenous rating company's rating :(FF)</div>
-                                                            <div class="field rate-icon" id="misccompratingdiv">
-                                                                <input class="stylish" id="miscCompRating" type="text"  placeholder="Enter Company Rating" name="misCompanyRating" value="<%=miscRating.misCompanyRating%>" size="50">
-                                                            </div>
-                                                        </div>
+                                                         <div class="form-column">
+                                                             <div class="field-label">Miscallenous rating company's outlook: (FF)</div>
+                                                             <div class="field rate-icon" >
+                                                                 <input class="stylish" id="miscCompOutlook" type="text"  placeholder="Enter Company Outlook" name="companyOutlook" value="<%=miscRating.companyOutlook%>" size="50">
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="form-row">
+                                                         <div class="form-column">
+                                                             <div class="field-label">Miscallenous rating company's rating :(FF)</div>
+                                                             <div class="field rate-icon" id="misccompratingdiv">
+                                                                 <input class="stylish" id="miscCompRating" type="text"  placeholder="Enter Company Rating" name="companyRating" value="<%=miscRating.companyRating%>" size="50">
+                                                             </div>
+                                                         </div>
 
-                                                        <div class="form-column">
-                                                            <div class="field-label">Miscallenous rating company's attachment :</div>
-                                                            <div class="field upload-icon">
-                                                                <input class="stylish" type="file" name="misCompanyAttachment" value="<%=miscRating.misCompanyAttachment%>" size="50">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                         <div class="form-column">
+                                                             <div class="field-label">Miscallenous rating company's attachment :</div>
+                                                             <div class="field upload-icon">
+                                                                 <input class="stylish" type="file" name="companyAttachment" value="<%=miscRating.companyAttachment%>" size="50">
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <input type="hidden" name="miscId" value="<%=miscRating.miscId%>">
+                                                   </div>
                                                  <% }) %>
                                             </fieldset>
                                             </div>
                                         </div>
-
 
                                         <div class="form-row">
                                             <div class="form-column">
@@ -333,6 +343,7 @@
                                                     <div class="form-tab"><div class="field-label"> Premium :</div></div>
                                                     <div class="form-tab"><div class="field-label"> Premium Currency  :</div></div>
                                                     <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                      <% if(organizationHistory.type==1) { %>
                                                         <div class="field-row gross-premium-wrapper">
                                                         <div class="form-tab">
                                                             <div class="field align-justify">
@@ -354,7 +365,10 @@
                                                                 <input class="stylish" type="text"  placeholder="Enter Currency" name="premiumCurrency" value="<%=organizationHistory.premiumCurrency%>">
                                                             </div>
                                                         </div>
+                                                        <input type="hidden" name="type" value="<%=organizationHistory.type%>">
+                                                        <input type="hidden" name="historyId" value="<%=organizationHistory.historyId%>">
                                                     </div>
+                                                      <% } %>
                                                     <% }) %>
                                                 </fieldset>
                                             </div>
@@ -366,8 +380,9 @@
                                                     <div class="form-tab"><div class="field-label"> Year :</div></div>
                                                     <div class="form-tab"><div class="field-label"> Combined Ratio :</div></div>
                                                     <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                      <% if(organizationHistory.type==2) { %>
                                                         <div class="field-row combined-ratio">
-                                                            <div class="form-column">
+                                                            <div class="form-tab">
                                                                 <div class="field align-justify">
                                                                     <select class="stylish" name="year" value="<%=organizationHistory.year%>">
                                                                         <option value="-1"> Year :</option>
@@ -377,12 +392,15 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-column">
+                                                            <div class="form-tab">
                                                                 <div class="field compress-icon">
                                                                     <input class="stylish" type="text"  placeholder="Enter Combined Ratio" name="combinedRatio" value="<%=organizationHistory.combinedRatio%>">
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="type" value="<%=organizationHistory.type%>">
+                                                            <input type="hidden" name="historyId" value="<%=organizationHistory.historyId%>">
                                                         </div>
+                                                      <% } %>
                                                     <% }) %>
                                                 </fieldset>
                                             </div>
@@ -395,6 +413,7 @@
                                                         <div class="form-tab"><div class="field-label"> Total Assets :</div></div>
                                                         <div class="form-tab"><div class="field-label"> Total Assets Currency :</div></div>
                                                         <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                          <% if(organizationHistory.type==3) { %>
                                                             <div class="field-row total-assets">
                                                             <div class="form-tab">
                                                                 <div class="field align-justify" >
@@ -416,7 +435,10 @@
                                                                     <input class="stylish" type="text"  placeholder="Enter Currency" name="totalAssetsCurrency" value="<%=organizationHistory.totalAssetsCurrency%>">
                                                                 </div>
                                                             </div>
+                                                          <input type="hidden" name="type" value="<%=organizationHistory.type%>">
+                                                          <input type="hidden" name="historyId" value="<%=organizationHistory.historyId%>">
                                                         </div>
+                                                          <% } %>
                                                         <% }) %>
                                                     </fieldset>
                                                 </div>
@@ -428,6 +450,7 @@
                                                         <div class="form-tab"><div class="field-label"> Year :</div></div>
                                                         <div class="form-tab"><div class="field-label"> Ranking :</div></div>
                                                         <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                          <% if(organizationHistory.type==4) { %>
                                                             <div class="field-row comp-rank">
                                                                 <div class="form-tab">
                                                                     <div class="field align-justify" >
@@ -444,7 +467,10 @@
                                                                         <input class="stylish" type="text"  placeholder="Enter Ranking" name="ranking" value="<%=organizationHistory.ranking%>">
                                                                     </div>
                                                                 </div>
+                                                                <input type="hidden" name="type" value="<%=organizationHistory.type%>">
+                                                                <input type="hidden" name="historyId" value="<%=organizationHistory.historyId%>">
                                                             </div>
+                                                          <% } %>
                                                         <% }) %>
                                                     </fieldset>
                                                 </div>
@@ -460,6 +486,7 @@
                                                         <div class="form-tab"><div class="field-label"> Attachments :</div></div>
                                                         <div class="form-tab"><div class="field-label"> Comments :</div></div>
                                                         <% _.each(organizationHistories, function(organizationHistory){ %>
+                                                          <% if(organizationHistory.type==5) { %>
                                                             <div class="field-row fin-report">
                                                             <div class="form-tab">
                                                                 <div class="field align-justify" >
@@ -478,10 +505,13 @@
                                                             </div>
                                                             <div class="form-tab">
                                                                 <div class="field pencil-icon">
-                                                                    <input class="stylish" type="text"  placeholder="Enter omments" name="finComments" value="<%=organizationHistory.comments%>">
+                                                                    <input class="stylish" type="text"  placeholder="Enter omments" name="finComments" value="<%=organizationHistory.finComments%>">
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="type" value="<%=organizationHistory.type%>">
+                                                            <input type="hidden" name="historyId" value="<%=organizationHistory.historyId%>">
                                                         </div>
+                                                          <% } %>
                                                         <% }) %>
                                                     </fieldset>
                                                 </div>
@@ -505,22 +535,23 @@
                                                         <div class="form-tab"><div class="field-label"> Willingness to Write :</div></div>
                                                         <% _.each(lobs, function(lob){ %>
                                                             <div class="field-row lob">
-                                                            <div class="form-tab">
-                                                                <input type="checkbox" name="lob" value="<%=lob.lob%>"><%=lob.lob%>
+                                                                <div class="form-tab">
+                                                                    <input type="checkbox" name="lob" value="<%=lob.lob%>"><%=lob.lob%>
+                                                                </div>
+                                                                <div class="form-tab">
+                                                                    <select name="authorizedToWrite" value="<%=lob.authorizedToWrite%>">
+                                                                        <option value="1">Yes</option>
+                                                                        <option value="0">No</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-tab">
+                                                                    <select name="willingnessToWrite" value="<%=lob.willingnessToWrite%>">
+                                                                        <option value="1">Yes</option>
+                                                                        <option value="0">No</option>
+                                                                    </select>
+                                                                </div>
+                                                                <input type="hidden" name="orgLobId" value="<%=lob.orgLobId%>">
                                                             </div>
-                                                            <div class="form-tab">
-                                                                <select name="authorizedToWrite" value="<%=lob.authorizedToWrite%>">
-                                                                    <option value="1">Yes</option>
-                                                                    <option value="0">No</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-tab">
-                                                                <select name="willingnessToWrite" value="<%=lob.willingnessToWrite%>">
-                                                                    <option value="1">Yes</option>
-                                                                    <option value="0">No</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
                                                         <% }) %>
                                                     </fieldset>
                                                 </div>
@@ -606,6 +637,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        <input type="hidden" name="requirementId" value="<%=rateRequirement.requirementId%>">
                                                     </div>
                                                     <% }) %>
                                                 </fieldset>
@@ -615,13 +647,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" id="financeId" name="id"></div>
+                            <input type="hidden"  name="orgId" value="<%=orgId%>">
+                            <input type="hidden"  name="orgDetails.orgDetailsId" value="<%=organizationDetails.orgDetailsId%>">
+                        </div>
                     </form>
                 </div>
 
                 <!--step 2-->
                 <div class="lm-registration-step-section lm-registration-step2" style="display: block;">
-                    <form method="post" autocomplete="off" action="/secure/saveFinancialInfo" >
+                    <form method="post" id="saveAccountInfo" autocomplete="off" action="/secure/saveAccountInfo" >
                         <div class="lm-registration-body-section">
                             <div class="lm-registration-body-section-text">
                                 ACCOUNT HANDLING DETAILS</div>
@@ -682,6 +716,7 @@
                                                             <input class="stylish" type="text"  placeholder="Enter Currency" name="commissionCurrency" value="<%=commissionRequirement.commissionCurrency%>">
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" name="commReqId" value="<%=commissionRequirement.commReqId%>">
                                                 </div>
                                                 <% }) %>
                                             </fieldset>
@@ -689,12 +724,11 @@
 
                                         <div class="fieldset-wrapper">
                                                 <fieldset class="fieldset" >
-                                                    <legend class="legend">Do you require a reinsurance
-                                                        broker for any reinsurance placement?</legend>
+                                                    <legend class="legend">Do you require a reinsurance broker for any reinsurance placement?</legend>
                                                     <div class="form-column">
                                                         <div class="field-label">LOB</div>
                                                         <div class="field bookmark-icon">
-                                                        <input class="stylish" placeholder="Enter LOB" type="text" name="reInsurancePlacementLob" value="<%=organizationDetails.reInsurancePlacementLob%>">
+                                                        <input class="stylish" placeholder="Enter LOB" type="text" name="orgDetails.reInsurancePlacementLob" value="<%=organizationDetails.reInsurancePlacementLob%>">
                                                         </div>
                                                     </div>
 
@@ -705,7 +739,8 @@
                                                         <input type="radio" name="reInsurancePlacement" value="0"> No<br>
                                                         or
                                                         <div class="field bookmark-icon">
-                                                            <input class="stylish" placeholder="Enter your Comments" type="text" name="reInsurancePlacementComments" value="<%=organizationDetails.reInsurancePlacementComments%>">
+                                                            <input class="stylish" placeholder="Enter your Comments" type="text"
+                                                                   name="orgDetails.reInsurancePlacementComments" value="<%=organizationDetails.reInsurancePlacementComments%>">
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -717,7 +752,8 @@
                                                     do you require from the insured for policy issuance? For example,
                                                     local insured registration documents, Know Your Client forms, Proposal Forms, etc.</div>
                                                 <div class="field info-icon">
-                                                    <input class="stylish"  type="text" name="insuRequiredDoc" value="<%=organizationDetails.insuRequiredDoc%>" placeholder="Enter Your Client forms, Proposal Forms etc.">
+                                                    <input class="stylish"  type="text" name="orgDetails.insuRequiredDoc"
+                                                           value="<%=organizationDetails.insuRequiredDoc%>" placeholder="Enter Your Client forms, Proposal Forms etc.">
                                                 </div>
                                             </div>
 
@@ -726,6 +762,9 @@
                                                 <div class="field upload-icon" >
                                                     <input class="stylish"  type="file"
                                                            name="insuRequiredDocAttach" size="50">
+                                                    <% if( organizationDetails.insuRequiredDocAttach ){%>
+                                                        <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.insuRequiredDocAttach%>" title="Attachment"></a>
+                                                    <%}%>
                                                 </div>
                                             </div>
                                         </div>
@@ -739,20 +778,20 @@
                                                     <input type="radio" name="serviceOption" value="0"> No
                                                     or
                                                     <div class="field bookmark-icon">
-                                                        <input class="stylish" placeholder="Enter your Comments" id="serviceOptionText" type="text"
-                                                               name="serviceOptionText" value="<%=organizationDetails.serviceOptionText%>">
+                                                        <input class="stylish" placeholder="Enter your Comments" type="text"
+                                                               name="orgDetails.serviceOptionText" value="<%=organizationDetails.serviceOptionText%>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Does the foreign Reinsurer have to be registered with the Regulator in your country?</div>
                                                 <div class="field" id="reg_regulatordiv">
-                                                    <input type="radio" name="regRegulator" value="1"> Yes
-                                                    <input type="radio" name="regRegulator" value="0"> No
+                                                    <input type="radio" name="orgDetails.regRegulator" value="1"> Yes
+                                                    <input type="radio" name="orgDetails.regRegulator" value="0"> No
                                                     or
                                                     <div class="field bookmark-icon">
-                                                        <input class="stylish" placeholder="Enter your Comments" id="regRegulatorText" type="text"
-                                                               name="regRegulatorText" value="<%=organizationDetails.regRegulatorText%>">
+                                                        <input class="stylish" placeholder="Enter your Comments" type="text"
+                                                               name="orgDetails.regRegulatorText" value="<%=organizationDetails.regRegulatorText%>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -762,13 +801,17 @@
                                             <div class="form-column">
                                                 <div class="field-label">If so, please advise what needs to be done to get registered</div>
                                                 <div class="field info-icon">
-                                                    <input class="stylish" type="text" name="adviceRegistration" placeholder="Enter Your Advise" value="<%=organizationDetails.adviceRegistration%>">
+                                                    <input class="stylish" type="text" name="orgDetails.adviceRegistration" placeholder="Enter Your Advise"
+                                                           value="<%=organizationDetails.adviceRegistration%>">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Attachments for question above :</div>
                                                 <div class="field upload-icon">
                                                     <input class="stylish" type="file" name="adviceRegistrationAttach" size="50">
+                                                    <% if( organizationDetails.adviceRegistrationAttach ){%>
+                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.adviceRegistrationAttach%>" title="Attachment"></a>
+                                                    <%}%>
                                                 </div>
                                             </div>
                                         </div>
@@ -779,13 +822,17 @@
                                                     you require from the Reinsurer for any reinsurance
                                                     placements?</div>
                                                 <div class="field info-icon">
-                                                    <input class="stylish" type="text" name="requiredDocReinsurPlace" placeholder="Enter Your Information">
+                                                    <input class="stylish" type="text" name="orgDetails.requiredDocReinsurPlace"
+                                                           value="<%=organizationDetails.requiredDocReinsurPlace%>" placeholder="Enter Your Information">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Attachments for question above :</div>
                                                 <div class="field upload-icon">
                                                     <input class="stylish" type="file" name="registrationProcedureAttach" size="50">
+                                                    <% if( organizationDetails.registrationProcedureAttach ){%>
+                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.registrationProcedureAttach%>" title="Attachment"></a>
+                                                    <%}%>
                                                 </div>
                                             </div>
                                         </div>
@@ -795,13 +842,17 @@
                                                 <div class="field-label">Do you require any specific
                                                     documentation or clauses for any reinsurance placement?</div>
                                                 <div class="field info-icon">
-                                                    <input class="stylish" type="text" name="specReqDocReinsurPlace" placeholder="Enter Your clause">
+                                                    <input class="stylish" type="text" name="orgDetails.specReqDocReinsurPlace"
+                                                           value="<%=organizationDetails.specReqDocReinsurPlace%>"  placeholder="Enter Your clause">
                                                 </div>
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Attachments for question above :</div>
                                                 <div class="field upload-icon">
                                                     <input class="stylish" type="file" name="requiredDocReinsurPlaceAttach" size="50">
+                                                    <% if( organizationDetails.requiredDocReinsurPlaceAttach ){%>
+                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.requiredDocReinsurPlaceAttach%>" title="Attachment"></a>
+                                                    <%}%>
                                                 </div>
                                             </div>
                                         </div>
@@ -813,12 +864,12 @@
                                                     involved in the Claims Handling? If so, please specify
                                                     the involvement.</div>
                                                 <div class="field" >
-                                                    <input type="radio"  name="compInvolClaims" value="1"> Yes
-                                                    <input type="radio"  name="compInvolClaims" value="0"> No<br>
+                                                    <input type="radio"  name="orgDetails.compInvolClaims" value="1"> Yes
+                                                    <input type="radio"  name="orgDetails.compInvolClaims" value="0"> No<br>
                                                     or
                                                     <div class="field bookmark-icon">
-                                                        <input class="stylish" placeholder="Enter your Comments" id="compInvolClaimsText" type="text"
-                                                               name="compInvolClaimsText">
+                                                        <input class="stylish" placeholder="Enter your Comments" type="text"
+                                                               name="orgDetails.compInvolClaimsText"  value="<%=organizationDetails.compInvolClaimsText%>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -830,8 +881,8 @@
                                                         overseas and remitted to your company, or do you have to
                                                         collect the premium in your country?</div>
                                                     <div class="field" id="premium_pay_optiondiv">
-                                                        <input type="radio"  name="premiumPayOption" value="1"> Only Local Collection Allowed
-                                                        <input type="radio"  name="premiumPayOption" value="2">  Receiving Premium from Overseas is possible
+                                                        <input type="radio"  name="orgDetails.premiumPayOption" value="1"> Only Local Collection Allowed
+                                                        <input type="radio"  name="orgDetails.premiumPayOption" value="2">  Receiving Premium from Overseas is possible
                                                     </div>
                                                 </div>
                                                   <div class="form-column">
@@ -841,8 +892,8 @@
                                                         only taxes and fees? IF second option is chosen on the
                                                         question above</div>
                                                     <div class="field" >
-                                                        <input type="radio"  name="premiumWithTax" value="1"> All premium has to be received
-                                                        <input type="radio"  name="premiumWithTax" value="0"> Only taxes and fees have to be received
+                                                        <input type="radio"  name="orgDetails.premiumWithTax" value="1"> All premium has to be received
+                                                        <input type="radio"  name="orgDetails.premiumWithTax" value="0"> Only taxes and fees have to be received
                                                     </div>
                                                 </div>
                                             </div>
@@ -854,6 +905,9 @@
                                                     wording :</div>
                                                 <div class="field upload-icon">
                                                     <input class="stylish" type="file"  name="claimHandlingWordingAttach" size="50">
+                                                    <% if( organizationDetails.claimHandlingWordingAttach ){%>
+                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.claimHandlingWordingAttach%>" title="Attachment"></a>
+                                                    <%}%>
                                                 </div>
                                             </div>
                                         </div>
@@ -901,6 +955,7 @@
                                                           <input class="stylish"  type="text"  placeholder="Enter Email" name="uwEmail" value="<%=uwDepDetail.uwEmail%>">
                                                       </div>
                                                   </div>
+                                                  <input type="hidden" name="uwId" value="<%=uwDepDetail.uwId%>">
                                               </div>
                                               <% }) %>
                                            </fieldset>
@@ -936,7 +991,7 @@
                                                         </div>
                                                         <div class="tab-col">
                                                             <div class="field building-icon" >
-                                                                <input class="stylish"  type="text"  placeholder="Enter Bank Iban" name="iBan" value="<%=bankingDetail.iBan%>">
+                                                                <input class="stylish"  type="text"  placeholder="Enter Bank Iban" name="iban" value="<%=bankingDetail.iban%>">
                                                             </div>
                                                         </div>
                                                         <div class="tab-col">
@@ -949,6 +1004,7 @@
                                                                 <input class="stylish"  type="text"  placeholder="Enter Email" name="email" value="<%=bankingDetail.email%>">
                                                             </div>
                                                         </div>
+                                                        <input type="hidden" name="bankingId" value="<%=bankingDetail.bankingId%>">
                                                       </div>
                                                <% }) %>
                                            </fieldset>
@@ -959,11 +1015,11 @@
                             </div>
                         </div>
                         </div>
-                        <input type="hidden"  name="id">
+                        <input type="hidden"  name="orgId" value="<%=orgId%>">
+                        <input type="hidden"  name="orgDetails.orgDetailsId" value="<%=organizationDetails.orgDetailsId%>">
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

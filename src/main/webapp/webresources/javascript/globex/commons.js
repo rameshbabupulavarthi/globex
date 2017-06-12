@@ -197,6 +197,19 @@ function getUserName(user){
     }
 }
 
+
+function setValues(){
+
+    var $selectBoxes=$("select");
+    for(var i=0;i<$selectBoxes.length;i++){
+        var $selectBox=$($selectBoxes[i]);
+        var value=$selectBox.attr("value");
+        if(value){
+            $selectBox.val(value);
+        }
+    }
+}
+
 function getAddress(address){
     if(user){
         var fullAddress=address.address1+","+address.address1;

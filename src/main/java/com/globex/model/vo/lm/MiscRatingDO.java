@@ -30,6 +30,7 @@ public class MiscRatingDO implements Serializable {
     }
 
     public MiscRatingDO(MiscRating miscRating){
+        miscId=miscRating.getMiscId();
         companyName=miscRating.getCompanyName();
         companyCountry=miscRating.getCompanyCountry();
         companyWebsite=miscRating.getCompanyWebsite();
@@ -40,6 +41,7 @@ public class MiscRatingDO implements Serializable {
 
     public MiscRating value(){
         MiscRating miscRating=new MiscRating();
+        miscRating.setMiscId(miscId);
         miscRating.setCompanyName(companyName);
         miscRating.setCompanyCountry(companyCountry);
         miscRating.setCompanyWebsite(companyWebsite);

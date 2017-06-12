@@ -93,7 +93,7 @@ a{
    min-height: 900px;
    padding: 0px;
    position: absolute;
-   z-index: 999;
+   z-index: 1;
 }
 
 .lm-layout-body .layout-body-menu{
@@ -545,7 +545,7 @@ a{
 
 .accordian-body{
     padding: 0px 0px 10px 0px;
-    border: 2px solid #CDCDCD;
+   /* border: 2px solid #CDCDCD;  */
     border-radius: 2px;
     border-top: 0px;
     margin-bottom: 20px;

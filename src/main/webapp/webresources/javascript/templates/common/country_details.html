@@ -112,7 +112,7 @@
                     </fieldset>
                 </div>
 
-                <div class="fieldset-wrapper">
+              <!--  <div class="fieldset-wrapper">
                       <fieldset class="fieldset" id="taxRequirements">
                         <legend class="legend">Are there any Tariff, Minimum Premium or Rate requirements in your country? </legend>
                     <div class="field-row">
@@ -199,8 +199,75 @@
                       </div>
                     </div>
                 </fieldset>
-                </div>
+                </div>  -->
+                <div class="fieldset-wrapper">
+                    <div class="form-row" id="taxRequirements">
+                        <fieldset class="fieldset"  id="taxRequirements">
+                            <legend class="legend"> Are there any Tariff, Minimum Premium or Rate requirements in your country? </legend>
+                            <div class="field-row" id="taxRequirementBody">
+                                <% _.each(rateRequirements, function(rateRequirement){ %>
+                             <div class="field-row" id="taxRequirementBody">
+                                  <div class="form-tab-row">
+                                        <div class="field-label"> Which LOB</div>
+                                        <div class="field align-justify">
+                                            <select class="stylish lob-dropdown" name="requirementLob" value="<%=rateRequirement.requirementLob%>">
+                                                <option value="-1">Select ...</option>
+                                                <option value="2">Marine</option>
+                                                <option value="3">Property</option>
+                                                <option value="4">General Liability</option>
+                                                <option value="5">Professional Liability</option>
+                                                <option value="6">Package Policy</option>
+                                                <option value="7">Accident and Health</option>
+                                                <option value="8">Other Coverage</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-tab-row">
+                                        <div class="field-label"> % rate</div>
+                                        <div class="field pencil-icon">
+                                            <input class="stylish" type="text"  placeholder="Enter % rate" name="requirementRate" size="50" value="<%=rateRequirement.requirementRate%>">
+                                        </div>
+                                    </div>
 
+                                    <div class="form-tab-row">
+                                        <div class="field-label"> Applied To</div>
+                                        <div class="field pencil-icon">
+                                            <input class="stylish" type="text"  placeholder="Applied To" name="requirementAppliedTo" size="50" value="<%=rateRequirement.requirementAppliedTo%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-tab-row">
+                                        <div class="field-label"> min. premium</div>
+                                        <div class="field pencil-icon">
+                                            <input class="stylish" type="text"  placeholder="Enter min. premium" name="requirementMinPremium" size="50" value="<%=rateRequirement.requirementMinPremium%>">
+                                        </div>	</div>
+
+                                 <div class="form-tab-row">
+                                     <div class="field-label">Currency</div>
+                                     <div class="field align-justify">
+                                         <select name="requirementCurrency" class="stylish" value="<%=rateRequirement.requirementCurrency%>">
+                                             <option value="-1">Select</option>
+                                             <option value="sum">Sum Insured</option>
+                                             <option value="sum">Fixed Sum</option>
+                                         </select>
+                                     </div></div>
+                                    <div class="form-tab-row">
+                                        <div class="field-label"> Requirement Name</div>
+                                        <div class="field align-justify">
+                                            <select name="requirementType" class="stylish" value="<%=rateRequirement.requirementType%>">
+                                                <option value="-1">Select</option>
+                                                <option value="sum">Country Requirement</option>
+                                                <option value="sum">Company Requirement</option>
+                                            </select>
+                                        </div></div>
+
+                                </div>
+                                <% }) %>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                    </div>
                 <div class="fieldset-wrapper">
                     <fieldset class="fieldset" id="clauses">
                         <legend class="legend">Are there any Mandatory Clauses or exclusions</legend>
@@ -510,6 +577,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-column">
+                        <div class="field-label">State reinsurer involvement in placements required? :</div>
+                        <div class="field">
+                            <input type="radio" name="stateReinsurerReq" value="1">Yes
+                            <input type="radio" name="stateReinsurerReq" value="0"> No
+                            <div class="field-row field-column">or</div>
+                            <div class="field pencil-icon">
+                                <textarea class="stylish" name="stateReinsurerReqComments"  placeholder="Enter your Comments"><%=stateReinsurerReqComments%></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-row">
@@ -529,25 +607,15 @@
                         </div>
                     </div>
                     <div class="form-column">
-                        <div class="field-label">State reinsurer involvement in placements required? :</div>
-                        <div class="field">
-                            <input type="radio" name="stateReinsurerReq" value="1">Yes
-                            <input type="radio" name="stateReinsurerReq" value="0"> No
-                            <div class="field-row field-column">or</div>
-                            <div class="field pencil-icon">
-                                <textarea class="stylish" name="stateReinsurerReqComments"  placeholder="Enter your Comments"><%=stateReinsurerReqComments%></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-column">
                         <div class="field-label">Accounting or Other Requirements :</div>
                         <div class="field pencil-icon">
                             <textarea name="otherRequirements" class="stylish"  placeholder="Enter your Comments"><%=otherRequirements%></textarea>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-row">
+
 
                     <div class="form-column">
                         <div class="field-label">General comments :</div>
@@ -555,9 +623,6 @@
                             <textarea name="generalComments" class="stylish"  placeholder="Enter your Comments"><%=generalComments%></textarea>
                         </div>
                     </div>
-                </div>
-
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">General Attachments:</div>
                         <div class="field upload-icon">

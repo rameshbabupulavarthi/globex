@@ -23,6 +23,10 @@ public class CommissionRequirementDO implements Serializable {
 
     private String commissionCurrency;
 
+    public CommissionRequirementDO(){
+
+    }
+
     public CommissionRequirementDO(CommissionRequirement commissionRequirement){
         commReqId=commissionRequirement.getCommReqId();
         commissionLob=commissionRequirement.getCommissionLob();

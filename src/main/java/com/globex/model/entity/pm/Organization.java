@@ -14,6 +14,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -74,6 +75,10 @@ public class Organization implements Serializable{
     @Column(name="LICENSED_STATE")
     private String licenceState;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="created_by")
+    private User createdBy;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     private Set<User> users;
@@ -106,36 +111,36 @@ public class Organization implements Serializable{
 
     /******************************** LM **************************************************/
 
-    @OneToOne(mappedBy = "organization",fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "organization",fetch = FetchType.EAGER,cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     private OrganizationDetail organizationDetails;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<MiscRating> miscRatings;
+    private List<MiscRating> miscRatings;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<LOB> lobs;
+    private List<LOB> lobs;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<OrgRateRequirement> rateRequirements;
+    private List<OrgRateRequirement> rateRequirements;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<CommissionRequirement> commissionRequirements;
+    private List<CommissionRequirement> commissionRequirements;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<OrganizationHistory> organizationHistories;
+    private List<OrganizationHistory> organizationHistories;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<UWDepDetails> uwDepDetails;
+    private List<UWDepDetails> uwDepDetails;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<BankingDetails> bankingDetails;
+    private List<BankingDetails> bankingDetails;
 
 }

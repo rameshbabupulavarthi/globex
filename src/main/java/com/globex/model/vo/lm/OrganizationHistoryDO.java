@@ -33,11 +33,16 @@ public class OrganizationHistoryDO implements Serializable{
 
     private Integer type;
 
+    public OrganizationHistoryDO(){
+
+    }
+
     public OrganizationHistoryDO(OrganizationHistory organizationHistory){
         historyId=organizationHistory.getHistoryId();
         year=organizationHistory.getYear();
         premium=organizationHistory.getPremium();
         premiumCurrency=organizationHistory.getPremiumCurrency();
+        combinedRatio=organizationHistory.getCombinedRatio();
         totalAssets=organizationHistory.getTotalAssets();
         totalAssetsCurrency=organizationHistory.getTotalAssetsCurrency();
         finAttachment=organizationHistory.getFinAttachment();
@@ -52,6 +57,7 @@ public class OrganizationHistoryDO implements Serializable{
         organizationHistory.setYear(year);
         organizationHistory.setPremium(premium);
         organizationHistory.setPremiumCurrency(premiumCurrency);
+        organizationHistory.setCombinedRatio(combinedRatio);
         organizationHistory.setTotalAssets(totalAssets);
         organizationHistory.setTotalAssetsCurrency(totalAssetsCurrency);
         organizationHistory.setFinAttachment(finAttachment);

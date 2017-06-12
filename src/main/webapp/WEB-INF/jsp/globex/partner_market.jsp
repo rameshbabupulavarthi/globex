@@ -97,7 +97,7 @@
         <div id="lm-register-form">
 
             <div id="lmUserRegistrationJSONData" style="display: none;">
-                <script type="application/json">${model.partnerMarket}</script>
+                <script type="application/json">${model.organization}</script>
             </div>
         </div>
 
