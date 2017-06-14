@@ -8,6 +8,7 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,15 +34,15 @@ public class Country {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "country",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<Tax> taxes;
+    private List<Tax> taxes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "country",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<RateRequirement> rateRequirements;
+    private List<RateRequirement> rateRequirements;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "country",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<Clause> clauses;
+    private List<Clause> clauses;
 
     @Column(name="LOC_CUR_ON_LOC_POL")
     private Short locCurOnLocPol;

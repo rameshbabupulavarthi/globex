@@ -2,6 +2,7 @@ package com.globex.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.globex.model.entity.common.Country;
 import com.globex.model.vo.CountryDO;
 import com.globex.model.vo.PageModel;
 import com.globex.model.vo.common.ClauseDO;
@@ -82,24 +83,40 @@ public class CountryController {
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            Set<TaxDO> taxDOs=mapper.readValue(countryDO.getTaxTypesJsonStr(), new TypeReference<Set<TaxDO>>() {});
-            Set<RateRequirementDO> rateRequirementDOs=mapper.readValue(countryDO.getTaxRequirementsJsonStr(), new TypeReference<Set<RateRequirementDO>>() {});
-            Set<ClauseDO> clauseDOs=mapper.readValue(countryDO.getClausesJsonStr(), new TypeReference<Set<ClauseDO>>() {});
+            List<TaxDO> taxDOs=mapper.readValue(countryDO.getTaxTypesJsonStr(), new TypeReference<List<TaxDO>>() {});
+            List<RateRequirementDO> rateRequirementDOs=mapper.readValue(countryDO.getTaxRequirementsJsonStr(), new TypeReference<List<RateRequirementDO>>() {});
+            List<ClauseDO> clauseDOs=mapper.readValue(countryDO.getClausesJsonStr(), new TypeReference<List<ClauseDO>>() {});
             countryDO.setTaxes(taxDOs);
             countryDO.setRateRequirements(rateRequirementDOs);
             countryDO.setClauses(clauseDOs);
+
+            String insuRequiredDocOld=null;
+            String generalAttachmentOld=null;
+            String clauseAttach=null;
+            if(countryDO.getCountryId()!=null) {
+                Country countryOld = countryRepository.findOne(countryDO.getCountryId());
+                clauseAttach=countryOld.getInsuRequiredDoc();
+                generalAttachmentOld=countryOld.getGeneralAttachment();
+                if(countryOld.getClauses() !=null && !countryOld.getClauses().isEmpty()){
+                    clauseAttach=countryOld.getClauses().get(0).getAttachment();
+                }
+            }
 
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
             CommonsMultipartFile fileToUpload=countryDO.getInsuRequiredDocFile();
             if (fileToUpload != null && fileToUpload.getBytes().length > 0) {
                 String relativePath = FileUtils.uploadFile(fileToUpload, rootPath);
                 countryDO.setInsuRequiredDoc(relativePath);
+            }else{
+                countryDO.setInsuRequiredDoc(insuRequiredDocOld);
             }
 
             CommonsMultipartFile generalAttachmentFile=countryDO.getGeneralAttachmentFile();
             if (generalAttachmentFile != null && generalAttachmentFile.getBytes().length > 0) {
                 String relativePath = FileUtils.uploadFile(generalAttachmentFile, rootPath);
                 countryDO.setGeneralAttachment(relativePath);
+            }else{
+                countryDO.setGeneralAttachment(generalAttachmentOld);
             }
 
             CommonsMultipartFile clauseAttachment=countryDO.getClauseAttachment();
@@ -108,7 +125,14 @@ public class CountryController {
                 for(ClauseDO clauseDO:clauseDOs){//TODO:
                     clauseDO.setClauseAttach(relativePath);
                 }
+            }else{
+                for(ClauseDO clauseDO:clauseDOs){//TODO:
+                    clauseDO.setClauseAttach(clauseAttach);
+                }
             }
+
+
+            //countryDO.setClauseAttach(countryOld.getcla);
 
             Long countryId= countryService.saveCountry(countryDO);
         }catch (JsonMappingException e) {

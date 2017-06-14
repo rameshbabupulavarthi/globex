@@ -82,7 +82,7 @@
 
     <div class="lm-layout-body">
         <div class="layout-body-menu lm-background-shadow">
-            <ul class="menu-ul">
+            <ul class="menu-ul menu-layout">
                 <li><span class="faicon home-icon lm-menu-item" group="lm-org-details" target="lm-registration-step1" aria-hidden="true"></span></li>
                 <li><span class="faicon company-icon lm-menu-item " group="lm-network-details" target="lm-registration-step2" aria-hidden="true"></span></li>
                 <li><span class="faicon user-icon lm-menu-item " group="lm-finance-details" target="lm-registration-step3" aria-hidden="true"></span></li>

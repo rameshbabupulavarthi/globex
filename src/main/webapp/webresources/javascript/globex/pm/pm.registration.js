@@ -222,8 +222,13 @@ var PMRegistrationView=Backbone.View.extend({
                 $(".date-picker").datepicker({ dateFormat: 'dd-mm-yy'});
 
                 var $el=_self.$el.find('.country-dropdown');
-                countrySelect($el);
                 setValues();
+                countrySelect($el);
+
+                /*var selectVal=$el.val();
+                var data=[];
+                data.push({id:selectVal ,text:selectVal});
+                $el.select2({data:data});*/
             });
 
         },

@@ -12,7 +12,9 @@ import lombok.ToString;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -98,11 +100,11 @@ public class CountryDO implements Serializable{
 
     private String generalAttachment;
 
-    private Set<TaxDO> taxes;
+    private List<TaxDO> taxes;
 
-    private Set<RateRequirementDO> rateRequirements;
+    private List<RateRequirementDO> rateRequirements;
 
-    private Set<ClauseDO> clauses;
+    private List<ClauseDO> clauses;
 
 
     private String taxTypesJsonStr;
@@ -165,13 +167,13 @@ public class CountryDO implements Serializable{
     }
 
     public void loadFullDetails(Country country){
-        Set<Tax> taxes=country.getTaxes();
-        Set<RateRequirement> rateRequirements= country.getRateRequirements();
-        Set<Clause> clauses=country.getClauses();
+        List<Tax> taxes=country.getTaxes();
+        List<RateRequirement> rateRequirements= country.getRateRequirements();
+        List<Clause> clauses=country.getClauses();
 
-        Set<TaxDO> taxDOs=new HashSet<TaxDO>();
-        Set<RateRequirementDO> rateRequirementDOs=new HashSet<RateRequirementDO>();
-        Set<ClauseDO> clauseDOs=new HashSet<ClauseDO>();
+        List<TaxDO> taxDOs=new ArrayList<TaxDO>();
+        List<RateRequirementDO> rateRequirementDOs=new ArrayList<RateRequirementDO>();
+        List<ClauseDO> clauseDOs=new ArrayList<ClauseDO>();
         for(Tax tax:taxes){
             TaxDO taxDO=new TaxDO(tax);
             taxDOs.add(taxDO);
@@ -231,9 +233,9 @@ public class CountryDO implements Serializable{
         country.setInsuRequiredDoc(this.getInsuRequiredDoc());
         country.setGeneralAttachment(this.getGeneralAttachment());
 
-        Set<Tax> taxes=getTaxes(this.getTaxes(),country);
-        Set<RateRequirement> rateRequirements=getRateRequirements(this.getRateRequirements(),country);
-        Set<Clause> clauses=getClauses(this.getClauses(),country);
+        List<Tax> taxes=getTaxes(this.getTaxes(),country);
+        List<RateRequirement> rateRequirements=getRateRequirements(this.getRateRequirements(),country);
+        List<Clause> clauses=getClauses(this.getClauses(),country);
 
         country.setTaxes(taxes);
         country.setRateRequirements(rateRequirements);
@@ -241,9 +243,9 @@ public class CountryDO implements Serializable{
         return country;
     }
 
-    private Set<Tax> getTaxes(Set<TaxDO> taxDOs,Country country){
+    private List<Tax> getTaxes(List<TaxDO> taxDOs,Country country){
         if(taxDOs!=null && !taxDOs.isEmpty()){
-            Set<Tax> taxes=new HashSet<Tax>();
+            List<Tax> taxes=new ArrayList<Tax>();
             for(TaxDO taxDO:taxDOs){
                 Tax tax=taxDO.value();
                 tax.setCountry(country);
@@ -254,9 +256,9 @@ public class CountryDO implements Serializable{
         return null;
     }
 
-    private Set<RateRequirement> getRateRequirements(Set<RateRequirementDO> rateRequirementDOs,Country country){
+    private List<RateRequirement> getRateRequirements(List<RateRequirementDO> rateRequirementDOs,Country country){
         if(rateRequirementDOs!=null && !rateRequirementDOs.isEmpty()){
-            Set<RateRequirement> rateRequirements=new HashSet<RateRequirement>();
+            List<RateRequirement> rateRequirements=new ArrayList<RateRequirement>();
             for(RateRequirementDO rateRequirementDO:rateRequirementDOs){
                 RateRequirement rateRequirement=rateRequirementDO.value();
                 rateRequirement.setCountry(country);
@@ -267,9 +269,9 @@ public class CountryDO implements Serializable{
         return null;
     }
 
-    private Set<Clause> getClauses(Set<ClauseDO> clauseDOs,Country country){
+    private List<Clause> getClauses(List<ClauseDO> clauseDOs,Country country){
         if(clauseDOs!=null && !clauseDOs.isEmpty()){
-            Set<Clause> clauses=new HashSet<Clause>();
+            List<Clause> clauses=new ArrayList<Clause>();
             for(ClauseDO clauseDO:clauseDOs){
                 Clause clause=clauseDO.value();
                 clause.setCountry(country);

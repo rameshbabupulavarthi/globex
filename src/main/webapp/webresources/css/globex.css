@@ -594,8 +594,17 @@ label.error {
     width: 70%;
 }
 
+.form-wrapper .field .selectoption {
+    width: 70%;
+}
 .form-wrapper .field .stylish {
     width: 70%;
+}
+.form-wrapper .field .fieldsize {
+    width: 25%;
+}
+.form-wrapper .field .fieldextent {
+    width: 45%;
 }
 
 .field input[type=text]:hover,.field textarea:hover, .field select:hover,.field input[type=password]:hover,.field input[type=file]:hover,
@@ -735,10 +744,18 @@ select.stylish{
     background: white;
     height: 40px;
     color: black;
-    padding: 11px 0px 8px 25px;
+    padding-left:22px;
+
 }
 
-
+select.selectoption{
+    width:450px;
+    background: white;
+    height: 40px;
+    color: black;
+    font-size:0.85em;
+    margin:0px 200px 0px 5px;
+}
 
 html {
 	font-family: 'Roboto', sans-serif;

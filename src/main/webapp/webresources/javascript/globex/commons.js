@@ -239,15 +239,16 @@ function countrySelect($el){
         function formatSelection(country){
            return country.country;
         }
+        var selectVal=$el.val();
+        var data=[];
+        data.push({id:selectVal ,text:selectVal});
 
-        $el.select2({
-           /* initSelection : function (element, callback) {
+        $el.select2({data:data,
+            /*initSelection : function (element, callback) {
                  var val=$el.val();
                  var data = {id: val, text: val};
                  callback(data);
-             },
-*/
-
+             },*/
              ajax: {
                url: "/secure/viewCountries",
                dataType: 'json',

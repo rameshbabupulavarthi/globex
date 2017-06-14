@@ -568,6 +568,10 @@ a{
   display:inline-block;
   padding:0 5px;
 }
+.form-tab-row-cell{
+  display:inline-block;
+  padding:0 5px;
+}
 .form-cell{
   display:inline-block;
   padding:0 10px;
@@ -647,6 +651,14 @@ a{
     width:18%;
 
 }
+.form-wrapper .form-tab-row-cell{
+    width:20%;
+
+}
+.form-wrapper .form-tab-row-cell-select{
+    width:18%;
+
+}
 #applicationForm .form-column{
     vertical-align: top;
 }
@@ -654,6 +666,9 @@ a{
     vertical-align: top;
 }
 #applicationForm .form-tab-row{
+    vertical-align: top;
+}
+#applicationForm .form-tab-row-cell{
     vertical-align: top;
 }
 .pm-file-form{

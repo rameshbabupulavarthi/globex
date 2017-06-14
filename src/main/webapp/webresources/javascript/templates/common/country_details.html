@@ -48,7 +48,7 @@
                                         <tr class="tax-row">
                                         <td><%=tax.taxType%></td>
                                         <td><div class="field align-justify">
-                                             <select class="stylish lob-dropdown" name="taxLob" value="<%=tax.taxLob%>">
+                                             <select class="stylish lob-dropdown selectoption" name="taxLob" value="<%=tax.taxLob%>">
                                                  <option value="-1">Select ...</option>
                                                  <option value="2">Marine</option>
                                                  <option value="3">Property</option>
@@ -62,11 +62,11 @@
                                         </td>
                                         <td>
                                             <div class="field pencil-icon">
-                                                <input class="stylish" type="text"  placeholder="enter % rate"  name="taxRate" value="<%=tax.taxRate%>">
+                                                <input class="stylish fieldsize" type="text"  placeholder="% rate"  name="taxRate" value="<%=tax.taxRate%>">
                                             </div>
                                         </td>
                                         <td><div class="field align-justify">
-                                              <select class="stylish" name="taxAppliedTo" value="<%=tax.taxAppliedTo%>">
+                                              <select class="stylish selectoption" name="taxAppliedTo" value="<%=tax.taxAppliedTo%>">
                                                 <option value="-1">Select</option>
                                                 <option value="Premium">Premium</option>
                                                 <option value="Premium + taxes">Premium + taxes</option>
@@ -77,15 +77,23 @@
                                         </td>
                                         <td>
                                             <div class="field pencil-icon">
-                                                <input class="stylish" type="text"  placeholder="Enter Amount" name="taxAmount" value="<%=tax.taxAmount%>">
+                                               <input class="stylish fieldextent" type="text"  placeholder="Amount" name="taxAmount" value="<%=tax.taxAmount%>">
+
                                             </div>
                                         </td>
                                         <td><div class="field pencil-icon">
-                                            <input class="stylish" type="text"  placeholder="Enter Currency" name="taxCurrency" value="<%=tax.taxCurrency%>">
+                                            <input class="stylish fieldextent" type="text"  placeholder="Enter Currency" name="taxCurrency" value="<%=tax.taxCurrency%>">
+                                           <!-- <select class="stylish selectoption" name="taxCurrency" value="<%=tax.taxCurrency%>">
+                                                <option value="-1">Select</option>
+                                                <option value="USD">USD</option>
+                                                <option value="Indian Rupee">Indian Rupee</option>
+                                                <option value="Euro">Euro</option>
+                                                <option value="Other">other</option>
+                                            </select> -->
                                             </div>
                                         </td>
                                         <td><div class="field align-justify">
-                                            <select class="stylish" name="taxResponsiblility" value="<%=tax.taxResponsiblility%>">
+                                            <select class="stylish selectoption" name="taxResponsiblility" value="<%=tax.taxResponsiblility%>">
                                                 <option value="-1">Select</option>
                                                 <option value="lob">Reinsurer payable</option>
                                                 <option value="lob">Insured payable</option>
@@ -201,16 +209,16 @@
                 </fieldset>
                 </div>  -->
                 <div class="fieldset-wrapper">
-                    <div class="form-row" id="taxRequirements">
+                    <div class="form-row">
                         <fieldset class="fieldset"  id="taxRequirements">
                             <legend class="legend"> Are there any Tariff, Minimum Premium or Rate requirements in your country? </legend>
                             <div class="field-row" id="taxRequirementBody">
                                 <% _.each(rateRequirements, function(rateRequirement){ %>
-                             <div class="field-row" id="taxRequirementBody">
-                                  <div class="form-tab-row">
+                             <div class="field-row taxRequirement">
+                                  <div class="form-tab-row-cell">
                                         <div class="field-label"> Which LOB</div>
                                         <div class="field align-justify">
-                                            <select class="stylish lob-dropdown" name="requirementLob" value="<%=rateRequirement.requirementLob%>">
+                                            <select class="stylish lob-dropdown selectoption" name="requirementLob" value="<%=rateRequirement.requirementLob%>">
                                                 <option value="-1">Select ...</option>
                                                 <option value="2">Marine</option>
                                                 <option value="3">Property</option>
@@ -222,39 +230,47 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-tab-row">
+                                    <div class="form-tab-row-cell">
                                         <div class="field-label"> % rate</div>
                                         <div class="field pencil-icon">
-                                            <input class="stylish" type="text"  placeholder="Enter % rate" name="requirementRate" size="50" value="<%=rateRequirement.requirementRate%>">
+                                            <input class="stylish fieldextent" type="text"  placeholder="Enter % rate" name="requirementRate" size="50" value="<%=rateRequirement.requirementRate%>">
                                         </div>
                                     </div>
 
-                                    <div class="form-tab-row">
+                                    <div class="form-tab-row-cell">
                                         <div class="field-label"> Applied To</div>
-                                        <div class="field pencil-icon">
-                                            <input class="stylish" type="text"  placeholder="Applied To" name="requirementAppliedTo" size="50" value="<%=rateRequirement.requirementAppliedTo%>">
+                                        <div class="field align-justify">
+                                           <!-- <input class="stylish fieldextent" type="text"  placeholder="Applied To"
+                                           name="requirementAppliedTo" size="50" value="<%=rateRequirement.requirementAppliedTo%>"> -->
+                                            <select name="requirementAppliedTo" class="stylish selectoption" value="<%=rateRequirement.requirementAppliedTo%>">
+                                                <option value="-1">Select</option>
+                                                <option value="sum">Country Requirement</option>
+                                                <option value="sum">Company Requirement</option>
+                                            </select>
                                         </div>
                                     </div>
 
-                                    <div class="form-tab-row">
+                                    <div class="form-tab-row-cell">
                                         <div class="field-label"> min. premium</div>
                                         <div class="field pencil-icon">
-                                            <input class="stylish" type="text"  placeholder="Enter min. premium" name="requirementMinPremium" size="50" value="<%=rateRequirement.requirementMinPremium%>">
+                                            <input class="stylish fieldextent" type="text"  placeholder="Enter min. premium" name="requirementMinPremium" size="50" value="<%=rateRequirement.requirementMinPremium%>">
                                         </div>	</div>
 
-                                 <div class="form-tab-row">
+                                 <div class="form-tab-row-cell">
                                      <div class="field-label">Currency</div>
-                                     <div class="field align-justify">
-                                         <select name="requirementCurrency" class="stylish" value="<%=rateRequirement.requirementCurrency%>">
+                                     <div class="field pencil-icon">
+                                         <input class="stylish fieldextent" type="text"  placeholder="Applied To"
+                                                name="requirementCurrency" size="50" value="<%=rateRequirement.requirementCurrency%>">
+                                       <!--  <select name="requirementCurrency" class="stylish selectoption" value="<%=rateRequirement.requirementCurrency%>">
                                              <option value="-1">Select</option>
                                              <option value="sum">Sum Insured</option>
                                              <option value="sum">Fixed Sum</option>
-                                         </select>
+                                         </select>  -->
                                      </div></div>
-                                    <div class="form-tab-row">
+                                    <div class="form-tab-row-cell">
                                         <div class="field-label"> Requirement Name</div>
                                         <div class="field align-justify">
-                                            <select name="requirementType" class="stylish" value="<%=rateRequirement.requirementType%>">
+                                            <select name="requirementType" class="stylish selectoption" value="<%=rateRequirement.requirementType%>">
                                                 <option value="-1">Select</option>
                                                 <option value="sum">Country Requirement</option>
                                                 <option value="sum">Company Requirement</option>
@@ -453,27 +469,56 @@
                         </fieldset>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-column">
-                        <div class="field-label">Does the foreign Reinsurer have to be registered with the Regulator in your country?</div>
-                        <div class="field">
-                            <input type="radio" name="foreignReinsurerRegistered" value="1" checked="">Yes
-                            <input type="radio" name="foreignReinsurerRegistered" value="0"> No
-                            or
+            <div class="fieldset-wrapper">
+                <fieldset class="fieldset">
+                    <legend class="legend">Does the foreign Reinsurer have to be registered with the Regulator in your country?</legend>
+                    <div class="field-row">
+                        <div class="form-column">
+                            <div class="field-label">Issue Policies</div>
+                            <div class="field align-justify">
+                                <select name="foreignReinsurerRegistered" class="stylish" value="<%=reInsuranceSupport%>">
+                                    <option value="-1">Issue Policies</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>  OR</div>
+
+                        <div class="form-column">
+                            <div class="field-label">Comments</div>
                             <div class="field pencil-icon">
                                 <textarea name="foreignReinsurerRegisteredComments" class="stylish"  placeholder="Enter your Comments"><%=foreignReinsurerRegisteredComments%></textarea>
                             </div>
                         </div>
+
                     </div>
-                    <div class="form-column">
+
+                    <!--  <div class="form-column">
+                                          <div class="field-label">Does the foreign Reinsurer have to be registered with the Regulator in your country?</div>
+                                          <div class="field align-justify">
+                                              <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="reInsuranceSupportLOB" value="<%=reInsuranceSupportLOB%>">
+                                                  <option value="-1">Select ...</option>
+                                                  <option value="yes">Yes</option>
+                                                  <option value="no">No</option>
+
+                                              </select>
+                                          </div>
+                                             <input type="radio" name="foreignReinsurerRegistered" value="1" checked="">Yes
+                                              <input type="radio" name="foreignReinsurerRegistered" value="0"> No
+                                              or
+                                              <div class="field pencil-icon">
+                                                  <textarea name="foreignReinsurerRegisteredComments" class="stylish"  placeholder="Enter your Comments"><%=foreignReinsurerRegisteredComments%></textarea>
+                                              </div>
+                                          </div>-->
+                </fieldset>
+            </div>
+                <div class="form-row">
+                   <div class="form-column">
                         <div class="field-label">If so, please advise what needs to be done to get registered</div>
                         <div class="field pencil-icon">
                             <textarea name="foreignReinsurerRegisteredAdvice" class="stylish"  placeholder="Enter your Advice"><%=foreignReinsurerRegisteredAdvice%></textarea>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">What specific information/documents do you require from the insured for
                             policy issuance? For example, local insured registration documents, Know Your Client forms, Proposal Forms, etc.</div>
@@ -484,6 +529,8 @@
                         </div>
 
                     </div>
+                    </div>
+            <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">
                             Can the premium be collected overseas and remitted to your company, or do you have to collect the premium in your country?
@@ -493,9 +540,7 @@
                             <input type="radio" name="premiumCollectionType" value="2"> Receiving Premium from Overseas is possible
                         </div>
                     </div>
-                </div>
 
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Attachments for question above :</div>
                         <div class="field pencil-icon">
@@ -505,34 +550,117 @@
                             <%}%>
                         </div>
                     </div>
-                    <div class="form-column">
-                        <div class="field-label">Mandatory Reinsurace Cession</div>
-                        <div class="field">
-                            <input type="radio" name="mandatoryReInsuranceCession" value="1">Yes
-                            <input type="radio" name="mandatoryReInsuranceCession" value="0">No
-                            or
+                </div>
+
+            <div class="fieldset-wrapper">
+                <fieldset class="fieldset">
+                    <legend class="legend">Mandatory Reinsurace Cession</legend>
+                    <div class="field-row">
+                       <div class="form-column">
+                            <div class="field-label">Acceptable</div>
+                            <div class="field align-justify">
+                                <select name="mandatoryReInsuranceCession" class="stylish" value="">
+                                    <option value="-1">Acceptable</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div></div>
+                        <div class="form-column">
+                            <div class="field-label">Comments</div>
                             <div class="field pencil-icon">
-                                <textarea name="mandatoryReInsuranceComments" class="stylish" placeholder="Enter your Comments">
-                                    <%=mandatoryReInsuranceComments%>
-                                </textarea>
+                                <textarea name="mandatoryReInsuranceComments" class="stylish"  placeholder="Enter your Comments"><%=manuScriptComments%></textarea>
                             </div>
                         </div>
                     </div>
 
-                </div>
+                    <div class="field-row">
+                        <div class="form-column">
+                            <div class="field-label">LOB</div>
+                            <div class="field align-justify">
+                                <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="manuScriptLOB" value="<%=manuScriptLOB%>">
+                                    <option value="-1">Select ...</option>
+                                    <option value="2">Marine</option>
+                                    <option value="3">Property</option>
+                                    <option value="4">General Liability</option>
+                                    <option value="5">Professional Liability</option>
+                                    <option value="6">Package Policy</option>
+                                    <option value="7">Accident and Health</option>
+                                    <option value="8">Other Coverage</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="fieldset-wrapper">
+                <fieldset class="fieldset">
+                    <legend class="legend">Non-Admitted Policy Allowed</legend>
+                    <div class="field-row">
+                        <div class="form-column">
+                            <div class="field-label">Acceptable</div>
+                            <div class="field align-justify">
+                                <select name="nonAdmittedAllowed" class="stylish" value="">
+                                    <option value="-1">Acceptable</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div></div>
+                        <div class="form-column">
+                            <div class="field-label">Comments</div>
+                            <div class="field pencil-icon">
+                                <textarea name="nonAdmittedComments" class="stylish"  placeholder="Enter your Comments"><%=nonAdmittedComments%></textarea>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="form-row">
-                  <div class="form-column">
-                        <div class="field-label">Non-Admitted Policy Allowed</div>
-                      <div class="field">
-                          <input type="radio" name="nonAdmittedAllowed" value="1">Yes
-                          <input type="radio" name="nonAdmittedAllowed" value="0">No
-                          <div class="field pencil-icon">
-                              <textarea name="nonAdmittedComments" class="stylish"  placeholder="Enter your Comments"><%=nonAdmittedComments%></textarea>
+                    <div class="field-row">
+                        <div class="form-column">
+                            <div class="field-label">LOB</div>
+                            <div class="field align-justify">
+                                <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="manuScriptLOB" value="<%=manuScriptLOB%>">
+                                    <option value="-1">Select ...</option>
+                                    <option value="2">Marine</option>
+                                    <option value="3">Property</option>
+                                    <option value="4">General Liability</option>
+                                    <option value="5">Professional Liability</option>
+                                    <option value="6">Package Policy</option>
+                                    <option value="7">Accident and Health</option>
+                                    <option value="8">Other Coverage</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <!--  <div class="form-row">
+                      <div class="form-column">
+                          <div class="field-label">Mandatory Reinsurace Cession</div>
+                          <div class="field">
+                              <input type="radio" name="mandatoryReInsuranceCession" value="1">Yes
+                              <input type="radio" name="mandatoryReInsuranceCession" value="0">No
+                              or
+                              <div class="field pencil-icon">
+                                  <textarea name="mandatoryReInsuranceComments" class="stylish" placeholder="Enter your Comments">
+                                      <%=mandatoryReInsuranceComments%>
+                                  </textarea>
+                              </div>
                           </div>
                       </div>
-                  </div>
+
+
                     <div class="form-column">
+                          <div class="field-label">Non-Admitted Policy Allowed</div>
+                        <div class="field">
+                            <input type="radio" name="nonAdmittedAllowed" value="1">Yes
+                            <input type="radio" name="nonAdmittedAllowed" value="0">No
+                            <div class="field pencil-icon">
+                                <textarea name="nonAdmittedComments" class="stylish"  placeholder="Enter your Comments"><%=nonAdmittedComments%></textarea>
+                            </div>
+                        </div>
+                    </div>  -->
+            <div class="form-row">
+                   <div class="form-column">
                         <div class="field-label">Tacit Renewal :</div>
                         <div class="field">
                             <input type="radio" name="tacitRenewal" value="1">Yes
@@ -543,15 +671,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Tacit Renewal Comments :</div>
                         <div class="field pencil-icon">
                             <textarea name="tacticalRenewalComments" class="stylish"  placeholder="Enter your Comments"><%=tacticalRenewalComments%></textarea>
                         </div>
                     </div>
+                </div>
+            <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Cash Before Cover requirement</div>
                         <div class="field">
@@ -563,9 +691,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Local currency requirement </div>
                         <div class="field">
@@ -577,6 +703,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+           <!-- <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">State reinsurer involvement in placements required? :</div>
                         <div class="field">
@@ -588,9 +716,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">LOB</div>
                         <div class="field align-justify">
@@ -606,23 +732,62 @@
                             </select>
                         </div>
                     </div>
+                </div> -->
+            <div class="fieldset-wrapper">
+                <fieldset class="fieldset">
+                    <legend class="legend">State reinsurer involvement in placements required?</legend>
+                    <div class="field-row">
+                        <div class="form-column">
+                            <div class="field-label">Acceptable</div>
+                            <div class="field align-justify">
+                                <select name="stateReinsurerReq" class="stylish" value="">
+                                    <option value="-1">Acceptable</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div></div>
+                        <div class="form-column">
+                            <div class="field-label">Comments</div>
+                            <div class="field pencil-icon">
+                                <textarea class="stylish" name="stateReinsurerReqComments"  placeholder="Enter your Comments"><%=stateReinsurerReqComments%></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="form-column">
+                            <div class="field-label">LOB</div>
+                            <div class="field align-justify">
+                                <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="manuScriptLOB" value="<%=manuScriptLOB%>">
+                                    <option value="-1">Select ...</option>
+                                    <option value="2">Marine</option>
+                                    <option value="3">Property</option>
+                                    <option value="4">General Liability</option>
+                                    <option value="5">Professional Liability</option>
+                                    <option value="6">Package Policy</option>
+                                    <option value="7">Accident and Health</option>
+                                    <option value="8">Other Coverage</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+                <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">Accounting or Other Requirements :</div>
                         <div class="field pencil-icon">
                             <textarea name="otherRequirements" class="stylish"  placeholder="Enter your Comments"><%=otherRequirements%></textarea>
                         </div>
                     </div>
-                </div>
-
-                <div class="form-row">
-
-
                     <div class="form-column">
                         <div class="field-label">General comments :</div>
                         <div class="field pencil-icon">
                             <textarea name="generalComments" class="stylish"  placeholder="Enter your Comments"><%=generalComments%></textarea>
                         </div>
                     </div>
+                    </div>
+                    <div class="form-row">
                     <div class="form-column">
                         <div class="field-label">General Attachments:</div>
                         <div class="field upload-icon">
