@@ -7,6 +7,7 @@ import com.globex.model.entity.common.Tax;
 import com.globex.model.vo.common.ClauseDO;
 import com.globex.model.vo.common.RateRequirementDO;
 import com.globex.model.vo.common.TaxDO;
+import com.utils.StringUtils;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -64,9 +65,13 @@ public class CountryDO implements Serializable{
 
     private String nonAdmittedComments;
 
+    private String nonAdmittedLob;
+
     private Short mandatoryReInsuranceCession;
 
     private String mandatoryReInsuranceComments;
+
+    private String mandatoryReInsuranceLob;
 
     private Short tacitRenewal;
 
@@ -145,8 +150,10 @@ public class CountryDO implements Serializable{
         this.premiumCollectionType=country.getPremiumCollectionType();
         this.nonAdmittedAllowed=country.getNonAdmittedAllowed();
         this.nonAdmittedComments=country.getNonAdmittedComments();
+        this.nonAdmittedLob=country.getNonAdmittedLob();
         this.mandatoryReInsuranceCession=country.getMandatoryReInsuranceCession();
         this.mandatoryReInsuranceComments=country.getMandatoryReInsuranceComments();
+        this.mandatoryReInsuranceLob=country.getMandatoryReInsuranceLob();
         this.tacitRenewal=country.getTacitRenewal();
         this.tacitRenewalReasons=country.getTacitRenewalReason();
         this.tacticalRenewalComments=country.getTacticalRenewalComments();
@@ -194,44 +201,46 @@ public class CountryDO implements Serializable{
     public Country value(){
         Country country=new Country();
         country.setId(this.getCountryId());
-        country.setCountry(this.getCountry());
-        country.setTerritoryComments(this.getTerritoryComments());
+        country.setCountry(StringUtils.getValue(this.getCountry()));
+        country.setTerritoryComments(StringUtils.getValue(this.getTerritoryComments()));
         country.setLocCurOnLocPol(this.getLocCurOnLocPol());
-        country.setLocCurOnLocPolComments(this.getLocCurOnLocPolComments());
+        country.setLocCurOnLocPolComments(StringUtils.getValue(this.getLocCurOnLocPolComments()));
         country.setForeignLawOnLocalPolicy(this.getForeignLawOnLocalPolicy());
-        country.setForeignLawOnLocalPolicyComments(this.getForeignLawOnLocalPolicyComments());
+        country.setForeignLawOnLocalPolicyComments(StringUtils.getValue(this.getForeignLawOnLocalPolicyComments()));
         country.setUseManuScript(this.getUseManuScript());
-        country.setManuScriptLOB(this.getManuScriptLOB());
-        country.setManuScriptComments(this.getManuScriptComments());
+        country.setManuScriptLOB(StringUtils.getValue(this.getManuScriptLOB()));
+        country.setManuScriptComments(StringUtils.getValue(this.getManuScriptComments()));
         country.setReInsuranceSupport(this.getReInsuranceSupport());
-        country.setReInsuranceSupportLOB(this.getReInsuranceSupportLOB());
-        country.setReInsuranceSupportComments(this.getReInsuranceSupportComments());
-        country.setForeignReinsurerRegistered(this.getForeignReinsurerRegistered());
-        country.setForeignReinsurerRegisteredComments(this.getForeignReinsurerRegisteredComments());
-        country.setForeignReinsurerRegisteredAdvice(this.getForeignReinsurerRegisteredAdvice());
-        country.setInfoReqdForPolicyInsurance(this.getInfoReqdForPolicyInsurance());
-        country.setPremiumCollectionType(this.getPremiumCollectionType());
-        country.setNonAdmittedAllowed(this.getNonAdmittedAllowed());
-        country.setNonAdmittedComments(this.getNonAdmittedComments());
-        country.setMandatoryReInsuranceCession(this.getMandatoryReInsuranceCession());
-        country.setMandatoryReInsuranceComments(this.getMandatoryReInsuranceComments());
-        country.setTacitRenewal(this.getTacitRenewal());
-        country.setTacitRenewalReason(this.getTacitRenewalReasons());
-        country.setTacticalRenewalComments(this.getTacticalRenewalComments());
-        country.setCashBeforeCoverReq(this.getCashBeforeCoverReq());
-        country.setCashBeforeCoverReqComments(this.getCashBeforeCoverReqComments());
-        country.setLocalCurrencyReq(this.getLocalCurrencyReq());
-        country.setLocalCurrencyReqComments(this.getLocalCurrencyReqComments());
-        country.setStateReinsurerReqLOB(this.getStateReinsurerReqLOB());
-        country.setStateReinsurerReq(this.getStateReinsurerReq());
-        country.setStateReinsurerReqComments(this.getStateReinsurerReqComments());
-        country.setOtherRequirements(this.getOtherRequirements());
-        country.setGeneralComments(this.getGeneralComments());
-        country.setCreatedBy(this.getCreatedBy());
-        country.setUpdatedBy(this.getUpdatedBy());
+        country.setReInsuranceSupportLOB(StringUtils.getValue(getReInsuranceSupportLOB()));
+        country.setReInsuranceSupportComments(StringUtils.getValue(getReInsuranceSupportComments()));
+        country.setForeignReinsurerRegistered(getForeignReinsurerRegistered());
+        country.setForeignReinsurerRegisteredComments(StringUtils.getValue(getForeignReinsurerRegisteredComments()));
+        country.setForeignReinsurerRegisteredAdvice(StringUtils.getValue(getForeignReinsurerRegisteredAdvice()));
+        country.setInfoReqdForPolicyInsurance(StringUtils.getValue(getInfoReqdForPolicyInsurance()));
+        country.setPremiumCollectionType(StringUtils.getValue(getPremiumCollectionType()));
+        country.setNonAdmittedAllowed(getNonAdmittedAllowed());
+        country.setNonAdmittedComments(StringUtils.getValue(getNonAdmittedComments()));
+        country.setNonAdmittedLob(getNonAdmittedLob());
+        country.setMandatoryReInsuranceCession(getMandatoryReInsuranceCession());
+        country.setMandatoryReInsuranceComments(StringUtils.getValue(getMandatoryReInsuranceComments()));
+        country.setMandatoryReInsuranceLob(StringUtils.getValue(getMandatoryReInsuranceLob()));
+        country.setTacitRenewal(getTacitRenewal());
+        country.setTacitRenewalReason(StringUtils.getValue(getTacitRenewalReasons()));
+        country.setTacticalRenewalComments(StringUtils.getValue(getTacticalRenewalComments()));
+        country.setCashBeforeCoverReq(getCashBeforeCoverReq());
+        country.setCashBeforeCoverReqComments(StringUtils.getValue(getCashBeforeCoverReqComments()));
+        country.setLocalCurrencyReq(getLocalCurrencyReq());
+        country.setLocalCurrencyReqComments(StringUtils.getValue(getLocalCurrencyReqComments()));
+        country.setStateReinsurerReqLOB(StringUtils.getValue(getStateReinsurerReqLOB()));
+        country.setStateReinsurerReq(StringUtils.getValue(getStateReinsurerReq()));
+        country.setStateReinsurerReqComments(StringUtils.getValue(getStateReinsurerReqComments()));
+        country.setOtherRequirements(StringUtils.getValue(getOtherRequirements()));
+        country.setGeneralComments(StringUtils.getValue(getGeneralComments()));
+        country.setCreatedBy(getCreatedBy());
+        country.setUpdatedBy(getUpdatedBy());
 
-        country.setInsuRequiredDoc(this.getInsuRequiredDoc());
-        country.setGeneralAttachment(this.getGeneralAttachment());
+        country.setInsuRequiredDoc(StringUtils.getValue(getInsuRequiredDoc()));
+        country.setGeneralAttachment(StringUtils.getValue(getGeneralAttachment()));
 
         List<Tax> taxes=getTaxes(this.getTaxes(),country);
         List<RateRequirement> rateRequirements=getRateRequirements(this.getRateRequirements(),country);

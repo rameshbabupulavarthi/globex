@@ -3,6 +3,7 @@ package com.globex.model.vo;
 import com.globex.model.entity.pm.CoverageContact;
 import com.globex.model.vo.pm.ContactInfoDO;
 import com.globex.model.vo.pm.CoverageAreaDO;
+import com.utils.StringUtils;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -36,11 +37,11 @@ public class CoverageContactDO implements Serializable {
     public CoverageContact value(){
         CoverageContact coverageContact=new CoverageContact();
         coverageContact.setCoverageContactId(coverageContactId);
-        coverageContact.setCoverageArea(coverageArea);
-        coverageContact.setContactName(contactName);
-        coverageContact.setContactPhone(contactPhone);
-        coverageContact.setContactEmail(contactEmail);
-        coverageContact.setContactPosition(contactPosition);
+        coverageContact.setCoverageArea(StringUtils.getValue(coverageArea));
+        coverageContact.setContactName(StringUtils.getValue(contactName));
+        coverageContact.setContactPhone(StringUtils.getValue(contactPhone));
+        coverageContact.setContactEmail(StringUtils.getValue(contactEmail));
+        coverageContact.setContactPosition(StringUtils.getValue(contactPosition));
         return coverageContact;
     }
 

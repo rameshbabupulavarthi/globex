@@ -276,7 +276,8 @@
                                                 <option value="sum">Company Requirement</option>
                                             </select>
                                         </div></div>
-
+                                 <input type="hidden" name="requirementName" value="<%=rateRequirement.requirementName%>">
+                                 <input type="hidden" name="requirementId" value="<%=rateRequirement.requirementId%>">
                                 </div>
                                 <% }) %>
                             </div>
@@ -357,7 +358,7 @@
                     <div class="form-column">
                         <div class="field-label">Comments</div>
                         <div class="field pencil-icon">
-                            <textarea name="locCurOnLocPolComments" class="stylish"  placeholder="Enter your Comments"> <%=locCurOnLocPolComments%></textarea>
+                            <textarea name="locCurOnLocPolComments" class="stylish"  placeholder="Enter your Comments"><%=locCurOnLocPolComments%></textarea>
                         </div>
                     </div>
                 </div>
@@ -376,7 +377,7 @@
                     <div class="form-column">
                         <div class="field-label">Comments</div>
                         <div class="field pencil-icon">
-                            <textarea name="foreignLawOnLocalPolicyComments" class="stylish"  placeholder="Enter your Comments"> <%=foreignLawOnLocalPolicyComments%></textarea>
+                            <textarea name="foreignLawOnLocalPolicyComments" class="stylish"  placeholder="Enter your Comments"><%=foreignLawOnLocalPolicyComments%></textarea>
                         </div>
                     </div>
                 </div>
@@ -440,9 +441,7 @@
                             <div class="form-column">
                                 <div class="field-label">Comments</div>
                                 <div class="field pencil-icon">
-                                    <textarea name="reInsuranceSupportComments" class="stylish"  placeholder="Enter your Comments">
-                                        <%=reInsuranceSupportComments%>
-                                    </textarea>
+                                    <textarea name="reInsuranceSupportComments" class="stylish"  placeholder="Enter your Comments"><%=reInsuranceSupportComments%></textarea>
                                 </div>
                             </div>
 
@@ -481,7 +480,8 @@
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
                                 </select>
-                            </div>  OR</div>
+                            </div>
+                        </div>
 
                         <div class="form-column">
                             <div class="field-label">Comments</div>
@@ -523,9 +523,7 @@
                         <div class="field-label">What specific information/documents do you require from the insured for
                             policy issuance? For example, local insured registration documents, Know Your Client forms, Proposal Forms, etc.</div>
                         <div class="field pencil-icon">
-                            <textarea name="infoReqdForPolicyInsurance" class="stylish"  placeholder="ex : local insured registration documents, Proposal Forms">
-                                <%=infoReqdForPolicyInsurance%>
-                            </textarea>
+                            <textarea name="infoReqdForPolicyInsurance" class="stylish"  placeholder="ex : local insured registration documents, Proposal Forms"><%=infoReqdForPolicyInsurance%></textarea>
                         </div>
 
                     </div>
@@ -536,8 +534,8 @@
                             Can the premium be collected overseas and remitted to your company, or do you have to collect the premium in your country?
                         </div>
                         <div class="field">
-                            <input type="radio" name="premiumCollectionType" value="1"> Only Local Collection Allowed
-                            <input type="radio" name="premiumCollectionType" value="2"> Receiving Premium from Overseas is possible
+                            <input type="radio" name="premiumCollectionType" value="1" <% if(premiumCollectionType==1) { %> checked='checked' <% } %> > Only Local Collection Allowed
+                            <input type="radio" name="premiumCollectionType" value="2" <% if(premiumCollectionType==2) { %> checked='checked' <% } %> > Receiving Premium from Overseas is possible
                         </div>
                     </div>
 
@@ -559,7 +557,7 @@
                        <div class="form-column">
                             <div class="field-label">Acceptable</div>
                             <div class="field align-justify">
-                                <select name="mandatoryReInsuranceCession" class="stylish" value="">
+                                <select name="mandatoryReInsuranceCession" class="stylish" value="<%=mandatoryReInsuranceCession%>">
                                     <option value="-1">Acceptable</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
@@ -577,7 +575,7 @@
                         <div class="form-column">
                             <div class="field-label">LOB</div>
                             <div class="field align-justify">
-                                <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="manuScriptLOB" value="<%=manuScriptLOB%>">
+                                <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="mandatoryReInsuranceLob" value="<%=mandatoryReInsuranceLob%>">
                                     <option value="-1">Select ...</option>
                                     <option value="2">Marine</option>
                                     <option value="3">Property</option>
@@ -599,7 +597,7 @@
                         <div class="form-column">
                             <div class="field-label">Acceptable</div>
                             <div class="field align-justify">
-                                <select name="nonAdmittedAllowed" class="stylish" value="">
+                                <select name="nonAdmittedAllowed" class="stylish" value="<%=nonAdmittedAllowed%>">
                                     <option value="-1">Acceptable</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
@@ -617,7 +615,7 @@
                         <div class="form-column">
                             <div class="field-label">LOB</div>
                             <div class="field align-justify">
-                                <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="manuScriptLOB" value="<%=manuScriptLOB%>">
+                                <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="nonAdmittedLob" value="<%=nonAdmittedLob%>">
                                     <option value="-1">Select ...</option>
                                     <option value="2">Marine</option>
                                     <option value="3">Property</option>
@@ -663,8 +661,8 @@
                    <div class="form-column">
                         <div class="field-label">Tacit Renewal :</div>
                         <div class="field">
-                            <input type="radio" name="tacitRenewal" value="1">Yes
-                            <input type="radio" name="tacitRenewal" value="0">No
+                            <input type="radio" name="tacitRenewal" value="1" <% if(tacitRenewal==1) { %> checked='checked' <% } %> >Yes
+                            <input type="radio" name="tacitRenewal" value="0" <% if(tacitRenewal==0) { %> checked='checked' <% } %> >No
                             or
                             <div class="field pencil-icon">
                                 <textarea name="tacitRenewalReasons" class="stylish"  placeholder="Enter your Comments"><%=tacitRenewalReasons%></textarea>
@@ -683,8 +681,8 @@
                     <div class="form-column">
                         <div class="field-label">Cash Before Cover requirement</div>
                         <div class="field">
-                            <input type="radio" name="cashBeforeCoverReq" value="1">Yes
-                            <input type="radio" name="cashBeforeCoverReq" value="0">No
+                            <input type="radio" name="cashBeforeCoverReq" value="1" <% if(cashBeforeCoverReq==1) { %> checked='checked' <% } %> >Yes
+                            <input type="radio" name="cashBeforeCoverReq" value="0" <% if(cashBeforeCoverReq==0) { %> checked='checked' <% } %> >No
                             or
                             <div class="field pencil-icon">
                                 <textarea name="cashBeforeCoverReqComments" class="stylish"  placeholder="Enter your Comments"><%=cashBeforeCoverReqComments%></textarea>
@@ -695,8 +693,8 @@
                     <div class="form-column">
                         <div class="field-label">Local currency requirement </div>
                         <div class="field">
-                            <input type="radio" name="localCurrencyReq" value="1">Yes
-                            <input type="radio" name="localCurrencyReq" value="0">No
+                            <input type="radio" name="localCurrencyReq" value="1" <% if(localCurrencyReq==1) { %> checked='checked' <% } %>  >Yes
+                            <input type="radio" name="localCurrencyReq" value="0" <% if(localCurrencyReq==0) { %> checked='checked' <% } %> >No
                             or
                             <div class="field pencil-icon">
                                 <textarea name="localCurrencyReqComments" class="stylish"  placeholder="Enter your Comments"><%=localCurrencyReqComments%></textarea>
@@ -740,7 +738,7 @@
                         <div class="form-column">
                             <div class="field-label">Acceptable</div>
                             <div class="field align-justify">
-                                <select name="stateReinsurerReq" class="stylish" value="">
+                                <select name="stateReinsurerReq" class="stylish" value="<%=stateReinsurerReq%>">
                                     <option value="-1">Acceptable</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
@@ -758,7 +756,7 @@
                         <div class="form-column">
                             <div class="field-label">LOB</div>
                             <div class="field align-justify">
-                                <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="manuScriptLOB" value="<%=manuScriptLOB%>">
+                                <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="stateReinsurerReqLOB" value="<%=stateReinsurerReqLOB%>">
                                     <option value="-1">Select ...</option>
                                     <option value="2">Marine</option>
                                     <option value="3">Property</option>
@@ -791,7 +789,7 @@
                     <div class="form-column">
                         <div class="field-label">General Attachments:</div>
                         <div class="field upload-icon">
-                            <input class="stylish" type="file" name="generalAttachmentFile">
+                            <input class="stylish attach" type="file" name="generalAttachmentFile">
                             <% if( generalAttachment ){%>
                                 <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=generalAttachment%>" title="Attachment"></a>
                             <%}%>

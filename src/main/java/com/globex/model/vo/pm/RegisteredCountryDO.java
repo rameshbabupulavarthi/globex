@@ -5,6 +5,7 @@ import com.globex.model.entity.pm.RegisteredCountry;
 import com.globex.model.vo.AttachmentDO;
 import com.globex.model.vo.OrganizationDO;
 import com.utils.DateUtil;
+import com.utils.StringUtils;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -46,8 +47,8 @@ public class RegisteredCountryDO implements Serializable {
     public RegisteredCountry value(){
         RegisteredCountry registeredCountry=new RegisteredCountry();
         registeredCountry.setRegisteredCountryId(this.getRegisteredCountryId());
-        registeredCountry.setCountryName(this.getCountryName());
-        registeredCountry.setRegistrationNumber(this.getRegistrationNumber());
+        registeredCountry.setCountryName(StringUtils.getValue(this.getCountryName()));
+        registeredCountry.setRegistrationNumber(StringUtils.getValue(this.getRegistrationNumber()));
         registeredCountry.setRegistrationDate(DateUtil.getTimestamp(this.getRegistrationDate()));
         registeredCountry.setRegAttachments(getAttachments(regAttachments));
         registeredCountry.setOrganization(organization!=null?organization.value():null);

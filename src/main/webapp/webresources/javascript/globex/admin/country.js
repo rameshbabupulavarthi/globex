@@ -36,7 +36,8 @@ var CountryDetailView =Backbone.View.extend({
                     tacticalRenewalComments:"",cashBeforeCoverReq:"",cashBeforeCoverReqComments:"",localCurrencyReq:"",
                     localCurrencyReqComments:"",stateReinsurerReqLOB:"",stateReinsurerReq:"",stateReinsurerReqComments:"",
                     otherRequirements:"",generalComments:"",generalAttachment:"",insuRequiredDoc:"",
-                    taxes:taxes,rateRequirements:rateRequirements,clauses:clauses
+                    taxes:taxes,rateRequirements:rateRequirements,clauses:clauses,
+                    stateReinsurerReqLOB:"",nonAdmittedLob:"",mandatoryReInsuranceLob:"",
             };
             if(_self.model){
                variables = {
@@ -59,6 +60,8 @@ var CountryDetailView =Backbone.View.extend({
                 generalComments:_self.model.get("generalComments"),
                 generalAttachment:_self.model.get("generalAttachment"),insuRequiredDoc:_self.model.get("insuRequiredDoc"),
                 taxes:_self.model.get("taxes"),rateRequirements:_self.model.get("rateRequirements"),clauses:_self.model.get("clauses"),
+                stateReinsurerReqLOB:_self.model.get("stateReinsurerReqLOB"),nonAdmittedLob:_self.model.get("nonAdmittedLob"),
+                mandatoryReInsuranceLob:_self.model.get("mandatoryReInsuranceLob"),
               };
             }
              country_details = _.template( country_details, variables );
@@ -374,6 +377,7 @@ var CountryView =Backbone.View.extend({
                    generalComments:country.generalComments,
                    generalAttachment:country.generalAttachment,insuRequiredDoc:country.insuRequiredDoc,
                    taxes:country.taxes,rateRequirements:country.rateRequirements,clauses:country.clauses,
+                   stateReinsurerReqLOB:country.stateReinsurerReqLOB,nonAdmittedLob:country.nonAdmittedLob,mandatoryReInsuranceLob:country.mandatoryReInsuranceLob,
                });
 
                 /*var popupView=new PopupView({el:"#popupWrapper"});

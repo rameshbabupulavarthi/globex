@@ -3,6 +3,7 @@ package com.globex.model.vo;
 import com.globex.model.entity.pm.Organization;
 import com.globex.model.entity.user.User;
 import com.globex.model.entity.user.UserRole;
+import com.utils.StringUtils;
 import lombok.Data;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -85,10 +86,10 @@ public class UserDO implements Serializable {
 
         User user=new User();
         user.setId(this.getId());
-        user.setFirstName(this.getFirstName());
-        user.setLastName(this.getLastName());
-        user.setUserName(this.getUserName());
-        user.setEmail(this.getEmail());
+        user.setFirstName(StringUtils.getValue(this.getFirstName()));
+        user.setLastName(StringUtils.getValue(this.getLastName()));
+        user.setUserName(StringUtils.getValue(this.getUserName()));
+        user.setEmail(StringUtils.getValue(this.getEmail()));
         user.setPhoneCountryCode(this.getPhoneCountryCode());
         user.setPhoneAreaCode(this.getPhoneAreaCode());
         user.setPhone(this.getPhone());
@@ -99,14 +100,14 @@ public class UserDO implements Serializable {
         user.setMobileCountryCode(this.getMobileCountryCode());
         user.setMobile(this.getMobile());
         user.setUserType(this.getUserType());
-        user.setComments(this.getComments());
+        user.setComments(StringUtils.getValue(this.getComments()));
         user.setStatus(this.getStatus());
-        user.setAddress(this.getAddress());
-        user.setCity(this.getCity());
-        user.setState(this.getState());
-        user.setCountry(this.getCountry());
-        user.setZip(this.getZip());
-        user.setBranchOffice(this.getBranchOffice());
+        user.setAddress(StringUtils.getValue(this.getAddress()));
+        user.setCity(StringUtils.getValue(this.getCity()));
+        user.setState(StringUtils.getValue(this.getState()));
+        user.setCountry(StringUtils.getValue(this.getCountry()));
+        user.setZip(StringUtils.getValue(this.getZip()));
+        user.setBranchOffice(StringUtils.getValue(this.getBranchOffice()));
         user.setStatus(UserDO.Status.ACTIVE.getValue());
 
         user.setThumbnail(this.getThumbnail());

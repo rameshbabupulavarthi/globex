@@ -1,6 +1,7 @@
 package com.globex.model.vo.common;
 
 import com.globex.model.entity.common.Tax;
+import com.utils.StringUtils;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -44,13 +45,13 @@ public class TaxDO implements Serializable {
     public Tax value(){
         Tax tax=new Tax();
         tax.setTaxId(taxId);
-        tax.setTaxType(taxType);
-        tax.setLob(taxLob);
-        tax.setPercent(taxRate);
-        tax.setAppliedTo(taxAppliedTo);
-        tax.setAmount(taxAmount);
-        tax.setCurrency(taxCurrency);
-        tax.setResponsiblility(taxResponsiblility);
+        tax.setTaxType(StringUtils.getValue(taxType));
+        tax.setLob(StringUtils.getValue(taxLob));
+        tax.setPercent(StringUtils.getValue(taxRate));
+        tax.setAppliedTo(StringUtils.getValue(taxAppliedTo));
+        tax.setAmount(StringUtils.getValue(taxAmount));
+        tax.setCurrency(StringUtils.getValue(taxCurrency));
+        tax.setResponsiblility(StringUtils.getValue(taxResponsiblility));
         return tax;
     }
 

@@ -1,6 +1,7 @@
 package com.globex.model.vo.common;
 
 import com.globex.model.entity.common.RateRequirement;
+import com.utils.StringUtils;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -46,13 +47,13 @@ public class RateRequirementDO implements Serializable{
     public RateRequirement value(){
         RateRequirement rateRequirement=new RateRequirement();
         rateRequirement.setRequirementId(this.getRequirementId());
-        rateRequirement.setRequirementName(requirementName);
-        rateRequirement.setLob(requirementLob);
-        rateRequirement.setRate(requirementRate);
-        rateRequirement.setAppliedTo(requirementAppliedTo);
-        rateRequirement.setMinPremium(requirementMinPremium);
-        rateRequirement.setCurrency(requirementCurrency);
-        rateRequirement.setReqType(requirementType);
+        rateRequirement.setRequirementName(StringUtils.getValue(requirementName));
+        rateRequirement.setLob(StringUtils.getValue(requirementLob));
+        rateRequirement.setRate(StringUtils.getValue(requirementRate));
+        rateRequirement.setAppliedTo(StringUtils.getValue(requirementAppliedTo));
+        rateRequirement.setMinPremium(StringUtils.getValue(requirementMinPremium));
+        rateRequirement.setCurrency(StringUtils.getValue(requirementCurrency));
+        rateRequirement.setReqType(StringUtils.getValue(requirementType));
         return rateRequirement;
     }
 }

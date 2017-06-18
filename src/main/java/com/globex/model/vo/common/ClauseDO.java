@@ -1,6 +1,7 @@
 package com.globex.model.vo.common;
 
 import com.globex.model.entity.common.Clause;
+import com.utils.StringUtils;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -36,9 +37,9 @@ public class ClauseDO implements Serializable{
     public Clause value(){
         Clause clause=new Clause();
         clause.setClauseId(clauseId);
-        clause.setName(clauseName);
-        clause.setLob(clauseLob);
-        clause.setComments(clauseComments);
+        clause.setName(StringUtils.getValue(clauseName));
+        clause.setLob(StringUtils.getValue(clauseLob));
+        clause.setComments(StringUtils.getValue(clauseComments));
         clause.setAttachment(clauseAttach);
         return clause;
     }

@@ -12,6 +12,7 @@ import com.globex.model.vo.pm.BranchOfficeDO;
 import com.globex.model.vo.pm.CoverageAreaDO;
 import com.globex.model.vo.pm.RegisteredCountryDO;
 import com.utils.DateUtil;
+import com.utils.StringUtils;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -142,18 +143,18 @@ public class OrganizationDO implements Serializable {
     public Organization value(){
         Organization organization=new Organization();
         organization.setId(this.getOrgId());
-        organization.setOrgName(this.getOrgName());
+        organization.setOrgName(StringUtils.getValue(this.getOrgName()));
         organization.setRegDate(DateUtil.getTimestamp(this.getRegDate()));
-        organization.setAddress1(this.getAddress1());
-        organization.setAddress2(this.getAddress2());
-        organization.setCity(this.getCity());
-        organization.setState(this.getState());
-        organization.setCountry(this.getCountry());
-        organization.setZip(this.getZip());
-        organization.setWebsite(this.getWebsite());
-        organization.setTelePhone(telePhone);
+        organization.setAddress1(StringUtils.getValue(this.getAddress1()));
+        organization.setAddress2(StringUtils.getValue(this.getAddress2()));
+        organization.setCity(StringUtils.getValue(this.getCity()));
+        organization.setState(StringUtils.getValue(this.getState()));
+        organization.setCountry(StringUtils.getValue(this.getCountry()));
+        organization.setZip(StringUtils.getValue(this.getZip()));
+        organization.setWebsite(StringUtils.getValue(this.getWebsite()));
+        organization.setTelePhone(StringUtils.getValue(telePhone));
         organization.setApproved(this.getApproved());
-        organization.setComment(this.getComment());
+        organization.setComment(StringUtils.getValue(this.getComment()));
         organization.setOrgUserType(this.getOrgUserType());
 
         organization.setUsers(getUsers(this.getUsers(),organization));

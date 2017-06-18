@@ -98,11 +98,17 @@ public class Country {
     @Column(name="NON_ADMITTED_COMMENTS")
     private String nonAdmittedComments;
 
+    @Column(name="NON_ADMITTED_LOB")
+    private String nonAdmittedLob;
+
     @Column(name="MANDATORY_REINSURANCE_CESSION")
     private Short mandatoryReInsuranceCession;
 
     @Column(name="MANDATORY_REINSURANCE_COMMENTS")
     private String mandatoryReInsuranceComments;
+
+    @Column(name="MANDATORY_REINSURANCE_LOB")
+    private String mandatoryReInsuranceLob;
 
     @Column(name="TACIT_RENEWAL")
     private Short tacitRenewal;

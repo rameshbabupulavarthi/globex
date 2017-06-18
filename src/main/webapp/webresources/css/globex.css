@@ -482,6 +482,21 @@ li{
     width: 137px;
     margin:0 10px 0 0;
 }
+.form-wrapper .field .stylish.split-box-big-large{
+    display:inline-block;
+    width: 197px;
+    margin:0 10px 0 0;
+}
+.form-wrapper .field .stylish.split-box-big-large-x{
+    display:inline-block;
+    width: 290px;
+    margin:0 10px 0 0;
+}
+.form-wrapper .field .stylish.split-box-big-large-xx{
+    display:inline-block;
+    width: 220px;
+    margin:0 10px 0 0;
+}
 
 .search-user-card{
     display: inline-block;
@@ -537,7 +552,7 @@ label.error {
 }
 
 #saveCountryDetails textarea{
-    width: 435px;
+    width: 63%;
     height: 29px;
 }
 
@@ -592,6 +607,10 @@ label.error {
 
 .form-wrapper .field .stylish {
     width: 70%;
+}
+
+.form-wrapper .field .stylish .attach {
+    width: 63%;
 }
 
 .form-wrapper .field .selectoption {
@@ -741,6 +760,15 @@ label.error {
 
 select.stylish{
     width: 220px;
+    background: white;
+    height: 40px;
+    color: black;
+    padding-left:22px;
+
+}
+
+select.stylish.selectwidth{
+    width:500px;
     background: white;
     height: 40px;
     color: black;
@@ -933,6 +961,13 @@ input[type=date].stylish/*, select.stylish, textarea.stylish*/ {
     padding-left: 5px;
     margin-left: 40px;
 }
+
+.selectbox {
+ 	color: black;
+ 	background: white;
+ 	width: 410px !important;
+ 	padding: 11px 0px 8px 25px;
+ }
 
 
 /******************************************************* LM ************************************************************************/

@@ -2,6 +2,7 @@ package com.globex.model.vo.pm;
 
 import com.globex.model.entity.pm.AccountInfo;
 import com.globex.model.vo.OrganizationDO;
+import com.utils.StringUtils;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -72,8 +73,8 @@ public class AccountInfoDO implements Serializable {
         AccountInfo accountInfo=new AccountInfo();
         accountInfo.setAccountInfoId(this.getAccountInfoId());
         accountInfo.setOrganization(this.getOrganization()!=null ?this.getOrganization().value():null);
-        accountInfo.setFirstName(this.getContactFirstName());
-        accountInfo.setLastName(this.getContactLastName());
+        accountInfo.setFirstName(StringUtils.getValue(this.getContactFirstName()));
+        accountInfo.setLastName(StringUtils.getValue(this.getContactLastName()));
         accountInfo.setPhoneCountryCode(this.getContactPhoneCountryCode());
         accountInfo.setPhoneAreaCode(this.getContactPhoneAreaCode());
         accountInfo.setPhone(this.getContactPhone());
@@ -83,7 +84,7 @@ public class AccountInfoDO implements Serializable {
         accountInfo.setFax(this.getContactFax());
         accountInfo.setMobileCountryCode(this.getContactMobileCountryCode());
         accountInfo.setMobile(this.getContactMobile());
-        accountInfo.setEmail(this.getContactEmail());
+        accountInfo.setEmail(StringUtils.getValue(this.getContactEmail()));
         accountInfo.setBankInfo(this.getBankInfo());
         accountInfo.setOtherInfo(this.getOtherInfo());
         return accountInfo;
