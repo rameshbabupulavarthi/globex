@@ -90,6 +90,13 @@ public class LMUserRegistrationController {
         ObjectMapper mapper = new ObjectMapper();
         OrganizationDO organizationJsonDO=null;
         OrganizationDetailsDO organizationDetailsDO=null;
+
+        OrganizationDetail organizationDetail=null;
+        if(organizationDO.getOrgId()!=null){
+            Organization organizationOld=organizationService.getOrganization(organizationDO.getOrgId());
+            organizationDetail= organizationOld.getOrganizationDetails();
+        }
+
         if(orgParametersJson!=null && !orgParametersJson.isEmpty()){
             organizationJsonDO=mapper.readValue(orgParametersJson, new TypeReference<OrganizationDO>() {});
         }
@@ -102,12 +109,16 @@ public class LMUserRegistrationController {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
             String relativePath = FileUtils.uploadFile(attachment, rootPath);
             organizationDetailsDO.setAttachment(relativePath);
+        }else if(organizationDetail!=null){
+            organizationDetailsDO.setAttachment(organizationDetail.getAttachment());
         }
         CommonsMultipartFile snpFileAttachment=organizationDO.getSnpFileAttachment();
         if (snpFileAttachment != null && snpFileAttachment.getBytes().length > 0) {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
             String relativePath = FileUtils.uploadFile(snpFileAttachment, rootPath);
             organizationDetailsDO.setSnpAttachment(relativePath);
+        }else if(organizationDetail!=null){
+            organizationDetailsDO.setSnpAttachment(organizationDetail.getSAndPAttachment());
         }
 
         CommonsMultipartFile amRatingFileAttachment=organizationDO.getAmRatingFileAttachment();
@@ -115,6 +126,8 @@ public class LMUserRegistrationController {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
             String relativePath = FileUtils.uploadFile(amRatingFileAttachment, rootPath);
             organizationDetailsDO.setAmRatingAttachment(relativePath);
+        }else if(organizationDetail!=null){
+            organizationDetailsDO.setAmRatingAttachment(organizationDetail.getAmRatingAttachment());
         }
 
         organizationDO.setMiscRatings(organizationJsonDO.getMiscRatings());
@@ -149,6 +162,10 @@ public class LMUserRegistrationController {
         ObjectMapper mapper = new ObjectMapper();
         OrganizationDO organizationJsonDO=null;
         OrganizationDetailsDO organizationDetailsDO=null;
+
+        Organization org=organizationService.getOrganization(organizationDO.getOrgId());
+        OrganizationDetail organizationDetailOld= org.getOrganizationDetails();
+
         if(orgParametersJson!=null && !orgParametersJson.isEmpty()){
             organizationJsonDO=mapper.readValue(orgParametersJson, new TypeReference<OrganizationDO>() {});
         }
@@ -167,33 +184,43 @@ public class LMUserRegistrationController {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
             String relativePath = FileUtils.uploadFile(insuRequiredDocAttach, rootPath);
             organizationDetailsDO.setInsuRequiredDocAttach(relativePath);
+        }else if(organizationDetailOld!=null){
+            organizationDetailsDO.setInsuRequiredDocAttach(organizationDetailOld.getInsuRequiredDocAttach());
         }
         CommonsMultipartFile adviceRegistrationAttach=organizationDO.getAdviceRegistrationAttach();
         if (adviceRegistrationAttach != null && adviceRegistrationAttach.getBytes().length > 0) {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
             String relativePath = FileUtils.uploadFile(adviceRegistrationAttach, rootPath);
             organizationDetailsDO.setAdviceRegistrationAttach(relativePath);
+        }else if(organizationDetailOld!=null){
+            organizationDetailsDO.setAdviceRegistrationAttach(organizationDetailOld.getAdviceRegistrationAttach());
         }
         CommonsMultipartFile registrationProcedureAttach=organizationDO.getRegistrationProcedureAttach();
         if (registrationProcedureAttach != null && registrationProcedureAttach.getBytes().length > 0) {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
             String relativePath = FileUtils.uploadFile(registrationProcedureAttach, rootPath);
             organizationDetailsDO.setRegistrationProcedureAttach(relativePath);
+        }else if(organizationDetailOld!=null){
+            organizationDetailsDO.setRegistrationProcedureAttach(organizationDetailOld.getRegistrationProcedureAttach());
         }
         CommonsMultipartFile requiredDocReinsurPlaceAttach=organizationDO.getRequiredDocReinsurPlaceAttach();
         if (requiredDocReinsurPlaceAttach != null && requiredDocReinsurPlaceAttach.getBytes().length > 0) {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
             String relativePath = FileUtils.uploadFile(requiredDocReinsurPlaceAttach, rootPath);
             organizationDetailsDO.setRequiredDocReinsurPlaceAttach(relativePath);
+        }else if(organizationDetailOld!=null){
+            organizationDetailsDO.setRequiredDocReinsurPlaceAttach(organizationDetailOld.getRequiredDocReinsurPlaceAttach());
         }
         CommonsMultipartFile claimHandlingWordingAttach=organizationDO.getClaimHandlingWordingAttach();
         if (claimHandlingWordingAttach != null && claimHandlingWordingAttach.getBytes().length > 0) {
             String rootPath = request.getServletContext().getRealPath("/");//System.getProperty("catalina.home");
             String relativePath = FileUtils.uploadFile(claimHandlingWordingAttach, rootPath);
             organizationDetailsDO.setClaimHandlingWordingAttach(relativePath);
+        }else if(organizationDetailOld!=null){
+            organizationDetailsDO.setClaimHandlingWordingAttach(organizationDetailOld.getClaimHandlingWordingAttach());
         }
 
-        Organization org=organizationService.getOrganization(organizationDO.getOrgId());
+
         Organization organization= organizationDO.value();
         organization.setOrgName(org.getOrgName());
         organization.setCity(org.getCity());
@@ -210,7 +237,6 @@ public class LMUserRegistrationController {
         organization.setAddress2(org.getAddress2());
 
         OrganizationDetail organizationDetail=organization.getOrganizationDetails();
-        OrganizationDetail organizationDetailOld=org.getOrganizationDetails();
 
         organizationDetail.setParentCompany(organizationDetailOld.getParentCompany());
         organizationDetail.setOrgType(organizationDetailOld.getOrgType());

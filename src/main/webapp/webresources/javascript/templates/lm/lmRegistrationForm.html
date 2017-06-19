@@ -101,8 +101,11 @@
                                                     Is Your Company Public or Private :
                                                 </div>
                                                 <div class="field">
-                                                    <input type="radio" name="orgDetails.orgType" value="1">Yes
-                                                    <input type="radio" name="orgDetails.orgType" value="0">No
+                                                    <select name="orgDetails.orgType" value="<%=organizationDetails.orgType%>">
+                                                        <option value="-1">Select</option>
+                                                        <option value="1">Yes</option>
+                                                        <option value="0">No</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,9 +198,11 @@
                                             <div class="form-column">
                                                 <div class="field-label">AM Best Outlook :</div>
                                                 <div class="field">
-                                                    <input type="radio" name="orgDetails.amBestLook" value="1" checked="">Positive &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <input type="radio" name="orgDetails.amBestLook" value="2">Stable&nbsp;&nbsp; &nbsp;&nbsp;
-                                                    <input type="radio" name="orgDetails.amBestLook" value="3"> Negative
+                                                    <select name="orgDetails.amBestLook"  value="<%=organizationDetails.amBestLook%>" >
+                                                        <option value="1">Positive</option>
+                                                        <option value="2">Stable</option>
+                                                        <option value="3">Negative</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -248,11 +253,13 @@
                                             <div class="form-column">
                                                 <div class="field-label">S&amp;P Outlook :</div>
                                                 <div class="field">
-                                                    <input type="radio" name="orgDetails.snpOutlook" value="1">&nbsp;Positive &nbsp;
-                                                    <input type="radio" name="orgDetails.snpOutlook" value="2">&nbsp;Stable&nbsp;
-                                                    <input type="radio" name="orgDetails.snpOutlook" value="3">&nbsp;Negative&nbsp;
-                                                    <input type="radio" name="orgDetails.snpOutlook" value="4">&nbsp;Developing&nbsp;
-                                                    <input type="radio" name="orgDetails.snpOutlook" value="5">&nbsp;Not Meaningful
+                                                    <select name="orgDetails.snpOutlook" value="<%=organizationDetails.snpOutlook%>" class="stylish selectbox">
+                                                        <option value="1">Positive</option>
+                                                        <option value="2">Stable</option>
+                                                        <option value="3">Negative</option>
+                                                        <option value="4">Developing</option>
+                                                        <option value="5">Not Meaningful</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -536,7 +543,8 @@
                                                         <% _.each(lobs, function(lob){ %>
                                                             <div class="field-row lob">
                                                                 <div class="form-tab">
-                                                                    <input type="checkbox" name="lob" value="<%=lob.lob%>"><%=lob.lob%>
+                                                                    <!--<input type="checkbox" name="lob" value="<%=lob.lob%>">--><%=lob.lob%>
+                                                                    <input type="hidden" name="lob" value="<%=lob.lob%>">
                                                                 </div>
                                                                 <div class="form-tab">
                                                                     <select name="authorizedToWrite" value="<%=lob.authorizedToWrite%>">
@@ -597,10 +605,14 @@
                                                             <div class="field-label">Which LOB</div>
                                                             <div class="field align-justify">
                                                                 <select class="stylish" name="requirementLob" value="<%=rateRequirement.requirementLob%>" width="100%">
-                                                                    <option>Select</option>
-                                                                    <option value="lob">lob</option>
-                                                                    <option value="lob">lob</option>
-                                                                    <option value="lob">lob</option>
+                                                                    <option value="-1">Select ...</option>
+                                                                    <option value="2">Marine</option>
+                                                                    <option value="3">Property</option>
+                                                                    <option value="4">General Liability</option>
+                                                                    <option value="5">Professional Liability</option>
+                                                                    <option value="6">Package Policy</option>
+                                                                    <option value="7">Accident and Health</option>
+                                                                    <option value="8">Other Coverage</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -678,11 +690,15 @@
                                                     <div class="form-tab-row">
                                                         <div class="field-label">Which LOB</div>
                                                         <div class="field align-justify">
-                                                            <select class="stylish" name="commissionLob" value="<%=commissionRequirement.commissionLob%>" width="100%">
-                                                                <option>Select</option>
-                                                                <option value="lob">lob</option>
-                                                                <option value="lob">lob</option>
-                                                                <option value="lob">lob</option>
+                                                            <select class="stylish valid" name="commissionLob" value="<%=commissionRequirement.commissionLob%>" width="100%">
+                                                                <option value="-1">Select ...</option>
+                                                                <option value="2">Marine</option>
+                                                                <option value="3">Property</option>
+                                                                <option value="4">General Liability</option>
+                                                                <option value="5">Professional Liability</option>
+                                                                <option value="6">Package Policy</option>
+                                                                <option value="7">Accident and Health</option>
+                                                                <option value="8">Other Coverage</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -727,16 +743,30 @@
                                                     <legend class="legend">Do you require a reinsurance broker for any reinsurance placement?</legend>
                                                     <div class="form-column">
                                                         <div class="field-label">LOB</div>
-                                                        <div class="field bookmark-icon">
-                                                        <input class="stylish" placeholder="Enter LOB" type="text" name="orgDetails.reInsurancePlacementLob" value="<%=organizationDetails.reInsurancePlacementLob%>">
+                                                        <div class="field align-justify">
+                                                            <select class="stylish" name="orgDetails.reInsurancePlacementLob" value="<%=organizationDetails.reInsurancePlacementLob%>" width="100%">
+                                                                <option value="-1">Select ...</option>
+                                                                <option value="2">Marine</option>
+                                                                <option value="3">Property</option>
+                                                                <option value="4">General Liability</option>
+                                                                <option value="5">Professional Liability</option>
+                                                                <option value="6">Package Policy</option>
+                                                                <option value="7">Accident and Health</option>
+                                                                <option value="8">Other Coverage</option>
+                                                            </select>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-column">
                                                         <div class="field-label">Do you require a reinsurance
                                                             broker for any reinsurance placement?</div>
-                                                        <input type="radio" name="reInsurancePlacement" value="1"> Yes
-                                                        <input type="radio" name="reInsurancePlacement" value="0"> No<br>
+                                                        <div class="field align-justify">
+                                                            <select class="stylish valid" name="orgDetails.reInsurancePlacement" value="<%=organizationDetails.reInsurancePlacement%>">
+                                                                <option value="1">Yes</option>
+                                                                <option value="0">No</option>
+                                                            </select>
+                                                        </div>
+                                                        <br>
                                                         or
                                                         <div class="field bookmark-icon">
                                                             <input class="stylish" placeholder="Enter your Comments" type="text"
@@ -773,9 +803,12 @@
                                             <div class="form-column">
                                                 <div class="field-label">Can you service the local
                                                     insured directly, or do you require a retail broker?</div>
-                                                <div class="field" id="serviceoptiondiv">
-                                                    <input type="radio" name="serviceOption" value="1"> Yes
-                                                    <input type="radio" name="serviceOption" value="0"> No
+                                                <div class="field align-justify" id="serviceoptiondiv">
+                                                    <select class="stylish" name="orgDetails.serviceOption" value="<%=organizationDetails.serviceOption%>">
+                                                        <option value="1">Yes</option>
+                                                        <option value="0">No</option>
+                                                    </select>
+                                                    <br/>
                                                     or
                                                     <div class="field bookmark-icon">
                                                         <input class="stylish" placeholder="Enter your Comments" type="text"
@@ -785,9 +818,12 @@
                                             </div>
                                             <div class="form-column">
                                                 <div class="field-label">Does the foreign Reinsurer have to be registered with the Regulator in your country?</div>
-                                                <div class="field" id="reg_regulatordiv">
-                                                    <input type="radio" name="orgDetails.regRegulator" value="1"> Yes
-                                                    <input type="radio" name="orgDetails.regRegulator" value="0"> No
+                                                <div class="field align-justify" id="reg_regulatordiv">
+                                                    <select class="stylish" name="orgDetails.regRegulator" value="<%=organizationDetails.regRegulator%>">
+                                                        <option value="1">Yes</option>
+                                                        <option value="0">No</option>
+                                                    </select>
+                                                    <br/>
                                                     or
                                                     <div class="field bookmark-icon">
                                                         <input class="stylish" placeholder="Enter your Comments" type="text"
@@ -863,9 +899,12 @@
                                                     reinsurance placement, does your company have to be
                                                     involved in the Claims Handling? If so, please specify
                                                     the involvement.</div>
-                                                <div class="field" >
-                                                    <input type="radio"  name="orgDetails.compInvolClaims" value="1"> Yes
-                                                    <input type="radio"  name="orgDetails.compInvolClaims" value="0"> No<br>
+                                                <div class="field align-justify" >
+                                                    <select class="stylish" name="orgDetails.compInvolClaims" value="<%=organizationDetails.compInvolClaims%>">
+                                                        <option value="1">Yes</option>
+                                                        <option value="0">No</option>
+                                                    </select>
+                                                    <br/>
                                                     or
                                                     <div class="field bookmark-icon">
                                                         <input class="stylish" placeholder="Enter your Comments" type="text"
@@ -880,9 +919,11 @@
                                                     <div class="field-label">Can the premium be collected
                                                         overseas and remitted to your company, or do you have to
                                                         collect the premium in your country?</div>
-                                                    <div class="field" id="premium_pay_optiondiv">
-                                                        <input type="radio"  name="orgDetails.premiumPayOption" value="1"> Only Local Collection Allowed
-                                                        <input type="radio"  name="orgDetails.premiumPayOption" value="2">  Receiving Premium from Overseas is possible
+                                                    <div class="field align-justify" id="premium_pay_optiondiv">
+                                                        <select class="stylish" name="orgDetails.premiumPayOption" value="<%=organizationDetails.premiumPayOption%>">
+                                                            <option value="1">Only Local Collection Allowed</option>
+                                                            <option value="2">Receiving Premium from Overseas is possible</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                   <div class="form-column">
@@ -891,9 +932,11 @@
                                                         all taxes and fees to hit your books, or can you accept
                                                         only taxes and fees? IF second option is chosen on the
                                                         question above</div>
-                                                    <div class="field" >
-                                                        <input type="radio"  name="orgDetails.premiumWithTax" value="1"> All premium has to be received
-                                                        <input type="radio"  name="orgDetails.premiumWithTax" value="0"> Only taxes and fees have to be received
+                                                    <div class="field align-justify" >
+                                                        <select class="stylish" name="orgDetails.premiumWithTax" value="<%=organizationDetails.premiumWithTax%>">
+                                                            <option value="1">All premium has to be received</option>
+                                                            <option value="0">Only taxes and fees have to be received</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>

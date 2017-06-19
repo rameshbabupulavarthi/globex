@@ -177,8 +177,10 @@ LMUserRegistrationView = Backbone.View.extend({
                approved:_self.model.get("approved"),comment:_self.model.get("comment"),
                organizationDetails:_self.model.get("organizationDetails"),miscRatings:_self.model.get("miscRatings"),
                lobs:_self.model.get("lobs"),rateRequirements:_self.model.get("rateRequirements"),
-               commissionRequirements:_self.model.get("commissionRequirements"),organizationHistories:_self.model.get("organizationHistories"),
-               uwDepDetails:_self.model.get("uwDepDetails"),bankingDetails:_self.model.get("bankingDetails")
+               commissionRequirements:_self.model.get("commissionRequirements").length>0?_self.model.get("commissionRequirements"):commissionRequirements,
+               organizationHistories:_self.model.get("organizationHistories"),
+               uwDepDetails:_self.model.get("uwDepDetails").length>0?_self.model.get("uwDepDetails"):uwDepDetails,
+               bankingDetails:_self.model.get("bankingDetails").length>0?_self.model.get("bankingDetails"):bankingDetails
            };
        }
 
