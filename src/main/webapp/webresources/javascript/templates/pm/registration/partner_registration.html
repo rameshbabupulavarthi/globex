@@ -46,7 +46,8 @@
                             <div class="form-column">
                                 <div class="field-label">Country</div>
                                 <div class="field pencil-icon">
-                                    <select name="country" class="stylish country-dropdown selectbox" placeholder="Enter Country Name" ></select>
+                                    <!--<select name="country" class="stylish country-dropdown selectbox" placeholder="Enter Country Name" ></select>-->
+                                    <input class="stylish" type="text" name="country" placeholder="Enter Country Name"  >
                                 </div>
                             </div>
                             <div class="form-column">
@@ -184,16 +185,10 @@
 
                 <!-- Banking Details-->
                 <div id="bankSection">
-                    <div class="btn-layout addOptions">
-                        <div class="btn-wrapper">
-                            <div id="addBankDetails" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Bank Details </span></div>
-                        </div>
-                    </div>
-                    <div id="bankDetails">
-                        <div class="fieldset-wrapper pm-bank">
+                    <div >
+                        <div class="fieldset-wrapper">
                         <fieldset class="fieldset">
                             <legend class="legend">Banking Information</legend>
-
                             <div class="form-row">
                                 <div class="form-column">
                                     <div class="field-label">Accounting Contact</div>
@@ -257,21 +252,63 @@
                                 </div>
                             </div>
 
-                            <div class="form-row">
-                                <div class="form-column">
-                                    <div class="field-label">Bank Details</div>
-                                    <div class="field pencil-icon">
-                                        <textarea class="stylish" placeholder=" Enter Bank Details" name="bankInfo"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-column">
-                                    <div class="field-label">Other Details</div>
-                                    <div class="field pencil-icon">
-                                        <textarea class="stylish" name="otherInfo"></textarea>
-                                    </div>
+                            <div class="btn-layout addOptions">
+                                <div class="btn-wrapper">
+                                    <div id="addBankDetails" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Bank Details </span></div>
                                 </div>
                             </div>
 
+                            <div id="bankDetails">
+                                <div class="form-row pm-bank">
+                                  <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Bank Name</div>
+                                        <div class="field pencil-icon">
+                                            <textarea class="stylish" placeholder=" Enter Bank Name" name="bankName"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-column">
+                                        <div class="field-label">Bank Address</div>
+                                        <div class="field pencil-icon">
+                                            <textarea class="stylish" placeholder=" Enter Bank Address" name="bankAddress"></textarea>
+                                        </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">Account Name</div>
+                                        <div class="field pencil-icon">
+                                            <textarea class="stylish" placeholder=" Enter Account Name" name="accountName"></textarea>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-column">
+                                        <div class="field-label">Account Number</div>
+                                        <div class="field pencil-icon">
+                                            <textarea class="stylish" name="accountNo"></textarea>
+                                        </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-row">
+                                    <div class="form-column">
+                                        <div class="field-label">IBAN Number</div>
+                                        <div class="field pencil-icon">
+                                            <textarea class="stylish" name="iban"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-column">
+                                        <div class="field-label">Swift Code</div>
+                                        <div class="field pencil-icon">
+                                            <textarea class="stylish" placeholder="Swift Code" name="swiftCode"></textarea>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
                         </fieldset>
                     </div>
                     </div>

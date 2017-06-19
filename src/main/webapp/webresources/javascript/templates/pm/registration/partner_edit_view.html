@@ -46,9 +46,8 @@
                             <div class="form-column">
                                 <div class="field-label">Country</div>
                                 <div class="field field-select2">
-                                    <select name="country" class="stylish country-dropdown" >
-                                        <!--<option value="<%= country %>" selected="selected"><%= country %></option>-->
-                                    </select>
+                                    <!--<select name="country" class="stylish country-dropdown" ></select>-->
+                                    <input class="stylish" type="text" name="country" value="<%=country%>" placeholder="Enter Country Name"  >
                                 </div>
                             </div>
                             <div class="form-column">
@@ -194,15 +193,9 @@
                 <!-- Banking Details-->
                 <% if(accountInfos) {%>
                  <div id="bankSection">
-                    <div class="btn-layout">
-                        <div class="btn-wrapper">
-                            <div id="addBankDetails" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Bank Details </span></div>
-                        </div>
-                    </div>
-                    <div id="bankDetails">
-
+                    <div >
                         <% _.each(accountInfos, function(accountInfo){ %>
-                          <div class="fieldset-wrapper pm-bank">
+                          <div class="fieldset-wrapper">
                             <fieldset class="fieldset">
                                 <legend class="legend">Banking Information</legend>
 
@@ -270,20 +263,67 @@
                                     </div>
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="form-column">
-                                        <div class="field-label">Bank Details</div>
-                                        <div class="field pencil-icon">
-                                            <textarea class="stylish" name="bankInfo"><%=accountInfo.bankInfo%></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-column">
-                                        <div class="field-label">Other Details</div>
-                                        <div class="field pencil-icon">
-                                            <textarea class="stylish" name="otherInfo"><%=accountInfo.otherInfo%></textarea>
-                                        </div>
+                                <div class="btn-layout addOptions">
+                                    <div class="btn-wrapper">
+                                        <div id="addBankDetails" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Bank Details </span></div>
                                     </div>
                                 </div>
+
+                                <div id="bankDetails">
+                                    <% _.each(accountInfo.accountBankDetails, function(accountBankDetail){ %>
+                                        <div class="form-row pm-bank">
+                                        <div class="form-row">
+                                            <div class="form-column">
+                                                <div class="field-label">Bank Name</div>
+                                                <div class="field pencil-icon">
+                                                    <textarea class="stylish" placeholder=" Enter Bank Name" name="bankName" value="<%=accountBankDetail.bankName%>"><%=accountBankDetail.bankName%></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-column">
+                                                <div class="field-label">Bank Address</div>
+                                                <div class="field pencil-icon">
+                                                    <textarea class="stylish" placeholder=" Enter Bank Address" name="bankAddress"><%=accountBankDetail.bankAddress%></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-column">
+                                                <div class="field-label">Account Name</div>
+                                                <div class="field pencil-icon">
+                                                    <textarea class="stylish" placeholder=" Enter Account Name" name="accountName"><%=accountBankDetail.accountName%></textarea>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-column">
+                                                <div class="field-label">Account Number</div>
+                                                <div class="field pencil-icon">
+                                                    <textarea class="stylish" name="accountNo"><%=accountBankDetail.accountNo%></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-column">
+                                                <div class="field-label">IBAN Number</div>
+                                                <div class="field pencil-icon">
+                                                    <textarea class="stylish" name="iban"><%=accountBankDetail.iban%></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-column">
+                                                <div class="field-label">Swift Code</div>
+                                                <div class="field pencil-icon">
+                                                    <textarea class="stylish" placeholder="Swift Code" name="swiftCode"><%=accountBankDetail.swiftCode%></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="accountInfoId" value="<%=accountBankDetail.accountBankId%>">
+                                    </div>
+                                    <% }); %>
+                                </div>
+
                                 <input type="hidden" name="accountInfoId" value="<%=accountInfo.accountInfoId%>">
                             </fieldset>
                         </div>

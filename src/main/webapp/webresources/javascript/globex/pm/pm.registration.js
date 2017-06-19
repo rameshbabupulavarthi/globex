@@ -188,6 +188,7 @@ var PMRegistrationView=Backbone.View.extend({
             "click #addCoverageContacts":"addCoverageContacts",
             "click #addBranchOffices":"addBranchOffices",
             "click .cancel-button":"cancel",
+            "click .delete-section":"delete"
         },
         render: function(){
             var _self=this;
@@ -321,29 +322,40 @@ var PMRegistrationView=Backbone.View.extend({
                         organizationJson.userJsonStr=JSON.stringify(contactsJsonArr);
                         //bank details
                         var $bankSection=_self.$el.find("#bankSection");
+                        var accountJson={
+                            accountInfoId:$bankSection.find("[name='accountInfoId']").val(),
+                            contactFirstName:$bankSection.find("[name='contactFirstName']").val(),
+                            contactLastName:$bankSection.find("[name='contactLastName']").val(),
+                            contactEmail:$bankSection.find("[name='contactEmail']").val(),
+                            contactPhoneCountryCode:$bankSection.find("[name='contactPhoneCountryCode']").val(),
+                            contactPhoneAreaCode:$bankSection.find("[name='contactPhoneAreaCode']").val(),
+                            contactPhone:$bankSection.find("[name='contactPhone']").val(),
+                            contactFaxCountryCode:$bankSection.find("[name='contactFaxCountryCode']").val(),
+                            contactFaxAreaCode:$bankSection.find("[name='contactFaxAreaCode']").val(),
+                            contactFax:$bankSection.find("[name='contactFax']").val(),
+                            contactMobileCountryCode:$bankSection.find("[name='contactMobileCountryCode']").val(),
+                            contactMobile:$bankSection.find("[name='contactMobile']").val(),
+                        };
+
                         var bankAccounts=$bankSection.find(".pm-bank");
                         var bankAccountJsonArr=[];
                         for(var i=0;i<bankAccounts.length;i++){
                             var $bankAccount=$(bankAccounts[i]);
                             var bankAccountJson={
-                                accountInfoId:$bankAccount.find("[name='accountInfoId']").val(),
-                                contactFirstName:$bankAccount.find("[name='contactFirstName']").val(),
-                                contactLastName:$bankAccount.find("[name='contactLastName']").val(),
-                                contactEmail:$bankAccount.find("[name='contactEmail']").val(),
-                                contactPhoneCountryCode:$bankAccount.find("[name='contactPhoneCountryCode']").val(),
-                                contactPhoneAreaCode:$bankAccount.find("[name='contactPhoneAreaCode']").val(),
-                                contactPhone:$bankAccount.find("[name='contactPhone']").val(),
-                                contactFaxCountryCode:$bankAccount.find("[name='contactFaxCountryCode']").val(),
-                                contactFaxAreaCode:$bankAccount.find("[name='contactFaxAreaCode']").val(),
-                                contactFax:$bankAccount.find("[name='contactFax']").val(),
-                                contactMobileCountryCode:$bankAccount.find("[name='contactMobileCountryCode']").val(),
-                                contactMobile:$bankAccount.find("[name='contactMobile']").val(),
-                                bankInfo:$bankAccount.find("[name='bankInfo']").val(),
-                                otherInfo:$bankAccount.find("[name='otherInfo']").val()
+                                accountBankId:$bankAccount.find("[name='accountBankId']").val(),
+                                bankName:$bankAccount.find("[name='bankName']").val(),
+                                bankAddress:$bankAccount.find("[name='bankAddress']").val(),
+                                accountName:$bankAccount.find("[name='accountName']").val(),
+                                accountNo:$bankAccount.find("[name='accountNo']").val(),
+                                iban:$bankAccount.find("[name='iban']").val(),
+                                swiftCode:$bankAccount.find("[name='swiftCode']").val(),
                             }
                             bankAccountJsonArr.push(bankAccountJson);
                         }
-                        organizationJson.accountInfoJsonStr=JSON.stringify(bankAccountJsonArr);
+                        accountJson.accountBankDetails=bankAccountJsonArr;
+                        var accountJsonArr=[];
+                        accountJsonArr.push(accountJson);
+                        organizationJson.accountInfoJsonStr=JSON.stringify(accountJsonArr);
 
                         var serviceSection=_self.$el.find("#serviceSection");
                         var $serviceSection=$(serviceSection);
@@ -464,6 +476,9 @@ var PMRegistrationView=Backbone.View.extend({
         cancel:function(e){
             e.preventDefault();
              $(".navigate-manage-pm").trigger("click");
+        },
+        delete:function(e){
+            $(e.currentTarget).closest(".repeatable-wrapper").remove();
         }
 });
 
@@ -519,7 +534,7 @@ var PartnerMarketView=Backbone.View.extend({
                    comment:organization.comment,
                    licenceState:organization.licenceState,
                    users:organization.users,
-                   accountInfos:organization.accountInfoDOs,
+                   accountInfo:organization.accountInfoDO,
                    coverageAreas:organization.coverageAreaDOs,
                    registeredCountries:organization.registeredCountryDOs,
                    coverageContacts:organization.coverageContactDOs,

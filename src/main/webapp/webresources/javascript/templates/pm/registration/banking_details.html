@@ -1,89 +1,57 @@
-<div class="fieldset-wrapper pm-bank">
-    <fieldset class="fieldset">
-        <legend class="legend">Banking Information</legend>
+<div class="repeatable-wrapper pm-bank">
+    <div class="">
+        <div class="repeatable-section-seperator">
+            <div class="section-seperator-icon">X</div>
+        </div>
+        <div class="minus-circle delete-section"></div>
+    </div>
 
-        <div class="form-row">
-            <div class="form-column">
-                <div class="field-label">Accounting Contact</div>
+    <div class="form-row">
+        <div class="form-column">
+            <div class="field-label">Bank Name</div>
+            <div class="field pencil-icon">
+                <textarea class="stylish" placeholder=" Enter Bank Name" name="bankName"></textarea>
+            </div>
+        </div>
+        <div class="form-column">
+            <div class="field-label">Bank Address</div>
+            <div class="field pencil-icon">
+                <textarea class="stylish" placeholder=" Enter Bank Address" name="bankAddress"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-column">
+            <div class="field-label">Account Name</div>
+            <div class="field pencil-icon">
+                <textarea class="stylish" placeholder=" Enter Account Name" name="accountName"></textarea>
             </div>
         </div>
 
-        <div class="form-row">
-            <div class="form-column">
-                <div class="field-label">First Name</div>
-                <div class="field user-icon">
-                    <input class="stylish" type="text" placeholder="Enter First Name" name="contactFirstName">
-                </div>
+
+        <div class="form-column">
+            <div class="field-label">Account Number</div>
+            <div class="field pencil-icon">
+                <textarea class="stylish" name="accountNo"></textarea>
             </div>
-            <div class="form-column">
-                <div class="field-label">Last Name</div>
-                <div class="field user-icon">
-                    <input class="stylish" type="text" placeholder="Enter Last Name" name="contactLastName">
-                </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-column">
+            <div class="field-label">IBAN Number</div>
+            <div class="field pencil-icon">
+                <textarea class="stylish" name="iban"></textarea>
             </div>
         </div>
 
-        <div class="form-row">
-            <div class="form-column">
-                <div class="field-label">Email</div>
-                <div class="field email-icon">
-                    <input class="stylish" type="text" name="contactEmail" placeholder="Enter Email ID">
-                </div>
+        <div class="form-column">
+            <div class="field-label">Swift Code</div>
+            <div class="field pencil-icon">
+                <textarea class="stylish" placeholder="Swift Code" name="swiftCode"></textarea>
             </div>
         </div>
+    </div>
 
-        <div class="form-row">
-            <div class="form-column">
-                <div class="field-label">Phone</div>
-                <div class="field phone-icon">
-                    <input class="stylish split-box-small" type="text" name="contactPhoneCountryCode">
-                    <input class="stylish split-box-medium" type="text" name="contactPhoneAreaCode">
-                    <input class="stylish split-box-big" type="text" name="contactPhone">
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-column">
-                <div class="field-label">Fax</div>
-                <div class="field fax-icon">
-                    <input class="stylish split-box-small" type="text" name="contactFaxCountryCode">
-                    <input class="stylish split-box-medium" type="text" name="contactFaxAreaCode">
-                    <input class="stylish split-box-big" type="text" name="contactFax">
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-column">
-                <div class="field-label">Mobile</div>
-                <div class="field mobile-icon">
-                    <input class="stylish split-box-small" type="text" name="contactMobileCountryCode" >
-                    <input name="contactMobile" class="stylish split-box-big" type="text">
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-column">
-                <div class="field-label">Banking Info</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-column">
-                <div class="field-label">Bank Details</div>
-                <div class="field pencil-icon">
-                    <textarea class="stylish" name="bankInfo"></textarea>
-                </div>
-            </div>
-            <div class="form-column">
-                <div class="field-label">Other Details</div>
-                <div class="field pencil-icon">
-                    <textarea class="stylish" name="otherInfo"></textarea>
-                </div>
-            </div>
-        </div>
-
-    </fieldset>
 </div>

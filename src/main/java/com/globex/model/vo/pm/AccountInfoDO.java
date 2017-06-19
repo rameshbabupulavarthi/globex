@@ -1,11 +1,14 @@
 package com.globex.model.vo.pm;
 
+import com.globex.model.entity.pm.AccountBankDetails;
 import com.globex.model.entity.pm.AccountInfo;
 import com.globex.model.vo.OrganizationDO;
 import com.utils.StringUtils;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sunil Golla on 5/13/2017.
@@ -41,9 +44,11 @@ public class AccountInfoDO implements Serializable {
 
     private String contactEmail;
 
-    private String bankInfo;
+    private List<AccountBankDetailsDO> accountBankDetails;
 
-    private String otherInfo;
+    /*private String bankInfo;
+
+    private String otherInfo;*/
 
     public AccountInfoDO(){
 
@@ -65,8 +70,9 @@ public class AccountInfoDO implements Serializable {
         this.contactMobileCountryCode=accountInfo.getMobileCountryCode();
         this.contactMobile=accountInfo.getMobile();
         this.contactEmail=accountInfo.getEmail();
-        this.bankInfo=accountInfo.getBankInfo();
-        this.otherInfo=accountInfo.getOtherInfo();
+        loadAccountBankDetailsData(accountInfo);
+        /*this.bankInfo=accountInfo.getBankInfo();
+        this.otherInfo=accountInfo.getOtherInfo();*/
     }
 
     public AccountInfo value(){
@@ -85,8 +91,31 @@ public class AccountInfoDO implements Serializable {
         accountInfo.setMobileCountryCode(this.getContactMobileCountryCode());
         accountInfo.setMobile(this.getContactMobile());
         accountInfo.setEmail(StringUtils.getValue(this.getContactEmail()));
-        accountInfo.setBankInfo(this.getBankInfo());
-        accountInfo.setOtherInfo(this.getOtherInfo());
+        accountInfo.setAccountBankDetails(loadAccountBankDetailsEntity(accountInfo));
+        /*accountInfo.setBankInfo(this.getBankInfo());
+        accountInfo.setOtherInfo(this.getOtherInfo());*/
         return accountInfo;
+    }
+
+    private List<AccountBankDetails> loadAccountBankDetailsEntity(AccountInfo accountInfo){
+        List<AccountBankDetails> accountBankDetailList=new ArrayList<AccountBankDetails>();
+        if(accountBankDetails!=null){
+            for(AccountBankDetailsDO accountBankDetailsDO:accountBankDetails){
+                AccountBankDetails  accountBankDetails1=accountBankDetailsDO.value();
+                accountBankDetails1.setAccountInfo(accountInfo);
+                accountBankDetailList.add(accountBankDetails1);
+            }
+        }
+        return accountBankDetailList;
+    }
+
+    private void loadAccountBankDetailsData(AccountInfo accountInfo){
+        List<AccountBankDetails> accountBankDetailEntities=accountInfo.getAccountBankDetails();
+        accountBankDetails=new ArrayList<AccountBankDetailsDO>();
+        if(accountBankDetailEntities!=null){
+            for(AccountBankDetails accountBankDetail:accountBankDetailEntities){
+                accountBankDetails.add(new AccountBankDetailsDO(accountBankDetail));
+            }
+        }
     }
 }
