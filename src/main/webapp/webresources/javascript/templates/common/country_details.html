@@ -16,8 +16,30 @@
                 <div class="form-row">
                   <div class="form-column">
                     <div class="field-label">Country</div>
-                    <div class="field country-icon">
-                        <input class="stylish" type="text" placeholder="Country Name" name="country" value="<%=country%>">
+                    <div class="field align-justify">
+                        <!--<input class="stylish" type="text" placeholder="Country Name" name="country" value="<%=country%>">-->
+                        <select class="stylish" name="country" value="<%=country%>">
+                            <option value="-1">--Select--</option>
+                            <option value="Afghanistan">Afghanistan</option>
+                            <option value="Akrotiri and Dhekelia (UK)">Akrotiri and Dhekelia (UK)</option>
+                            <option value="Aland Islands (Finland)">Aland Islands (Finland)</option>
+                            <option value="Albania">Albania</option>
+                            <option value="Algeria">Algeria</option>
+                            <option value="American Samoa (USA)">American Samoa (USA)</option>
+                            <option value="Andorra">Andorra</option>
+                            <option value="Angola">Angola</option>
+                            <option value="Anguilla (UK)">Anguilla (UK)</option>
+                            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                            <option value="Argentina">Argentina</option>
+                            <option value="Armenia">Armenia</option>
+                            <option value="Aruba (Netherlands)">Aruba (Netherlands)</option>
+                            <option value="Ascension Island (UK)">Ascension Island (UK)</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Austria">Austria</option>
+                            <option value="Azerbaijan">Azerbaijan</option>
+                        </select>
+
+
                     </div>
                   </div>
                   <div class="form-column">
@@ -798,7 +820,7 @@
                 </div>
             </div>
 
-            <div class="form-column" align="right" style="padding: 15px">
+            <div class="form-column" align="right" style="padding: 15px;width:45%;">
                 <div>
                     <input type="submit" class="save-button form-button" value="Save">
                     <input type="submit" class="cancel-button form-button" value="Cancel">

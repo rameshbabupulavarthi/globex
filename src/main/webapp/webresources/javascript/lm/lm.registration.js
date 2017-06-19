@@ -585,7 +585,7 @@ var LMRecordView=Backbone.View.extend({
               context: this,
               error: function() {},
               success: function(htmlData) {
-                  $(".navigate-manage-pm").trigger("click");
+                  $(".navigate-manage-lm").trigger("click");
                   _self.$el.empty();
                   $(".loading-icon-wrapper").hide();
                   $("body").css({opacity:1});
