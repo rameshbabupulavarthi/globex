@@ -597,11 +597,11 @@
 
                                             <div class="field-row">
                                             <div class="fieldset-wrapper">
-                                                <fieldset class="fieldset" >
+                                                <fieldset class="fieldset"  id="rateRequirement">
                                                     <legend class="legend">Are there any Tariff, Minimum Premium or Rate requirements in your country? </legend>
                                                     <div class="btn-layout">
                                                         <div class="btn-wrapper">
-                                                            <div id="addContact" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Contact </span></div>
+                                                            <div id="addRateRequirement" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Rate Requirement </span></div>
                                                         </div>
                                                     </div>
                                                     <% _.each(rateRequirements, function(rateRequirement){ %>
@@ -688,15 +688,15 @@
                                       <div class="form-row">
 
                                         <div class="fieldset-wrapper">
-                                            <fieldset class="fieldset" >
+                                            <fieldset class="fieldset" id="commissionRequirement">
                                                 <legend class="legend">Please advise your Reinsurance Commission requirements</legend>
                                                 <div class="btn-layout">
                                                     <div class="btn-wrapper">
-                                                        <div id="addContact" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Contact </span></div>
+                                                        <div id="addCommissionRequirement" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Commission Requirement </span></div>
                                                     </div>
                                                 </div>
                                                 <% _.each(commissionRequirements, function(commissionRequirement){ %>
-                                                    <div class="field-row re-ins-com-req">
+                                                 <div class="field-row re-ins-com-req">
                                                     <div class="form-tab-row">
                                                         <div class="field-label">Which LOB</div>
                                                         <div class="field align-justify">
@@ -743,7 +743,7 @@
                                                         </div>
                                                     </div>
                                                     <input type="hidden" name="commReqId" value="<%=commissionRequirement.commReqId%>">
-                                                </div>
+                                                 </div>
                                                 <% }) %>
                                             </fieldset>
                                         </div>

@@ -14,7 +14,9 @@ LMUserRegistrationView = Backbone.View.extend({
         'click .lm-registration-body-section-toggle':'toggleFormSection',
          'click .user-nav-options':'renderUserOptions',
          'click .lm-layout-body-content':'closeUserOptions',
-         'click .navigate-user-profile':'viewProfile'
+         'click .navigate-user-profile':'viewProfile',
+         'click #addRateRequirement':'addRateRquirement',
+         'click #addCommissionRequirement':'addCommissionRequirement',
     },
     render: function(){
        var _self=this;
@@ -580,4 +582,16 @@ LMUserRegistrationView = Backbone.View.extend({
             });
         });
         },
+    addRateRquirement:function(){
+        var _self=this;
+        require(['text!'+'templates/lm/rate_requirement.html'], function(template) {
+            _self.$el.find("#rateRequirement").append(template);
+        });
+    },
+    addCommissionRequirement:function(){
+        var _self=this;
+        require(['text!'+'templates/lm/commission_requirement.html'], function(template) {
+            _self.$el.find("#commissionRequirement").append(template);
+        });
+    }
 });
