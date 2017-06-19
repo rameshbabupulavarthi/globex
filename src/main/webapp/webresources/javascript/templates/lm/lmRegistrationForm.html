@@ -470,7 +470,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-tab">
-                                                                    <div class="field currency-icon">
+                                                                    <div class="field pencil-icon">
                                                                         <input class="stylish" type="text"  placeholder="Enter Ranking" name="ranking" value="<%=organizationHistory.ranking%>">
                                                                     </div>
                                                                 </div>
@@ -599,6 +599,11 @@
                                             <div class="fieldset-wrapper">
                                                 <fieldset class="fieldset" >
                                                     <legend class="legend">Are there any Tariff, Minimum Premium or Rate requirements in your country? </legend>
+                                                    <div class="btn-layout">
+                                                        <div class="btn-wrapper">
+                                                            <div id="addContact" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Contact </span></div>
+                                                        </div>
+                                                    </div>
                                                     <% _.each(rateRequirements, function(rateRequirement){ %>
                                                         <div class="field-row rate-req">
                                                         <div class="form-tab-row">
@@ -685,6 +690,11 @@
                                         <div class="fieldset-wrapper">
                                             <fieldset class="fieldset" >
                                                 <legend class="legend">Please advise your Reinsurance Commission requirements</legend>
+                                                <div class="btn-layout">
+                                                    <div class="btn-wrapper">
+                                                        <div id="addContact" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Contact </span></div>
+                                                    </div>
+                                                </div>
                                                 <% _.each(commissionRequirements, function(commissionRequirement){ %>
                                                     <div class="field-row re-ins-com-req">
                                                     <div class="form-tab-row">
@@ -957,8 +967,9 @@
 
                                         <div class="form-row">
                                            <fieldset class="fieldset fieldset-table">
-                                              <legend class="legend">Underwriting Department contact details (Marine)</legend>
+                                              <legend class="legend">Underwriting Department contact details </legend>
                                               <div class="field-row">
+                                                  <div class="tab-col"><div class="field"> <div class="field-label"> LOB :</div></div></div>
                                                   <div class="tab-col"><div class="field"> <div class="field-label"> Name :</div></div></div>
                                                   <div class="tab-col"><div class="field"> <div class="field-label"> Role :</div></div></div>
                                                   <div class="tab-col"><div class="field"> <div class="field-label"> Comments :</div></div></div>
@@ -968,6 +979,12 @@
                                               </div>
                                               <% _.each(uwDepDetails, function(uwDepDetail){ %>
                                                  <div class="field-row uw-contact">
+                                                 <div class="tab-col">
+                                                     <div class="field" >
+                                                         <%=uwDepDetail.uwLob%>
+                                                         <input type="hidden" name="uwLob" value="<%=uwDepDetail.uwLob%>">
+                                                     </div>
+                                                 </div>
                                                   <div class="tab-col">
                                                       <div class="field pencil-icon" >
                                                           <input class="stylish"  type="text"  placeholder="Enter Name" name="uwName" value="<%=uwDepDetail.uwName%>">

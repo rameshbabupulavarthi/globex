@@ -136,16 +136,12 @@ LMUserRegistrationView = Backbone.View.extend({
 
        ];
 
-       var uwDepDetails=[{
-            uwId:"",
-            uwLob:"",
-            uwName:"",
-            uwRole:"",
-            uwComments:"",
-            uwOffice:"",
-            uwGsm:"",
-            uwEmail:"",
-       }];
+       var uwDepDetails=[
+            {uwId:"",uwLob:"Marine",uwName:"",uwRole:"",uwComments:"",uwOffice:"",uwGsm:"",uwEmail:"",},
+            {uwId:"",uwLob:"Property",uwName:"",uwRole:"",uwComments:"",uwOffice:"",uwGsm:"",uwEmail:""},
+            {uwId:"",uwLob:"Casualty",uwName:"",uwRole:"",uwComments:"",uwOffice:"",uwGsm:"",uwEmail:""},
+            {uwId:"",uwLob:"Professional Lines",uwName:"",uwRole:"",uwComments:"",uwOffice:"",uwGsm:"",uwEmail:""}
+       ];
 
        var bankingDetails=[{
             bankingId:"",
@@ -512,6 +508,7 @@ LMUserRegistrationView = Backbone.View.extend({
                         var uwContactJson={};
                         var $uwContact=$($uwContacts[i]);
                         uwContactJson["uwId"]=$uwContact.find("[name='uwId']").val();
+                        uwContactJson["uwLob"]=$uwContact.find("[name='uwLob']").val();
                         uwContactJson["uwName"]=$uwContact.find("[name='uwName']").val();
                         uwContactJson["uwRole"]=$uwContact.find("[name='uwRole']").val();
                         uwContactJson["uwComments"]=$uwContact.find("[name='uwComments']").val();
