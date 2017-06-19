@@ -127,7 +127,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         organization.setRegDate(new Timestamp(new Date().getTime()));
         //organization.setOrgUserType(Role.ROLE_LM_ADMIN.getRoleValue());
 
-        Set<User> users= organization.getUsers();
+        List<User> users= organization.getUsers();
         if(users!=null) {
             for (User user : users) {
                 user.setPassword(encoder.encode(user.getPassword()));

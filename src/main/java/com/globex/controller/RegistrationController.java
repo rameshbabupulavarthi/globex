@@ -15,6 +15,7 @@ import com.globex.model.vo.pm.AccountInfoDO;
 import com.globex.model.vo.pm.BranchOfficeDO;
 import com.globex.model.vo.pm.CoverageAreaDO;
 import com.globex.model.vo.pm.RegisteredCountryDO;
+import com.globex.repository.rdbms.lm.OrganizationRepository;
 import com.globex.service.OrganizationService;
 import com.globex.service.UserService;
 import org.apache.poi.hssf.usermodel.*;
@@ -47,6 +48,9 @@ public class RegistrationController {
 
     @Autowired
     OrganizationService organizationService;
+
+    @Autowired
+    OrganizationRepository organizationRepository;
 
     @Autowired
     UserService userService;
@@ -112,13 +116,13 @@ public class RegistrationController {
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            Set<UserDO> userDOs= mapper.readValue(organizationDO.getUserJsonStr(),new TypeReference<Set<UserDO>>() {});
-            Set<AccountInfoDO> accountInfoDOs= mapper.readValue(organizationDO.getAccountInfoJsonStr(), new TypeReference<Set<AccountInfoDO>>() {});
-            Set<CoverageAreaDO> coverageAreaDOs= mapper.readValue(organizationDO.getCoverageAreaJsonStr(), new TypeReference<Set<CoverageAreaDO>>() {});
+            List<UserDO> userDOs= mapper.readValue(organizationDO.getUserJsonStr(),new TypeReference<List<UserDO>>() {});
+            List<AccountInfoDO> accountInfoDOs= mapper.readValue(organizationDO.getAccountInfoJsonStr(), new TypeReference<List<AccountInfoDO>>() {});
+            List<CoverageAreaDO> coverageAreaDOs= mapper.readValue(organizationDO.getCoverageAreaJsonStr(), new TypeReference<List<CoverageAreaDO>>() {});
 
-            Set<RegisteredCountryDO> registeredCountryDOs=mapper.readValue(organizationDO.getRegisteredCountriesJsonStr(), new TypeReference<Set<RegisteredCountryDO>>() {});
-            Set<CoverageContactDO> coverageContactDOs=mapper.readValue(organizationDO.getCoverageContactsJsonStr(), new TypeReference<Set<CoverageContactDO>>() {});
-            Set<BranchOfficeDO> branchOfficeDOs=mapper.readValue(organizationDO.getBranchOfficeJsonStr(), new TypeReference<Set<BranchOfficeDO>>() {});
+            List<RegisteredCountryDO> registeredCountryDOs=mapper.readValue(organizationDO.getRegisteredCountriesJsonStr(), new TypeReference<List<RegisteredCountryDO>>() {});
+            List<CoverageContactDO> coverageContactDOs=mapper.readValue(organizationDO.getCoverageContactsJsonStr(), new TypeReference<List<CoverageContactDO>>() {});
+            List<BranchOfficeDO> branchOfficeDOs=mapper.readValue(organizationDO.getBranchOfficeJsonStr(), new TypeReference<List<BranchOfficeDO>>() {});
 
             organizationDO.setOrgUserType(AppConstants.OrgUserType.LM.getUserType());
             organizationDO.setUsers(userDOs);
@@ -231,6 +235,13 @@ public class RegistrationController {
         style.setBorderRight(HSSFCellStyle.BORDER_THIN);
         style.setWrapText(true);
         return style;
+    }
+
+
+    @RequestMapping("/secure/deleteOrg")
+    @ResponseBody
+    public void deleteOrg(@RequestParam(value = "orgId",required=false) Long orgId){
+        organizationRepository.delete(orgId);
     }
 
 }

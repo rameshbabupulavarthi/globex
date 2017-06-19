@@ -81,32 +81,32 @@ public class Organization implements Serializable{
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<User> users;
+    private List<User> users;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<AccountInfo> accountInfos;
+    private List<AccountInfo> accountInfos;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<CoverageArea> coverageAreas;
+    private List<CoverageArea> coverageAreas;
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<Attachment> attachments;
+    private List<Attachment> attachments;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<RegisteredCountry> registeredCountries;
+    private List<RegisteredCountry> registeredCountries;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<CoverageContact> coverageContacts;
+    private List<CoverageContact> coverageContacts;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",cascade = { CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
-    private Set<BranchOffice> branchOffices;
+    private List<BranchOffice> branchOffices;
 
 
     /******************************** LM **************************************************/

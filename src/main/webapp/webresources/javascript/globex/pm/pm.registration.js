@@ -8,7 +8,6 @@ PMListView =Backbone.View.extend({
                             '<th class="header-column">Address<div class="header-column-sort"></div></th>'+
                             '<th class="header-column">Contact Name<div class="header-column-sort"></div></th>'+
                             '<th class="header-column">Phone Number<div class="header-column-sort"></div></th>'+
-                            '<th class="header-column">View<div class="header-column-sort"></div></th>'+
                             '<th class="header-column">Edit<div class="header-column-sort"></div></th>'+
                             '<th class="header-column">Delete</th>'+
                     '</tr></thead>',
@@ -495,7 +494,6 @@ var PartnerMarketView=Backbone.View.extend({
                 '<td class="table-column"><p class="table-column-text"><%=address%></p></td>'+
                 '<td class="table-column"><p class="table-column-text"><%=contactName%></p></td>'+
                 '<td class="table-column"><p class="table-column-text"><%=phoneNumber%></p></td>'+
-                '<td class="table-column"><div class="edit-icon view-pm"></div></td> '+
                 '<td class="table-column"><div class="edit-icon edit-pm"></div></td>'+
                 '<td class="table-column"><div class="delete-icon delete-pm"></div></td>',
     render: function(){
@@ -595,9 +593,9 @@ var PartnerMarketView=Backbone.View.extend({
           $("body").css({opacity:0.5});
           $.ajax({
               type: 'POST',
-              url: '/secure/deleteCountry',
+              url: '/secure/deleteOrg',
               data: {
-                  countryId : countryId
+                  orgId : orgId
               },
               context: this,
               error: function() {},

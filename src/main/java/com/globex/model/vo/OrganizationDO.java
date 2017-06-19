@@ -60,17 +60,17 @@ public class OrganizationDO implements Serializable {
 
     private String comment;
 
-    private Set<UserDO> users;
+    private List<UserDO> users;
 
-    private Set<AccountInfoDO> accountInfoDOs;
+    private List<AccountInfoDO> accountInfoDOs;
 
-    private Set<CoverageAreaDO> coverageAreaDOs;
+    private List<CoverageAreaDO> coverageAreaDOs;
 
-    private Set<RegisteredCountryDO> registeredCountryDOs;
+    private List<RegisteredCountryDO> registeredCountryDOs;
 
-    private Set<CoverageContactDO> coverageContactDOs;
+    private List<CoverageContactDO> coverageContactDOs;
 
-    private Set<BranchOfficeDO> branchOfficeDOs;
+    private List<BranchOfficeDO> branchOfficeDOs;
 
     private String userJsonStr;
     private String accountInfoJsonStr;
@@ -249,19 +249,19 @@ public class OrganizationDO implements Serializable {
 
     public void loadFullDetails(Organization organization){
 
-        Set<User> users= organization.getUsers();
-        Set<AccountInfo> accountInfos=organization.getAccountInfos();
-        Set<CoverageArea> coverageAreas=organization.getCoverageAreas();
-        Set<RegisteredCountry> registeredCountries=organization.getRegisteredCountries();
-        Set<CoverageContact> coverageContacts=organization.getCoverageContacts();
-        Set<BranchOffice> branchOffices=organization.getBranchOffices();
+        List<User> users= organization.getUsers();
+        List<AccountInfo> accountInfos=organization.getAccountInfos();
+        List<CoverageArea> coverageAreas=organization.getCoverageAreas();
+        List<RegisteredCountry> registeredCountries=organization.getRegisteredCountries();
+        List<CoverageContact> coverageContacts=organization.getCoverageContacts();
+        List<BranchOffice> branchOffices=organization.getBranchOffices();
 
-        Set<UserDO> userDOs= new HashSet<UserDO>();
-        Set<AccountInfoDO> accountInfoDOs=new HashSet<AccountInfoDO>();
-        Set<CoverageAreaDO> coverageAreaDOs=new HashSet<CoverageAreaDO>();
-        Set<RegisteredCountryDO> registeredCountryDOs=new HashSet<RegisteredCountryDO>();
-        Set<CoverageContactDO> coverageContactDOs=new HashSet<CoverageContactDO>();
-        Set<BranchOfficeDO> branchOfficeDOs=new HashSet<BranchOfficeDO>();
+        List<UserDO> userDOs= new ArrayList<UserDO>();
+        List<AccountInfoDO> accountInfoDOs=new ArrayList<AccountInfoDO>();
+        List<CoverageAreaDO> coverageAreaDOs=new ArrayList<CoverageAreaDO>();
+        List<RegisteredCountryDO> registeredCountryDOs=new ArrayList<RegisteredCountryDO>();
+        List<CoverageContactDO> coverageContactDOs=new ArrayList<CoverageContactDO>();
+        List<BranchOfficeDO> branchOfficeDOs=new ArrayList<BranchOfficeDO>();
 
         for(User user: users){
             UserDO userDO=new UserDO(user);
@@ -361,8 +361,8 @@ public class OrganizationDO implements Serializable {
     }
 
     public void loadUsers(Organization organization){
-        Set<UserDO> userDOs= new HashSet<UserDO>();
-        Set<User> users= organization.getUsers();
+        List<UserDO> userDOs= new ArrayList<UserDO>();
+        List<User> users= organization.getUsers();
         for(User user: users){
             UserDO userDO=new UserDO(user);
             userDOs.add(userDO);
@@ -371,9 +371,9 @@ public class OrganizationDO implements Serializable {
         this.users=userDOs;
     }
 
-    private Set<User> getUsers(Set<UserDO> userDOs,Organization organization){
+    private List<User> getUsers(List<UserDO> userDOs,Organization organization){
         if(userDOs!=null && !userDOs.isEmpty()){
-            Set<User> users=new HashSet<User>();
+            List<User> users=new ArrayList<User>();
             for(UserDO userDO:userDOs){
                 User user=userDO.value();
                 user.setOrganization(organization);
@@ -384,9 +384,9 @@ public class OrganizationDO implements Serializable {
         return null;
     }
 
-    private Set<AccountInfo> getAccountInfos(Set<AccountInfoDO> accountInfoDOs,Organization organization){
+    private List<AccountInfo> getAccountInfos(List<AccountInfoDO> accountInfoDOs,Organization organization){
         if(accountInfoDOs!=null && !accountInfoDOs.isEmpty()){
-            Set<AccountInfo> accountInfos=new HashSet<AccountInfo>();
+            List<AccountInfo> accountInfos=new ArrayList<AccountInfo>();
             for(AccountInfoDO accountInfoDO:accountInfoDOs){
                 AccountInfo accountInfo=accountInfoDO.value();
                 accountInfo.setOrganization(organization);
@@ -397,9 +397,9 @@ public class OrganizationDO implements Serializable {
         return null;
     }
 
-    private Set<CoverageArea> getCoverageAreas(Set<CoverageAreaDO> coverageAreaDOs,Organization organization){
+    private List<CoverageArea> getCoverageAreas(List<CoverageAreaDO> coverageAreaDOs,Organization organization){
         if(coverageAreaDOs!=null && !coverageAreaDOs.isEmpty()){
-            Set<CoverageArea> coverageAreas=new HashSet<CoverageArea>();
+            List<CoverageArea> coverageAreas=new ArrayList<CoverageArea>();
             for(CoverageAreaDO coverageAreaDO:coverageAreaDOs){
                 CoverageArea coverageArea=coverageAreaDO.value();
                 coverageArea.setOrganization(organization);
@@ -411,9 +411,9 @@ public class OrganizationDO implements Serializable {
     }
 
 
-    private Set<RegisteredCountry> getRegisteredCountries(Set<RegisteredCountryDO> registeredCountryDOs,Organization organization){
+    private List<RegisteredCountry> getRegisteredCountries(List<RegisteredCountryDO> registeredCountryDOs,Organization organization){
         if(registeredCountryDOs!=null && !registeredCountryDOs.isEmpty()){
-            Set<RegisteredCountry> registeredCountries=new HashSet<RegisteredCountry>();
+            List<RegisteredCountry> registeredCountries=new ArrayList<RegisteredCountry>();
             for(RegisteredCountryDO registeredCountryDO:registeredCountryDOs){
                 RegisteredCountry registeredCountry=registeredCountryDO.value();
                 registeredCountry.setOrganization(organization);
@@ -424,9 +424,9 @@ public class OrganizationDO implements Serializable {
         return null;
     }
 
-    private Set<CoverageContact> getCoverageContacts(Set<CoverageContactDO> coverageContactDOs,Organization organization){
+    private List<CoverageContact> getCoverageContacts(List<CoverageContactDO> coverageContactDOs,Organization organization){
         if(coverageContactDOs!=null && !coverageContactDOs.isEmpty()){
-            Set<CoverageContact> coverageContacts=new HashSet<CoverageContact>();
+            List<CoverageContact> coverageContacts=new ArrayList<CoverageContact>();
             for(CoverageContactDO coverageContactDO:coverageContactDOs){
                 CoverageContact coverageContact=coverageContactDO.value();
                 coverageContact.setOrganization(organization);
@@ -437,9 +437,9 @@ public class OrganizationDO implements Serializable {
         return null;
     }
 
-    private Set<BranchOffice> getBranchOffices(Set<BranchOfficeDO> branchOfficeDOs,Organization organization){
+    private List<BranchOffice> getBranchOffices(List<BranchOfficeDO> branchOfficeDOs,Organization organization){
         if(branchOfficeDOs!=null && !branchOfficeDOs.isEmpty()){
-            Set<BranchOffice> branchOffices=new HashSet<BranchOffice>();
+            List<BranchOffice> branchOffices=new ArrayList<BranchOffice>();
             for(BranchOfficeDO branchOfficeDO:branchOfficeDOs){
                 BranchOffice branchOffice=branchOfficeDO.value();
                 branchOffice.setOrganization(organization);
