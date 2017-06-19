@@ -369,7 +369,19 @@
                                                         </div>
                                                         <div class="form-tab">
                                                             <div class="field currency-icon">
-                                                                <input class="stylish" type="text"  placeholder="Enter Currency" name="premiumCurrency" value="<%=organizationHistory.premiumCurrency%>">
+                                                                <!--<input class="stylish" type="text"  placeholder="Enter Currency" name="premiumCurrency" value="<%=organizationHistory.premiumCurrency%>">-->
+                                                                <select class="stylish" name="premiumCurrency" value="<%=organizationHistory.premiumCurrency%>">
+                                                                    <option value="-1">Select</option>
+                                                                    <option value="AFN">AFN</option>
+                                                                    <option value="EUR">EUR</option>
+                                                                    <option value="ALL">ALL</option>
+                                                                    <option value="DZD">DZD</option>
+                                                                    <option value="USD">USD</option>
+                                                                    <option value="XCD">XCD</option>
+                                                                    <option value="ARS">ARS</option>
+                                                                    <option value="AMD">AMD</option>
+                                                                    <option value="AWG">AWG</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <input type="hidden" name="type" value="<%=organizationHistory.type%>">
@@ -439,7 +451,19 @@
                                                             </div>
                                                             <div class="form-tab">
                                                                 <div class="field currency-icon">
-                                                                    <input class="stylish" type="text"  placeholder="Enter Currency" name="totalAssetsCurrency" value="<%=organizationHistory.totalAssetsCurrency%>">
+                                                                    <!--<input class="stylish" type="text"  placeholder="Enter Currency" name="totalAssetsCurrency" value="<%=organizationHistory.totalAssetsCurrency%>">-->
+                                                                    <select class="stylish" name="totalAssetsCurrency" value="<%=organizationHistory.totalAssetsCurrency%>">
+                                                                        <option value="-1">Select</option>
+                                                                        <option value="AFN">AFN</option>
+                                                                        <option value="EUR">EUR</option>
+                                                                        <option value="ALL">ALL</option>
+                                                                        <option value="DZD">DZD</option>
+                                                                        <option value="USD">USD</option>
+                                                                        <option value="XCD">XCD</option>
+                                                                        <option value="ARS">ARS</option>
+                                                                        <option value="AMD">AMD</option>
+                                                                        <option value="AWG">AWG</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                           <input type="hidden" name="type" value="<%=organizationHistory.type%>">
@@ -638,9 +662,16 @@
                                                             <div class="field-label">currency</div>
                                                             <div class="field align-justify">
                                                                 <select class="stylish" name="reqCurrency" value="<%=rateRequirement.reqCurrency%>">
-                                                                    <option>Select</option>
-                                                                    <option value="sum">Sum Insured</option>
-                                                                    <option value="sum">Fixed Sum</option>
+                                                                    <option value="-1">Select</option>
+                                                                    <option value="AFN">AFN</option>
+                                                                    <option value="EUR">EUR</option>
+                                                                    <option value="ALL">ALL</option>
+                                                                    <option value="DZD">DZD</option>
+                                                                    <option value="USD">USD</option>
+                                                                    <option value="XCD">XCD</option>
+                                                                    <option value="ARS">ARS</option>
+                                                                    <option value="AMD">AMD</option>
+                                                                    <option value="AWG">AWG</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -739,7 +770,19 @@
                                                     <div class="form-tab-row">
                                                         <div class="field-label">Currency</div>
                                                         <div class="field currency-icon">
-                                                            <input class="stylish" type="text"  placeholder="Enter Currency" name="commissionCurrency" value="<%=commissionRequirement.commissionCurrency%>">
+                                                            <!--<input class="stylish" type="text"  placeholder="Enter Currency" name="commissionCurrency" value="<%=commissionRequirement.commissionCurrency%>">-->
+                                                            <select class="stylish" name="commissionCurrency" value="<%=commissionRequirement.commissionCurrency%>">
+                                                                <option value="-1">Select</option>
+                                                                <option value="AFN">AFN</option>
+                                                                <option value="EUR">EUR</option>
+                                                                <option value="ALL">ALL</option>
+                                                                <option value="DZD">DZD</option>
+                                                                <option value="USD">USD</option>
+                                                                <option value="XCD">XCD</option>
+                                                                <option value="ARS">ARS</option>
+                                                                <option value="AMD">AMD</option>
+                                                                <option value="AWG">AWG</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <input type="hidden" name="commReqId" value="<%=commissionRequirement.commReqId%>">
