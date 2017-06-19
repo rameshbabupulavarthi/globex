@@ -33,7 +33,7 @@ PagingView=Backbone.View.extend({
                         '<div class="filter-data"></div>'+
                         '<div class="form-column">'+
                             '<div>'+
-                                '<div class="save-filter form-button">Save</div>'+
+                                '<div class="save-filter form-button">Submit</div>'+
                                 '<div class="cancel-filter form-button">Cancel</div>'+
                             '</div>'+
                         '</div>'+
