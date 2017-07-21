@@ -608,7 +608,15 @@ label.error {
 .form-wrapper .field .stylish {
     width: 70%;
 }
-
+.form-wrapper .field .stylishselect {
+        width: 78%;
+    	padding: 10px;
+    	border-radius: 3px;
+    	border: 3px rgba(168, 172, 173, 0.75);
+    	font-family: Roboto, FontAwesome;
+    	background-color: white;
+    	border: 2px solid #d3d7cf;
+}
 .form-wrapper .field .stylish .attach {
     width: 63%;
 }
@@ -678,6 +686,10 @@ label.error {
 .country-icon::before{
   content: "\f041";
 }
+
+.pin-icon::before{
+    content: "\f276";
+    }
 .building-icon::before{
     content: "\f1ad";
 }

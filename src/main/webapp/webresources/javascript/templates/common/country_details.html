@@ -18,7 +18,7 @@
                     <div class="field-label">Country</div>
                     <div class="field align-justify">
                         <!--<input class="stylish" type="text" placeholder="Country Name" name="country" value="<%=country%>">-->
-                        <select class="stylish" name="country" value="<%=country%>">
+                        <select class="stylishselect" name="country" value="<%=country%>">
                             <option value="-1">--Select--</option>
                             <option value="Afghanistan">Afghanistan</option>
                             <option value="Akrotiri and Dhekelia (UK)">Akrotiri and Dhekelia (UK)</option>
@@ -49,7 +49,17 @@
                         </div>
                   </div>
                 </div>
-
+                <div class="field-row">
+                    <div class="form-column">
+                        <div class="field-label">General Attachments:</div>
+                        <div class="field upload-icon">
+                            <input class="stylish attach" type="file" name="generalAttachmentFile">
+                            <% if( generalAttachment ){%>
+                            <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=generalAttachment%>" title="Attachment"></a>
+                            <%}%>
+                        </div>
+                    </div>
+                    </div>
                 <div class="fieldset-wrapper">
                     <fieldset class="fieldset" id="taxWrapper">
                         <legend class="legend">Taxes</legend>
@@ -266,8 +276,10 @@
                                            name="requirementAppliedTo" size="50" value="<%=rateRequirement.requirementAppliedTo%>"> -->
                                             <select name="requirementAppliedTo" class="stylish selectoption" value="<%=rateRequirement.requirementAppliedTo%>">
                                                 <option value="-1">Select</option>
-                                                <option value="sum">Country Requirement</option>
-                                                <option value="sum">Company Requirement</option>
+                                                <option value="Premium">Premium</option>
+                                                <option value="Premium + taxes">Premium + taxes</option>
+                                                <option value="Premium net of Retention">Premium net of Retention</option>
+                                                <option value="Brokerage">Brokerage</option>
                                             </select>
                                         </div>
                                     </div>
@@ -409,24 +421,6 @@
                         <legend class="legend">Is Using a Manuscript wording acceptable?</legend>
                         <div class="field-row">
                             <div class="form-column">
-                                <div class="field-label">Acceptable</div>
-                                <div class="field align-justify">
-                                    <select name="useManuScript" class="stylish" value="<%=useManuScript%>">
-                                        <option value="-1">Acceptable</option>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
-                                    </select>
-                                </div></div>
-                            <div class="form-column">
-                                <div class="field-label">Comments</div>
-                                <div class="field pencil-icon">
-                                    <textarea name="manuScriptComments" class="stylish"  placeholder="Enter your Comments"><%=manuScriptComments%></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field-row">
-                            <div class="form-column">
                                 <div class="field-label">LOB</div>
                                 <div class="field align-justify">
                                     <select class="stylish lob-dropdown" placeholder="All or LOB names, more than one" name="manuScriptLOB" value="<%=manuScriptLOB%>">
@@ -441,6 +435,25 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-column">
+                                <div class="field-label">Comments</div>
+                                <div class="field pencil-icon">
+                                    <textarea name="manuScriptComments" class="stylish"  placeholder="Enter your Comments"><%=manuScriptComments%></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field-row">
+                            <div class="form-column">
+                                <div class="field-label">Acceptable</div>
+                                <div class="field align-justify">
+                                    <select name="useManuScript" class="stylish" value="<%=useManuScript%>">
+                                        <option value="-1">Acceptable</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div></div>
                         </div>
                     </fieldset>
                 </div>
@@ -513,7 +526,14 @@
                         </div>
 
                     </div>
-
+                    <div class="field-row">
+                    <div class="form-column">
+                        <div class="field-label">If so, please advise what needs to be done to get registered</div>
+                        <div class="field pencil-icon">
+                            <textarea name="foreignReinsurerRegisteredAdvice" class="stylish"  placeholder="Enter your Advice"><%=foreignReinsurerRegisteredAdvice%></textarea>
+                        </div>
+                    </div>
+                    </div>
                     <!--  <div class="form-column">
                                           <div class="field-label">Does the foreign Reinsurer have to be registered with the Regulator in your country?</div>
                                           <div class="field align-justify">
@@ -534,20 +554,22 @@
                 </fieldset>
             </div>
                 <div class="form-row">
-                   <div class="form-column">
-                        <div class="field-label">If so, please advise what needs to be done to get registered</div>
-                        <div class="field pencil-icon">
-                            <textarea name="foreignReinsurerRegisteredAdvice" class="stylish"  placeholder="Enter your Advice"><%=foreignReinsurerRegisteredAdvice%></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-column">
+                                  <div class="form-column">
                         <div class="field-label">What specific information/documents do you require from the insured for
                             policy issuance? For example, local insured registration documents, Know Your Client forms, Proposal Forms, etc.</div>
                         <div class="field pencil-icon">
                             <textarea name="infoReqdForPolicyInsurance" class="stylish"  placeholder="ex : local insured registration documents, Proposal Forms"><%=infoReqdForPolicyInsurance%></textarea>
                         </div>
 
+                    </div>
+                    <div class="form-column">
+                        <div class="field-label">Attachments for previous question :</div>
+                        <div class="field pencil-icon">
+                            <input class="stylish" type="file" name="insuRequiredDocFile" size="50">
+                            <% if( insuRequiredDoc ){%>
+                            <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=insuRequiredDoc%>" title="Attachment"></a>
+                            <%}%>
+                        </div>
                     </div>
                     </div>
             <div class="form-row">
@@ -560,16 +582,16 @@
                             <input type="radio" name="premiumCollectionType" value="2" <% if(premiumCollectionType==2) { %> checked='checked' <% } %> > Receiving Premium from Overseas is possible
                         </div>
                     </div>
-
-                    <div class="form-column">
-                        <div class="field-label">Attachments for question above :</div>
-                        <div class="field pencil-icon">
-                            <input class="stylish" type="file" name="insuRequiredDocFile" size="50">
-                            <% if( insuRequiredDoc ){%>
-                            <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=insuRequiredDoc%>" title="Attachment"></a>
-                            <%}%>
-                        </div>
+                <div class="form-column">
+                    <div class="field-label">
+                        If the premium can be remitted from overseas, do you need the full premium, inclusive of all taxes and fees to hit your books, or can you accept only taxes and fees?
                     </div>
+                    <div class="field">
+                        <input type="radio" name="premiumRemittedType" value="1"  >All premium has to be received
+                        <input type="radio" name="premiumRemittedType" value="2">Only taxes and fees have to be received
+                    </div>
+                </div>
+
                 </div>
 
             <div class="fieldset-wrapper">
@@ -685,10 +707,10 @@
                         <div class="field">
                             <input type="radio" name="tacitRenewal" value="1" <% if(tacitRenewal==1) { %> checked='checked' <% } %> >Yes
                             <input type="radio" name="tacitRenewal" value="0" <% if(tacitRenewal==0) { %> checked='checked' <% } %> >No
-                            or
-                            <div class="field pencil-icon">
-                                <textarea name="tacitRenewalReasons" class="stylish"  placeholder="Enter your Comments"><%=tacitRenewalReasons%></textarea>
-                            </div>
+                            <!--or-->
+                            <!--<div class="field pencil-icon">-->
+                                <!--<textarea name="tacitRenewalReasons" class="stylish"  placeholder="Enter your Comments"><%=tacitRenewalReasons%></textarea>-->
+                            <!--</div>-->
                         </div>
                     </div>
 
@@ -800,24 +822,17 @@
                             <textarea name="otherRequirements" class="stylish"  placeholder="Enter your Comments"><%=otherRequirements%></textarea>
                         </div>
                     </div>
-                    <div class="form-column">
-                        <div class="field-label">General comments :</div>
-                        <div class="field pencil-icon">
-                            <textarea name="generalComments" class="stylish"  placeholder="Enter your Comments"><%=generalComments%></textarea>
-                        </div>
+
+                    <!--<div class="form-column">-->
+                        <!--<div class="field-label">General comments :</div>-->
+                        <!--<div class="field pencil-icon">-->
+                            <!--<textarea name="generalComments" class="stylish"  placeholder="Enter your Comments"><%=generalComments%></textarea>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     </div>
-                    </div>
-                    <div class="form-row">
-                    <div class="form-column">
-                        <div class="field-label">General Attachments:</div>
-                        <div class="field upload-icon">
-                            <input class="stylish attach" type="file" name="generalAttachmentFile">
-                            <% if( generalAttachment ){%>
-                                <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=generalAttachment%>" title="Attachment"></a>
-                            <%}%>
-                        </div>
-                    </div>
-                </div>
+                    <!--<div class="form-row">-->
+                   <!---->
+                <!--</div>-->
             </div>
 
             <div class="form-column" align="right" style="padding: 15px;width:45%;">

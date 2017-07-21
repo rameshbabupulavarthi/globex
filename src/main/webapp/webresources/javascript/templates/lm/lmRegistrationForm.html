@@ -101,10 +101,10 @@
                                                     Is Your Company Public or Private :
                                                 </div>
                                                 <div class="field">
-                                                    <select name="orgDetails.orgType" value="<%=organizationDetails.orgType%>">
+                                                    <select class="stylishselect" name="orgDetails.orgType" value="<%=organizationDetails.orgType%>">
                                                         <option value="-1">Select</option>
-                                                        <option value="1">Yes</option>
-                                                        <option value="0">No</option>
+                                                        <option value="1">Private</option>
+                                                        <option value="0">Public</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -116,19 +116,6 @@
                                                     <input class="stylish" name="orgDetails.licenseAuthorityName" type="text" placeholder="Enter Licensing Authority Name" value="<%=organizationDetails.licenseAuthorityName%>">
                                                 </div>
                                             </div>
-                                            <div class="form-column" >
-                                                <div class="field-label" >
-                                                    Is your company rated by any
-                                                    other rating agency? If so, please provide the
-                                                    information :
-                                                </div>
-                                                <div class="field hand-right-icon">
-                                                    <input class="stylish" type="text"  placeholder="Enter Other Rating Agency" name="orgDetails.ratedByOtherAgency" value="<%=organizationDetails.ratedByOtherAgency%>" size="50">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
                                             <div class="form-column">
                                                 <div class="field-label">Licensing Authority's website</div>
                                                 <div class="field globe-icon">
@@ -137,7 +124,10 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-column" >
+                                        </div>
+
+                                        <div class="form-row">
+                                          <div class="form-column" >
                                                 <div class="field-label" >
                                                     License Number :
                                                 </div>
@@ -146,13 +136,41 @@
                                                            value="<%=organizationDetails.licenseNo%>" size="50">
                                                 </div>
                                             </div>
+                                            <div class="form-column" >
+                                                <div class="field-label" id="comestablishmentyeardiv">
+                                                    The Year your Company was established :
+                                                </div>
+                                                <div class="field calendar-icon">
+                                                    <input class="stylish date-picker" type="text" placeholder="Enter Establishment Year" name="orgDetails.establishedDate" value="<%=organizationDetails.establishedDate%>" size="50" >
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="form-row">
+
+                                            <div class="form-column" >
+                                                <div class="field-label" >
+                                                    Attachments for any Company Information material :
+                                                </div>
+                                                <div class="field upload-icon">
+                                                    <input class="stylish" type="file" name="orgFileAttachment" size="50">
+                                                    <% if( organizationDetails.attachment ){%>
+                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.attachment%>" title="Attachment"></a>
+                                                    <%}%>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="fieldset-wrapper">
+                                                <fieldset class="fieldset">
+                                                    <legend class="legend"> AM Rating Company </legend>
                                         <div class="form-row">
                                             <div class="form-column">
                                                 <div class="field-label">Does your company have an AM
                                                     Best rating? If so, please provide the rating :</div>
                                                 <div class="field align-justify">
-                                                    <select class="stylish selectbox" name="orgDetails.amBestRating" value="<%=organizationDetails.amBestRating%>">
+                                                    <select class="stylishselect" name="orgDetails.amBestRating" value="<%=organizationDetails.amBestRating%>">
                                                         <option value="-1">---AM Best Rating---</option>
                                                         <option value="aplussuperior">A+ Superior</option>
                                                         <option value="aexcellent">A Excellent</option>
@@ -174,31 +192,11 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-column" >
-                                                <div class="field-label" id="comestablishmentyeardiv">
-                                                    The Year your Company was established :
-                                                </div>
-                                                <div class="field calendar-icon">
-                                                    <input class="stylish date-picker" type="text" placeholder="Enter Establishment Year" name="orgDetails.establishedDate" value="<%=organizationDetails.establishedDate%>" size="50" >
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-column" >
-                                                <div class="field-label" >
-                                                    Attachments for any Company Information material :
-                                                </div>
-                                                <div class="field upload-icon">
-                                                    <input class="stylish" type="file" name="orgFileAttachment" size="50">
-                                                    <% if( organizationDetails.attachment ){%>
-                                                    <a class="mail-attachment" href="/secure/downloadFile?filePath=<%=organizationDetails.attachment%>" title="Attachment"></a>
-                                                    <%}%>
-                                                </div>
-                                            </div>
+
                                             <div class="form-column">
                                                 <div class="field-label">AM Best Outlook :</div>
                                                 <div class="field">
-                                                    <select name="orgDetails.amBestLook"  value="<%=organizationDetails.amBestLook%>" >
+                                                    <select class="stylishselect" name="orgDetails.amBestLook"  value="<%=organizationDetails.amBestLook%>" >
                                                         <option value="1">Positive</option>
                                                         <option value="2">Stable</option>
                                                         <option value="3">Negative</option>
@@ -228,12 +226,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-row">
+                                        </fieldset>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="fieldset-wrapper">
+                                                    <fieldset class="fieldset">
+                                                        <legend class="legend"> S&amp;P Rating Company </legend>
+                                                        <div class="form-row">
                                             <div class="form-column" id="sandpratingdiv">
                                                 <div class="field-label">Does your company have a
                                                     S&amp;P rating? If so, please provide the rating :</div>
                                                 <div class="field align-justify">
-                                                    <select name="orgDetails.snpRating" value="<%=organizationDetails.snpRating%>" class="stylish selectbox">
+                                                    <select class="stylishselect" name="orgDetails.snpRating" value="<%=organizationDetails.snpRating%>" class="stylish selectbox">
                                                         <option value="-1">---Select---</option>
                                                         <option value="1">Extremely Strong</option>
                                                         <option value="2">Very Strong</option>
@@ -253,7 +259,7 @@
                                             <div class="form-column">
                                                 <div class="field-label">S&amp;P Outlook :</div>
                                                 <div class="field">
-                                                    <select name="orgDetails.snpOutlook" value="<%=organizationDetails.snpOutlook%>" class="stylish selectbox">
+                                                    <select class="stylishselect" name="orgDetails.snpOutlook" value="<%=organizationDetails.snpOutlook%>" class="stylish selectbox">
                                                         <option value="1">Positive</option>
                                                         <option value="2">Stable</option>
                                                         <option value="3">Negative</option>
@@ -262,7 +268,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="form-row">
 
@@ -283,7 +288,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        </fieldset>
+                                         </div>
                                         <div class="form-row">
                                             <div class="fieldset-wrapper">
                                                 <fieldset class="fieldset">
@@ -335,6 +341,18 @@
                                                              </div>
                                                          </div>
                                                      </div>
+                                                       <div class=""form-row">
+                                                       <div class="form-column" >
+                                                           <div class="field-label" >
+                                                               Is your company rated by any
+                                                               other rating agency? If so, please provide the
+                                                               information :
+                                                           </div>
+                                                           <div class="field hand-right-icon">
+                                                               <input class="stylish" type="text"  placeholder="Enter Other Rating Agency" name="orgDetails.ratedByOtherAgency" value="<%=organizationDetails.ratedByOtherAgency%>" size="50">
+                                                           </div>
+                                                       </div>
+                                                       </div>
                                                      <input type="hidden" name="miscId" value="<%=miscRating.miscId%>">
                                                    </div>
                                                  <% }) %>
@@ -405,9 +423,9 @@
                                                                 <div class="field align-justify">
                                                                     <select class="stylish" name="year" value="<%=organizationHistory.year%>">
                                                                         <option value="-1"> Year :</option>
-                                                                        <option value="2014">2014</option>
+                                                                        <!--<option value="2014">2014</option>-->
                                                                         <option value="2015">2015</option>
-                                                                        <option value="2016">2016</option>
+                                                                        <!--<option value="2016">2016</option>-->
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -438,8 +456,8 @@
                                                                 <div class="field align-justify" >
                                                                     <select class="stylish" name="year" value="<%=organizationHistory.year%>">
                                                                         <option value="-1"> Year :</option>
-                                                                        <option value="2014">2014</option>
-                                                                        <option value="2015">2015</option>
+                                                                        <!--<option value="2014">2014</option>-->
+                                                                        <!--<option value="2015">2015</option>-->
                                                                         <option value="2016">2016</option>
                                                                     </select>
                                                                 </div>
@@ -496,7 +514,6 @@
                                                                 <div class="form-tab">
                                                                     <div class="field pencil-icon">
                                                                         <input class="stylish" type="text"  placeholder="Enter Ranking" name="ranking" value="<%=organizationHistory.ranking%>">
-                                                                    </div>
                                                                 </div>
                                                                 <input type="hidden" name="type" value="<%=organizationHistory.type%>">
                                                                 <input type="hidden" name="historyId" value="<%=organizationHistory.historyId%>">
