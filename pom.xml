@@ -492,7 +492,7 @@
             <build>
                 <finalName>globex</finalName>
                 <plugins>
-                    <plugin>
+                    <!--<plugin>
                         <groupId>org.zeroturnaround</groupId>
                         <artifactId>jrebel-maven-plugin</artifactId>
                         <executions>
@@ -504,7 +504,7 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
+                    </plugin>-->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
