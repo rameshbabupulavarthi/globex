@@ -89,7 +89,7 @@
                                      <li class="sub-menu-item navigate-manage-country">Country</li>
                                      <!-- <li class="sub-menu-item navigate-manage-pm">PM Registration</li> -->
                                      <li class="sub-menu-item navigate-manage-pm">Partner Market</li>
-                                     <li class="sub-menu-item navigate-manage-lm">Local Market</li>
+                                     <li class="sub-menu-item navigate-manage-lm">Network Partner</li>
                                  </ul>
                              </div>
                           </li>

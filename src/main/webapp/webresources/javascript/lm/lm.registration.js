@@ -48,7 +48,7 @@ LMListView =Backbone.View.extend({
                             '<div class="btn-wrapper">'+
                                 '<div class="show-filter filter-list filter-icon"></div>'+
                                 ' <a href="/secure/downloadPMs"><div class="filter-list download-icon"></div> </a>'+
-                                '<div id="createLM" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Local Market </span></div>'+
+                                '<div id="createLM" class="add-user-button"><span class="add-button"></span> <span class="add-country-text" >Add Network Partner </span></div>'+
                             '</div>'+
                            '</div>'
                  });
